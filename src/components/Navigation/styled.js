@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import search from "../../images/search.svg";
+import { ReactComponent as VideoSVG } from "../../images/video.svg";
 
 export const Container = styled.nav`
     background-color: ${({ theme }) => theme.color.codGray};
@@ -34,6 +35,10 @@ export const LogoButtonsWrapper = styled.div`
     gap: 80px;
     flex-shrink: 1;
 
+    @media (max-width: ${({ theme }) => theme.breakpoint.tablet}px) {
+        gap: 40px;
+    }
+
     @media (max-width: ${({ theme }) => theme.breakpoint.phone}px) {
         gap: 19px;
     }
@@ -55,6 +60,12 @@ export const Logo = styled.div`
            font-size: 13px;
            line-height: 16.9px;
            gap: 8px;
+    }
+`;
+
+export const Video = styled(VideoSVG)`
+    @media (max-width: ${({ theme }) => theme.breakpoint.phone}px) {
+        max-width: 17px;
     }
 `;
 

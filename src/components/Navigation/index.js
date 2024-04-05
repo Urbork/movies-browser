@@ -3,12 +3,12 @@ import {
     Wrapper,
     LogoButtonsWrapper,
     Logo,
+    Video,
     Button,
     InputWrapper,
     Input,
     ButtonsWrapper,
 } from "./styled";
-import { ReactComponent as Video } from "../../images/video.svg";
 
 const Navigation = () => {
     return (
