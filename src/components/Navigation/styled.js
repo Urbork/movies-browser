@@ -107,6 +107,7 @@ export const InputWrapper = styled.div`
 
 export const Input = styled.input`
     flex-basis: 100%;
+    flex-shrink: 1;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -124,5 +125,9 @@ export const Input = styled.input`
     @media (max-width: 590px) {
         font-size: 13px;
         line-height: 16.9px;
+
+        background-size: 16px;
+        background-position: 16px 50%;
+        text-indent: 16px;
     }
 `;
