@@ -10,7 +10,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    padding: 16px;
+    //padding: 16px;
+    // padding do usunięcia, komentarz dla informacji 
     background-color: ${({ theme }) => theme.color.whisper};
     font-family: "Poppins", "sans-serif";
     color: ${({ theme }) => theme.color.black};
