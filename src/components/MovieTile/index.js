@@ -11,28 +11,34 @@ import {
   MovieTileRatingVotes,
   StyledStarIcon,
 } from "./styled";
-import poster from "../../images/poster.png";
+import posterNotFound from "../../images/noimg.svg";
 
-export const MovieTile = () => (
+export const MovieTile = ({ poster, title, subtitle, tags, rating, votes }) => (
   <MovieTileContent>
-    <MovieTileLink href="#">
-      <MovieTileImage src={poster} />
+    <MovieTileLink href="">
+      <MovieTileImage
+        src={
+          poster ? "https://image.tmdb.org/t/p/w342" + poster : posterNotFound
+        }
+        alt={`${title} movie poster`}
+      />
       <MovieTileInfo>
-        <MovieTileTitle>Definitely Not Mulan</MovieTileTitle>
-        <MovieTileSubtitle>2137</MovieTileSubtitle>
+        <MovieTileTitle>{title}</MovieTileTitle>
+        <MovieTileSubtitle>{subtitle}</MovieTileSubtitle>
         <MovieTileTags>
-          <MovieTileTag>Action</MovieTileTag>
-          <MovieTileTag>Drama</MovieTileTag>
-          <MovieTileTag>Black Comedy</MovieTileTag>
-          <MovieTileTag>
-            Very long movie tag for this movie just to test it
-          </MovieTileTag>
+          {tags
+            ? tags.map((tag) => <MovieTileTag key={tag}>{tag}</MovieTileTag>)
+            : ""}
         </MovieTileTags>
-        <MovieTileRating>
-          <StyledStarIcon />
-          6,9
-          <MovieTileRatingVotes>420 votes</MovieTileRatingVotes>
-        </MovieTileRating>
+        {rating ? (
+          <MovieTileRating>
+            <StyledStarIcon />
+            {rating.toFixed(1)}
+            <MovieTileRatingVotes>{votes} votes</MovieTileRatingVotes>
+          </MovieTileRating>
+        ) : (
+          <MovieTileRatingVotes>No votes yet</MovieTileRatingVotes>
+        )}
       </MovieTileInfo>
     </MovieTileLink>
   </MovieTileContent>

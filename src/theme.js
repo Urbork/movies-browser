@@ -10,7 +10,8 @@ export const theme = {
     bold: 800,
   },
   color: {
-    white: "#ffffff",
+    white: "#FFFFFF",
+    imageBG: "#C4C4C4",
     tagBG: "#E4E6F0",
     darkerGrey: "#7E839A",
     black: "#000000",

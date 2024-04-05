@@ -3,7 +3,7 @@ import { ReactComponent as StarIcon } from "../../images/VectorStar.svg";
 
 export const MovieTileContent = styled.li`
   padding: 16px;
-  max-width: 324px;
+  width: 324px;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0 4px 12px rgba(186, 199, 213, 0.5);
@@ -18,7 +18,6 @@ export const MovieTileLink = styled.a`
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   color: ${({ theme }) => theme.color.black};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
@@ -29,22 +28,28 @@ export const MovieTileLink = styled.a`
 `;
 
 export const MovieTileImage = styled.img`
-  margin: 0 auto;
-  max-width: 292px;
-  max-height: 434px;
+  margin: 0;
+  width: 292px;
+  height: 434px;
   border-radius: 4px;
   transition: 0.6s;
+  background-color: ${({ theme }) => theme.color.imageBG};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
-    max-width: 114px;
-    max-height: 169px;
+    width: 114px;
+    height: 169px;
   }
 `;
 
 export const MovieTileInfo = styled.div`
+  width: 292px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    width: 126px;
+  }
 `;
 
 export const MovieTileTitle = styled.h3`
