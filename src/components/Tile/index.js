@@ -17,6 +17,8 @@ export const Tile = ({
   image,
   title,
   subtitle,
+  productionCountry,
+  releaseDate,
   extraInfo,
   tags,
   score,
@@ -28,11 +30,16 @@ export const Tile = ({
       <TileTitle>{title}</TileTitle>
       <TileSubtitle>{subtitle}</TileSubtitle>
       <TileInfo>
-        <TileInfoLabel>Production:</TileInfoLabel> China, United States of
-        America
+        <TileInfoLabel>
+          Production:
+        </TileInfoLabel>
+        {productionCountry}
       </TileInfo>
       <TileInfo>
-        <TileInfoLabel>Release date:</TileInfoLabel> 24.10.2020
+        <TileInfoLabel>
+          Release date:
+        </TileInfoLabel>
+        {releaseDate}
       </TileInfo>
       <TileTags>
         <TileTag>Action</TileTag>
