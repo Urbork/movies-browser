@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import search from "./search.svg";
+import search from "../../images/search.svg";
 
 export const Container = styled.nav`
     background-color: ${({ theme }) => theme.color.codGray};

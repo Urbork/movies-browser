@@ -8,7 +8,7 @@ import {
     Input,
     ButtonsWrapper,
 } from "./styled";
-import { ReactComponent as Video } from "./video.svg";
+import { ReactComponent as Video } from "../../images/video.svg";
 
 const Navigation = () => {
     return (
