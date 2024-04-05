@@ -12,6 +12,6 @@ export const getMovieDetails = () => fetch(movieDetailsUrl)
   .then(response => response.json())
   .catch(err => console.error(err));
 
-export const getPopularMoviesApi = () => fetch(popularMoviesUrl)
+export const getPopularMoviesApi = (page) => fetch(popularMoviesUrl + page)
   .then(response => response.json())
   .catch(err => console.error(err));
