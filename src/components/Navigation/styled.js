@@ -100,7 +100,7 @@ export const Button = styled.button`
 
     &:hover {
         border: 1px solid ${({ theme }) => theme.color.white};
-    }
+    } // hover do zmiany na active po dodaniu HashRoutera
 `;
 
 export const InputWrapper = styled.div`
