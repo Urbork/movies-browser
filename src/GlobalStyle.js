@@ -13,6 +13,6 @@ export const GlobalStyle = createGlobalStyle`
     padding: 16px;
     background-color: ${({ theme }) => theme.color.whisper};
     font-family: "Poppins", "sans-serif";
-    color: ${({ theme }) => theme.color.black};
+    color: ${({ theme }) => theme.color.codGray};
   }
 `;
