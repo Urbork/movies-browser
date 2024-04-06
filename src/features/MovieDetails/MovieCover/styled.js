@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {
   MovieTileRating,
   MovieTileRatingVotes,
-} from "../../../components/MovieTile/styled";
+} from "../../../components/MovieTile/MovieRating/styled";
 
 export const MovieCoverBlackBars = styled.div`
   /* position: fixed; */
@@ -68,11 +68,6 @@ export const MovieCoverRating = styled(MovieTileRating)`
     margin: 4px;
     font-size: 14px;
   }
-`;
-
-export const MovieCoverRatingTen = styled.span`
-  font-size: 16px;
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
 `;
 
 export const MovieCoverRatingVotes = styled(MovieTileRatingVotes)`

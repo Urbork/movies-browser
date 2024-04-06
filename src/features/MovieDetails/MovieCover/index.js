@@ -7,10 +7,9 @@ import {
   MovieCoverRating,
   MovieCoverRatingVotes,
   MovieCoverEffect,
-  MovieCoverRatingTen,
 } from "./styled";
 import shadow from "../../../images/shadow.png";
-import { StyledStarIcon } from "../../../components/MovieTile/styled";
+import { StyledStarIcon } from "../../../components/MovieTile/MovieRating/styled";
 
 export const MovieCover = ({ cover, title, rating, votes }) => (
   <>
@@ -22,7 +21,7 @@ export const MovieCover = ({ cover, title, rating, votes }) => (
         <MovieCoverTitle>{title}</MovieCoverTitle>
         <MovieCoverRating>
           <StyledStarIcon big="true" />
-          {rating}
+          {rating ? rating.toFixed(1) : ""}
         </MovieCoverRating>
         <MovieCoverRatingVotes>{votes} votes</MovieCoverRatingVotes>
       </MovieCoverInfo>

@@ -5,13 +5,10 @@ import {
   MovieTileInfo,
   MovieTileTitle,
   MovieTileSubtitle,
-  MovieTileTags,
-  MovieTileTag,
-  MovieTileRating,
-  MovieTileRatingVotes,
-  StyledStarIcon,
 } from "./styled";
 import posterNotFound from "../../images/noimg.svg";
+import { MovieTags } from "./MovieTags";
+import { MovieRating } from "./MovieRating";
 
 export const MovieTile = ({ poster, title, subtitle, tags, rating, votes }) => (
   <MovieTileContent>
@@ -25,20 +22,8 @@ export const MovieTile = ({ poster, title, subtitle, tags, rating, votes }) => (
       <MovieTileInfo>
         <MovieTileTitle>{title}</MovieTileTitle>
         <MovieTileSubtitle>{subtitle}</MovieTileSubtitle>
-        <MovieTileTags>
-          {tags
-            ? tags.map((tag) => <MovieTileTag key={tag}>{tag}</MovieTileTag>)
-            : ""}
-        </MovieTileTags>
-        {rating ? (
-          <MovieTileRating>
-            <StyledStarIcon />
-            {rating.toFixed(1)}
-            <MovieTileRatingVotes>{votes} votes</MovieTileRatingVotes>
-          </MovieTileRating>
-        ) : (
-          <MovieTileRatingVotes>No votes yet</MovieTileRatingVotes>
-        )}
+        <MovieTags tags={tags} />
+        <MovieRating rating={rating} votes={votes} />
       </MovieTileInfo>
     </MovieTileLink>
   </MovieTileContent>

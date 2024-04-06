@@ -9,13 +9,8 @@ import {
   MovieDetailsExtraInfoLabel,
   MovieDetailsDescription,
 } from "./styled";
-import {
-  MovieTileTags,
-  MovieTileTag,
-  MovieTileRating,
-  MovieTileRatingVotes,
-  StyledStarIcon,
-} from "../../../components/MovieTile/styled";
+import { MovieTags } from "../../../components/MovieTile/MovieTags";
+import { MovieRating } from "../../../components/MovieTile/MovieRating";
 
 export const MovieInfo = ({
   poster,
@@ -46,20 +41,10 @@ export const MovieInfo = ({
             <MovieDetailsExtraInfoLabel>
               Release date:
             </MovieDetailsExtraInfoLabel>{" "}
-            {releaseDate.replace(/-/g, ".")}
+            {releaseDate ? releaseDate.replace(/-/g, ".") : ""}
           </MovieDetailsExtraInfo>
-          <MovieTileTags>
-            {tags
-              ? tags.map((tag) => (
-                  <MovieTileTag key={tag.id}>{tag.name}</MovieTileTag>
-                ))
-              : ""}
-          </MovieTileTags>
-          <MovieTileRating>
-            <StyledStarIcon />
-            {rating}
-            <MovieTileRatingVotes>{votes} votes</MovieTileRatingVotes>
-          </MovieTileRating>
+          <MovieTags tags={tags ? tags.map((tag) => tag.name) : ""} />
+          <MovieRating rating={rating} votes={votes} />
         </MovieDetailsInfo>
       </MovieDetailsContent>
       <MovieDetailsDescription>{description}</MovieDetailsDescription>
