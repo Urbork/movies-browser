@@ -1,8 +1,8 @@
 import Navigation from "./components/Navigation";
-import Navigation from "./components/Navigation";
 import { Container } from "./components/Container";
-import { Tile } from "./components/Tile";
-import { getPopularMoviesApi, getGenre, getMovieDetails, getCredits } from "./api/fetchApi";
+import { MovieDetails } from "./features/MovieDetails";
+import { MoviesList } from "./features/MoviesList";
+import PeopleList from "./components/PeopleList";
 
 function App() {
   return (
