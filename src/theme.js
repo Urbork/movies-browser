@@ -1,7 +1,7 @@
 export const theme = {
   breakpoint: {
     mobile: 720,
-    tablet: 990,
+    tablet: 1023,
   },
   fontWeight: {
     regular: 400,
