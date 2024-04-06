@@ -27,7 +27,6 @@ const PeopleTile = ({ poster, name, character }) => (
             <Name>{name}</Name>
             <Character>{character}</Character>
         </Wrapper>
-        {console.log(poster)}
     </>
 );
 
