@@ -2,9 +2,11 @@ import styled from "styled-components";
 import { ReactComponent as StarIcon } from "../../../images/VectorStar.svg";
 
 export const MovieTileRating = styled.div`
+  margin-top: 8px;
   display: flex;
   align-items: center;
   gap: 12px;
+  justify-self: end;
   font-size: 16px;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   line-height: 1.5;
@@ -23,6 +25,16 @@ export const StyledStarIcon = styled(StarIcon)`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
     width: ${({ big }) => (big ? "24" : "16") + "px"};
+  }
+`;
+
+export const MovieTileRatingTen = styled.span`
+  font-size: 14px;
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  line-height: 1.2;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    display: none;
   }
 `;
 

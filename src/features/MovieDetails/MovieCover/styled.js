@@ -4,15 +4,15 @@ import {
   MovieTileRatingVotes,
 } from "../../../components/MovieTile/MovieRating/styled";
 
-export const MovieCoverBlackBars = styled.div`
-  /* position: fixed; */
-  /* top: 0; */
-  /* left: 0; */
+export const MovieCoverBlackBars = styled.img`
+  position: absolute;
+  top: 0;
   width: 100vw;
-  max-height: 770px;
+  height: 100%;
   display: flex;
   justify-content: center;
   background-color: ${({ theme }) => theme.color.black};
+  z-index: -999;
 `;
 
 export const MovieCoverWrapper = styled.div`
@@ -26,7 +26,7 @@ export const MovieCoverWrapper = styled.div`
 export const MovieCoverEffect = styled.img`
   position: absolute;
   top: 0;
-  width: 100vw;
+  max-width: 1920px;
   height: 100%;
 `;
 
@@ -62,6 +62,10 @@ export const MovieCoverRating = styled(MovieTileRating)`
     content: "/ 10";
     font-size: 16px;
     font-weight: ${({ theme }) => theme.fontWeight.regular};
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+      font-size: 10px;
+    }
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {

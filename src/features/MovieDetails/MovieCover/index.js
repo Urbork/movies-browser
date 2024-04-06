@@ -8,15 +8,18 @@ import {
   MovieCoverRatingVotes,
   MovieCoverEffect,
 } from "./styled";
-import shadow from "../../../images/shadow.png";
+import vignette from "../../../images/VignetteEffect.png";
 import { StyledStarIcon } from "../../../components/MovieTile/MovieRating/styled";
 
 export const MovieCover = ({ cover, title, rating, votes }) => (
   <>
-    {/* <MovieCoverBlackBars> */}
     <MovieCoverWrapper>
-      <MovieCoverEffect src={shadow} />
-      <MovieCoverImage src={"https://image.tmdb.org/t/p/original" + cover} />
+      <MovieCoverBlackBars />
+      <MovieCoverEffect src={vignette} />
+      <MovieCoverImage
+        src={"https://image.tmdb.org/t/p/original" + cover}
+        alt={`${title} movie cover image`}
+      />
       <MovieCoverInfo>
         <MovieCoverTitle>{title}</MovieCoverTitle>
         <MovieCoverRating>
@@ -26,6 +29,5 @@ export const MovieCover = ({ cover, title, rating, votes }) => (
         <MovieCoverRatingVotes>{votes} votes</MovieCoverRatingVotes>
       </MovieCoverInfo>
     </MovieCoverWrapper>
-    {/* </MovieCoverBlackBars> */}
   </>
 );

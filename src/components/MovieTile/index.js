@@ -2,11 +2,12 @@ import {
   MovieTileContent,
   MovieTileLink,
   MovieTileImage,
+  MovieTileInfoWrapper,
   MovieTileInfo,
   MovieTileTitle,
   MovieTileSubtitle,
 } from "./styled";
-import posterNotFound from "../../images/noimg.svg";
+import posterNotFound from "../../images/VectorNoImage.svg";
 import { MovieTags } from "./MovieTags";
 import { MovieRating } from "./MovieRating";
 
@@ -19,12 +20,14 @@ export const MovieTile = ({ poster, title, subtitle, tags, rating, votes }) => (
         }
         alt={`${title} movie poster`}
       />
-      <MovieTileInfo>
-        <MovieTileTitle>{title}</MovieTileTitle>
-        <MovieTileSubtitle>{subtitle}</MovieTileSubtitle>
-        <MovieTags tags={tags} />
+      <MovieTileInfoWrapper>
+        <MovieTileInfo>
+          <MovieTileTitle>{title}</MovieTileTitle>
+          <MovieTileSubtitle>{subtitle}</MovieTileSubtitle>
+          <MovieTags tags={tags} />
+        </MovieTileInfo>
         <MovieRating rating={rating} votes={votes} />
-      </MovieTileInfo>
+      </MovieTileInfoWrapper>
     </MovieTileLink>
   </MovieTileContent>
 );

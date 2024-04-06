@@ -14,6 +14,7 @@ export const MovieTileContent = styled.li`
 `;
 
 export const MovieTileLink = styled.a`
+  height: 100%;
   text-decoration: none;
   display: flex;
   flex-direction: column;
@@ -48,6 +49,17 @@ export const MovieTileInfo = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
     width: 126px;
+  }
+`;
+
+export const MovieTileInfoWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    justify-content: start;
   }
 `;
 

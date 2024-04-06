@@ -29,8 +29,6 @@ export const MovieDetailsImage = styled.img`
   }
 `;
 
-export const MovieDetailsContent = styled.div``;
-
 export const MovieDetailsTitle = styled.h3`
   margin: 0;
   font-size: 36px;
@@ -96,8 +94,6 @@ export const MovieDetailsTag = styled.li`
   font-size: 14px;
   background: ${({ theme }) => theme.color.mystic};
 `;
-
-export const MovieDetailsRating = styled.div``;
 
 export const MovieDetailsDescription = styled.p`
   margin: 16px 0 0;
