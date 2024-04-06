@@ -16,6 +16,7 @@ export const Wrapper = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoint.phone}px) {
         max-width: 136px;
         padding: 8px;
+        border-radius: 5px;
     }
 `;
 
@@ -53,10 +54,12 @@ export const Name = styled.div`
     font-size: 22px;
     line-height: 28.6px;
     text-align: center;
+    min-height: 64px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.phone}px) {
         font-size: 14px;
         line-height: 18.2px;
+        min-height: 36px;
     }
 `;
 

@@ -24,7 +24,6 @@ const PeopleList = () => {
                         <PeopleTile
                             poster={profileSmallSizeUrl + actor.profile_path}
                             name={actor.name}
-                            character={<br />}
                         />
                     ))
                 }
