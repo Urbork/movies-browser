@@ -16,10 +16,10 @@ export const genreUrl = `${url}genre/movie/list?api_key=${apiKey}`;
 export const movieDetailsUrl = `${url}movie/${movie_id}?api_key=${apiKey}&${language}`;
 export const creditsUrl = `${url}movie/${movie_id}/credits?api_key=${apiKey}`;
 
-export const posterMobileSizeUrl = `http://image.tmdb.org/t/p/${backdropMobileSize}`;
+export const posterMobileSizeUrl = `http://image.tmdb.org/t/p/${posterMobileSize}`;
 export const posterMainSizeUrl = `http://image.tmdb.org/t/p/${posterMainSize}`;
 
-export const backdropMobileSizeUrl = `http://image.tmdb.org/t/p/${posterMobileSize}`;
+export const backdropMobileSizeUrl = `http://image.tmdb.org/t/p/${backdropMobileSize}`;
 export const backdropMainSizeUrl = `http://image.tmdb.org/t/p/${backdropMainSize}`;
 
 export const profileSmallSizeUrl = `http://image.tmdb.org/t/p/${profileSmallSize}`;
