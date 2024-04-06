@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container } from "./components/Container";
 import { Tile } from "./components/Tile";
+import Navigation from "./components/Navigation";
 import { getPopularMoviesApi, getGenre, getMovieDetails, getCredits } from "./api/fetchApi";
 
 function App() {
@@ -29,10 +30,27 @@ function App() {
   }, []);
 
   return (
-    <Container>
-      <Tile title={movieDetails?.title} subtitle={movieDetails?.release_date.split("-")[0]
-      } />
-    </Container>
+    <>
+      <Navigation></Navigation>
+      <Container>
+        <Tile
+          title={movieDetails?.title}
+          subtitle={movieDetails?.release_date.split("-")[0]}
+        />
+        <Tile
+          title={movieDetails?.title}
+          subtitle={movieDetails?.release_date.split("-")[0]}
+        />
+        <Tile
+          title={movieDetails?.title}
+          subtitle={movieDetails?.release_date.split("-")[0]}
+        />
+        <Tile
+          title={movieDetails?.title}
+          subtitle={movieDetails?.release_date.split("-")[0]}
+        />
+      </Container>
+    </>
   );
 }
 
