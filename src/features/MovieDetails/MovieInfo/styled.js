@@ -101,7 +101,7 @@ export const MovieDetailsDescription = styled.p`
   line-height: 1.6;
   transition: 0.6s;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.tablet}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.descriptionChange}px) {
     margin-top: 40px;
     grid-column: span 2;
   }
