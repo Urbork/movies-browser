@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container } from "./components/Container";
-import People from "./components/People";
+import PeopleList from "./components/PeopleList";
 //import { Tile } from "./components/Tile";
 import { getPopularMoviesApi, getGenre, getMovieDetails, getCredits } from "./api/fetchApi";
 import { profileSmallSizeUrl } from "./api/api";
@@ -32,11 +32,7 @@ function App() {
 
   return (
     <Container>
-      <People
-        poster={profileSmallSizeUrl + credits.cast[0].profile_path}
-        name={credits.cast[0].name}
-        character={credits.cast[0].character}
-      />
+      <PeopleList />
     </Container>
   );
 }

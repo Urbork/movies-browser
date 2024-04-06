@@ -4,12 +4,26 @@ export const Wrapper = styled.div`
     max-width: 208px;
     background-color: ${({ theme }) => theme.color.white};
     padding: 16px;
+    transition: 0.6s;
+
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.05);
+    }
 `;
 
 export const Image = styled.img`
     margin: 0 0 12px 0;
     border-radius: 5px;
-    width: 176px;
+`;
+
+export const BlankActorContainer = styled.div`
+    display: flex;
+    align-items: center;
+    height: 278px;
+    margin: 0 0 12px 0;
+    border-radius: 5px;
 `;
 
 export const Name = styled.div`
