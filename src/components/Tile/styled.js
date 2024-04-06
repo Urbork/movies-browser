@@ -18,7 +18,7 @@ export const TileContent = styled.div``;
 
 export const TileTitle = styled.header`
   font-size: 36px;
-  font-weight: 600;
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
   margin-bottom: 24px;
 `;
 

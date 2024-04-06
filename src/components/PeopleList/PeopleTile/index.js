@@ -1,6 +1,7 @@
 import {
     Wrapper,
     Image,
+    ImageContainer,
     BlankActorContainer,
     Name,
     Character
@@ -12,9 +13,12 @@ const PeopleTile = ({ poster, name, character }) => (
         <Wrapper>
             {
                 !poster.includes("null") ?
-                    <Image
-                        src={poster}
-                    />
+                    <ImageContainer>
+                        <Image
+                            src={poster}
+                        />
+                    </ImageContainer>
+
                     :
                     <BlankActorContainer>
                         <BlankActor />
