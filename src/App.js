@@ -20,6 +20,8 @@ function App() {
   console.log("genre: ", genre);
   console.log("movieDetails: ", movieDetails);
   console.log("credits: ", credits);
+  console.log("pages: ", pages);
+
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -42,9 +44,9 @@ function App() {
         <Tile title={movieDetails?.title} subtitle={movieDetails?.release_date.split("-")[0]
         } />
       </Container>
-      <Pagination pages={pages} />
+      <Pagination pages={pages} setPages={setPages} />
     </>
   );
-}
+};
 
 export default App;
