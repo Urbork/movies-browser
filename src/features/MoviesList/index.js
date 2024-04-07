@@ -1,32 +1,17 @@
-import { useEffect, useState } from "react";
 import {
   MoviesListSection,
   MoviesListTitle,
   MoviesListWrapper,
 } from "./styled";
 import { MovieTile } from "../../components/MovieTile";
-import { getPopularMoviesApi, getGenre } from "../../api/fetchApi";
 
-export const MoviesList = () => {
-  const [popularMovies, setPopularMovies] = useState();
-  const [genre, setGenre] = useState();
-
-  useEffect(() => {
-    const fetchApi = async () => {
-      const popularMovies = await getPopularMoviesApi();
-      setPopularMovies(popularMovies);
-      const genre = await getGenre();
-      setGenre(genre);
-    };
-
-    fetchApi();
-  }, []);
+export const MoviesList = ({ popularMovies, genre, setMovieDetails }) => {
 
   return (
     <MoviesListSection>
       <MoviesListTitle>Popular movies</MoviesListTitle>
       <MoviesListWrapper>
-        {popularMovies?.results.map((movie) => (
+        {popularMovies?.results?.map((movie) => (
           <MovieTile
             key={movie.id}
             poster={movie.poster_path}
@@ -38,6 +23,8 @@ export const MoviesList = () => {
             )}
             rating={movie.vote_average}
             votes={movie.vote_count}
+            setMovieDetails={setMovieDetails}
+            id={movie.id}
           />
         ))}
       </MoviesListWrapper>

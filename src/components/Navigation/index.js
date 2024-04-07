@@ -10,7 +10,7 @@ import {
     ButtonsWrapper,
 } from "./styled";
 
-const Navigation = () => {
+const Navigation = ({ setMovieDetails }) => {
     return (
         <Container>
             <Wrapper>
@@ -20,7 +20,7 @@ const Navigation = () => {
                         Movies Browser
                     </Logo>
                     <ButtonsWrapper>
-                        <Button>
+                        <Button onClick={() => setMovieDetails(null)}>
                             Movies
                         </Button>
                         <Button>
