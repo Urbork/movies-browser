@@ -49,7 +49,6 @@ export const BlankActorContainer = styled(ImageContainer)`
 `;
 
 export const Name = styled.div`
-    margin: 0 0 8px 0;
     font-weight: ${({ theme }) => theme.fontWeight.semibold};
     font-size: 22px;
     line-height: 28.6px;

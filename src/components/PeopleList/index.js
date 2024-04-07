@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Wrapper, Header } from "./styled";
+import { Container, Wrapper, Header } from "./styled";
 import PeopleTile from "./PeopleTile";
 import { getCredits } from "../../api/fetchApi";
 import { profileSmallSizeUrl } from "../../api/api";
@@ -16,7 +16,7 @@ const PeopleList = () => {
     }, []);
 
     return (
-        <>
+        <Container>
             <Header>Popular people</Header>
             <Wrapper>
                 {
@@ -28,7 +28,7 @@ const PeopleList = () => {
                     ))
                 }
             </Wrapper>
-        </>
+        </Container>
     )
 };
 

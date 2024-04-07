@@ -15,6 +15,7 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 80px;
 
   max-width: 1368px;
   padding: 23px 16px 23px 17px;
@@ -26,6 +27,10 @@ export const Wrapper = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     gap: 24px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.phone}px) {
+    gap: 19px;
   }
 `;
 
@@ -48,7 +53,7 @@ export const Logo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 1;
+  flex-shrink: 0;
 
   gap: 12px;
 
@@ -57,6 +62,7 @@ export const Logo = styled.div`
   line-height: 40px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.phone}px) {
+    flex-shrink: 1;
     font-size: 13px;
     line-height: 16.9px;
     gap: 8px;

@@ -1,28 +1,34 @@
 import { styled } from "styled-components";
 
+export const Container = styled.section`
+    padding: 0 16px;
+`;
+
 export const Wrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(208px, 1fr));
+    grid-template-columns: repeat(auto-fill, 202px);
     gap: 24px;
     transition: 0.6s;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
 
-    @media (max-width: ${({ theme }) => theme.breakpoint.phone}px) {
-        grid-template-columns: repeat(auto-fill, minmax(136px, 1fr));
+    @media(max-width: ${({ theme }) => theme.breakpoint.phone}px) {
+        grid-template-columns: repeat(auto-fill, 136px);
         gap: 16px;
-    }
+}
 `;
 
 export const Header = styled.h1`
-    margin: 0 0 24px 0;
+    margin: 56px 0 24px 0;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     font-size: 36px;
     line-height: 43.2px;
     transition: 0.6s;
 
-    @media (max-width: ${({ theme }) => theme.breakpoint.phone}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.phone}px) {
+        margin: 24px 0 12px 0;
+        padding: 0 16px;
         font-size: 20px;
         line-height: 24px;
-    }
+}
 `;
