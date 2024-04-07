@@ -10,7 +10,16 @@ import {
     ButtonsWrapper,
 } from "./styled";
 
-const Navigation = ({ setMovieDetails }) => {
+const Navigation = ({ setMovieDetails, setRouterStatus }) => {
+    const switchToMovies = () => {
+        setRouterStatus("movies")
+        setMovieDetails(null)
+    };
+
+    const switchToPeople = () => {
+        setRouterStatus("people")
+    };
+
     return (
         <Container>
             <Wrapper>
@@ -20,10 +29,10 @@ const Navigation = ({ setMovieDetails }) => {
                         Movies Browser
                     </Logo>
                     <ButtonsWrapper>
-                        <Button onClick={() => setMovieDetails(null)}>
+                        <Button onClick={switchToMovies}>
                             Movies
                         </Button>
-                        <Button>
+                        <Button onClick={switchToPeople}>
                             People
                         </Button>
                     </ButtonsWrapper>
