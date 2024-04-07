@@ -8,6 +8,7 @@ import PeopleList from "./components/PeopleList";
 import { useEffect, useState } from "react";
 
 function App() {
+  const [routerStatus, setRouterStatus] = useState("movies");
   const [popularMovies, setPopularMovies] = useState();
   const [genre, setGenre] = useState();
   const [movieDetails, setMovieDetails] = useState(null);
@@ -42,14 +43,17 @@ function App() {
 
   return (
     <>
-      <Navigation setMovieDetails={setMovieDetails} />
+      <Navigation setMovieDetails={setMovieDetails} setRouterStatus={setRouterStatus} />
       <Container>
-        {movieDetails ?
-          <MovieDetails movieDetails={movieDetails} />
-          :
-          <MoviesList popularMovies={popularMovies} genre={genre} setMovieDetails={setMovieDetails} />}
+        {routerStatus === "movies" &&
+          (!movieDetails ?
+            <MoviesList popularMovies={popularMovies} genre={genre} setMovieDetails={setMovieDetails} />
+            :
+            <MovieDetails movieDetails={movieDetails} />)
+        }
+        {routerStatus === "people" && <PeopleList movieDetails={movieDetails} />}
       </Container>
-      {movieDetails === null && <Pagination pages={pages} setPages={setPages} />}
+      {routerStatus === "movies" && movieDetails === null && <Pagination pages={pages} setPages={setPages} />}
     </>
   );
 };
