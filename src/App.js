@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { Container } from "./components/Container";
-import { Tile } from "./components/Tile";
 import Navigation from "./components/Navigation";
 import { getPopularMoviesApi, getGenre, getMovieDetails, getCredits } from "./api/fetchApi";
 import { Pagination } from "./components/Pagination";
+import { Container } from "./components/Container";
+import { MovieDetails } from "./features/MovieDetails";
+import { MoviesList } from "./features/MoviesList";
 
 function App() {
   const [popularMovies, setPopularMovies] = useState();
@@ -22,7 +22,6 @@ function App() {
   console.log("movieDetails: ", movieDetails);
   console.log("credits: ", credits);
   console.log("pages: ", pages);
-
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -43,22 +42,8 @@ function App() {
     <>
       <Navigation></Navigation>
       <Container>
-        <Tile
-          title={movieDetails?.title}
-          subtitle={movieDetails?.release_date.split("-")[0]}
-        />
-        <Tile
-          title={movieDetails?.title}
-          subtitle={movieDetails?.release_date.split("-")[0]}
-        />
-        <Tile
-          title={movieDetails?.title}
-          subtitle={movieDetails?.release_date.split("-")[0]}
-        />
-        <Tile
-          title={movieDetails?.title}
-          subtitle={movieDetails?.release_date.split("-")[0]}
-        />
+        <MovieDetails />
+        <MoviesList />
       </Container>
       <Pagination pages={pages} setPages={setPages} />
     </>
