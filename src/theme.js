@@ -7,6 +7,7 @@ export const theme = {
   },
   fontWeight: {
     regular: 400,
+    semibold: 500,
     medium: 600,
     semiBold: 700,
     bold: 800,
@@ -17,6 +18,7 @@ export const theme = {
     tagBG: "#E4E6F0",
     darkerGrey: "#7E839A",
 
+    heatherTransparent: "#BAC7D580",
     whisper: "#F5F5FA",
     mystic: "#E4E6E0",
     waterloo: "#7E839A",
