@@ -8,7 +8,6 @@ export const Container = styled.nav`
   position: sticky;
   width: 100%;
   top: 0px;
-  margin-bottom: 56px;
   z-index: 2;
 `;
 

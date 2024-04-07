@@ -4,6 +4,7 @@ import { Pagination } from "./components/Pagination";
 import { Container } from "./components/Container";
 import { MovieDetails } from "./features/MovieDetails";
 import { MoviesList } from "./features/MoviesList";
+import PeopleList from "./components/PeopleList";
 import { useEffect, useState } from "react";
 
 function App() {
