@@ -11,9 +11,11 @@ const backdropMainSize = "original";
 const profileSmallSize = "w185";
 const profileMainSize = "h632";
 
+export const parametrs = `?api_key=${apiKey}&${language}`
+
 export const popularMoviesUrl = `${url}movie/popular?api_key=${apiKey}&page=`;
 export const genreUrl = `${url}genre/movie/list?api_key=${apiKey}`;
-export const movieDetailsUrl = `${url}movie/${movie_id}?api_key=${apiKey}&${language}`;
+export const movieDetailsUrl = `${url}movie/`;
 export const creditsUrl = `${url}movie/${movie_id}/credits?api_key=${apiKey}`;
 
 export const posterMobileSizeUrl = `http://image.tmdb.org/t/p/${posterMobileSize}`;

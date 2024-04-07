@@ -4,11 +4,12 @@ import { Pagination } from "./components/Pagination";
 import { Container } from "./components/Container";
 import { MovieDetails } from "./features/MovieDetails";
 import { MoviesList } from "./features/MoviesList";
+import { useEffect, useState } from "react";
 
 function App() {
   const [popularMovies, setPopularMovies] = useState();
   const [genre, setGenre] = useState();
-  const [movieDetails, setMovieDetails] = useState();
+  const [movieDetails, setMovieDetails] = useState(null);
   const [credits, setCredits] = useState();
   const [pages, setPages] = useState(
     {
@@ -29,8 +30,8 @@ function App() {
       setPopularMovies(popularMovies);
       const genre = await getGenre();
       setGenre(genre);
-      const movieDetails = await getMovieDetails();
-      setMovieDetails(movieDetails);
+      // const movieDetails = await getMovieDetails();
+      // setMovieDetails(movieDetails);
       const credits = await getCredits();
       setCredits(credits);
     };
@@ -40,12 +41,14 @@ function App() {
 
   return (
     <>
-      <Navigation></Navigation>
+      <Navigation setMovieDetails={setMovieDetails} />
       <Container>
-        <MovieDetails />
-        <MoviesList />
+        {movieDetails ?
+          <MovieDetails movieDetails={movieDetails} />
+          :
+          <MoviesList popularMovies={popularMovies} genre={genre} setMovieDetails={setMovieDetails} />}
       </Container>
-      <Pagination pages={pages} setPages={setPages} />
+      {movieDetails === null && <Pagination pages={pages} setPages={setPages} />}
     </>
   );
 };
