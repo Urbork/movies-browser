@@ -2,6 +2,7 @@ export const theme = {
   breakpoint: {
     phone: 590,
     mobile: 712,
+    mobileMax: "767px",
     descriptionChange: 1023,
     tablet: 1023,
   },
@@ -23,13 +24,7 @@ export const theme = {
     codGray: "#181818",
     black: "#000000",
     grey: "#E4E6F0",
-    darkerGrey: "#7E839A",
     lightBlue: "#D6E4FF",
     blue: "#0044CC",
-  },
-  breakpoint: {
-    tablet: 1023,
-    phone: 590,
-    mobileMax: "767px",
   },
 };
