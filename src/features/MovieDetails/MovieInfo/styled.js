@@ -6,9 +6,10 @@ export const MovieDetailsWrapper = styled.article`
   display: grid;
   grid-template-columns: auto 1fr;
   background: ${({ theme }) => theme.color.white};
-  box-shadow: 0 4px 12px rgba(186, 199, 213, 0.5);
+  box-shadow: 0 4px 12px 0px 4px 12px 0px
+    ${({ theme }) => theme.color.boxShadow};
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin: 16px;
     padding: 16px;
   }
@@ -21,7 +22,7 @@ export const MovieDetailsImage = styled.img`
   grid-row: span 2;
   transition: 0.6s;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin-right: 16px;
     max-width: 114px;
     max-height: 169px;
@@ -35,7 +36,7 @@ export const MovieDetailsTitle = styled.h3`
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   line-height: 1.2;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     font-size: 16px;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     line-height: 1.3;
@@ -46,7 +47,7 @@ export const MovieDetailsSubtitle = styled.div`
   font-size: 22px;
   line-height: 1.2;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin-top: -4px;
     font-size: 12px;
     color: ${({ theme }) => theme.color.darkerGrey};
@@ -61,7 +62,7 @@ export const MovieDetailsInfo = styled.div`
   font-size: 18px;
   line-height: 1.2;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     gap: 8px;
     font-size: 12px;
     line-height: 1.3;
@@ -75,7 +76,7 @@ export const MovieDetailsExtraInfo = styled.p`
 export const MovieDetailsExtraInfoLabel = styled.span`
   color: ${({ theme }) => theme.color.darkerGrey};
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     display: none;
   }
 `;
@@ -92,7 +93,7 @@ export const MovieDetailsTag = styled.li`
   padding: 8px 16px;
   border-radius: 5px;
   font-size: 14px;
-  background: ${({ theme }) => theme.color.mystic};
+  background: ${({ theme }) => theme.color.grey};
 `;
 
 export const MovieDetailsDescription = styled.p`
@@ -101,12 +102,12 @@ export const MovieDetailsDescription = styled.p`
   line-height: 1.6;
   transition: 0.6s;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.descriptionChange}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
     margin-top: 40px;
     grid-column: span 2;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin-top: 16px;
     font-size: 14px;
   }

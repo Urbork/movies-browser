@@ -1,32 +1,36 @@
 export const theme = {
-  breakpoint: {
+  breakpoint_backup: {
     phone: 590,
     mobile: 712,
     mobileMax: "767px",
     descriptionChange: 1023,
     tablet: 1023,
   },
+  breakpoint: {
+    small: "480px",
+    medium: "767px",
+    large: "1024px",
+  },
   fontWeight: {
     regular: 400,
-    semibold: 500,
-    medium: 600,
-    semiBold: 700,
+    medium: 500,
+    semiBold: 600,
     bold: 800,
   },
   color: {
     white: "#FFFFFF",
-    imageBG: "#C4C4C4",
-    tagBG: "#E4E6F0",
-    darkerGrey: "#7E839A",
-
-    heatherTransparent: "#BAC7D580",
-    whisper: "#F5F5FA",
-    mystic: "#E4E6E0",
-    waterloo: "#7E839A",
-    codGray: "#181818",
-    black: "#000000",
+    lightGrey: "#F5F5FA",
     grey: "#E4E6F0",
+    darkerGrey: "#7E839A",
+    black: "#000000",
+
     lightBlue: "#D6E4FF",
     blue: "#0044CC",
+    yellow: "#FCD420",
+
+    navBar: "#181818",
+    imageBG: "#C4C4C4",
+    boxShadow: "#BAC7D580",
+    // heatherTransparent: "#BAC7D580",
   },
 };

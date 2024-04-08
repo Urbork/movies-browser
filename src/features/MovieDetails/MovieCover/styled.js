@@ -48,7 +48,7 @@ export const MovieCoverTitle = styled.h1`
   line-height: 1.2;
   color: ${({ theme }) => theme.color.white};
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     font-size: 24px;
   }
 `;
@@ -63,12 +63,12 @@ export const MovieCoverRating = styled(MovieTileRating)`
     font-size: 16px;
     font-weight: ${({ theme }) => theme.fontWeight.regular};
 
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
       font-size: 10px;
     }
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin: 4px;
     font-size: 14px;
   }
@@ -78,7 +78,7 @@ export const MovieCoverRatingVotes = styled(MovieTileRatingVotes)`
   font-size: 16px;
   color: ${({ theme }) => theme.color.white};
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     font-size: 10px;
   }
 `;

@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: ${({ theme }) => theme.color.whisper};
+    background-color: ${({ theme }) => theme.color.lightGrey};
     font-family: "Poppins", "sans-serif";
     color: ${({ theme }) => theme.color.black};
     overflow-x: hidden;

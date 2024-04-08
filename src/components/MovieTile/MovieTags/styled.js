@@ -14,9 +14,9 @@ export const MovieTileTag = styled.li`
   border-radius: 4px;
   font-size: 14px;
   line-height: 1.4;
-  background-color: ${({ theme }) => theme.color.tagBG};
+  background-color: ${({ theme }) => theme.color.grey};
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     padding: 4px 8px;
     font-size: 10px;
   }
