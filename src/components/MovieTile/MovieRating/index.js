@@ -9,11 +9,11 @@ export const MovieRating = ({ big, rating, votes }) => (
   <>
     {rating ? (
       <>
-        <MovieTileRating>
+        <MovieTileRating big={big}>
           <StyledStarIcon />
-          {rating.toFixed(1)}{" "}
+          {rating.toFixed(1).replace(".", ",")}{" "}
           {big ? <MovieTileRatingTen>/ 10</MovieTileRatingTen> : ""}
-          <MovieTileRatingVotes>{votes} votes</MovieTileRatingVotes>
+          <MovieTileRatingVotes big={big}>{votes} votes</MovieTileRatingVotes>
         </MovieTileRating>
       </>
     ) : (

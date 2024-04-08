@@ -24,7 +24,7 @@ export const MovieCover = ({ cover, title, rating, votes }) => (
         <MovieCoverTitle>{title}</MovieCoverTitle>
         <MovieCoverRating>
           <StyledStarIcon big="true" />
-          {rating ? rating.toFixed(1) : ""}
+          {rating ? rating.toFixed(1).replace(".", ",") : ""}
         </MovieCoverRating>
         <MovieCoverRatingVotes>{votes} votes</MovieCoverRatingVotes>
       </MovieCoverInfo>
