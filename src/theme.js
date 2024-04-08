@@ -1,10 +1,10 @@
 export const theme = {
   breakpoint: {
-    phone: 590,
+    phone: 480,
     mobile: 712,
     mobileMax: "767px",
     descriptionChange: 1023,
-    tablet: 1023,
+    tablet: 767,
   },
   fontWeight: {
     regular: 400,
