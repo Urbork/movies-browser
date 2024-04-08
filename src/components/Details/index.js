@@ -87,7 +87,6 @@ export const Details = ({
           </>
           : ""
         }
-
       </DetailsInfo>
       <DetailsDescription>{description}</DetailsDescription>
     </DetailsWrapper>

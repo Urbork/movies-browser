@@ -13,7 +13,7 @@ import { MovieRating } from "./MovieRating";
 import { useMovieTile } from "./useMovieTile";
 
 export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, setMovieDetails, id }) => {
-  const { fetchApiMovieDetails } = useMovieTile(setMovieDetails)
+  const { fetchApiMovieDetails } = useMovieTile(setMovieDetails);
 
   return (
     <MovieTileContent>
