@@ -1,12 +1,11 @@
 import { styled } from "styled-components";
 
 export const Container = styled.section`
-    padding: 0 16px;
 `;
 
 export const Wrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, 202px);
+    grid-template-columns: repeat(auto-fill, 208px);
     gap: 24px;
     transition: 0.6s;
     align-items: center;
@@ -24,7 +23,7 @@ export const Header = styled.h1`
     font-size: 36px;
     line-height: 43.2px;
     transition: 0.6s;
-
+    
     @media(max-width: ${({ theme }) => theme.breakpoint.phone}px) {
         margin: 24px 0 12px 0;
         padding: 0 16px;
