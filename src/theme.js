@@ -1,11 +1,4 @@
 export const theme = {
-  breakpoint_backup: {
-    phone: 590,
-    mobile: 712,
-    mobileMax: "767px",
-    descriptionChange: 1023,
-    tablet: 1023,
-  },
   breakpoint: {
     small: "480px",
     medium: "767px",
@@ -31,6 +24,5 @@ export const theme = {
     navBar: "#181818",
     imageBG: "#C4C4C4",
     boxShadow: "#BAC7D580",
-    // heatherTransparent: "#BAC7D580",
   },
 };

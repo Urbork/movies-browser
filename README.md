@@ -4,7 +4,7 @@ This project is a simple yet powerful movies browser application. Our goal is to
 
 ## Demo
 
-[Demo](urbork.github.io/movies-browser/)
+DEMO: https://urbork.github.io/movies-browser/
 
 ![preview](https://i.imgur.com/GhhVLCL.jpeg)
 

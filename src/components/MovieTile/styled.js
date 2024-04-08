@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MovieTileContent = styled.li`
   padding: 16px;
-  min-width: 324px;
+  width: 324px;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0 4px 12px 0px 4px 12px 0px
@@ -31,8 +31,7 @@ export const MovieTileLink = styled.a`
 
 export const MovieTileImage = styled.img`
   margin: 0;
-  /* width: 292px; */
-  width: 100%;
+  width: 292px;
   height: 434px;
   border-radius: 4px;
   transition: 0.6s;
