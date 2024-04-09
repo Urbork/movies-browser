@@ -21,8 +21,10 @@ export const Wrapper = styled.div`
   padding: 23px 16px 23px 17px;
   margin: 0 auto;
   align-items: center;
+  
+  transition: 0.6s;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
     padding: 24px 16px 16px 16px;
     flex-wrap: wrap;
     justify-content: center;
@@ -39,6 +41,8 @@ export const LogoButtonsWrapper = styled.div`
   justify-content: space-between;
   gap: 80px;
   flex-shrink: 1;
+
+  transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     gap: 40px;
@@ -60,6 +64,8 @@ export const Logo = styled.div`
   font-weight: 500;
   font-size: 24px;
   line-height: 40px;
+  
+  transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     flex-shrink: 1;
@@ -70,6 +76,7 @@ export const Logo = styled.div`
 `;
 
 export const Video = styled(VideoSVG)`
+  transition: 0.6s;
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     max-width: 17px;
   }
@@ -78,6 +85,8 @@ export const Video = styled(VideoSVG)`
 export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 16px;
+  
+  transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     gap: 12px;
@@ -113,6 +122,8 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-basis: 432px;
   justify-content: flex-end;
+  
+  transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     flex-basis: 535px;
@@ -139,6 +150,8 @@ export const Input = styled.input`
   background-repeat: no-repeat;
   background-position: 24px 50%;
   text-indent: 40px;
+
+  transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     font-size: 13px;

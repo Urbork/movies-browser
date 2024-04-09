@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
 
-    @media(max-width: ${({ theme }) => theme.breakpoint.phone}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.small}) {
         grid-template-columns: repeat(auto-fill, 136px);
         gap: 16px;
 }
@@ -24,7 +24,7 @@ export const Header = styled.h1`
     line-height: 43.2px;
     transition: 0.6s;
     
-    @media(max-width: ${({ theme }) => theme.breakpoint.phone}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.small}) {
         margin: 24px 0 12px 0;
         padding: 0 16px;
         font-size: 20px;
