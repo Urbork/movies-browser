@@ -21,7 +21,7 @@ export const creditsUrl = `${url}movie/${movie_id}/credits?api_key=${apiKey}`;
 
 
 export const popularPeopleUrl = `${url}person/popular?api_key=${apiKey}`
-export const personUrs = `${url}person/${person_id}?api_key=${apiKey}`;
+export const personUrl = `${url}person/${person_id}?api_key=${apiKey}`;
 export const movieCreditsUrl = `${url}person/${person_id}/movie_credits?api_key=${apiKey}`
 
 
