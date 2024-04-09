@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
 
 export const Header = styled.h1`
     margin: 56px 0 24px 0;
-    font-weight: ${({ theme }) => theme.fontWeight.medium};
+    font-weight: ${({ theme }) => theme.fontWeight.semiBold};
     font-size: 36px;
     line-height: 43.2px;
     transition: 0.6s;

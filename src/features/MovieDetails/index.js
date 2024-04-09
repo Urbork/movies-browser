@@ -20,7 +20,7 @@ export const MovieDetails = ({ movieDetails }) => (
         <span key={index}>{country.name}</span>
       ))}
       detailsDateInfoTitle="Release date: "
-      detailsDateInfo={movieDetails?.release_date}
+      detailsDateInfo={movieDetails?.release_date?.split("-").reverse().join(".")}
       tags={movieDetails?.genres}
       rating={movieDetails?.vote_average}
       votes={movieDetails?.vote_count}

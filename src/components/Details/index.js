@@ -6,6 +6,7 @@ import {
   DetailsInfo,
   DetailsExtraInfoContainer,
   DetailsExtraInfo,
+  DetailsExtraInfoWrapper,
   DetailsExtraInfoLabel,
   DetailsDescription,
   DetailsSection,
@@ -16,6 +17,7 @@ import { MovieRating } from "../MovieTile/MovieRating";
 
 export const Details = ({
   movies,
+  people,
   imageURL,
   poster,
   title,
@@ -45,40 +47,38 @@ export const Details = ({
           <DetailsSubtitle>{subtitle}</DetailsSubtitle> : ""
         }
         <DetailsExtraInfoContainer>
-          <DetailsExtraInfo>
-            {movies ?
-              <>
-                <DetailsExtraInfoLabel>
+          {movies &&
+            <DetailsExtraInfo>
+              <DetailsExtraInfoWrapper>
+                <DetailsExtraInfoLabel $hidden>
                   {detailsExtraInfoTitle}
                 </DetailsExtraInfoLabel>{" "}
                 {detailsExtraInfo}
-              </>
-              :
-              <>
+              </DetailsExtraInfoWrapper>
+              <DetailsExtraInfoWrapper>
+                <DetailsExtraInfoLabel $hidden>
+                  {detailsDateInfoTitle}
+                </DetailsExtraInfoLabel>{" "}
+                {detailsDateInfo}
+              </DetailsExtraInfoWrapper>
+            </DetailsExtraInfo>
+          }
+          {people &&
+            <DetailsExtraInfo>
+              <DetailsExtraInfoWrapper>
                 <DetailsExtraInfoLabel>
                   {detailsDateInfoTitle}
                 </DetailsExtraInfoLabel>{" "}
                 {detailsDateInfo}
-              </>
-            }
-          </DetailsExtraInfo>
-          <DetailsExtraInfo>
-            {movies ?
-              <>
-                <DetailsExtraInfoLabel>
-                  {detailsDateInfoTitle}
-                </DetailsExtraInfoLabel>{" "}
-                {detailsDateInfo}
-              </>
-              :
-              <>
+              </DetailsExtraInfoWrapper>
+              <DetailsExtraInfoWrapper>
                 <DetailsExtraInfoLabel>
                   {detailsExtraInfoTitle}
                 </DetailsExtraInfoLabel>{" "}
                 {detailsExtraInfo}
-              </>
-            }
-          </DetailsExtraInfo>
+              </DetailsExtraInfoWrapper>
+            </DetailsExtraInfo>
+          }
         </DetailsExtraInfoContainer>
         {movies ?
           <>

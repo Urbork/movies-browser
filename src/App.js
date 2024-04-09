@@ -67,9 +67,9 @@ function App() {
         }
         {routerStatus === "people" &&
           (!peopleDetails ?
-            <PeopleList credits={credits} setPeopleDetails={setPeopleDetails}/>
+            <PeopleList popularPeople={popularPeople} setPeopleDetails={setPeopleDetails}/>
             :
-            <PeopleDetails credits={credits} />
+            <PeopleDetails person={person} />
           )
         }
       </Container>

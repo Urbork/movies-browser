@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const DetailsWrapper = styled.article`
   margin: 64px 24px;
@@ -75,18 +75,30 @@ export const DetailsExtraInfoContainer = styled.div`
   gap: 8px;
 `;
 
-export const DetailsExtraInfo = styled.p`
-  margin: 0;
+export const DetailsExtraInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const DetailsExtraInfoWrapper = styled.div`
   display: flex;
   gap: 10px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    flex-direction: column;
+  }
 `;
 
 export const DetailsExtraInfoLabel = styled.span`
+  flex-shrink: 0;
   color: ${({ theme }) => theme.color.darkerGrey};
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
-    display: none;
-  }
+  ${({ $hidden }) => $hidden && css`
+    @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+      display: none;
+    }
+  `}
 `;
 
 export const DetailsTags = styled.ul`

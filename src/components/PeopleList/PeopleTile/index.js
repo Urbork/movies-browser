@@ -11,7 +11,6 @@ import { usePeopleTile } from "./usePeopleTile";
 
 const PeopleTile = ({ poster, name, character, setPeopleDetails, id }) => {
   const { fetchApiPeopleDetails } = usePeopleTile(setPeopleDetails);
-  //console.log(id);
 
   return (
     <Wrapper onClick={() => fetchApiPeopleDetails(id)}>
