@@ -1,3 +1,5 @@
+import { useSelector, useDispatch } from "react-redux";
+import { changePageToFirst, changePageToLast, changePageToNext, changePageToPrevious, selectCurrentPage, selectPages } from "../../features/MoviesList/moviesSlice";
 import { usePagination } from "./usePagination";
 import {
   Button,
@@ -12,7 +14,11 @@ import {
   AdditionalForwardArrow
 } from "./styled";
 
-export const Pagination = ({ pages, setPages }) => {
+export const Pagination = ({ pages___, setPages }) => {
+  const pages = useSelector(selectPages);
+  const currPages = useSelector(selectCurrentPage);
+
+  const dispatch = useDispatch();
   const {
     first,
     previous,
@@ -25,12 +31,12 @@ export const Pagination = ({ pages, setPages }) => {
   return (
     <Wrapper>
       <ButtonContainer>
-        <Button onClick={first} disabled={isFirst}>
+        <Button onClick={() => dispatch(changePageToFirst())} disabled={isFirst}>
           <BackwardArrow disabled={isFirst} />
           <AdditionalBackwardArrow disabled={isFirst} />
           <Content>First</Content>
         </Button>
-        <Button onClick={previous} disabled={isFirst}>
+        <Button onClick={() => dispatch(changePageToPrevious())} disabled={isFirst}>
           <BackwardArrow disabled={isFirst} />
           <Content>Previous</Content>
         </Button>
@@ -39,11 +45,11 @@ export const Pagination = ({ pages, setPages }) => {
         Page <Number>{pages.currentPage}</Number> of <Number>{pages.lastPage}</Number>
       </PageNumberInfo>
       <ButtonContainer>
-        <Button onClick={next} disabled={isLast}>
+        <Button onClick={() => dispatch(changePageToNext())} disabled={isLast}>
           <Content>Next</Content>
           <ForwardArrow disabled={isLast} />
         </Button>
-        <Button onClick={last} disabled={isLast}>
+        <Button onClick={() => dispatch(changePageToLast())} disabled={isLast}>
           <Content>Last</Content>
           <AdditionalForwardArrow disabled={isLast} />
           <ForwardArrow disabled={isLast} />

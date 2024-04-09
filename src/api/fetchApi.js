@@ -12,6 +12,14 @@ export const getMovieDetails = (id) => fetch(movieDetailsUrl + id + parametrs)
   .then(response => response.json())
   .catch(err => console.error(err));
 
-export const getPopularMoviesApi = (page) => fetch(popularMoviesUrl + page)
-  .then(response => response.json())
-  .catch(err => console.error(err));
+export const getPopularMovies = (page) => fetch(popularMoviesUrl + page)
+  .then(response => {
+    console.log(response)
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
+  .catch(err => {
+    console.error(err)
+  });
