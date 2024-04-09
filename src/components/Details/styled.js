@@ -10,7 +10,7 @@ export const DetailsWrapper = styled.article`
   background: ${({ theme }) => theme.color.white};
   box-shadow: 0 4px 12px rgba(186, 199, 213, 0.5);
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     gap: 16px;
     margin: 16px;
     padding: 16px;
@@ -23,7 +23,7 @@ export const DetailsImage = styled.img`
   grid-row: span 2;
   transition: 0.6s;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     max-width: 114px;
     max-height: 169px;
     grid-row: span 1;
@@ -36,7 +36,7 @@ export const DetailsTitle = styled.h3`
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   line-height: 1.2;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     font-size: 16px;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     line-height: 1.3;
@@ -47,7 +47,7 @@ export const DetailsSubtitle = styled.div`
   font-size: 22px;
   line-height: 1.2;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin-top: -4px;
     font-size: 12px;
     color: ${({ theme }) => theme.color.darkerGrey};
@@ -62,7 +62,7 @@ export const DetailsInfo = styled.div`
   font-size: 18px;
   line-height: 1.2;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     gap: 8px;
     font-size: 12px;
     line-height: 1.3;
@@ -84,7 +84,7 @@ export const DetailsExtraInfo = styled.p`
 export const DetailsExtraInfoLabel = styled.span`
   color: ${({ theme }) => theme.color.darkerGrey};
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     display: none;
   }
 `;
@@ -114,7 +114,7 @@ export const DetailsDescription = styled.p`
     grid-column: span 2;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     font-size: 14px;
   }
 `;
@@ -122,7 +122,7 @@ export const DetailsDescription = styled.p`
 export const DetailsSection = styled.section`
   margin: 0 24px 64px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin-bottom: 16px;
   }
 `;
@@ -133,7 +133,7 @@ export const DetailsHeading = styled.h1`
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   line-height: 1.2;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     font-size: 20px;
   }
 `;

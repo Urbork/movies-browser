@@ -38,13 +38,13 @@ export const Wrapper = styled.div`
 
 export const LogoButtonsWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
   gap: 80px;
   flex-shrink: 1;
 
   transition: 0.6s;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
     gap: 40px;
   }
 
@@ -66,6 +66,10 @@ export const Logo = styled.div`
   line-height: 40px;
   
   transition: 0.6s;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
+    flex-shrink: 1;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     flex-shrink: 1;
@@ -126,7 +130,7 @@ export const InputWrapper = styled.div`
   
   transition: 0.6s;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
     flex-basis: 535px;
   }
 
@@ -145,7 +149,6 @@ export const Input = styled.input`
   color: ${({ theme }) => theme.color.darkerGrey};
   padding: 12px 24px;
 
-  border: 1px solid ${({ theme }) => theme.color.grey};
   border: 1px solid ${({ theme }) => theme.color.grey};
   border-radius: 33px;
 
