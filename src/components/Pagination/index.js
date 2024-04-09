@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { changePageToFirst, changePageToLast, changePageToNext, changePageToPrevious, selectCurrentPage, selectPages } from "../../features/MoviesList/moviesSlice";
-import { usePagination } from "./usePagination";
+import { changePageToFirst, changePageToLast, changePageToNext, changePageToPrevious, selectCurrentPage, selectFirstPage, selectLastPage } from "../../features/MoviesList/moviesSlice";
 import {
   Button,
   ButtonContainer,
@@ -14,45 +13,37 @@ import {
   AdditionalForwardArrow
 } from "./styled";
 
-export const Pagination = ({ pages___, setPages }) => {
-  const pages = useSelector(selectPages);
-  const currPages = useSelector(selectCurrentPage);
-
+export const Pagination = () => {
+  const firstPage = useSelector(selectFirstPage)
+  const currentPage = useSelector(selectCurrentPage);
+  const lastPage = useSelector(selectLastPage);
   const dispatch = useDispatch();
-  const {
-    first,
-    previous,
-    next,
-    last,
-  } = usePagination(pages, setPages);
-  const isFirst = pages.currentPage === pages.firstPage;
-  const isLast = pages.currentPage === pages.lastPage;
 
   return (
     <Wrapper>
       <ButtonContainer>
-        <Button onClick={() => dispatch(changePageToFirst())} disabled={isFirst}>
-          <BackwardArrow disabled={isFirst} />
-          <AdditionalBackwardArrow disabled={isFirst} />
+        <Button onClick={() => dispatch(changePageToFirst())} disabled={currentPage === firstPage}>
+          <BackwardArrow disabled={currentPage === firstPage} />
+          <AdditionalBackwardArrow disabled={currentPage === firstPage} />
           <Content>First</Content>
         </Button>
-        <Button onClick={() => dispatch(changePageToPrevious())} disabled={isFirst}>
-          <BackwardArrow disabled={isFirst} />
+        <Button onClick={() => dispatch(changePageToPrevious())} disabled={currentPage === firstPage}>
+          <BackwardArrow disabled={currentPage === firstPage} />
           <Content>Previous</Content>
         </Button>
       </ButtonContainer>
       <PageNumberInfo>
-        Page <Number>{pages.currentPage}</Number> of <Number>{pages.lastPage}</Number>
+        Page <Number>{currentPage}</Number> of <Number>{lastPage}</Number>
       </PageNumberInfo>
       <ButtonContainer>
-        <Button onClick={() => dispatch(changePageToNext())} disabled={isLast}>
+        <Button onClick={() => dispatch(changePageToNext())} disabled={currentPage === lastPage}>
           <Content>Next</Content>
-          <ForwardArrow disabled={isLast} />
+          <ForwardArrow disabled={currentPage === lastPage} />
         </Button>
-        <Button onClick={() => dispatch(changePageToLast())} disabled={isLast}>
+        <Button onClick={() => dispatch(changePageToLast())} disabled={currentPage === lastPage}>
           <Content>Last</Content>
-          <AdditionalForwardArrow disabled={isLast} />
-          <ForwardArrow disabled={isLast} />
+          <AdditionalForwardArrow disabled={currentPage === lastPage} />
+          <ForwardArrow disabled={currentPage === lastPage} />
         </Button>
       </ButtonContainer>
     </Wrapper>

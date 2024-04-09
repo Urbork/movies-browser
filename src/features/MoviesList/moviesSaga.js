@@ -1,25 +1,37 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
-import { fetchPopularMovies, setPopularMovies, resetFetchStatus, fetchError, selectPages, changePageToNext, changePageToFirst, changePageToPrevious, changePageToLast } from "./moviesSlice";
+import { fetchApi, setPopularMovies, resetFetchStatus, fetchError, selectPages, changePageToNext, changePageToFirst, changePageToPrevious, changePageToLast, switchToMovies } from "./moviesSlice";
 import { getPopularMovies } from "../../api/fetchApi";
 
-function* fetchPopularMoviesHandler() {
+function* fetchApiHandler() {
   try {
+    yield put(fetchApi());
     const page = yield select(selectPages);
     const movies = yield call(() => getPopularMovies(page.currentPage));
     yield delay(1000);
     yield put(setPopularMovies(movies.results));
+    // const scrollHeight = document.body.scrollHeight;
+    // yield window.scrollTo(0, scrollHeight);
   } catch (error) {
     yield put(fetchError());
-    yield delay(1000);
+    yield delay(3000);
   } finally {
     yield put(resetFetchStatus());
   };
 };
 
+// export function* moviesSaga() {
+//   yield takeLatest(changePageToFirst.type, fetchApiHandler);
+//   yield takeLatest(changePageToPrevious.type, fetchApiHandler);
+//   yield takeLatest(changePageToNext.type, fetchApiHandler);
+//   yield takeLatest(changePageToLast.type, fetchApiHandler);
+// };
+
 export function* moviesSaga() {
-  // yield takeLatest(fetchPopularMovies.type, fetchPopularMoviesHandler);
-  yield takeLatest(changePageToFirst.type, fetchPopularMoviesHandler);
-  yield takeLatest(changePageToPrevious.type, fetchPopularMoviesHandler);
-  yield takeLatest(changePageToNext.type, fetchPopularMoviesHandler);
-  yield takeLatest(changePageToLast.type, fetchPopularMoviesHandler);
-};
+  yield takeLatest([
+    changePageToFirst.type,
+    changePageToPrevious.type,
+    changePageToNext.type,
+    changePageToLast.type,
+    switchToMovies.type,
+  ], fetchApiHandler);
+}

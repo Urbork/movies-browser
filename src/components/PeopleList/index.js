@@ -3,18 +3,11 @@ import { Wrapper, Header } from "./styled";
 import PeopleTile from "./PeopleTile";
 import { getCredits } from "../../api/fetchApi";
 import { profileSmallSizeUrl } from "../../api/api";
+import { useSelector } from "react-redux";
+import { selectMovieDetailsCredits } from "../../features/MoviesList/moviesSlice";
 
 const PeopleList = () => {
-    const [credits, setCredits] = useState();
-    useEffect(() => {
-        const fetchApi = async () => {
-            const credits = await getCredits();
-            setCredits(credits);
-        };
-
-        fetchApi();
-    }, []);
-
+    const credits = useSelector(selectMovieDetailsCredits);
     return (
         <>
             <Header>Popular people</Header>

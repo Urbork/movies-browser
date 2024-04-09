@@ -5,10 +5,11 @@ import {
   MoviesListWrapper,
 } from "./styled";
 import { MovieTile } from "../../components/MovieTile";
-import { selectPopularMovies } from "./moviesSlice";
+import { selectGenres, selectPopularMovies } from "./moviesSlice";
 
-export const MoviesList = ({ popularMovies___, genre, setMovieDetails }) => {
+export const MoviesList = () => {
   const popularMovies = useSelector(selectPopularMovies);
+  const genres = useSelector(selectGenres);
 
   return (
     <MoviesListSection>
@@ -22,11 +23,10 @@ export const MoviesList = ({ popularMovies___, genre, setMovieDetails }) => {
             subtitle={movie.release_date.split("-")[0]}
             tags={movie.genre_ids.map(
               (genreId) =>
-                genre?.genres.find((item) => item.id === genreId).name
+                genres.find((item) => item.id === genreId).name
             )}
             rating={movie.vote_average}
             votes={movie.vote_count}
-            setMovieDetails={setMovieDetails}
             id={movie.id}
           />
         ))}
