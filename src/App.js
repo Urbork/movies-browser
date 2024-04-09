@@ -1,5 +1,5 @@
 import Navigation from "./components/Navigation";
-import { getPopularMoviesApi, getGenre, getMovieDetails, getCredits } from "./api/fetchApi";
+import { getPopularMoviesApi, getGenre, getCredits, getPopularPeopleApi, getPerson, getMovieCredits } from "./api/fetchApi";
 import { Pagination } from "./components/Pagination";
 import { Container } from "./components/Container";
 import { MovieDetails } from "./features/MovieDetails";
@@ -20,11 +20,18 @@ function App() {
       lastPage: 500,
     }
   );
+  const [popularPeople, setPopularPeople] = useState();
+  const [person, setPerson] = useState();
+  const [movieCredits, setMovieCredits] = useState(null);
+
   console.log("popularMovies: ", popularMovies);
   console.log("genre: ", genre);
   console.log("movieDetails: ", movieDetails);
   console.log("credits: ", credits);
   console.log("pages: ", pages);
+  console.log("popularPeople: ", popularPeople);
+  console.log("person: ", person);
+  console.log("movieCredits: ", movieCredits);
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -32,10 +39,14 @@ function App() {
       setPopularMovies(popularMovies);
       const genre = await getGenre();
       setGenre(genre);
-      // const movieDetails = await getMovieDetails();
-      // setMovieDetails(movieDetails);
       const credits = await getCredits();
       setCredits(credits);
+      const popularPeople = await getPopularPeopleApi();
+      setPopularPeople(popularPeople);
+      const person = await getPerson();
+      setPerson(person);
+      const movieCredits = await getMovieCredits();
+      setMovieCredits(movieCredits);
     };
 
     fetchApi();
