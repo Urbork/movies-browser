@@ -61,7 +61,7 @@ export const Logo = styled.div`
 
   gap: 12px;
 
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
   font-size: 24px;
   line-height: 40px;
   
@@ -95,10 +95,11 @@ export const ButtonsWrapper = styled.div`
 
 export const Button = styled.button`
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   font-size: 14px;
   line-height: 21px;
   color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.navBar};
   background-color: ${({ theme }) => theme.color.navBar};
 
   border: 1px solid transparent;
@@ -137,12 +138,14 @@ export const InputWrapper = styled.div`
 export const Input = styled.input`
   flex-basis: 100%;
   flex-shrink: 1;
-  font-weight: 400;
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
   font-size: 16px;
   line-height: 24px;
   color: ${({ theme }) => theme.color.darkerGrey};
+  color: ${({ theme }) => theme.color.darkerGrey};
   padding: 12px 24px;
 
+  border: 1px solid ${({ theme }) => theme.color.grey};
   border: 1px solid ${({ theme }) => theme.color.grey};
   border-radius: 33px;
 

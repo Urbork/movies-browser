@@ -9,9 +9,9 @@ export const Wrapper = styled.div`
     
     cursor: pointer;
 
-    &:hover {
-        transform: scale(1.05);
-    }
+  &:hover {
+    transform: scale(1.05);
+  }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
         max-width: 136px;
@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.img`
-    border-radius: 5px;
+  border-radius: 5px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
         width: 120px;
@@ -29,10 +29,10 @@ export const Image = styled.img`
 `;
 
 export const ImageContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 12px 0;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
         margin: 0 0 8px 0;
@@ -40,8 +40,8 @@ export const ImageContainer = styled.div`
 `;
 
 export const BlankActorContainer = styled(ImageContainer)`
-    height: 278px;
-    border-radius: 5px;
+  height: 278px;
+  border-radius: 5px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
         height: 180px;
