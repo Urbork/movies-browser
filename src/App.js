@@ -4,6 +4,7 @@ import { Pagination } from "./components/Pagination";
 import { Container } from "./components/Container";
 import { MovieDetails } from "./features/MovieDetails";
 import { MoviesList } from "./features/MoviesList";
+import { PeopleDetails } from "./features/PeopleDetails";
 import PeopleList from "./components/PeopleList";
 import { useEffect, useState } from "react";
 
@@ -12,6 +13,7 @@ function App() {
   const [popularMovies, setPopularMovies] = useState();
   const [genre, setGenre] = useState();
   const [movieDetails, setMovieDetails] = useState(null);
+  const [peopleDetails, setPeopleDetails] = useState(null);
   const [credits, setCredits] = useState();
   const [pages, setPages] = useState(
     {
@@ -54,17 +56,25 @@ function App() {
 
   return (
     <>
-      <Navigation setMovieDetails={setMovieDetails} setRouterStatus={setRouterStatus} />
+      <Navigation setMovieDetails={setMovieDetails} setPeopleDetails={setPeopleDetails} setRouterStatus={setRouterStatus} />
       <Container>
         {routerStatus === "movies" &&
           (!movieDetails ?
             <MoviesList popularMovies={popularMovies} genre={genre} setMovieDetails={setMovieDetails} />
             :
-            <MovieDetails movieDetails={movieDetails} />)
+            <MovieDetails movieDetails={movieDetails} />
+          )
         }
-        {routerStatus === "people" && <PeopleList movieDetails={movieDetails} />}
+        {routerStatus === "people" &&
+          (!peopleDetails ?
+            <PeopleList popularPeople={popularPeople} setPeopleDetails={setPeopleDetails}/>
+            :
+            <PeopleDetails person={person} />
+          )
+        }
       </Container>
       {routerStatus === "movies" && movieDetails === null && <Pagination pages={pages} setPages={setPages} />}
+      {routerStatus === "people" && peopleDetails === null && <Pagination pages={pages} setPages={setPages} />}
     </>
   );
 };

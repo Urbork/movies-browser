@@ -1,39 +1,39 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const MovieDetailsWrapper = styled.article`
+export const DetailsWrapper = styled.article`
   margin: 64px 24px;
   padding: 40px;
   display: grid;
   grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 40px;
   background: ${({ theme }) => theme.color.white};
-  box-shadow: 0 4px 12px 0px 4px 12px 0px
-    ${({ theme }) => theme.color.boxShadow};
+  box-shadow: 0 4px 12px rgba(186, 199, 213, 0.5);
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    gap: 16px;
     margin: 16px;
     padding: 16px;
   }
 `;
 
-export const MovieDetailsImage = styled.img`
-  margin-right: 40px;
+export const DetailsImage = styled.img`
   max-width: 312px;
   max-height: 464px;
   grid-row: span 2;
   transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
-    margin-right: 16px;
     max-width: 114px;
     max-height: 169px;
     grid-row: span 1;
   }
 `;
 
-export const MovieDetailsTitle = styled.h3`
+export const DetailsTitle = styled.h3`
   margin: 0;
   font-size: 36px;
-  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
   line-height: 1.2;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
@@ -43,7 +43,7 @@ export const MovieDetailsTitle = styled.h3`
   }
 `;
 
-export const MovieDetailsSubtitle = styled.div`
+export const DetailsSubtitle = styled.div`
   font-size: 22px;
   line-height: 1.2;
 
@@ -55,7 +55,7 @@ export const MovieDetailsSubtitle = styled.div`
   }
 `;
 
-export const MovieDetailsInfo = styled.div`
+export const DetailsInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -69,26 +69,46 @@ export const MovieDetailsInfo = styled.div`
   }
 `;
 
-export const MovieDetailsExtraInfo = styled.p`
-  margin: 0;
+export const DetailsExtraInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
-export const MovieDetailsExtraInfoLabel = styled.span`
-  color: ${({ theme }) => theme.color.darkerGrey};
+export const DetailsExtraInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const DetailsExtraInfoWrapper = styled.div`
+  display: flex;
+  gap: 10px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
-    display: none;
+    flex-direction: column;
   }
 `;
 
-export const MovieDetailsTags = styled.ul`
+export const DetailsExtraInfoLabel = styled.span`
+  flex-shrink: 0;
+  color: ${({ theme }) => theme.color.darkerGrey};
+
+  ${({ $hidden }) => $hidden && css`
+    @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+      display: none;
+    }
+  `}
+`;
+
+export const DetailsTags = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   padding-left: 0;
 `;
 
-export const MovieDetailsTag = styled.li`
+export const DetailsTag = styled.li`
   margin: 0 8px;
   padding: 8px 16px;
   border-radius: 5px;
@@ -96,19 +116,36 @@ export const MovieDetailsTag = styled.li`
   background: ${({ theme }) => theme.color.grey};
 `;
 
-export const MovieDetailsDescription = styled.p`
-  margin: 16px 0 0;
+export const DetailsDescription = styled.p`
+  margin: 0;
   font-size: 20px;
   line-height: 1.6;
   transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
-    margin-top: 40px;
     grid-column: span 2;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
-    margin-top: 16px;
     font-size: 14px;
+  }
+`;
+
+export const DetailsSection = styled.section`
+  margin: 0 24px 64px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    margin-bottom: 16px;
+  }
+`;
+
+export const DetailsHeading = styled.h1`
+  margin: 0 0 24px;
+  font-size: 36px;
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
+  line-height: 1.2;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    font-size: 20px;
   }
 `;

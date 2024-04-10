@@ -10,14 +10,15 @@ import {
     ButtonsWrapper,
 } from "./styled";
 
-const Navigation = ({ setMovieDetails, setRouterStatus }) => {
+const Navigation = ({ setMovieDetails, setPeopleDetails, setRouterStatus }) => {
     const switchToMovies = () => {
-        setRouterStatus("movies")
-        setMovieDetails(null)
+        setRouterStatus("movies");
+        setMovieDetails(null);
     };
 
     const switchToPeople = () => {
-        setRouterStatus("people")
+        setRouterStatus("people");
+        setPeopleDetails(null);
     };
 
     return (
