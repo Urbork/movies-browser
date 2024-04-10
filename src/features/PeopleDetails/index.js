@@ -1,18 +1,21 @@
+import { useSelector } from "react-redux";
 import { Details } from "../../components/Details";
+import { selectPersonContent } from "../people/peopleSlice";
 
-export const PeopleDetails = ({ person }) => {
+export const PeopleDetails = () => {
+    const personContent = useSelector(selectPersonContent)
 
     return (
         <Details
             people
             imageURL="http://image.tmdb.org/t/p/h632"
-            poster={person?.profile_path}
-            title={person?.name}
+            poster={personContent.profile_path}
+            title={personContent.name}
             detailsExtraInfoTitle="Place of birth:"
-            detailsExtraInfo={person?.place_of_birth}
+            detailsExtraInfo={personContent.place_of_birth}
             detailsDateInfoTitle="Date of birth:"
-            detailsDateInfo={person?.birthday?.split("-").reverse().join(".")}
-            description={person?.biography}
+            detailsDateInfo={personContent.birthday?.split("-").reverse().join(".")}
+            description={personContent.biography}
             castHeading="Cast"
             castContent="Movie cast here"
             crewHeading="Crew"

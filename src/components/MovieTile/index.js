@@ -13,15 +13,15 @@ import { MovieTags } from "./MovieTags";
 import { MovieRating } from "./MovieRating";
 import { useMovieTile } from "./useMovieTile";
 import { getMovieDetails } from "../../api/fetchApi";
-import { selectMovieDetails, setMovieDetailsId } from "../../features/MoviesList/moviesSlice";
+import { selectMovieDetails, setMovieDetailsId } from "../../features/movies/moviesSlice";
 
 export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) => {
   const dispatch = useDispatch();
   // const selectMovieDetails = useSelector();
 
   return (
-    <MovieTileContent>
-      <MovieTileLink onClick={() => dispatch(setMovieDetailsId(id))}>
+    <MovieTileContent onClick={() => dispatch(setMovieDetailsId(id))}>
+      <MovieTileLink >
         <MovieTileImage
           src={
             poster ? "https://image.tmdb.org/t/p/w342" + poster : posterNotFound

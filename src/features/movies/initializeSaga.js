@@ -1,14 +1,7 @@
-import { call, delay, put, select } from "redux-saga/effects";
+import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getGenres, getPopularMovies } from "../../api/fetchApi";
-import {
-  fetchError,
-  fetchApi,
-  resetFetchStatus,
-  setPopularMovies,
-  switchToMovies,
-  selectCurrentPage,
-  setGenres
-} from "./moviesSlice";
+import { setGenres, setPopularMovies } from "./moviesSlice";
+import { fetchApi, fetchError, moviesDisplay, resetFetchStatus, selectCurrentPage } from "../pageState/pageStateSlice";
 
 export function* initializeSagaHandler() {
   try {
@@ -18,8 +11,8 @@ export function* initializeSagaHandler() {
     const genres = yield call(() => getGenres());
     yield delay(1000);
     yield put(setPopularMovies(movies.results));
-    yield put(switchToMovies());
     yield put(setGenres(genres.genres));
+    // yield put(moviesDisplay());
   } catch (error) {
     yield put(fetchError());
     yield delay(3000);

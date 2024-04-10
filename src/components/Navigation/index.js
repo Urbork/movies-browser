@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {
     Container,
@@ -11,20 +11,10 @@ import {
     Input,
     ButtonsWrapper,
 } from "./styled";
-import { displayMovies, switchToMovies, switchToPeople } from "../../features/MoviesList/moviesSlice";
-// import { changePageToFirst, selectPopularMovies, setPopularMovies } from "../../features/MoviesList/moviesSlice";
+import { moviesDisplay, peopleDisplay } from "../../features/pageState/pageStateSlice";
 
-const Navigation = ({ setMovieDetails, setRouterStatus }) => {
+const Navigation = () => {
     const dispatch = useDispatch();
-
-    // const switchToMovies = () => {
-    //     setRouterStatus("movies")
-    //     setMovieDetails(null)
-    // };
-
-    // const switchToPeople = () => {
-    //     setRouterStatus("people")
-    // };
 
     return (
         <Container>
@@ -35,10 +25,10 @@ const Navigation = ({ setMovieDetails, setRouterStatus }) => {
                         Movies Browser
                     </Logo>
                     <ButtonsWrapper>
-                        <Button onClick={() => dispatch(switchToMovies())}>
+                        <Button onClick={() => dispatch(moviesDisplay())}>
                             Movies
                         </Button>
-                        <Button onClick={() => dispatch(switchToPeople())}>
+                        <Button onClick={() => dispatch(peopleDisplay())}>
                             People
                         </Button>
                     </ButtonsWrapper>

@@ -5,7 +5,7 @@ import {
   MoviesListWrapper,
 } from "./styled";
 import { MovieTile } from "../../components/MovieTile";
-import { selectGenres, selectPopularMovies } from "./moviesSlice";
+import { selectGenres, selectPopularMovies } from "../movies/moviesSlice";
 
 export const MoviesList = () => {
   const popularMovies = useSelector(selectPopularMovies);

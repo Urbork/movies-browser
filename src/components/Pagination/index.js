@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from "react-redux";
-import { changePageToFirst, changePageToLast, changePageToNext, changePageToPrevious, selectCurrentPage, selectFirstPage, selectLastPage } from "../../features/MoviesList/moviesSlice";
 import {
   Button,
   ButtonContainer,
@@ -12,6 +11,7 @@ import {
   AdditionalBackwardArrow,
   AdditionalForwardArrow
 } from "./styled";
+import { changePageToFirst, changePageToLast, changePageToNext, changePageToPrevious, selectCurrentPage, selectFirstPage, selectLastPage } from "../../features/pageState/pageStateSlice";
 
 export const Pagination = () => {
   const firstPage = useSelector(selectFirstPage)
