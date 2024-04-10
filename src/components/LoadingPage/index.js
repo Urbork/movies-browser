@@ -1,9 +1,9 @@
 import { Section } from "../Section";
-import { LoadingWrapper, LoadingHeading, StyledLoadingIcon } from "./styled";
+import { StyledLoadingIcon } from "./styled";
 
 export const LoadingPage = () => {
   return (
-    <Section title="Searching for /search query/">
+    <Section title={"Searching for ... or Loading"}>
       <StyledLoadingIcon />
     </Section>
   );

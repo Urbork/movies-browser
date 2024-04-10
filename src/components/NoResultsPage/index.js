@@ -1,14 +1,10 @@
 import { Section } from "../Section";
-import {
-  NoResultHeading,
-  NoResultWrapper,
-  StyledNoResultImage,
-} from "./styled";
+import { StyledNoResultsImage } from "./styled";
 
-export const NoResultPage = () => {
+export const NoResultsPage = () => {
   return (
     <Section title="Sorry, there are no results for /search query/">
-      <StyledNoResultImage />
+      <StyledNoResultsImage />
     </Section>
   );
 };

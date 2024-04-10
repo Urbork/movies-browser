@@ -1,15 +1,10 @@
-import {
-  MoviesListSection,
-  MoviesListTitle,
-  MoviesListWrapper,
-} from "./styled";
+import { Section } from "../../components/Section";
+import { MoviesListWrapper } from "./styled";
 import { MovieTile } from "../../components/MovieTile";
 
 export const MoviesList = ({ popularMovies, genre, setMovieDetails }) => {
-
   return (
-    <MoviesListSection>
-      <MoviesListTitle>Popular movies</MoviesListTitle>
+    <Section title="Popular movies">
       <MoviesListWrapper>
         {popularMovies?.results?.map((movie) => (
           <MovieTile
@@ -28,6 +23,6 @@ export const MoviesList = ({ popularMovies, genre, setMovieDetails }) => {
           />
         ))}
       </MoviesListWrapper>
-    </MoviesListSection>
+    </Section>
   );
 };
