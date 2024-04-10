@@ -17,27 +17,27 @@ export const MovieDetails = () => {
         rating={movieDetailsContent.vote_average}
         votes={movieDetailsContent.vote_count}
       />
-      <MovieInfo
+      <Details
+        movies
+        imageURL="https://image.tmdb.org/t/p/w342"
         poster={movieDetailsContent.poster_path}
         title={movieDetailsContent.title}
         subtitle={movieDetailsContent.release_date?.split("-")[0]}
-        production={movieDetailsContent.production_countries?.map((country, index) => (
+        detailsExtraInfoTitle="Production:"
+        detailsExtraInfo={movieDetailsContent.production_countries.map((country, index) => (
           <span key={index}>{country.name}</span>
         ))}
-        releaseDate={movieDetailsContent.release_date}
+        detailsDateInfoTitle="Release date: "
+        detailsDateInfo={movieDetailsContent.release_date?.split("-").reverse().join(".")}
         tags={movieDetailsContent.genres}
         rating={movieDetailsContent.vote_average}
         votes={movieDetailsContent.vote_count}
         description={movieDetailsContent.overview}
+        castHeading="Cast"
+        castContent="Movie cast here"
+        crewHeading="Crew"
+        crewContent="Movie crew here"
       />
-      <MovieDetailsSection>
-        <MovieDetailsHeading>Cast</MovieDetailsHeading>
-        Movie Cast here
-      </MovieDetailsSection>
-      <MovieDetailsSection>
-        <MovieDetailsHeading>Crew</MovieDetailsHeading>
-        Movie Crew here
-      </MovieDetailsSection>
     </>
   )
 };

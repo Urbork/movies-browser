@@ -3,6 +3,7 @@ import { Pagination } from "./components/Pagination";
 import { Container } from "./components/Container";
 import { MovieDetails } from "./features/MovieDetails";
 import { MoviesList } from "./features/MoviesList";
+import { PeopleDetails } from "./features/PeopleDetails";
 import PeopleList from "./components/PeopleList";
 import { useSelector } from "react-redux";
 import { selectCurrentPage, selectDisplay, selectFetchStatus, selectFirstPage, selectGenres, selectLastPage, selectMovieDetailsContent, selectMovieDetailsCredits, selectPopularMovies } from "./features/MoviesList/moviesSlice";
@@ -39,9 +40,14 @@ function App() {
           </>
         }
         {display === "movieDetails" && <MovieDetails />}
-        {display === "people" && <PeopleList />}
+        {display === "people" &&
+          <>
+            <PeopleList popularPeople={popularPeople} setPeopleDetails={setPeopleDetails} />
+            <Pagination />
+          </>
+        }
+        {display === "person" && <PeopleDetails person={person} />}
       </Container>
-
     </>
   );
 };
