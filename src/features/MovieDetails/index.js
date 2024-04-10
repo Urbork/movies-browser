@@ -1,10 +1,7 @@
 import { selectMovieDetails, selectMovieDetailsContent } from "../movies/moviesSlice";
 import { MovieCover } from "./MovieCover";
-// import { MovieInfo } from "./MovieInfo";
-// import { MovieDetailsSection, MovieDetailsHeading } from "./styled";
 import { Details } from "../../components/Details";
 import { useSelector } from "react-redux";
-
 
 export const MovieDetails = () => {
   const movieDetailsContent = useSelector(selectMovieDetailsContent);

@@ -6,9 +6,20 @@ import { MoviesList } from "./features/MoviesList";
 import { PeopleDetails } from "./features/PeopleDetails";
 import PeopleList from "./components/PeopleList";
 import { useSelector } from "react-redux";
-import { selectGenres, selectMovieDetailsContent, selectMovieDetailsCredits, selectPopularMovies } from "./features/movies/moviesSlice";
+import {
+  selectGenres,
+  selectMovieDetailsContent,
+  selectMovieDetailsCredits,
+  selectPopularMovies
+} from "./features/movies/moviesSlice";
+import {
+  selectCurrentPage,
+  selectDisplay,
+  selectFetchStatus,
+  selectFirstPage,
+  selectLastPage
+} from "./features/pageState/pageStateSlice";
 import { ErrorPage, LoadingPage } from "./components/Modal";
-import { selectCurrentPage, selectDisplay, selectFetchStatus, selectFirstPage, selectLastPage } from "./features/pageState/pageStateSlice";
 
 function App() {
 
@@ -29,7 +40,6 @@ function App() {
   console.log("genres: ", genres);
   console.log("fetchStatus: ", fetchStatus);
   console.log("firstPage: ", firstPage, "currentPage :", currentPage, "lastPage :", lastPage);
-
 
   return (
     <>

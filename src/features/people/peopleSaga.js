@@ -1,7 +1,16 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getPopularPeople } from "../../api/fetchApi";
-import { changePageToFirst, changePageToLast, changePageToNext, changePageToPrevious, fetchApi, fetchError, peopleDisplay, resetFetchStatus, selectCurrentPage } from "../pageState/pageStateSlice";
 import { setPopularPeople } from "./peopleSlice";
+import {
+  changePageToFirst,
+  changePageToLast,
+  changePageToNext,
+  changePageToPrevious,
+  fetchApi, fetchError,
+  peopleDisplay,
+  resetFetchStatus,
+  selectCurrentPage
+} from "../pageState/pageStateSlice";
 
 function* fetchApiHandler() {
   try {
@@ -10,7 +19,6 @@ function* fetchApiHandler() {
     const people = yield call(() => getPopularPeople(page));
     yield delay(1000);
     yield put(setPopularPeople(people.results));
-    // yield put(peopleDisplay());
   } catch (error) {
     yield put(fetchError());
     yield delay(3000);

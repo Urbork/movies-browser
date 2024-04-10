@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   MovieTileContent,
   MovieTileLink,
@@ -11,13 +11,10 @@ import {
 import posterNotFound from "../../images/VectorNoImage.svg";
 import { MovieTags } from "./MovieTags";
 import { MovieRating } from "./MovieRating";
-import { useMovieTile } from "./useMovieTile";
-import { getMovieDetails } from "../../api/fetchApi";
-import { selectMovieDetails, setMovieDetailsId } from "../../features/movies/moviesSlice";
+import { setMovieDetailsId } from "../../features/movies/moviesSlice";
 
 export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) => {
   const dispatch = useDispatch();
-  // const selectMovieDetails = useSelector();
 
   return (
     <MovieTileContent onClick={() => dispatch(setMovieDetailsId(id))}>
