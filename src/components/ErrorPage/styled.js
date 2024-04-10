@@ -41,6 +41,7 @@ export const ErrorHeading = styled.h2`
   font-size: 36px;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   line-height: 1.2;
+  transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     font-size: 24px;
@@ -58,6 +59,7 @@ export const ErrorSubheading = styled.h3`
   font-size: 22px;
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   line-height: 1.3;
+  transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     max-width: 325px;
@@ -78,7 +80,7 @@ export const ErrorButton = styled.button`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   color: ${({ theme }) => theme.color.white};
   background-color: ${({ theme }) => theme.color.blue};
-  transition: 0.3s;
+  transition: 0.6s;
   cursor: pointer;
 
   &:hover {

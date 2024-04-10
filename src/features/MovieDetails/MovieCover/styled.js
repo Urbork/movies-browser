@@ -6,9 +6,9 @@ import {
 
 export const MovieCoverBlackBars = styled.img`
   position: absolute;
-  top: 0;
-  width: 100vw;
-  height: 100%;
+  top: -4px;
+  width: 101vw;
+  height: 101%;
   display: flex;
   justify-content: center;
   background-color: ${({ theme }) => theme.color.black};
