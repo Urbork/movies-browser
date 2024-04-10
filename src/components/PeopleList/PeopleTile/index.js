@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import {
   Wrapper,
   Image,
@@ -7,13 +8,13 @@ import {
   Character
 } from "./styled";
 import { ReactComponent as BlankActor } from "../../../images/blankActor.svg";
-import { usePeopleTile } from "./usePeopleTile";
+import { setPersonId } from "../../../features/people/peopleSlice";
 
-const PeopleTile = ({ poster, name, character, setPeopleDetails, id }) => {
-  const { fetchApiPeopleDetails } = usePeopleTile(setPeopleDetails);
-
+const PeopleTile = ({ poster, name, character, id }) => {
+  const dispatch = useDispatch();
   return (
-    <Wrapper onClick={() => fetchApiPeopleDetails(id)}>
+    <Wrapper onClick={() => dispatch(setPersonId(id))}
+    >
       {
         !poster.includes("null") ?
           <ImageContainer>
