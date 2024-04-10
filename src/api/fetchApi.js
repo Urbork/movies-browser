@@ -1,37 +1,67 @@
-import { popularMoviesUrl, genreUrl, movieDetailsUrl, creditsUrl, parametrs, popularPeopleUrl } from "./api";
+import {
+  popularMoviesUrl,
+  genreUrl,
+  movieDetailsUrl,
+  creditsUrl,
+  popularPeopleUrl,
+  personUrl,
+  movieCreditsUrl,
+  searchMovieUrl
+} from "./api";
 
-export const getPopularMovies = (page) => fetch(popularMoviesUrl + page)
-  .then(response => {
+const fetchApi = (url) => (
+  fetch(url).then(response => {
     console.log(response)
     if (!response.ok) {
       throw new Error(response.statusText);
     }
     return response.json();
   })
-  .catch(err => {
-    console.error(err)
-  });
+    .catch(err => {
+      console.error(err)
+    })
+);
 
-export const getMovieDetails = (id) => fetch(movieDetailsUrl + id + parametrs)
-  .then(response => response.json())
-  .catch(err => console.error(err));
+export const getPopularMovies = (page) => {
+  const updatedUrl = popularMoviesUrl.replace("{page}", page);
+  return fetchApi(updatedUrl);
+};
 
-export const getGenres = () => fetch(genreUrl)
-  .then(response => response.json())
-  .catch(err => console.error(err));
+export const getMovieDetails = (id) => {
+  const updatedUrl = movieDetailsUrl.replace("{movie_id}", id);
+  return fetchApi(updatedUrl);
+};
 
-export const getCredits = (id) => fetch(movieDetailsUrl + id + creditsUrl + parametrs)
-  .then(response => response.json())
-  .catch(err => console.error(err));
+export const getGenres = () => (
+  fetchApi(genreUrl)
+);
 
-export const getPopularPeople = (page) => fetch(popularPeopleUrl + page)
-  .then(response => {
-    console.log(response)
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response.json();
-  })
-  .catch(err => {
-    console.error(err)
-  });
+export const getCredits = (id) => {
+  const updatedUrl = creditsUrl.replace("{movie_id}", id);
+  return fetchApi(updatedUrl);
+};
+
+export const getPopularPeople = (page) => {
+  const updatedUrl = popularPeopleUrl.replace("{page}", page);
+  return fetchApi(updatedUrl);
+};
+
+export const getPerson = (id) => {
+  const updatedUrl = personUrl.replace("{person_id}", id);
+  return fetchApi(updatedUrl);
+};
+
+export const getMovieCredits = (id) => {
+  const updatedUrl = movieCreditsUrl.replace("{person_id}", id);
+  return fetchApi(updatedUrl);
+};
+
+export const getSearchMovie = (query, page) => {
+  const updatedUrl = searchMovieUrl.replace("{query}", query).replace("{page}", page);
+  return fetchApi(updatedUrl);
+};
+
+export const getSearchPerson = (query, page) => {
+  const updatedUrl = searchMovieUrl.replace("{query}", query).replace("{page}", page);
+  return fetchApi(updatedUrl);
+};

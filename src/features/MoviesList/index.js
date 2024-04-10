@@ -21,9 +21,9 @@ export const MoviesList = () => {
             poster={movie.poster_path}
             title={movie.title}
             subtitle={movie.release_date.split("-")[0]}
-            tags={movie.genre_ids.map(
+            tags={movie.genre_ids?.map(
               (genreId) =>
-                genres.find((item) => item.id === genreId).name
+                genres.find((item) => item.id === genreId)?.name
             )}
             rating={movie.vote_average}
             votes={movie.vote_count}

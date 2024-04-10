@@ -8,7 +8,7 @@ function* fetchApiHandler() {
     const page = yield select(selectCurrentPage);
     const movies = yield call(() => getPopularMovies(page));
     yield put(setPopularMovies(movies.results));
-    yield delay(1);
+    // yield delay(1);
     const scrollHeight = document.body.scrollHeight;
     yield call(() => window.scrollTo(0, scrollHeight));
   } catch (error) {
@@ -18,13 +18,6 @@ function* fetchApiHandler() {
     yield put(resetFetchStatus());
   };
 };
-
-// export function* moviesSaga() {
-//   yield takeLatest(changePageToFirst.type, fetchApiHandler);
-//   yield takeLatest(changePageToPrevious.type, fetchApiHandler);
-//   yield takeLatest(changePageToNext.type, fetchApiHandler);
-//   yield takeLatest(changePageToLast.type, fetchApiHandler);
-// };
 
 export function* moviesSaga() {
   yield takeLatest([

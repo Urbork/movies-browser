@@ -1,8 +1,16 @@
 import { call, delay, put, select } from "redux-saga/effects";
-import { fetchError, fetchApi, resetFetchStatus, selectPages, setPopularMovies, selectDisplayMovies, switchToMovies, selectCurrentPage, setGenres } from "./moviesSlice";
 import { getGenres, getPopularMovies } from "../../api/fetchApi";
+import {
+  fetchError,
+  fetchApi,
+  resetFetchStatus,
+  setPopularMovies,
+  switchToMovies,
+  selectCurrentPage,
+  setGenres
+} from "./moviesSlice";
 
-export function* initializeSaga() {
+export function* initializeSagaHandler() {
   try {
     yield put(fetchApi());
     const page = yield select(selectCurrentPage);
@@ -18,4 +26,8 @@ export function* initializeSaga() {
   } finally {
     yield put(resetFetchStatus());
   };
+};
+
+export function* initializeSaga() {
+  yield call(initializeSagaHandler);
 };
