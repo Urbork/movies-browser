@@ -8,7 +8,7 @@ export const theme = {
     regular: 400,
     medium: 500,
     semiBold: 600,
-    bold: 800,
+    bold: 700,
   },
   color: {
     white: "#FFFFFF",
@@ -26,6 +26,3 @@ export const theme = {
     boxShadow: "#BAC7D580",
   },
 };
-
-
-

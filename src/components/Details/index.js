@@ -1,19 +1,18 @@
 import {
   DetailsWrapper,
   DetailsImage,
+  DetailsInfo,
   DetailsTitle,
   DetailsSubtitle,
-  DetailsInfo,
   DetailsExtraInfoContainer,
   DetailsExtraInfo,
   DetailsExtraInfoWrapper,
   DetailsExtraInfoLabel,
   DetailsDescription,
-  DetailsSection,
-  DetailsHeading,
 } from "./styled";
 import { MovieTags } from "../MovieTile/MovieTags";
 import { MovieRating } from "../MovieTile/MovieRating";
+import { Section } from "../Section";
 
 export const Details = ({
   movies,
@@ -43,11 +42,9 @@ export const Details = ({
       />
       <DetailsInfo>
         <DetailsTitle>{title}</DetailsTitle>
-        {movies ?
-          <DetailsSubtitle>{subtitle}</DetailsSubtitle> : ""
-        }
+        {movies ? <DetailsSubtitle>{subtitle}</DetailsSubtitle> : ""}
         <DetailsExtraInfoContainer>
-          {movies &&
+          {movies && (
             <DetailsExtraInfo>
               <DetailsExtraInfoWrapper>
                 <DetailsExtraInfoLabel $hidden>
@@ -62,8 +59,8 @@ export const Details = ({
                 {detailsDateInfo}
               </DetailsExtraInfoWrapper>
             </DetailsExtraInfo>
-          }
-          {people &&
+          )}
+          {people && (
             <DetailsExtraInfo>
               <DetailsExtraInfoWrapper>
                 <DetailsExtraInfoLabel>
@@ -78,25 +75,20 @@ export const Details = ({
                 {detailsExtraInfo}
               </DetailsExtraInfoWrapper>
             </DetailsExtraInfo>
-          }
+          )}
         </DetailsExtraInfoContainer>
-        {movies ?
+        {movies ? (
           <>
             <MovieTags tags={tags ? tags.map((tag) => tag.name) : ""} />
             <MovieRating big="true" rating={rating} votes={votes} />
           </>
-          : ""
-        }
+        ) : (
+          ""
+        )}
       </DetailsInfo>
       <DetailsDescription>{description}</DetailsDescription>
     </DetailsWrapper>
-    <DetailsSection>
-      <DetailsHeading>{castHeading}</DetailsHeading>
-      {castContent}
-    </DetailsSection>
-    <DetailsSection>
-      <DetailsHeading>{crewHeading}</DetailsHeading>
-      {crewContent}
-    </DetailsSection>
+    <Section title={castHeading}>{castContent}</Section>
+    <Section title={crewHeading}>{crewContent}</Section>
   </>
 );

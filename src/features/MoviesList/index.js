@@ -1,9 +1,6 @@
+import { Section } from "../../components/Section";
+import { MoviesListWrapper } from "./styled";
 import { useSelector } from "react-redux";
-import {
-  MoviesListSection,
-  MoviesListTitle,
-  MoviesListWrapper,
-} from "./styled";
 import { MovieTile } from "../../components/MovieTile";
 import { selectGenres, selectPopularMovies } from "../movies/moviesSlice";
 
@@ -12,8 +9,7 @@ export const MoviesList = () => {
   const genres = useSelector(selectGenres);
 
   return (
-    <MoviesListSection>
-      <MoviesListTitle>Popular movies</MoviesListTitle>
+    <Section title="Popular movies">
       <MoviesListWrapper>
         {popularMovies?.map((movie) => (
           <MovieTile
@@ -22,8 +18,7 @@ export const MoviesList = () => {
             title={movie.title}
             subtitle={movie.release_date.split("-")[0]}
             tags={movie.genre_ids?.map(
-              (genreId) =>
-                genres.find((item) => item.id === genreId)?.name
+              (genreId) => genres.find((item) => item.id === genreId)?.name
             )}
             rating={movie.vote_average}
             votes={movie.vote_count}
@@ -31,6 +26,6 @@ export const MoviesList = () => {
           />
         ))}
       </MoviesListWrapper>
-    </MoviesListSection>
+    </Section>
   );
 };

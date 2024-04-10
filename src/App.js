@@ -10,19 +10,19 @@ import {
   selectGenres,
   selectMovieDetailsContent,
   selectMovieDetailsCredits,
-  selectPopularMovies
+  selectPopularMovies,
 } from "./features/movies/moviesSlice";
 import {
   selectCurrentPage,
   selectDisplay,
   selectFetchStatus,
   selectFirstPage,
-  selectLastPage
+  selectLastPage,
 } from "./features/pageState/pageStateSlice";
-import { ErrorPage, LoadingPage } from "./components/Modal";
+import { ErrorPage } from "./components/ErrorPage";
+import { LoadingPage } from "./components/LoadingPage";
 
 function App() {
-
   //  To be removed at the end  //
   const display = useSelector(selectDisplay);
   const popularMovies = useSelector(selectPopularMovies);
@@ -39,26 +39,33 @@ function App() {
   console.log("movieDetailsCredits: ", movieDetailsCredits);
   console.log("genres: ", genres);
   console.log("fetchStatus: ", fetchStatus);
-  console.log("firstPage: ", firstPage, "currentPage :", currentPage, "lastPage :", lastPage);
+  console.log(
+    "firstPage: ",
+    firstPage,
+    "currentPage :",
+    currentPage,
+    "lastPage :",
+    lastPage
+  );
 
   return (
     <>
       <Navigation />
-      {fetchStatus === "loading" && <LoadingPage>loading</LoadingPage>}
-      {fetchStatus === "error" && <ErrorPage>error</ErrorPage>}
-      {fetchStatus === "ready" &&
-        <>
-          <Container>
+      <Container>
+        {fetchStatus === "loading" && <LoadingPage>loading</LoadingPage>}
+        {fetchStatus === "error" && <ErrorPage>error</ErrorPage>}
+        {fetchStatus === "ready" && (
+          <>
             {display === "movies" && <MoviesList />}
             {display === "movieDetails" && <MovieDetails />}
             {display === "people" && <PeopleList />}
             {display === "person" && <PeopleDetails />}
-          </Container >
-          {(display === "movies" || display === "people") && <Pagination />}
-        </>
-      }
+            {(display === "movies" || display === "people") && <Pagination />}
+          </>
+        )}
+      </Container>
     </>
   );
-};
+}
 
 export default App;
