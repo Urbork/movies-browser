@@ -1,14 +1,19 @@
 import styled from "styled-components";
 
 export const SectionWrapper = styled.section`
-  margin: 56px 0 0;
+  padding: 56px 24px 0;
+  width: 1368px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
-    margin: 36px 0 0;
+  @media (max-width: 1368px) {
+    width: 100%;
+  }
+
+  @media (max-width: 720px) {
+    padding: 36px 16px 0;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    margin: 24px 0 0;
+    padding: 24px 16px 0;
   }
 `;
 
@@ -19,13 +24,13 @@ export const SectionHeading = styled.h2`
   line-height: 1.2;
   transition: 0.6s;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     margin-bottom: 16px;
     font-size: 24px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     margin-bottom: 12px;
-    font-size: 20px;
+    font-size: 18px;
   }
 `;

@@ -1,9 +1,9 @@
 export const theme = {
   breakpoint: {
     small: "480px",
-    medium: "767px",
-    large: "1024px",
-  },
+    medium: "767px",  // proponuję zamianę na 720px lub utworzenie nowego breakpointu;
+    large: "1024px",  // proponuję zamianę na 1068px lub utworzenie nowego breakpointu;
+  },                  // proponuję utworzenie nowego breakpointu na 1368px;
   fontWeight: {
     regular: 400,
     medium: 500,
@@ -23,6 +23,6 @@ export const theme = {
 
     navBar: "#181818",
     imageBG: "#C4C4C4",
-    boxShadow: "#BAC7D580",
+    boxShadow: "#BAC7D5",
   },
 };

@@ -7,6 +7,10 @@ export const MovieTileTags = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
+    margin-top: 8px;
+  }
 `;
 
 export const MovieTileTag = styled.li`
@@ -16,7 +20,7 @@ export const MovieTileTag = styled.li`
   line-height: 1.4;
   background-color: ${({ theme }) => theme.color.grey};
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     padding: 4px 8px;
     font-size: 10px;
   }
