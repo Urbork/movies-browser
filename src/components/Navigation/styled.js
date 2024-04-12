@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 import search from "../../images/search.svg";
 import { ReactComponent as VideoSVG } from "../../images/video.svg";
@@ -68,11 +69,11 @@ export const Logo = styled.div`
   transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
-    flex-shrink: 1;
+    //flex-shrink: 1;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    flex-shrink: 1;
+    //flex-shrink: 1;
     font-size: 13px;
     line-height: 16.9px;
     gap: 8px;
@@ -97,13 +98,17 @@ export const ButtonsWrapper = styled.div`
   }
 `;
 
-export const Button = styled.button`
+export const StyledNavLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   text-transform: uppercase;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   font-size: 14px;
   line-height: 21px;
+  text-decoration: none;
   color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.navBar};
   background-color: ${({ theme }) => theme.color.navBar};
 
   border: 1px solid transparent;
@@ -118,9 +123,9 @@ export const Button = styled.button`
     line-height: 18px;
   }
 
-  &:hover {
+  &.active {
     border: 1px solid ${({ theme }) => theme.color.white};
-  } // hover do zmiany na active po dodaniu HashRoutera
+  }
 `;
 
 export const InputWrapper = styled.div`

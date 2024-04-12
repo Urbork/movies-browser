@@ -1,9 +1,11 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { selectMovieDetails, selectMovieDetailsContent } from "../movies/moviesSlice";
 import { MovieCover } from "./MovieCover";
 import { Details } from "../../components/Details";
-import { useSelector } from "react-redux";
 
 export const MovieDetails = () => {
+  const { id } = useParams();
   const movieDetailsContent = useSelector(selectMovieDetailsContent);
 
   return (

@@ -1,4 +1,5 @@
-import Navigation from "./components/Navigation";
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Navigation } from "./components/Navigation";
 import { Pagination } from "./components/Pagination";
 import { Container } from "./components/Container";
 import { MovieDetails } from "./features/MovieDetails";
@@ -9,6 +10,7 @@ import { useSelector } from "react-redux";
 import {
   selectGenres,
   selectMovieDetailsContent,
+  selectMovieDetailsContentById,
   selectMovieDetailsCredits,
   selectPopularMovies,
 } from "./features/movies/moviesSlice";
@@ -21,6 +23,7 @@ import {
 } from "./features/pageState/pageStateSlice";
 import { ErrorPage } from "./components/ErrorPage";
 import { LoadingPage } from "./components/LoadingPage";
+import { toMovieDetails, toMoviesList, toPeopleDetails, toPeopleList } from "./routes";
 
 function App() {
   //  To be removed at the end  //
@@ -50,8 +53,31 @@ function App() {
 
   return (
     <>
-      <Navigation />
-      <Container>
+      <HashRouter>
+        <Navigation />
+        <Container>
+          <Switch>
+            <Route path={toMoviesList()}>
+              <MoviesList />
+            </Route>
+            <Route path={toMovieDetails()}>
+              <MovieDetails />
+            </Route>
+            <Route path={toPeopleList()}>
+              <PeopleList />
+            </Route>
+            <Route path={toPeopleDetails()}>
+              <PeopleDetails />
+            </Route>
+            <Route path="/">
+              <Redirect to={toMoviesList()} />
+            </Route>
+          </Switch>
+        </Container>
+      </HashRouter>
+
+
+      {/* <Container>
         {fetchStatus === "loading" && <LoadingPage>loading</LoadingPage>}
         {fetchStatus === "error" && <ErrorPage>error</ErrorPage>}
         {fetchStatus === "ready" && (
@@ -63,7 +89,7 @@ function App() {
             {(display === "movies" || display === "people") && <Pagination />}
           </>
         )}
-      </Container>
+      </Container> */}
     </>
   );
 }

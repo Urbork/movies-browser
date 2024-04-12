@@ -5,14 +5,14 @@ import {
   LogoButtonsWrapper,
   Logo,
   Video,
-  Button,
+  StyledNavLink,
   InputWrapper,
   Input,
   ButtonsWrapper,
 } from "./styled";
 import { moviesDisplay, peopleDisplay } from "../../features/pageState/pageStateSlice";
 
-const Navigation = () => {
+export const Navigation = () => {
   const dispatch = useDispatch();
 
   return (
@@ -24,12 +24,12 @@ const Navigation = () => {
             Movies Browser
           </Logo>
           <ButtonsWrapper>
-            <Button onClick={() => dispatch(moviesDisplay())}>
+            <StyledNavLink to="/moviesList"> {/* onClick={() => dispatch(moviesDisplay())} */}
               Movies
-            </Button>
-            <Button onClick={() => dispatch(peopleDisplay())}>
+            </StyledNavLink>
+            <StyledNavLink to="/peopleList">   {/* onClick={() => dispatch(peopleDisplay())} */}
               People
-            </Button>
+            </StyledNavLink>
           </ButtonsWrapper>
         </LogoButtonsWrapper>
         <InputWrapper>
@@ -41,5 +41,3 @@ const Navigation = () => {
     </Container>
   )
 };
-
-export default Navigation;

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 
 export const MovieTileContent = styled.li`
@@ -14,7 +15,7 @@ export const MovieTileContent = styled.li`
   }
 `;
 
-export const MovieTileLink = styled.a`
+export const MovieTileNavLink = styled(NavLink)`
   height: 100%;
   text-decoration: none;
   display: flex;
