@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const SectionWrapper = styled.section`
   padding: 56px 24px 0;
-  width: 1368px;
+  width: 1416px;
 
-  @media (max-width: 1368px) {
+  @media (max-width: 1416px) {
     width: 100%;
   }
 
