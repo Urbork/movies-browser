@@ -3,7 +3,7 @@ import search from "../../images/search.svg";
 import { ReactComponent as VideoSVG } from "../../images/video.svg";
 
 export const Container = styled.nav`
-  background-color: ${({ theme }) => theme.color.navBar};
+  background-color: ${({ theme }) => theme.color.black};
   color: ${({ theme }) => theme.color.white};
   position: sticky;
   width: 100%;
@@ -103,9 +103,7 @@ export const Button = styled.button`
   font-size: 14px;
   line-height: 21px;
   color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.navBar};
-  background-color: ${({ theme }) => theme.color.navBar};
-
+  background-color: ${({ theme }) => theme.color.black};
   border: 1px solid transparent;
   border-radius: 24px;
   padding: 8px 24px;

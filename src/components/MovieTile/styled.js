@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const MovieTileContent = styled.li`
   padding: 16px;
-  border-radius: 4px;
+  border-radius: 5px;
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0px 4px 12px 0px ${({ theme }) => theme.color.boxShadow};
   transition: 0.6s;
   width: 100%;
+  overflow: hidden;
 
   &:hover {
     transform: scale(1.05);
@@ -32,13 +33,17 @@ export const MovieTileImage = styled.img`
   margin: 0;
   width: 100%;
   aspect-ratio:  292 / 434; 
-  border-radius: 4px;
+  border-radius: 5px;
   transition: 0.6s;
-  background-color: ${({ theme }) => theme.color.imageBG};
+  background-color: transparent;
+  flex-shrink: 0;
+  opacity: 0;
+  opacity: ${({ loaded }) => (loaded) ? 1 : 0};
+  transition: opacity 0.5 ease;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     width: 114px;
-    aspect-ratio:  114 / 169; 
+    height: 169px;
   }
 `;
 
@@ -67,7 +72,7 @@ export const MovieTileInfoWrapper = styled.div`
 
 export const MovieTileTitle = styled.h3`
   margin: 16px 0 0;
-  font-size: clamp(20px, 1.6vw, 22px); // ok !!
+  font-size: clamp(20px, 1.6vw, 22px); 
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   line-height: 1.3;
 

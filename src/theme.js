@@ -15,13 +15,12 @@ export const theme = {
     lightGrey: "#F5F5FA",
     grey: "#E4E6F0",
     darkerGrey: "#7E839A",
-    black: "#000000",
+    black: "#18181B",
 
     lightBlue: "#D6E4FF",
     blue: "#0044CC",
     yellow: "#FCD420",
 
-    navBar: "#181818",
     imageBG: "#C4C4C4",
     boxShadow: "#BAC7D5",
   },

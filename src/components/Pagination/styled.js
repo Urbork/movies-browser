@@ -59,6 +59,8 @@ export const Button = styled.button`
 
 export const Content = styled.span`
   display: block;
+  color: ${({ theme }) => theme.color.black};
+
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     display: none;
