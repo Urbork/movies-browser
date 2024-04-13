@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import {
   MovieTileRating,
   MovieTileRatingVotes,
@@ -21,35 +21,70 @@ export const MovieCoverWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   max-width: 1368px;
+  background-color: black;
+
+  @media (max-width: 1516px) {
+    width: 100%;
+  }
 `;
 
 export const MovieCoverEffect = styled.img`
   position: absolute;
-  top: 0;
-  max-width: 1920px;
   height: 100%;
 `;
 
+const zoomIn = keyframes`
+  from {
+    transform: scale(0.95);
+  }
+  to {
+    transform: scale(1); 
+  }
+`;
+
 export const MovieCoverImage = styled.img`
-  max-width: 100%;
+  opacity: 0;
+  width: 100%;
+  opacity: ${({ $loaded }) => $loaded ? '1' : '0'};
+  transition: opacity 5s ease;
+  transition-delay: opacity 1s ;
+  animation: ${zoomIn} 10s ease; 
 `;
 
 export const MovieCoverInfo = styled.div`
   position: absolute;
   left: 0;
-  bottom: 10%;
+  bottom: 56px;
+
   padding: 0 24px;
+  opacity: ${({ $loaded }) => $loaded ? '1' : '0'};
+  transition: opacity 2s ease;
+  transition-delay: 0.5s ;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    font-size: 24px;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 12px;
+    bottom: 8px;
+  }
 `;
 
 export const MovieCoverTitle = styled.h1`
   margin: 0px;
-  font-size: 64px;
+  font-size: clamp(24px, 3.5vw, 64px); 
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   line-height: 1.2;
   color: ${({ theme }) => theme.color.white};
+  width: 100%;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     font-size: 24px;
+    padding: 0 4px;
   }
 `;
 
@@ -61,12 +96,13 @@ export const MovieCoverRating = styled(MovieTileRating)`
   &::after {
     content: "/ 10";
     font-size: 16px;
+    margin: 2px 4px 0 -5px;
     font-weight: ${({ theme }) => theme.fontWeight.regular};
 
     @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
       font-size: 10px;
     }
-  }
+  };
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin: 4px;
@@ -76,9 +112,11 @@ export const MovieCoverRating = styled(MovieTileRating)`
 
 export const MovieCoverRatingVotes = styled(MovieTileRatingVotes)`
   font-size: 16px;
+
   color: ${({ theme }) => theme.color.white};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     font-size: 10px;
+    margin-top: 2px;
   }
 `;

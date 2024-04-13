@@ -5,7 +5,7 @@ export const MovieTileContent = styled.li`
   border-radius: 5px;
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0px 4px 12px 0px ${({ theme }) => theme.color.boxShadow};
-  transition: 0.6s;
+  transition: 0.4s;
   width: 100%;
   overflow: hidden;
 
@@ -19,7 +19,6 @@ export const MovieTileLink = styled.a`
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.color.black};
   cursor: pointer;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
@@ -34,11 +33,11 @@ export const MovieTileImage = styled.img`
   width: 100%;
   aspect-ratio:  292 / 434; 
   border-radius: 5px;
-  transition: 0.6s;
+  transition: opacity 1s ease-in-out;
   background-color: transparent;
   flex-shrink: 0;
   opacity: 0;
-  opacity: ${({ loaded }) => (loaded) ? 1 : 0};
+  opacity: ${({ $loaded }) => ($loaded) ? 1 : 0};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     width: 114px;

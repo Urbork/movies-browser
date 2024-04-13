@@ -1,9 +1,9 @@
 export const theme = {
   breakpoint: {
     small: "480px",
-    medium: "767px",  // proponuję zamianę na 720px lub utworzenie nowego breakpointu;
-    large: "1024px",  // proponuję zamianę na 1068px lub utworzenie nowego breakpointu;
-  },                  // proponuję utworzenie nowego breakpointu na 1368px;
+    medium: "767px",
+    large: "1024px",
+  },
   fontWeight: {
     regular: 400,
     medium: 500,
@@ -15,8 +15,10 @@ export const theme = {
     lightGrey: "#F5F5FA",
     grey: "#E4E6F0",
     darkerGrey: "#7E839A",
-    black: "#18181B",
+    black: "#000000",
+    blackSpecial: "#18181B",
 
+    mineShaft: "#333333",
     lightBlue: "#D6E4FF",
     blue: "#0044CC",
     yellow: "#FCD420",

@@ -14,18 +14,24 @@ import { MovieRating } from "./MovieRating";
 import { setMovieDetailsId } from "../../features/movies/moviesSlice";
 import { useState } from "react";
 
-export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) => {
+export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id, index, array }) => {
   const dispatch = useDispatch();
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(array.map(() => false));
+
+  const handleImageLoaded = index => {
+    const updatedLoaded = [...loaded];
+    updatedLoaded[index] = true;
+    setLoaded(updatedLoaded);
+  };
 
   return (
     <MovieTileContent onClick={() => dispatch(setMovieDetailsId(id))}>
       <MovieTileLink >
         <MovieTileImage
-          src={loaded ? "https://image.tmdb.org/t/p/w342" + poster : noPoster}
-          alt={loaded ? `${title} movie poster` : "no poster"}
-          loaded={loaded}
-          onLoad={() => setLoaded(true)}
+          src={loaded[index] ? "https://image.tmdb.org/t/p/w342" + poster : noPoster}
+          alt={loaded[index] ? `${title} movie poster` : "no poster"}
+          $loaded={loaded[index]}
+          onLoad={() => handleImageLoaded(index)}
         />
         <MovieTileInfoWrapper>
           <MovieTileInfo>

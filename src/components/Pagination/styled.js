@@ -52,14 +52,19 @@ export const Button = styled.button`
 
   &:disabled {
     background-color: ${({ theme }) => theme.color.grey};
-    color: ${({ theme }) => theme.color.black};
+    color: ${({ theme }) => theme.color.blackSpecial};
     filter: brightness(100%);
   }
 `;
 
 export const Content = styled.span`
   display: block;
-  color: ${({ theme }) => theme.color.black};
+  color: ${({ theme }) => theme.color.mineShaft};
+
+  ${({ disabled }) => disabled &&
+    css`
+      color: ${({ theme }) => theme.color.blackSpecial};
+  `};
 
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
@@ -94,8 +99,7 @@ export const BackwardArrow = styled(Arrow)`
   fill: ${({ theme }) => theme.color.blue};
 
   ${({ disabled }) =>
-    disabled &&
-    css`
+    disabled && css`
       fill: ${({ theme }) => theme.color.darkerGrey};
     `};
 

@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const SectionWrapper = styled.section`
   padding: 56px 24px 0;
   width: 1416px;
+  opacity: 0;
+  opacity: ${({ $show }) => $show ? '1' : '0'};
+  transition: opacity 0.3s ease;
 
   @media (max-width: 1416px) {
     width: 100%;
