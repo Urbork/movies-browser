@@ -57,17 +57,17 @@ function App() {
         <Navigation />
         <Container>
           <Switch>
-            <Route path={toMoviesList()}>
-              <MoviesList />
-            </Route>
             <Route path={toMovieDetails()}>
               <MovieDetails />
             </Route>
-            <Route path={toPeopleList()}>
-              <PeopleList />
-            </Route>
             <Route path={toPeopleDetails()}>
               <PeopleDetails />
+            </Route>
+            <Route path={toMoviesList()}>
+              <MoviesList />
+            </Route>
+            <Route path={toPeopleList()}>
+              <PeopleList />
             </Route>
             <Route path="/">
               <Redirect to={toMoviesList()} />
