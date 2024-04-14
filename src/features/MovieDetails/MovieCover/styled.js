@@ -22,6 +22,9 @@ export const MovieCoverWrapper = styled.div`
   align-items: center;
   max-width: 1368px;
   background-color: black;
+  opacity: 0;
+  opacity: ${({ $show }) => $show ? '1' : '0'};
+  transition: opacity 0.5s ease;
 
   @media (max-width: 1516px) {
     width: 100%;
@@ -45,9 +48,8 @@ const zoomIn = keyframes`
 export const MovieCoverImage = styled.img`
   opacity: 0;
   width: 100%;
-  opacity: ${({ $loaded }) => $loaded ? '1' : '0'};
+  opacity: ${({ $show }) => $show ? '1' : '0'};
   transition: opacity 5s ease;
-  transition-delay: opacity 1s ;
   animation: ${zoomIn} 10s ease; 
 `;
 
@@ -55,11 +57,10 @@ export const MovieCoverInfo = styled.div`
   position: absolute;
   left: 0;
   bottom: 56px;
-
   padding: 0 24px;
-  opacity: ${({ $loaded }) => $loaded ? '1' : '0'};
+  opacity: ${({ $show }) => $show ? '1' : '0'};
   transition: opacity 2s ease;
-  transition-delay: 0.5s ;
+  transition-delay: 1s ;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -92,6 +93,7 @@ export const MovieCoverRating = styled(MovieTileRating)`
   margin: 24px 0 16px;
   font-size: 30px;
   color: ${({ theme }) => theme.color.white};
+  margin-top: clamp(4px, 1.5vw, 24px);
 
   &::after {
     content: "/ 10";

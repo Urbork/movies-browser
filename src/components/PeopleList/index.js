@@ -9,7 +9,7 @@ const PeopleList = () => {
   const popularPeople = useSelector(selectPopularPeople);
   return (
     <Section title="Popular people">
-      <Wrapper>
+      <Wrapper> 
         {popularPeople?.map((actor) => (
           <PeopleTile
             key={actor.id}

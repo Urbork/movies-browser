@@ -9,24 +9,33 @@ import {
   MovieCoverEffect,
 } from "./styled";
 import { StyledStarIcon } from "../../../components/MovieTile/MovieRating/styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import vignette from "../../../images/VignetteEffect.svg";
 
 export const MovieCover = ({ cover, title, rating, votes }) => {
   const [loaded, setLoaded] = useState(false);
+  const [delay, setDelay] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelay(true)
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
-      <MovieCoverWrapper>
+      <MovieCoverWrapper $show={loaded}>
         <MovieCoverBlackBars />
         <MovieCoverImage
           src={"https://image.tmdb.org/t/p/original" + cover}
           alt={`${title} movie cover image`}
           onLoad={() => setLoaded(true)}
-          $loaded={loaded}
+          $show={delay}
         />
         <MovieCoverEffect src={vignette} />
-        <MovieCoverInfo $loaded={loaded}>
+        <MovieCoverInfo $show={delay}>
           <MovieCoverTitle>{title}</MovieCoverTitle>
           <MovieCoverRating>
             <StyledStarIcon $big="true" />

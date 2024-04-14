@@ -40,7 +40,7 @@ export const Details = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setShow(true)
-    }, 2000);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
