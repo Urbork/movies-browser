@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   MovieTileContent,
   MovieTileLink,
@@ -13,25 +13,23 @@ import { MovieTags } from "./MovieTags";
 import { MovieRating } from "./MovieRating";
 import { setMovieDetailsId } from "../../features/movies/moviesSlice";
 import { useState } from "react";
+import { posterMainSizeUrl, posterMobileSizeUrl } from "../../api/api";
+import { selectMobile } from "../../features/pageState/pageStateSlice";
 
-export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id, index, array }) => {
+export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) => {
   const dispatch = useDispatch();
-  const [loaded, setLoaded] = useState(array.map(() => false));
-
-  const handleImageLoaded = index => {
-    const updatedLoaded = [...loaded];
-    updatedLoaded[index] = true;
-    setLoaded(updatedLoaded);
-  };
+  const [loaded, setLoaded] = useState(false);
+  const mobile = useSelector(selectMobile);
+  const posterUrl = mobile ? posterMobileSizeUrl : posterMainSizeUrl;
 
   return (
     <MovieTileContent onClick={() => dispatch(setMovieDetailsId(id))}>
       <MovieTileLink >
         <MovieTileImage
-          src={loaded[index] ? "https://image.tmdb.org/t/p/w342" + poster : noPoster}
-          alt={loaded[index] ? `${title} movie poster` : "no poster"}
-          $loaded={loaded[index]}
-          onLoad={() => handleImageLoaded(index)}
+          src={(loaded && poster) ? posterUrl + poster : noPoster}
+          alt={(loaded && title) ? `${title} movie poster` : "no poster"}
+          $loaded={loaded}
+          onLoad={() => setLoaded(true)}
         />
         <MovieTileInfoWrapper>
           <MovieTileInfo>

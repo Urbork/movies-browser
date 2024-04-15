@@ -25,9 +25,14 @@ export const MovieCoverWrapper = styled.div`
   opacity: 0;
   opacity: ${({ $show }) => $show ? '1' : '0'};
   transition: opacity 0.5s ease;
+  margin: -56px 0 0;
 
   @media (max-width: 1516px) {
     width: 100%;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
+    margin: -24px 0 0;
   }
 `;
 
@@ -114,7 +119,6 @@ export const MovieCoverRating = styled(MovieTileRating)`
 
 export const MovieCoverRatingVotes = styled(MovieTileRatingVotes)`
   font-size: 16px;
-
   color: ${({ theme }) => theme.color.white};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {

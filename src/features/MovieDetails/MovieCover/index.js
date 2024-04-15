@@ -11,6 +11,7 @@ import {
 import { StyledStarIcon } from "../../../components/MovieTile/MovieRating/styled";
 import { useEffect, useState } from "react";
 import vignette from "../../../images/VignetteEffect.svg";
+import { backdropMainSizeUrl } from "../../../api/api";
 
 export const MovieCover = ({ cover, title, rating, votes }) => {
   const [loaded, setLoaded] = useState(false);
@@ -26,24 +27,26 @@ export const MovieCover = ({ cover, title, rating, votes }) => {
 
   return (
     <>
-      <MovieCoverWrapper $show={loaded}>
-        <MovieCoverBlackBars />
-        <MovieCoverImage
-          src={"https://image.tmdb.org/t/p/original" + cover}
-          alt={`${title} movie cover image`}
-          onLoad={() => setLoaded(true)}
-          $show={delay}
-        />
-        <MovieCoverEffect src={vignette} />
-        <MovieCoverInfo $show={delay}>
-          <MovieCoverTitle>{title}</MovieCoverTitle>
-          <MovieCoverRating>
-            <StyledStarIcon $big="true" />
-            {rating ? rating.toFixed(1).replace(".", ",") : ""}
-          </MovieCoverRating>
-          <MovieCoverRatingVotes>{votes} votes</MovieCoverRatingVotes>
-        </MovieCoverInfo>
-      </MovieCoverWrapper>
+      {cover &&
+        <MovieCoverWrapper $show={loaded}>
+          <MovieCoverBlackBars />
+          <MovieCoverImage
+            src={backdropMainSizeUrl + cover}
+            alt={`${title} movie cover image`}
+            onLoad={() => setLoaded(true)}
+            $show={delay}
+          />
+          <MovieCoverEffect src={vignette} />
+          <MovieCoverInfo $show={delay}>
+            <MovieCoverTitle>{title}</MovieCoverTitle>
+            <MovieCoverRating>
+              <StyledStarIcon $big="true" />
+              {rating ? rating.toFixed(1).replace(".", ",") : ""}
+            </MovieCoverRating>
+            <MovieCoverRatingVotes>{votes} votes</MovieCoverRatingVotes>
+          </MovieCoverInfo>
+        </MovieCoverWrapper>
+      }
     </>
   )
 };

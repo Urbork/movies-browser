@@ -11,7 +11,7 @@ export const MoviesList = () => {
   return (
     <Section title="Popular movies">
       <MoviesListWrapper>
-        {popularMovies?.map((movie, index, array) => (
+        {popularMovies?.map((movie) => (
           <MovieTile
             key={movie.id}
             poster={movie.poster_path}
@@ -23,8 +23,6 @@ export const MoviesList = () => {
             rating={movie.vote_average}
             votes={movie.vote_count}
             id={movie.id}
-            index={index}
-            array={array}
           />
         ))}
       </MoviesListWrapper>
