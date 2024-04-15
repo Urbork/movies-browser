@@ -6,11 +6,11 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 525px;
-  margin: 40px auto 103px;
+  margin: 0 auto 103px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     width: 232px;
-    margin: 32px auto 31px;
+    margin: 0 auto 31px;
   }
 `;
 
