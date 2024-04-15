@@ -58,16 +58,16 @@ function App() {
         <Container>
           <Switch>
             <Route path={toMovieDetails()}>
-              <MovieDetails />
+              {/* fetchStatus === "loading" ? <LoadingPage /> : */ <MovieDetails />}
             </Route>
             <Route path={toPeopleDetails()}>
               <PeopleDetails />
             </Route>
             <Route path={toMoviesList()}>
-              <MoviesList />
+              {fetchStatus === "loading" ? <LoadingPage /> : <MoviesList />}
             </Route>
             <Route path={toPeopleList()}>
-              <PeopleList />
+              {fetchStatus === "loading" ? <LoadingPage /> : <PeopleList />}
             </Route>
             <Route path="/">
               <Redirect to={toMoviesList()} />

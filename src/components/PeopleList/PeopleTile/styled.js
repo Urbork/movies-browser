@@ -1,17 +1,20 @@
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { styled } from "styled-components";
 
-export const Wrapper = styled.div`
+export const StyledNavLink = styled(NavLink)`
     max-width: 208px;
     background-color: ${({ theme }) => theme.color.white};
     padding: 16px;
     transition: 0.6s;
     box-shadow: 0px 4px 12px 0px ${({ theme }) => theme.color.boxShadow};
+    text-decoration: none;
+    color: inherit;
     
     cursor: pointer;
 
-  &:hover {
-    transform: scale(1.05);
-  }
+    &:hover {
+        transform: scale(1.05);
+    }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
         max-width: 136px;

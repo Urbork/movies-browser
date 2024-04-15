@@ -15,10 +15,10 @@ import { setMovieDetailsId } from "../../features/movies/moviesSlice";
 import { toMovieDetails } from "../../routes";
 
 export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) => {
-  const dispatch = useDispatch();
-
+  //const dispatch = useDispatch();
+  //onClick={() => dispatch(setMovieDetailsId(id))}
   return (
-    <MovieTileContent onClick={() => dispatch(setMovieDetailsId(id))}>
+    <MovieTileContent >
       <MovieTileNavLink to={toMovieDetails({ id })}>
         <MovieTileImage
           src={

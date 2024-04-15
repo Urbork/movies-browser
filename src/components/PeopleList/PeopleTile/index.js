@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import {
-  Wrapper,
+  StyledNavLink,
   Image,
   ImageContainer,
   BlankActorContainer,
@@ -9,12 +9,13 @@ import {
 } from "./styled";
 import { ReactComponent as BlankActor } from "../../../images/blankActor.svg";
 import { setPersonId } from "../../../features/people/peopleSlice";
+import { toPeopleDetails } from "../../../routes";
 
 const PeopleTile = ({ poster, name, character, id }) => {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
+  //onClick={() => dispatch(setPersonId(id));
   return (
-    <Wrapper onClick={() => dispatch(setPersonId(id))}
-    >
+    <StyledNavLink to={toPeopleDetails({ id })}>
       {
         !poster.includes("null") ?
           <ImageContainer>
@@ -30,7 +31,7 @@ const PeopleTile = ({ poster, name, character, id }) => {
       }
       <Name>{name}</Name>
       <Character>{character}</Character>
-    </Wrapper>
+    </StyledNavLink>
   )
 };
 
