@@ -56,6 +56,7 @@ export const MovieCoverImage = styled.img`
   opacity: ${({ $show }) => $show ? '1' : '0'};
   transition: opacity 5s ease;
   animation: ${zoomIn} 10s ease; 
+  transition-delay: 1s
 `;
 
 export const MovieCoverInfo = styled.div`
