@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Wrapper,
@@ -10,13 +10,14 @@ import {
   Input,
   ButtonsWrapper,
 } from "./styled";
-import { moviesDisplay, peopleDisplay } from "../../features/pageState/pageStateSlice";
+import { moviesDisplay, peopleDisplay, selectDisplay } from "../../features/pageState/pageStateSlice";
 
 const Navigation = () => {
   const dispatch = useDispatch();
+  const display = useSelector(selectDisplay);
 
   return (
-    <Container>
+    <Container $specialStyle={display === "movies"}>
       <Wrapper>
         <LogoButtonsWrapper>
           <Logo>
@@ -24,10 +25,10 @@ const Navigation = () => {
             Movies Browser
           </Logo>
           <ButtonsWrapper>
-            <Button onClick={() => dispatch(moviesDisplay())}>
+            <Button onClick={() => dispatch(moviesDisplay())} $specialStyle={display === "movies"}>
               Movies
             </Button>
-            <Button onClick={() => dispatch(peopleDisplay())}>
+            <Button onClick={() => dispatch(peopleDisplay())} $specialStyle={display === "movies"}>
               People
             </Button>
           </ButtonsWrapper>

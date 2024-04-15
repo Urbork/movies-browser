@@ -3,15 +3,21 @@ import search from "../../images/search.svg";
 import { ReactComponent as VideoSVG } from "../../images/video.svg";
 
 export const Container = styled.nav`
-  background-color: ${({ theme }) => theme.color.blackSpecial};
+  background-color: ${({ $specialStyle, theme }) => $specialStyle ? theme.color.blackSpecial : theme.color.black};
   color: ${({ theme }) => theme.color.white};
   position: sticky;
   width: 100%;
   top: 0px;
   z-index: 2;
+  margin-bottom: 56px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    margin-bottom: 36px;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     background-color: ${({ theme }) => theme.color.black};
+    margin-bottom: 24px;
   }
 `;
 
@@ -94,12 +100,12 @@ export const ButtonsWrapper = styled.div`
 `;
 
 export const Button = styled.button`
+  background-color: ${({ $specialStyle, theme }) => $specialStyle ? theme.color.blackSpecial : theme.color.black};
   text-transform: uppercase;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   font-size: 14px;
   line-height: 21px;
   color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.blackSpecial};
   border: 1px solid transparent;
   border-radius: 24px;
   padding: 8px 24px;
