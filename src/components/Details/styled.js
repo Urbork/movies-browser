@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const DetailsWrapper = styled.article`
-  margin: -8px 0 0;
+  margin: 0;
   padding: 40px;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -12,10 +12,10 @@ export const DetailsWrapper = styled.article`
   opacity: 0;
   opacity: ${({ $show }) => $show ? '1' : '0'};
   transition: opacity 2s ease;
-  
+
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     gap: 16px;
-    margin: -8px 0 0;
+    margin: -8px 0 21px;
     padding: 16px;
   }
 `;

@@ -1,25 +1,40 @@
 import { useSelector } from "react-redux";
 import { Details } from "../../components/Details";
 import { selectPersonContent } from "../people/peopleSlice";
+import { Section } from "../../components/Section";
+import { MoviesListWrapper } from "../../features/MoviesList/styled";
+import { selectMobile } from "../pageState/pageStateSlice";
+import { profileMainSizeUrl } from "../../api/api";
 
 export const PeopleDetails = () => {
-    const personContent = useSelector(selectPersonContent)
+  const personContent = useSelector(selectPersonContent)
+  const mobile = useSelector(selectMobile);
 
-    return (
+  return (
+    <>
+      <Section>
         <Details
-            people
-            imageURL="http://image.tmdb.org/t/p/h632"
-            poster={personContent.profile_path}
-            title={personContent.name}
-            detailsExtraInfoTitle="Place of birth:"
-            detailsExtraInfo={personContent.place_of_birth}
-            detailsDateInfoTitle="Date of birth:"
-            detailsDateInfo={personContent.birthday?.split("-").reverse().join(".")}
-            description={personContent.biography}
-            castHeading="Cast"
-            castContent="Movie cast here"
-            crewHeading="Crew"
-            crewContent="Movie crew here"
+          people
+          imageURL={profileMainSizeUrl}
+          poster={personContent.profile_path}
+          title={personContent.name}
+          detailsExtraInfoTitle="Place of birth:"
+          detailsExtraInfo={personContent.place_of_birth}
+          detailsDateInfoTitle="Date of birth:"
+          detailsDateInfo={personContent.birthday?.split("-").reverse().join(".")}
+          description={personContent.biography}
         />
-    )
+      </Section>
+      <Section title="Movies - cast (number of videos)">
+        <MoviesListWrapper>
+          Movie cast here
+        </MoviesListWrapper>
+      </ Section>
+      <Section title="Movies - crew (number of videos)" mobile={mobile}>
+        <MoviesListWrapper>
+          Movie crew here
+        </MoviesListWrapper>
+      </ Section>
+    </>
+  )
 };

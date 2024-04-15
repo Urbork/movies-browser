@@ -12,7 +12,6 @@ import {
 } from "./styled";
 import { MovieTags } from "../MovieTile/MovieTags";
 import { MovieRating } from "../MovieTile/MovieRating";
-import { Section } from "../Section";
 import { useEffect, useState } from "react";
 
 export const Details = ({
@@ -30,17 +29,14 @@ export const Details = ({
   rating,
   votes,
   description,
-  castHeading,
-  castContent,
-  crewHeading,
-  crewContent,
 }) => {
   const [show, setShow] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => {  
+    const delay = movies ? 1500 : 500;
     const timer = setTimeout(() => {
       setShow(true)
-    }, 1500);
+    }, delay);
 
     return () => clearTimeout(timer);
   }, []);
@@ -100,8 +96,6 @@ export const Details = ({
         </DetailsInfo>
         <DetailsDescription>{description}</DetailsDescription>
       </DetailsWrapper>
-      <Section title={castHeading}>{castContent}</Section>
-      <Section title={crewHeading}>{crewContent}</Section>
     </>
   )
 };
