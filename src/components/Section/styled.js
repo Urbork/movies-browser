@@ -5,7 +5,7 @@ export const SectionWrapper = styled.section`
   width: 1416px;
   opacity: 0;
   opacity: ${({ $show }) => $show ? '1' : '0'};
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease-in-out;
   display: ${({ $mobile }) => $mobile ? "none" : "block"};
 
   @media (max-width: 1416px) {

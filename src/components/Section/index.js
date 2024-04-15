@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { SectionWrapper, SectionHeading } from "./styled";
+import { useSelector } from "react-redux";
+import { selectFetchStatus } from "../../features/pageState/pageStateSlice";
 
 export const Section = ({ title, mobile, children }) => {
   const [show, setShow] = useState(false);
+  const fetchStatus = useSelector(selectFetchStatus);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -11,6 +14,10 @@ export const Section = ({ title, mobile, children }) => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    fetchStatus === "ready" && setShow(false);
+  }, [fetchStatus])
 
   return (
     <SectionWrapper $show={show} $mobile={mobile}>
