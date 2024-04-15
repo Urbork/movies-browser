@@ -9,35 +9,30 @@ import {
   MovieCoverEffect,
 } from "./styled";
 import { StyledStarIcon } from "../../../components/MovieTile/MovieRating/styled";
-import { useEffect, useState } from "react";
 import vignette from "../../../images/VignetteEffect.svg";
-import { backdropMainSizeUrl } from "../../../api/api";
+import { backdropMainSizeUrl, backdropMobileSizeUrl } from "../../../api/api";
+import { useDispatch, useSelector } from "react-redux";
+import { selectImagesToLoad, selectMobile, setImagesLoaded } from "../../../features/pageState/pageStateSlice";
 
 export const MovieCover = ({ cover, title, rating, votes }) => {
-  const [loaded, setLoaded] = useState(false);
-  const [delay, setDelay] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDelay(true)
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const dispatch = useDispatch();
+  const mobile = useSelector(selectMobile);
+  const backdropUrl = mobile ? backdropMobileSizeUrl : backdropMainSizeUrl;
+  const imagesToLoad = useSelector(selectImagesToLoad);
 
   return (
     <>
       {cover &&
-        <MovieCoverWrapper $show={loaded}>
+        <MovieCoverWrapper $show={!imagesToLoad}>
           <MovieCoverBlackBars />
           <MovieCoverImage
-            src={backdropMainSizeUrl + cover}
+            src={backdropUrl + cover}
             alt={`${title} movie cover image`}
-            onLoad={() => setLoaded(true)}
-            $show={delay}
+            onLoad={() => dispatch(setImagesLoaded())}
+            $show={!imagesToLoad}
           />
           <MovieCoverEffect src={vignette} />
-          <MovieCoverInfo $show={delay}>
+          <MovieCoverInfo $show={!imagesToLoad}>
             <MovieCoverTitle>{title}</MovieCoverTitle>
             <MovieCoverRating>
               <StyledStarIcon $big="true" />

@@ -9,9 +9,6 @@ export const DetailsWrapper = styled.article`
   gap: 40px;
   background: ${({ theme }) => theme.color.white};
   box-shadow: 0 4px 12px rgba(186, 199, 213, 0.5);
-  opacity: 0;
-  opacity: ${({ $show }) => $show ? '1' : '0'};
-  transition: opacity 2s ease;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     gap: 16px;
@@ -24,7 +21,6 @@ export const DetailsImage = styled.img`
   width: 312px;
   height: 464px;
   grid-row: span 2;
-  transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     max-width: 114px;

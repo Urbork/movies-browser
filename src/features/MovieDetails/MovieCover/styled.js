@@ -24,7 +24,7 @@ export const MovieCoverWrapper = styled.div`
   background-color: black;
   opacity: 0;
   opacity: ${({ $show }) => $show ? '1' : '0'};
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease;
   margin: -56px 0 0;
 
   @media (max-width: 1516px) {

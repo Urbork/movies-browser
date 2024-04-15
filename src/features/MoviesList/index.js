@@ -1,16 +1,18 @@
 import { Section } from "../../components/Section";
 import { MoviesListWrapper } from "./styled";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MovieTile } from "../../components/MovieTile";
 import { selectGenres, selectPopularMovies } from "../movies/moviesSlice";
+import { setImagesLoaded } from "../pageState/pageStateSlice";
 
 export const MoviesList = () => {
   const popularMovies = useSelector(selectPopularMovies);
   const genres = useSelector(selectGenres);
+  const dispatch = useDispatch();
 
   return (
     <Section title="Popular movies">
-      <MoviesListWrapper>
+      <MoviesListWrapper onLoad={() => dispatch(setImagesLoaded())}>
         {popularMovies?.map((movie) => (
           <MovieTile
             key={movie.id}

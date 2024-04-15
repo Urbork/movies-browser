@@ -13,7 +13,8 @@ const pageStateSlice = createSlice({
     screenWidth: {
       width: window.innerWidth,
       mobile: undefined
-    }
+    },
+    imagesToLoad: false,
   },
   reducers: {
     fetchApi: (state) => {
@@ -26,11 +27,11 @@ const pageStateSlice = createSlice({
       state.fetchStatus = "error";
     },
     moviesDisplay: (state) => {
-      state.pages.currentPage = state.pages.firstPage;
+      // state.pages.currentPage = state.pages.firstPage;
       state.display = "movies";
     },
     peopleDisplay: (state) => {
-      state.pages.currentPage = state.pages.firstPage;
+      // state.pages.currentPage = state.pages.firstPage;
       state.display = "people";
     },
     movieDetailsDisplay: (state) => {
@@ -60,6 +61,12 @@ const pageStateSlice = createSlice({
       if (state.screenWidth.width < number) state.screenWidth.mobile = true;
       if (state.screenWidth.width > number) state.screenWidth.mobile = false;
     },
+    setImagesLoaded: (state) => {
+      state.imagesToLoad = false;
+    },
+    setImagesToLoad: (state) => {
+      state.imagesToLoad = true;
+    },
   },
 });
 
@@ -77,6 +84,8 @@ export const {
   changePageToLast,
   changeScreenWidth,
   changeMobileState,
+  setImagesLoaded,
+  setImagesToLoad,
 } = pageStateSlice.actions;
 
 const selectPageState = state => state.pageState;
@@ -90,5 +99,6 @@ export const selectLastPage = state => selectPages(state).lastPage;
 export const selectScreen = state => selectPageState(state).screenWidth;
 export const selectScreenWidth = state => selectScreen(state).width;
 export const selectMobile = state => selectScreen(state).mobile;
+export const selectImagesToLoad = state => selectPageState(state).imagesToLoad;
 
 export default pageStateSlice.reducer;

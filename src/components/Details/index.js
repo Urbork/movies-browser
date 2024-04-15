@@ -12,7 +12,8 @@ import {
 } from "./styled";
 import { MovieTags } from "../MovieTile/MovieTags";
 import { MovieRating } from "../MovieTile/MovieRating";
-import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setImagesLoaded } from "../../features/pageState/pageStateSlice";
 
 export const Details = ({
   movies,
@@ -30,20 +31,11 @@ export const Details = ({
   votes,
   description,
 }) => {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {  
-    const delay = movies ? 1500 : 500;
-    const timer = setTimeout(() => {
-      setShow(true)
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const dispatch = useDispatch();
 
   return (
     <>
-      <DetailsWrapper $show={show}>
+      <DetailsWrapper onLoad={() => dispatch(setImagesLoaded())} >
         <DetailsImage
           src={imageURL + poster}
           alt={`${title} ${movies ? "movies" : "person"} poster`}
