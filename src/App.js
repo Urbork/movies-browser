@@ -5,48 +5,22 @@ import { MovieDetails } from "./features/MovieDetails";
 import { MoviesList } from "./features/MoviesList";
 import { PeopleDetails } from "./features/PeopleDetails";
 import PeopleList from "./components/PeopleList";
-import { useSelector } from "react-redux";
-import {
-  selectGenres,
-  selectMovieDetailsContent,
-  selectMovieDetailsCredits,
-  selectPopularMovies,
-} from "./features/movies/moviesSlice";
-import {
-  selectCurrentPage,
-  selectDisplay,
-  selectFetchStatus,
-  selectFirstPage,
-  selectLastPage,
-} from "./features/pageState/pageStateSlice";
 import { ErrorPage } from "./components/ErrorPage";
 import { LoadingPage } from "./components/LoadingPage";
+import { useShowData } from "./useShowData.js";  // 1. usunąć przed deploymentem 🗑
+import { selectDisplay, selectFetchStatus } from "./features/pageState/pageStateSlice";
+import { useSelector } from "react-redux";
+
+// przed deploymentem usunąć pozycje, które potrzebujemy tylko do budowania aplikacji oraz ten komentarz🗑:
+// 1). import { useShowData } from "./useShowData.js";🗑
+// 2). useShowData();🗑
+// 3). plik useShowData.js;🗑 z katalogu: src/
+// po deploymencie przywrócić usunięte elementy na gałęzi main :)
 
 function App() {
-  //  To be removed at the end  //
   const display = useSelector(selectDisplay);
-  const popularMovies = useSelector(selectPopularMovies);
-  const movieDetailsContent = useSelector(selectMovieDetailsContent);
-  const movieDetailsCredits = useSelector(selectMovieDetailsCredits);
-  const genres = useSelector(selectGenres);
   const fetchStatus = useSelector(selectFetchStatus);
-  const firstPage = useSelector(selectFirstPage);
-  const currentPage = useSelector(selectCurrentPage);
-  const lastPage = useSelector(selectLastPage);
-  console.log("display: ", display);
-  console.log("popularMovies: ", popularMovies);
-  console.log("movieDetailsContent: ", movieDetailsContent);
-  console.log("movieDetailsCredits: ", movieDetailsCredits);
-  console.log("genres: ", genres);
-  console.log("fetchStatus: ", fetchStatus);
-  console.log(
-    "firstPage: ",
-    firstPage,
-    "currentPage :",
-    currentPage,
-    "lastPage :",
-    lastPage
-  );
+  useShowData();  // 2. usunąć przed deploymentem 🗑
 
   return (
     <>
@@ -60,10 +34,14 @@ function App() {
             {display === "movieDetails" && <MovieDetails />}
             {display === "people" && <PeopleList />}
             {display === "person" && <PeopleDetails />}
-            {(display === "movies" || display === "people") && <Pagination />}
           </>
         )}
       </Container>
+      {
+        fetchStatus === "ready" && (
+          (display === "movies" || display === "people") && <Pagination />
+        )
+      }
     </>
   );
 }
