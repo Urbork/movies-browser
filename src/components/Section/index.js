@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { SectionWrapper, SectionHeading } from "./styled";
 
-export const Section = ({ title, children }) => {
+export const Section = ({ title, mobile, children }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export const Section = ({ title, children }) => {
   }, []);
 
   return (
-    <SectionWrapper $show={show}>
+    <SectionWrapper $show={show} $mobile={mobile}>
       {title && <SectionHeading>{title}</SectionHeading>}
       {children}
     </SectionWrapper>

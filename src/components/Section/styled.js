@@ -1,22 +1,19 @@
 import styled from "styled-components";
 
 export const SectionWrapper = styled.section`
-  padding: 56px 24px 0;
+  padding: 0 24px 0;
   width: 1416px;
   opacity: 0;
   opacity: ${({ $show }) => $show ? '1' : '0'};
   transition: opacity 0.3s ease;
+  display: ${({ $mobile }) => $mobile ? "none" : "block"};
 
   @media (max-width: 1416px) {
     width: 100%;
   }
-
-  @media (max-width: 720px) {
-    padding: 36px 16px 0;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    padding: 24px 16px 0;
+ 
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    padding: 0 16px 0;
   }
 `;
 

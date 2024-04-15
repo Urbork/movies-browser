@@ -10,6 +10,10 @@ const pageStateSlice = createSlice({
       currentPage: 1,
       lastPage: 500,
     },
+    screenWidth: {
+      width: window.innerWidth,
+      mobile: undefined
+    }
   },
   reducers: {
     fetchApi: (state) => {
@@ -49,6 +53,13 @@ const pageStateSlice = createSlice({
     changePageToLast: (state) => {
       state.pages.currentPage = state.pages.lastPage;
     },
+    changeScreenWidth: (state, { payload: width }) => {
+      state.screenWidth.width = width;
+    },
+    changeMobileState: (state, { payload: number }) => {
+      if (state.screenWidth.width < number) state.screenWidth.mobile = true;
+      if (state.screenWidth.width > number) state.screenWidth.mobile = false;
+    },
   },
 });
 
@@ -64,6 +75,8 @@ export const {
   changePageToPrevious,
   changePageToNext,
   changePageToLast,
+  changeScreenWidth,
+  changeMobileState,
 } = pageStateSlice.actions;
 
 const selectPageState = state => state.pageState;
@@ -74,5 +87,8 @@ export const selectPages = state => selectPageState(state).pages;
 export const selectFirstPage = state => selectPages(state).firstPage;
 export const selectCurrentPage = state => selectPages(state).currentPage;
 export const selectLastPage = state => selectPages(state).lastPage;
+export const selectScreen = state => selectPageState(state).screenWidth;
+export const selectScreenWidth = state => selectScreen(state).width;
+export const selectMobile = state => selectScreen(state).mobile;
 
 export default pageStateSlice.reducer;
