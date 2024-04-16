@@ -5,9 +5,9 @@ export const SectionWrapper = styled.section`
   width: 1416px;
   opacity: 0;
   opacity: ${({ $show }) => $show ? '1' : '0'};
-  transition: opacity .5s ease-in-out;
+  transition: opacity .9s ease-in-out;
   display: ${({ $mobile }) => $mobile ? "none" : "auto"};
-  transition-delay: ${({ $delay }) => $delay ? "1.5s" : "0"};
+  transition-delay: ${({ $delay }) => $delay ? "2.5s" : "0"};
 
   @media (max-width: 1416px) {
     width: 100%;
