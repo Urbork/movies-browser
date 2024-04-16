@@ -58,7 +58,7 @@ function App() {
         <Container>
           <Switch>
             <Route path={toMovieDetails()}>
-              {/* fetchStatus === "loading" ? <LoadingPage /> : */ <MovieDetails />}
+              <MovieDetails />
             </Route>
             <Route path={toPeopleDetails()}>
               <PeopleDetails />
@@ -74,6 +74,7 @@ function App() {
             </Route>
           </Switch>
         </Container>
+        <Pagination />
       </HashRouter>
 
 

@@ -35,6 +35,9 @@ const pageStateSlice = createSlice({
     personDisplay: (state) => {
       state.display = "person";
     },
+    setCurrentPage: (state, page) => {
+      state.pages.currentPage = page;
+    },
     changePageToFirst: (state) => {
       state.pages.currentPage = state.pages.firstPage;
     },
@@ -60,6 +63,7 @@ export const {
   peopleDisplay,
   movieDetailsDisplay,
   personDisplay,
+  setCurrentPage,
   changePageToFirst,
   changePageToPrevious,
   changePageToNext,

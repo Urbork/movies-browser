@@ -18,7 +18,7 @@ export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) 
   //const dispatch = useDispatch();
   //onClick={() => dispatch(setMovieDetailsId(id))}
   return (
-    <MovieTileContent >
+    <MovieTileContent>
       <MovieTileNavLink to={toMovieDetails({ id })}>
         <MovieTileImage
           src={
