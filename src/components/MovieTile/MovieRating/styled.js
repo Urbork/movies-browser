@@ -7,9 +7,9 @@ export const MovieTileRating = styled.div`
   align-items: center;
   gap: 12px;
   justify-self: end;
-  font-size: ${({ big }) => (big ? "22" : "16") + "px"};
+  font-size: ${({ $big }) => ($big ? "22" : "16") + "px"};
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
-  line-height: ${({ big }) => (big ? "1.3" : "1.5")};
+  line-height: ${({ $big }) => ($big ? "1.3" : "1.5")};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin: 0;
@@ -20,11 +20,13 @@ export const MovieTileRating = styled.div`
 `;
 
 export const StyledStarIcon = styled(StarIcon)`
-  width: ${({ big }) => (big ? "40" : "24") + "px"};
+  width: ${({ $big }) => ($big ? "40" : "24") + "px"};
+  height: ${({ $big }) => ($big ? "40" : "24") + "px"};
   transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
-    width: ${({ big }) => (big ? "24" : "16") + "px"};
+  width: ${({ $big }) => ($big ? "24" : "16") + "px"};
+  height: ${({ $big }) => ($big ? "24" : "16") + "px"};
   }
 `;
 
@@ -39,11 +41,11 @@ export const MovieTileRatingTen = styled.span`
 `;
 
 export const MovieTileRatingVotes = styled.span`
-  font-size: ${({ big }) => (big ? "14" : "16") + "px"};
+  font-size: ${({ $big }) => ($big ? "14" : "16") + "px"};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   line-height: 1.2;
-  color: ${({ big, theme }) =>
-    big ? theme.color.black : theme.color.darkerGrey};
+  color: ${({ $big, theme }) =>
+    $big ? theme.color.black : theme.color.darkerGrey};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     font-size: 13px;

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const DetailsWrapper = styled.article`
-  margin: 64px 24px;
+  margin: 0;
   padding: 40px;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -12,16 +12,15 @@ export const DetailsWrapper = styled.article`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     gap: 16px;
-    margin: 16px;
+    margin: -8px 0 21px;
     padding: 16px;
   }
 `;
 
 export const DetailsImage = styled.img`
-  max-width: 312px;
-  max-height: 464px;
+  width: 312px;
+  height: 464px;
   grid-row: span 2;
-  transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     max-width: 114px;
@@ -31,9 +30,9 @@ export const DetailsImage = styled.img`
 `;
 
 export const DetailsTitle = styled.h3`
-  margin: 0;
+  margin: 0; 
   font-size: 36px;
-  font-weight: ${({ theme }) => theme.fontWeight.medium};
+  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   line-height: 1.2;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
@@ -49,7 +48,7 @@ export const DetailsSubtitle = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin-top: -4px;
-    font-size: 12px;
+    font-size: 13px;
     color: ${({ theme }) => theme.color.darkerGrey};
     line-height: 1.3;
   }
@@ -91,6 +90,7 @@ export const DetailsExtraInfoWrapper = styled.div`
 `;
 
 export const DetailsExtraInfoLabel = styled.span`
+
   flex-shrink: 0;
   color: ${({ theme }) => theme.color.darkerGrey};
 

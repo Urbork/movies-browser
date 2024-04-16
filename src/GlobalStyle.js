@@ -14,5 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Poppins", "sans-serif";
     color: ${({ theme }) => theme.color.black};
     overflow-x: hidden;
+    overflow-y: scroll;
+    min-width: 320px;
   }
 `;

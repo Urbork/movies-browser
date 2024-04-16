@@ -9,7 +9,8 @@ import {
   fetchApi, fetchError,
   peopleDisplay,
   resetFetchStatus,
-  selectCurrentPage
+  selectCurrentPage,
+  setImagesToLoad
 } from "../pageState/pageStateSlice";
 
 function* fetchApiHandler() {
@@ -18,6 +19,7 @@ function* fetchApiHandler() {
     const page = yield select(selectCurrentPage);
     const people = yield call(() => getPopularPeople(page));
     yield delay(1000);
+    yield put(setImagesToLoad());
     yield put(setPopularPeople(people.results));
   } catch (error) {
     yield put(fetchError());

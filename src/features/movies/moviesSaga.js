@@ -9,7 +9,8 @@ import {
   fetchApi, fetchError,
   moviesDisplay,
   resetFetchStatus,
-  selectCurrentPage
+  selectCurrentPage,
+  setImagesToLoad
 } from "../pageState/pageStateSlice";
 
 function* fetchApiHandler() {
@@ -18,6 +19,7 @@ function* fetchApiHandler() {
     const page = yield select(selectCurrentPage);
     const movies = yield call(() => getPopularMovies(page));
     yield delay(1000);
+    yield put(setImagesToLoad());
     yield put(setPopularMovies(movies.results));
   } catch (error) {
     yield put(fetchError());

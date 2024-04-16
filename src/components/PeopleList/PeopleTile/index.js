@@ -1,33 +1,31 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Wrapper,
   Image,
-  ImageContainer,
-  BlankActorContainer,
   Name,
   Character
 } from "./styled";
-import { ReactComponent as BlankActor } from "../../../images/blankActor.svg";
 import { setPersonId } from "../../../features/people/peopleSlice";
+import blankActor from "../../../images/blankActor.svg";
+import { useState } from "react";
+import { profileMainSizeUrl, profileSmallSizeUrl } from "../../../api/api";
+import { selectMobile } from "../../../features/pageState/pageStateSlice";
 
-const PeopleTile = ({ poster, name, character, id }) => {
+const PeopleTile = ({ profile, name, character, id }) => {
+  const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const mobile = useSelector(selectMobile)
+  const profileUrl = mobile ? profileSmallSizeUrl : profileMainSizeUrl;
+
   return (
     <Wrapper onClick={() => dispatch(setPersonId(id))}
     >
-      {
-        !poster.includes("null") ?
-          <ImageContainer>
-            <Image
-              src={poster}
-            />
-          </ImageContainer>
-
-          :
-          <BlankActorContainer>
-            <BlankActor />
-          </BlankActorContainer>
-      }
+      <Image
+        src={(loaded && profile) ? profileUrl + profile : blankActor}
+        alt={(loaded && name) ? name : "no name"}
+        $loaded={loaded}
+        onLoad={() => setLoaded(true)}
+      />
       <Name>{name}</Name>
       <Character>{character}</Character>
     </Wrapper>

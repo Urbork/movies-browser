@@ -6,11 +6,11 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 525px;
-  margin: 40px auto 103px;
+  margin: 0 auto 103px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     width: 232px;
-    margin: 32px auto 31px;
+    margin: 0 auto 31px;
   }
 `;
 
@@ -52,13 +52,20 @@ export const Button = styled.button`
 
   &:disabled {
     background-color: ${({ theme }) => theme.color.grey};
-    color: ${({ theme }) => theme.color.black};
+    color: ${({ theme }) => theme.color.blackSpecial};
     filter: brightness(100%);
   }
 `;
 
 export const Content = styled.span`
   display: block;
+  color: ${({ theme }) => theme.color.mineShaft};
+
+  ${({ disabled }) => disabled &&
+    css`
+      color: ${({ theme }) => theme.color.blackSpecial};
+  `};
+
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     display: none;
@@ -92,8 +99,7 @@ export const BackwardArrow = styled(Arrow)`
   fill: ${({ theme }) => theme.color.blue};
 
   ${({ disabled }) =>
-    disabled &&
-    css`
+    disabled && css`
       fill: ${({ theme }) => theme.color.darkerGrey};
     `};
 
