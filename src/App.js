@@ -8,7 +8,7 @@ import PeopleList from "./components/PeopleList";
 import { ErrorPage } from "./components/ErrorPage";
 import { LoadingPage } from "./components/LoadingPage";
 import { useShowData } from "./useShowData.js";  // 1. usunąć przed deploymentem 🗑
-import { selectDisplay, selectFetchStatus, selectImagesLoaded, selectImagesToLoad } from "./features/pageState/pageStateSlice";
+import { selectDisplay, selectFetchStatus, selectImagesToLoad } from "./features/pageState/pageStateSlice";
 import { useSelector } from "react-redux";
 
 // przed deploymentem usunąć pozycje, które potrzebujemy tylko do budowania aplikacji oraz ten komentarz🗑:
@@ -27,7 +27,11 @@ function App() {
     <>
       <Navigation />
       <Container>
-        {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
+        {(fetchStatus === "loading" || imagesToLoad)
+          &&
+          fetchStatus !== "error"
+          &&
+          <LoadingPage />}
         {fetchStatus === "error" && <ErrorPage />}
         {fetchStatus === "ready" && (
           <>
