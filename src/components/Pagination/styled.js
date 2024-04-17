@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { ReactComponent as Arrow } from "../../images/vectorArrow.svg";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -55,6 +56,10 @@ export const Button = styled.button`
     color: ${({ theme }) => theme.color.black};
     filter: brightness(100%);
   }
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
 `;
 
 export const Content = styled.span`

@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 import {
   selectGenres,
   selectMovieDetailsContent,
-  selectMovieDetailsContentById,
   selectMovieDetailsCredits,
   selectPopularMovies,
 } from "./features/movies/moviesSlice";
@@ -76,7 +75,12 @@ function App() {
         </Container>
         <Pagination />
       </HashRouter>
+      {/*
+        Na razie Paginacja pojawia się na każdej stronie, nie jest obsłużone ładowanie dla MovieDetails i PeopleDetails.
+        Najpierw zajmowałem się samym działaniem routera, a obsłużenie tego chciałem na sam koniec zostawić.
+      */}
 
+      {/* poniżej stary kod, ale chwilowo go zostawiłem */}
 
       {/* <Container>
         {fetchStatus === "loading" && <LoadingPage>loading</LoadingPage>}

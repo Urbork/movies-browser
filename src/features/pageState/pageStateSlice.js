@@ -38,6 +38,12 @@ const pageStateSlice = createSlice({
     setCurrentPage: (state, page) => {
       state.pages.currentPage = page;
     },
+    /*
+      powyższy reducer miał być użyty głównie z takim zamiarem:
+      po odczytaniu przez useParams() numeru strony, np. w komponencie MoviesList lub w PeopleList,
+      wartość odczytana z useParams zostałaby wrzucona przez dispatch do powyższego reducera i w ten 
+      sposób zmieniałby się stan currentPage, dzięki czemu generowałaby się lista filmów lub aktorów
+    */ 
     changePageToFirst: (state) => {
       state.pages.currentPage = state.pages.firstPage;
     },

@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import {
   MovieTileContent,
   MovieTileNavLink,
@@ -11,15 +10,17 @@ import {
 import posterNotFound from "../../images/VectorNoImage.svg";
 import { MovieTags } from "./MovieTags";
 import { MovieRating } from "./MovieRating";
-import { setMovieDetailsId } from "../../features/movies/moviesSlice";
 import { toMovieDetails } from "../../routes";
 
 export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) => {
-  //const dispatch = useDispatch();
-  //onClick={() => dispatch(setMovieDetailsId(id))}
   return (
     <MovieTileContent>
       <MovieTileNavLink to={toMovieDetails({ id })}>
+        {/*
+          po kliknięciu w kafel filmu lub aktora, przekazywane jest ID
+          tego kafla do NavLinka, co pojawia się w URLu i od razu generowany
+          jest widok MovieDetails lub PeopleDetails
+        */}
         <MovieTileImage
           src={
             poster ? "https://image.tmdb.org/t/p/w342" + poster : posterNotFound
