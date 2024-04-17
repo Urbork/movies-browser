@@ -1,12 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import {
   MovieTileContent,
-  MovieTileLink,
   MovieTileImage,
-  MovieTileInfoWrapper,
   MovieTileInfo,
   MovieTileTitle,
   MovieTileSubtitle,
+  MovieTileInfoWrapper,
 } from "./styled";
 import noPoster from "../../images/noPoster.svg";
 import { MovieTags } from "./MovieTags";

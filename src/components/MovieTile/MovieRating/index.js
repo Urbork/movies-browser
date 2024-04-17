@@ -3,6 +3,7 @@ import {
   StyledStarIcon,
   MovieTileRatingTen,
   MovieTileRatingVotes,
+  Rating,
 } from "./styled";
 
 export const MovieRating = ({ big, rating, votes }) => (
@@ -11,8 +12,10 @@ export const MovieRating = ({ big, rating, votes }) => (
       <>
         <MovieTileRating $big={big}>
           <StyledStarIcon />
-          {rating.toFixed(1).replace(".", ",")}{" "}
-          {big ? <MovieTileRatingTen>/ 10</MovieTileRatingTen> : ""}
+          <Rating>
+            {rating.toFixed(1).replace(".", ",")}{" "}
+            {big ? <MovieTileRatingTen>/ 10</MovieTileRatingTen> : ""}
+          </Rating>
           <MovieTileRatingVotes $big={big}>{votes} votes</MovieTileRatingVotes>
         </MovieTileRating>
       </>

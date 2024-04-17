@@ -10,7 +10,7 @@ export const MovieTileContent = styled.li`
   box-shadow: 0px 4px 12px 0px ${({ theme }) => theme.color.boxShadow};
   transition: 0.4s;
   width: 100%;
-  overflow: hidden;
+  gap: 16px;
 
   &:hover {
     transform: scale(1.05);
@@ -18,8 +18,6 @@ export const MovieTileContent = styled.li`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     flex-direction: row;
-    align-items: flex-start;
-    gap: 16px;
   }
 `;
 
@@ -40,6 +38,8 @@ export const MovieTileImage = styled.img`
   }
 `;
 
+
+
 export const MovieTileInfo = styled.div`
   width: 100%;
   display: flex;
@@ -52,27 +52,40 @@ export const MovieTileInfo = styled.div`
   }
 `;
 
+export const Description = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
 export const MovieTileInfoWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    justify-content: start;
+    justify-content: flex-start;
+    gap: 8px;
   }
 `;
 
 export const MovieTileTitle = styled.h3`
-  margin: 16px 0 0;
-  font-size: clamp(20px, 1.6vw, 22px); 
+  margin: 0;
   font-weight: ${({ theme }) => theme.fontWeight.medium};
-  line-height: 1.3;
+  font-size: 22px;
+  line-height: 28.6px;
+  text-align: left;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
+    font-size: clamp(16px, 1.6vw, 22px); 
+    line-height: clamp(20.8px, 1.6vw, 28.6px); 
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    margin: 0;
     font-size: 16px;
+    line-height: 20.8px;
   }
 `;
 
@@ -80,9 +93,16 @@ export const MovieTileSubtitle = styled.p`
   margin: 0;
   font-size: 16px;
   color: ${({ theme }) => theme.color.darkerGrey};
-  line-height: 1.5;
+  line-height: 24px;
+  text-align: left;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
+    font-size: clamp(13px, 1.6vw, 16px); 
+    line-height: clamp(16.9px, 1.6vw, 24px); 
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    font-size: 12px;
+    font-size: 13px;
+    line-height: 16.9px;
   }
 `;

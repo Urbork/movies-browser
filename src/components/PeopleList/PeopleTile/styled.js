@@ -13,14 +13,18 @@ export const Wrapper = styled.div`
   cursor: pointer;
   width: 100%;
 
-  &:hover { 
-    transform: scale(1.05);
+  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
+    gap: clamp(8px, 2.5vw , 12px);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     padding: 8px;
     gap: 8px;
     min-height: 245px;
+  }
+
+  &:hover { 
+    transform: scale(1.05);
   }
 `;
 
@@ -43,26 +47,14 @@ export const Image = styled.img`
   }
 `;
 
-export const ImageContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
-    margin-bottom: clamp(8px, 2.1vw, 12px);
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    margin: 0 0 8px 0;
-  }
-`;
-
 export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: clamp(4px, 0.5vw , 12px);
-  overflow: hidden;
+  gap: 10px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
+    gap: clamp(4px, 2.5vw , 10px);
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     gap: 4px;
@@ -72,16 +64,16 @@ export const ContentWrapper = styled.div`
 export const Name = styled.p`
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   font-size: 22px;
-  line-height: clamp(18.2px, 2.5vw , 28.6px);
+  line-height: 28.6px;
   text-align: center;
   margin: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
     font-size: clamp(14px, 2.5vw , 22px);
+    line-height: clamp(18.2px, 2.5vw , 28.6px);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    margin-bottom: -1px;
     font-size: 14px;
     line-height: 18.2px;
   }
@@ -93,7 +85,11 @@ export const Role = styled.p`
   text-align: center;
   color: ${({ theme }) => theme.color.darkerGrey};
   margin: 0;
-  overflow: hidden;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
+    font-size: clamp(13px, 2.5vw , 18px);
+    line-height: clamp(16.9px, 2.5vw , 27px);
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     font-size: 13px;
