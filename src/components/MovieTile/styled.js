@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const MovieTileContent = styled.li`
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
   padding: 16px;
   border-radius: 5px;
   background-color: ${({ theme }) => theme.color.white};
@@ -12,14 +15,6 @@ export const MovieTileContent = styled.li`
   &:hover {
     transform: scale(1.05);
   }
-`;
-
-export const MovieTileLink = styled.a`
-  height: 100%;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     flex-direction: row;
@@ -62,6 +57,7 @@ export const MovieTileInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 8px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     justify-content: start;

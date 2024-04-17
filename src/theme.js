@@ -24,6 +24,6 @@ export const theme = {
     yellow: "#FCD420",
 
     imageBG: "#C4C4C4",
-    boxShadow: "#BAC7D5",
+    boxShadow: "#BAC7D580",
   },
 };

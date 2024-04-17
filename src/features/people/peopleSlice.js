@@ -33,8 +33,10 @@ const selectPeopleState = state => state.people;
 
 export const selectPopularPeople = state => selectPeopleState(state).popularPeople;
 export const selectPerson = state => selectPeopleState(state).person;
-export const selectPersonId = state => selectPerson(state).id
-export const selectPersonContent = state => selectPerson(state).content
-export const selectPersonMovieCredits = state => selectPerson(state).movieCredits
+export const selectPersonId = state => selectPerson(state).id;
+export const selectPersonContent = state => selectPerson(state).content;
+export const selectPersonMovieCredits = state => selectPerson(state).credits;
+export const selectPersonDetailsCreditsCast = state => selectPersonMovieCredits(state).cast;
+export const selectPersonDetailsCreditsCrew = state => selectPersonMovieCredits(state).crew;
 
 export default peopleSlice.reducer;

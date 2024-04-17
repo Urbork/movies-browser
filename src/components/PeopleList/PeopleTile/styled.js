@@ -1,6 +1,10 @@
 import { styled } from "styled-components";
 
 export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
   background-color: ${({ theme }) => theme.color.white};
   padding: clamp(8px, 0.85vw , 16px);
   transition: 0.6s;
@@ -8,8 +12,6 @@ export const Wrapper = styled.div`
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
-  overflow: hidden; 
-  max-height: 339px;
 
   &:hover { 
     transform: scale(1.05);
@@ -17,13 +19,13 @@ export const Wrapper = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     padding: 8px;
+    gap: 8px;
     min-height: 245px;
   }
 `;
 
 export const Image = styled.img`
   margin: 0;
-  margin-bottom: clamp(8px, 1vw, 12px);
   width: 100%;
   aspect-ratio:  176 / 231; 
   object-fit: cover;
@@ -33,6 +35,8 @@ export const Image = styled.img`
   flex-shrink: 0;
   opacity: 1;
   opacity: ${({ $loaded }) => ($loaded) ? 1 : 0};
+  max-width: 177px;
+  max-height: 231px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     aspect-ratio:  120 / 178; 
@@ -43,7 +47,6 @@ export const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 0 12px 0;
   width: 100%;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
@@ -55,18 +58,26 @@ export const ImageContainer = styled.div`
   }
 `;
 
-export const Name = styled.div`
+export const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 0.5vw , 12px);
+  overflow: hidden;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
+    gap: 4px;
+  }
+`;
+
+export const Name = styled.p`
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   font-size: 22px;
-  line-height: 28.6px;
+  line-height: clamp(18.2px, 2.5vw , 28.6px);
   text-align: center;
-  min-height: 58px;
-  margin-top: -4px;
-  margin-bottom: 6px;
+  margin: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
     font-size: clamp(14px, 2.5vw , 22px);
-    margin-bottom: clamp(0px, 0.5vw, 6px);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
@@ -76,11 +87,13 @@ export const Name = styled.div`
   }
 `;
 
-export const Character = styled.div`
+export const Role = styled.p`
   font-size: 18px;
   line-height: 27px;
   text-align: center;
   color: ${({ theme }) => theme.color.darkerGrey};
+  margin: 0;
+  overflow: hidden;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     font-size: 13px;

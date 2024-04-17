@@ -3,7 +3,8 @@ import {
   Wrapper,
   Image,
   Name,
-  Character
+  Role,
+  ContentWrapper
 } from "./styled";
 import { setPersonId } from "../../../features/people/peopleSlice";
 import blankActor from "../../../images/blankActor.svg";
@@ -11,7 +12,7 @@ import { useState } from "react";
 import { profileMainSizeUrl, profileSmallSizeUrl } from "../../../api/api";
 import { selectMobile } from "../../../features/pageState/pageStateSlice";
 
-const PeopleTile = ({ profile, name, character, id }) => {
+const PeopleTile = ({ profile, name, id, role }) => {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
   const mobile = useSelector(selectMobile)
@@ -26,8 +27,10 @@ const PeopleTile = ({ profile, name, character, id }) => {
         $loaded={loaded}
         onLoad={() => setLoaded(true)}
       />
-      <Name>{name}</Name>
-      <Character>{character}</Character>
+      <ContentWrapper >
+        <Name>{name}</Name>
+        <Role>{role}</Role>
+      </ContentWrapper>
     </Wrapper>
   )
 };

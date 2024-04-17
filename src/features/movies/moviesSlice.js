@@ -30,9 +30,9 @@ export const {
   setPopularMovies,
   setMovieDetailsId,
   setMovieDetails,
-  setCredits,
+  setCredits, 
   setGenres,
-} = moviesSlice.actions;
+} = moviesSlice.actions; 
 
 const selectMoviesState = state => state.movies;
 
@@ -42,5 +42,8 @@ export const selectMovieDetailsId = state => selectMovieDetails(state).id
 export const selectMovieDetailsContent = state => selectMovieDetails(state).content
 export const selectMovieDetailsCredits = state => selectMovieDetails(state).credits
 export const selectGenres = state => selectMoviesState(state).genres;
+export const selectMovieDetailsCreditsCast = state => selectMovieDetailsCredits(state).cast
+export const selectMovieDetailsCreditsCrew = state => selectMovieDetailsCredits(state).crew
 
 export default moviesSlice.reducer;
+

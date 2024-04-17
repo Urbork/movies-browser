@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
+  align-items: stretch;
   grid-template-columns: repeat(6, minmax(165px, 208px));
   gap: 24px;
   margin-bottom: -8px;

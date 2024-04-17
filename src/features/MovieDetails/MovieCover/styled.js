@@ -6,7 +6,7 @@ import {
 
 export const MovieCoverBlackBars = styled.img`
   position: absolute;
-  top: -4px;
+  top: -3px;
   width: 101vw;
   height: 101%;
   display: flex;
@@ -56,7 +56,7 @@ export const MovieCoverImage = styled.img`
   opacity: ${({ $show }) => $show ? '1' : '0'};
   transition: opacity 5s ease;
   animation: ${zoomIn} 10s ease; 
-  transition-delay: 0.5s
+  transition-delay: 0.5s;
 `;
 
 export const MovieCoverInfo = styled.div`

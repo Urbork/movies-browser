@@ -1,15 +1,18 @@
 import { useSelector } from "react-redux";
-import { selectMovieDetailsContent } from "../movies/moviesSlice";
+import { selectMovieDetailsCreditsCast, selectMovieDetailsCreditsCrew, selectMovieDetailsContent } from "../movies/moviesSlice";
 import { MovieCover } from "./MovieCover";
 import { Details } from "../../components/Details";
 import { Section } from "../../components/Section";
 import { Wrapper } from "../../components/PeopleList/styled";
 import { selectMobile } from "../pageState/pageStateSlice";
 import { posterMainSizeUrl } from "../../api/api";
+import PeopleTile from "../../components/PeopleList/PeopleTile";
 
 export const MovieDetails = () => {
   const movieDetailsContent = useSelector(selectMovieDetailsContent);
   const mobile = useSelector(selectMobile);
+  const creditsCast = useSelector(selectMovieDetailsCreditsCast);
+  const creditsCrew = useSelector(selectMovieDetailsCreditsCrew);
 
   return (
     <>
@@ -40,12 +43,28 @@ export const MovieDetails = () => {
       </ Section>
       <Section title="Cast">
         <Wrapper>
-          Cast here
+          {creditsCast?.map((person) => (
+            <PeopleTile
+              key={person.credit_id}
+              id={person.id}
+              profile={person.profile_path}
+              name={person.name}
+              role={person.character}
+            />
+          ))}
         </Wrapper>
       </ Section>
       <Section title="Crew" mobile={mobile}>
         <Wrapper>
-          Crew here
+          {creditsCrew?.map((person) => (
+            <PeopleTile
+              key={person.credit_id}
+              id={person.id}
+              profile={person.profile_path}
+              name={person.name}
+              role={person.department}
+            />
+          ))}
         </Wrapper>
       </ Section>
     </>

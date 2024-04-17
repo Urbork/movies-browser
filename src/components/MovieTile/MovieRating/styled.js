@@ -4,18 +4,19 @@ import { ReactComponent as StarIcon } from "../../../images/VectorStar.svg";
 export const MovieTileRating = styled.div`
   margin-top: 8px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 12px;
-  justify-self: end;
+  /* justify-self: end; */
   font-size: ${({ $big }) => ($big ? "22" : "16") + "px"};
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
-  line-height: ${({ $big }) => ($big ? "1.3" : "1.5")};
+  /* line-height: ${({ $big }) => ($big ? "1.3" : "1.5")}; */
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin: 0;
     gap: 8px;
     font-size: 13px;
     line-height: 1.3;
+    align-items: center;
   }
 `;
 
