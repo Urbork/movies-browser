@@ -2,11 +2,23 @@ import { Section } from "../../components/Section";
 import { MoviesListWrapper } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import { MovieTile } from "../../components/MovieTile";
-import { selectGenres, selectPopularMovies } from "../movies/moviesSlice";
+import {
+  selectGenres,
+  selectMoviesByQuery,
+  selectPopularMovies,
+} from "../movies/moviesSlice";
 import { setImagesLoaded } from "../pageState/pageStateSlice";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 export const MoviesList = () => {
-  const popularMovies = useSelector(selectPopularMovies);
+  // TESTY
+  const location = useLocation();
+  const query = new URLSearchParams(location.search).get("search");
+  // KONIEC TESTÓW
+
+  const popularMovies = useSelector((state) =>
+    selectMoviesByQuery(state, query)
+  );
   const genres = useSelector(selectGenres);
   const dispatch = useDispatch();
 

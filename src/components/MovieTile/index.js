@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import {
   MovieTileContent,
-  MovieTileLink,
+  MovieTileNavLink,
   MovieTileImage,
   MovieTileInfoWrapper,
   MovieTileInfo,
@@ -15,8 +15,17 @@ import { setMovieDetailsId } from "../../features/movies/moviesSlice";
 import { useState } from "react";
 import { posterMainSizeUrl, posterMobileSizeUrl } from "../../api/api";
 import { selectMobile } from "../../features/pageState/pageStateSlice";
+import { toMovieDetails } from "../../routes";
 
-export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) => {
+export const MovieTile = ({
+  poster,
+  title,
+  subtitle,
+  tags,
+  rating,
+  votes,
+  id,
+}) => {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   const mobile = useSelector(selectMobile);
@@ -24,10 +33,10 @@ export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) 
 
   return (
     <MovieTileContent onClick={() => dispatch(setMovieDetailsId(id))}>
-      <MovieTileLink >
+      <MovieTileNavLink to={toMovieDetails({ id })}>
         <MovieTileImage
-          src={(loaded && poster) ? posterUrl + poster : noPoster}
-          alt={(loaded && title) ? `${title} movie poster` : "no poster"}
+          src={loaded && poster ? posterUrl + poster : noPoster}
+          alt={loaded && title ? `${title} movie poster` : "no poster"}
           $loaded={loaded}
           onLoad={() => setLoaded(true)}
         />
@@ -39,7 +48,7 @@ export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) 
           </MovieTileInfo>
           <MovieRating rating={rating} votes={votes} />
         </MovieTileInfoWrapper>
-      </MovieTileLink>
+      </MovieTileNavLink>
     </MovieTileContent>
-  )
+  );
 };

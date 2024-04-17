@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 
 export const MovieTileContent = styled.li`
@@ -14,14 +15,15 @@ export const MovieTileContent = styled.li`
   }
 `;
 
-export const MovieTileLink = styled.a`
+export const MovieTileNavLink = styled(NavLink)`
   height: 100%;
   text-decoration: none;
   display: flex;
   flex-direction: column;
+  color: ${({ theme }) => theme.color.black};
   cursor: pointer;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     flex-direction: row;
     align-items: flex-start;
     gap: 16px;
@@ -31,13 +33,13 @@ export const MovieTileLink = styled.a`
 export const MovieTileImage = styled.img`
   margin: 0;
   width: 100%;
-  aspect-ratio:  292 / 434; 
+  aspect-ratio: 292 / 434;
   border-radius: 5px;
   transition: opacity 1s ease-in-out;
   background-color: transparent;
   flex-shrink: 0;
   opacity: 0;
-  opacity: ${({ $loaded }) => ($loaded) ? 1 : 0};
+  opacity: ${({ $loaded }) => ($loaded ? 1 : 0)};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     width: 114px;
@@ -70,7 +72,7 @@ export const MovieTileInfoWrapper = styled.div`
 
 export const MovieTileTitle = styled.h3`
   margin: 16px 0 0;
-  font-size: clamp(20px, 1.6vw, 22px); 
+  font-size: clamp(20px, 1.6vw, 22px);
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   line-height: 1.3;
 

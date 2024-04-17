@@ -34,13 +34,28 @@ export const {
   setGenres,
 } = moviesSlice.actions;
 
-const selectMoviesState = state => state.movies;
+const selectMoviesState = (state) => state.movies;
 
-export const selectPopularMovies = state => selectMoviesState(state).popularMovies;
-export const selectMovieDetails = state => selectMoviesState(state).movieDetails;
-export const selectMovieDetailsId = state => selectMovieDetails(state).id
-export const selectMovieDetailsContent = state => selectMovieDetails(state).content
-export const selectMovieDetailsCredits = state => selectMovieDetails(state).credits
-export const selectGenres = state => selectMoviesState(state).genres;
+export const selectPopularMovies = (state) =>
+  selectMoviesState(state).popularMovies;
+export const selectMovieDetails = (state) =>
+  selectMoviesState(state).movieDetails;
+export const selectMovieDetailsId = (state) => selectMovieDetails(state).id;
+export const selectMovieDetailsContent = (state) =>
+  selectMovieDetails(state).content;
+export const selectMovieDetailsCredits = (state) =>
+  selectMovieDetails(state).credits;
+export const selectGenres = (state) => selectMoviesState(state).genres;
+export const selectMoviesByQuery = (state, query) => {
+  const movies = selectPopularMovies(state);
+
+  if (!query || query.trim() === "") {
+    return movies;
+  }
+
+  return movies.filter(({ title }) =>
+    title.toUpperCase().includes(query.toUpperCase().trim())
+  );
+};
 
 export default moviesSlice.reducer;
