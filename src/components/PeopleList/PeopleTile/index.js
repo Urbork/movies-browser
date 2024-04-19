@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import {
   StyledNavLink,
   Image,
@@ -8,12 +7,9 @@ import {
   Character
 } from "./styled";
 import { ReactComponent as BlankActor } from "../../../images/blankActor.svg";
-import { setPersonId } from "../../../features/people/peopleSlice";
 import { toPeopleDetails } from "../../../routes";
 
 const PeopleTile = ({ poster, name, character, id }) => {
-  //const dispatch = useDispatch();
-  //onClick={() => dispatch(setPersonId(id));
   return (
     <StyledNavLink to={toPeopleDetails({ id })}>
       {

@@ -35,15 +35,6 @@ const pageStateSlice = createSlice({
     personDisplay: (state) => {
       state.display = "person";
     },
-    setCurrentPage: (state, page) => {
-      state.pages.currentPage = page;
-    },
-    /*
-      powyższy reducer miał być użyty głównie z takim zamiarem:
-      po odczytaniu przez useParams() numeru strony, np. w komponencie MoviesList lub w PeopleList,
-      wartość odczytana z useParams zostałaby wrzucona przez dispatch do powyższego reducera i w ten 
-      sposób zmieniałby się stan currentPage, dzięki czemu generowałaby się lista filmów lub aktorów
-    */ 
     changePageToFirst: (state) => {
       state.pages.currentPage = state.pages.firstPage;
     },
@@ -83,6 +74,8 @@ export const selectFetchStatus = state => selectPageState(state).fetchStatus;
 export const selectPages = state => selectPageState(state).pages;
 export const selectFirstPage = state => selectPages(state).firstPage;
 export const selectCurrentPage = state => selectPages(state).currentPage;
+export const selectPreviousPage = state => selectCurrentPage(state) - 1;
+export const selectNextPage = state => selectCurrentPage(state) + 1;
 export const selectLastPage = state => selectPages(state).lastPage;
 
 export default pageStateSlice.reducer;

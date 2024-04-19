@@ -7,20 +7,12 @@ export const PeopleDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     dispatch(setPersonId(id));
-    /*
-    dispatch w tym miejscu działa, ale powoduje to, że po wejściu w szczegóły
-    filmu lub aktora, stan jest ciągle zmieniany/ odświeżany. Mimo że wszystko pokazuje
-    się właściwie, to w konsoli lub we wtyczce Redux do przeglądarki, widać
-    że stan ciągle "pracuje".
-    Poza tym, wyświetlanie działa właściwie (chyba), jak wejdziemy w szczegóły i się
-    cofniemy w przeglądarce, to wrócimy do miejsca w którym byliśmy wcześniej, więc
-    poza umiejscowieniem tego dispatch, wydaje się że wszystko jest ok
-    */
     const personContent = useSelector(selectPersonContent);
 
     return (
         <Details
             people
+            id={id}
             imageURL="http://image.tmdb.org/t/p/h632"
             poster={personContent?.profile_path}
             title={personContent?.name}

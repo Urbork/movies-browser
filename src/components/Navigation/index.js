@@ -9,7 +9,6 @@ import {
   Input,
   ButtonsWrapper,
 } from "./styled";
-//import { moviesDisplay, peopleDisplay } from "../../features/pageState/pageStateSlice";
 import { toMoviesList, toPeopleList } from "../../routes";
 
 export const Navigation = () => {
@@ -22,10 +21,10 @@ export const Navigation = () => {
             Movies Browser
           </Logo>
           <ButtonsWrapper>
-            <StyledNavLink to={toMoviesList()}> {/* onClick={() => dispatch(moviesDisplay())} */}
+            <StyledNavLink to={toMoviesList()}>
               Movies
             </StyledNavLink>
-            <StyledNavLink to={toPeopleList()}>   {/* onClick={() => dispatch(peopleDisplay())} */}
+            <StyledNavLink to={toPeopleList()}>
               People
             </StyledNavLink>
           </ButtonsWrapper>

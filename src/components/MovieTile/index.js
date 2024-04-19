@@ -13,6 +13,7 @@ import { MovieRating } from "./MovieRating";
 import { toMovieDetails } from "../../routes";
 
 export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) => {
+
   return (
     <MovieTileContent>
       <MovieTileNavLink to={toMovieDetails({ id })}>

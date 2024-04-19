@@ -7,6 +7,7 @@ import { selectPopularPeople } from "../../features/people/peopleSlice";
 
 const PeopleList = () => {
   const popularPeople = useSelector(selectPopularPeople);
+
   return (
     <Section title="Popular people">
       <Wrapper>
