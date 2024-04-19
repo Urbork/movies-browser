@@ -38,8 +38,6 @@ export const MovieTileImage = styled.img`
   }
 `;
 
-
-
 export const MovieTileInfo = styled.div`
   width: 100%;
   display: flex;

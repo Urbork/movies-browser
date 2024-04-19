@@ -12,9 +12,9 @@ export const MovieRating = ({ big, rating, votes }) => (
       <>
         <MovieTileRating $big={big}>
           <StyledStarIcon />
-          <Rating>
+          <Rating $big={big}>
             {rating.toFixed(1).replace(".", ",")}{" "}
-            {big ? <MovieTileRatingTen>/ 10</MovieTileRatingTen> : ""}
+            {big ? <MovieTileRatingTen >/ 10</MovieTileRatingTen> : ""}
           </Rating>
           <MovieTileRatingVotes $big={big}>{votes} votes</MovieTileRatingVotes>
         </MovieTileRating>

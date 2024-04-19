@@ -7,6 +7,9 @@ export const MovieTileTags = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+
+  color: ${({ theme }) => theme.color.blackSpecial};
+
 `;
 
 export const MovieTileTag = styled.li`

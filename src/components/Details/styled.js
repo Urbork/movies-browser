@@ -9,6 +9,7 @@ export const DetailsWrapper = styled.article`
   gap: 40px;
   background: ${({ theme }) => theme.color.white};
   box-shadow: 0 4px 12px rgba(186, 199, 213, 0.5);
+  color: ${({ theme }) => theme.color.black};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     gap: 16px;
@@ -21,6 +22,7 @@ export const DetailsImage = styled.img`
   width: 312px;
   height: 464px;
   grid-row: span 2;
+  border-radius: 5px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     max-width: 114px;
@@ -33,7 +35,9 @@ export const DetailsTitle = styled.h3`
   margin: 0; 
   font-size: 36px;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
-  line-height: 1.2;
+  line-height: 43.2px;
+  text-align: left;
+  padding: 80px, 0px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     font-size: 16px;
@@ -44,7 +48,8 @@ export const DetailsTitle = styled.h3`
 
 export const DetailsSubtitle = styled.div`
   font-size: 22px;
-  line-height: 1.2;
+  line-height: 26.4px;
+  text-align: left;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin-top: -4px;
@@ -78,6 +83,9 @@ export const DetailsExtraInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  font-size: 18px;
+  line-height: 21.6px;
+  text-align: left;
 `;
 
 export const DetailsExtraInfoWrapper = styled.div`
@@ -90,9 +98,8 @@ export const DetailsExtraInfoWrapper = styled.div`
 `;
 
 export const DetailsExtraInfoLabel = styled.span`
-
   flex-shrink: 0;
-  color: ${({ theme }) => theme.color.darkerGrey};
+  color: ${({ theme }) => theme.color.stormGray};
 
   ${({ $hidden }) =>
     $hidden &&
@@ -101,21 +108,6 @@ export const DetailsExtraInfoLabel = styled.span`
         display: none;
       }
     `}
-`;
-
-export const DetailsTags = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding-left: 0;
-`;
-
-export const DetailsTag = styled.li`
-  margin: 0 8px;
-  padding: 8px 16px;
-  border-radius: 5px;
-  font-size: 14px;
-  background: ${({ theme }) => theme.color.grey};
 `;
 
 export const DetailsDescription = styled.p`

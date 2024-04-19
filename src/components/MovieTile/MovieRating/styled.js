@@ -3,7 +3,8 @@ import { ReactComponent as StarIcon } from "../../../images/VectorStar.svg";
 
 export const MovieTileRating = styled.div`
   display: flex;
-  gap: 12px;
+  align-items: flex-end;
+  gap: ${({ $big }) => ($big ? "12" : "8") + "px"};
   font-size: ${({ $big }) => ($big ? "22" : "16") + "px"};
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   line-height: ${({ $big }) => ($big ? "1.3" : "1.5")};
@@ -13,6 +14,7 @@ export const MovieTileRating = styled.div`
     gap: 8px;
     font-size: 13px;
     line-height: 1.3;
+    align-items: flex-start;
   }
 `;
 
@@ -20,6 +22,7 @@ export const StyledStarIcon = styled(StarIcon)`
   width: ${({ $big }) => ($big ? "40" : "24") + "px"};
   height: ${({ $big }) => ($big ? "40" : "23") + "px"};
   transition: 0.6s;
+  margin-bottom: 2px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     width: ${({ $big }) => ($big ? "24" : "16") + "px"};
@@ -28,9 +31,9 @@ export const StyledStarIcon = styled(StarIcon)`
 `;
 
 export const Rating = styled.span`
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  font-size: ${({ $big }) => ($big ? "22" : "16") + "px"};
+  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+  line-height: ${({ $big }) => ($big ? "28.6" : "24") + "px"};
   text-align: left;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
@@ -59,11 +62,9 @@ export const MovieTileRatingVotes = styled.span`
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   color: ${({ $big, theme }) =>
     $big ? theme.color.blackSpecial : theme.color.darkerGrey};
-
-  font-size: 16px;
   line-height: 24px;
   text-align: left;
-
+  
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
     font-size: clamp(13px, 1.6vw, 16px); 
     line-height: clamp(16.9px, 1.6vw, 24px); 
