@@ -6,6 +6,8 @@ import { MovieDetails } from "./features/MovieDetails";
 import { MoviesList } from "./features/MoviesList";
 import { PeopleDetails } from "./features/PeopleDetails";
 import PeopleList from "./components/PeopleList";
+import { LoadingPage } from "./components/LoadingPage";
+import { ErrorPage } from "./components/ErrorPage";
 import { useSelector } from "react-redux";
 import {
   selectGenres,
@@ -20,8 +22,6 @@ import {
   selectFirstPage,
   selectLastPage,
 } from "./features/pageState/pageStateSlice";
-import { ErrorPage } from "./components/ErrorPage";
-import { LoadingPage } from "./components/LoadingPage";
 import {
   toMovieDetails,
   toMoviesList,
@@ -61,16 +61,21 @@ function App() {
       <Container>
         <Switch>
           <Route path={toMovieDetails()}>
-            <MovieDetails />
+            {fetchStatus === "loading" && <LoadingPage />}
+            {fetchStatus === "error" && <ErrorPage />}
+            {fetchStatus === "ready" && <MovieDetails />}
           </Route>
           <Route path={toPeopleDetails()}>
-            <PeopleDetails />
+            {fetchStatus === "loading" && <LoadingPage />}
+            
+            {fetchStatus === "error" && <ErrorPage />}
+            {fetchStatus === "ready" && <PeopleDetails />}
           </Route>
           <Route path={toMoviesList()}>
-            {fetchStatus === "loading" ? <LoadingPage /> : <MoviesList />}
+            <MoviesList />
           </Route>
           <Route path={toPeopleList()}>
-            {fetchStatus === "loading" ? <LoadingPage /> : <PeopleList />}
+            <PeopleList />
           </Route>
           <Route path="/">
             <Redirect to={toMoviesList()} />

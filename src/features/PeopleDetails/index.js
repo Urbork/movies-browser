@@ -1,12 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Details } from "../../components/Details";
-import { selectPersonContent, setPersonId } from "../people/peopleSlice";
+import { selectPersonContent, selectPersonId, setPersonId } from "../people/peopleSlice";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export const PeopleDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    dispatch(setPersonId(id));
+    const personDetailsId = useSelector(selectPersonId);
+
+    if (id !== personDetailsId) {
+        dispatch(setPersonId(id));
+    }
     const personContent = useSelector(selectPersonContent);
 
     return (

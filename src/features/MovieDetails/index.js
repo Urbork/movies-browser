@@ -1,13 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { selectMovieDetailsContent, setMovieDetailsId } from "../movies/moviesSlice";
+import { selectMovieDetailsContent, selectMovieDetailsId, setMovieDetailsId } from "../movies/moviesSlice";
 import { MovieCover } from "./MovieCover";
 import { Details } from "../../components/Details";
+import { selectFetchStatus } from "../pageState/pageStateSlice";
 
 export const MovieDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  dispatch(setMovieDetailsId(id));
+  const movieDetailsId = useSelector(selectMovieDetailsId);
+
+  if (id !== movieDetailsId) {
+    dispatch(setMovieDetailsId(id));
+  }
   const movieDetailsContent = useSelector(selectMovieDetailsContent);
 
   return (
