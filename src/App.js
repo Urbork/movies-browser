@@ -1,4 +1,4 @@
-import { HashRouter, Switch, Route, Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { HashRouter, Switch, Route, Redirect, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Navigation } from "./components/Navigation";
 import { Pagination } from "./components/Pagination";
 import { Container } from "./components/Container";
@@ -22,7 +22,12 @@ import {
 } from "./features/pageState/pageStateSlice";
 import { ErrorPage } from "./components/ErrorPage";
 import { LoadingPage } from "./components/LoadingPage";
-import { toMovieDetails, toMoviesList, toPeopleDetails, toPeopleList } from "./routes";
+import {
+  toMovieDetails,
+  toMoviesList,
+  toPeopleDetails,
+  toPeopleList
+} from "./routes";
 
 function App() {
   //  To be removed at the end  //
@@ -51,51 +56,29 @@ function App() {
   );
 
   return (
-    <>
-      <HashRouter>
-        <Navigation />
-        <Container>
-          <Switch>
-            <Route path={toMovieDetails()}>
-              <MovieDetails />
-            </Route>
-            <Route path={toPeopleDetails()}>
-              <PeopleDetails />
-            </Route>
-            <Route path={toMoviesList()}>
-              {fetchStatus === "loading" ? <LoadingPage /> : <MoviesList />}
-            </Route>
-            <Route path={toPeopleList()}>
-              {fetchStatus === "loading" ? <LoadingPage /> : <PeopleList />}
-            </Route>
-            <Route path="/">
-              <Redirect to={toMoviesList()} />
-            </Route>
-          </Switch>
-        </Container>
-        <Pagination />
-      </HashRouter>
-      {/*
-        Na razie Paginacja pojawia się na każdej stronie, nie jest obsłużone ładowanie dla MovieDetails i PeopleDetails.
-        Najpierw zajmowałem się samym działaniem routera, a obsłużenie tego chciałem na sam koniec zostawić.
-      */}
-
-      {/* poniżej stary kod, ale chwilowo go zostawiłem */}
-
-      {/* <Container>
-        {fetchStatus === "loading" && <LoadingPage>loading</LoadingPage>}
-        {fetchStatus === "error" && <ErrorPage>error</ErrorPage>}
-        {fetchStatus === "ready" && (
-          <>
-            {display === "movies" && <MoviesList />}
-            {display === "movieDetails" && <MovieDetails />}
-            {display === "people" && <PeopleList />}
-            {display === "person" && <PeopleDetails />}
-            {(display === "movies" || display === "people") && <Pagination />}
-          </>
-        )}
-      </Container> */}
-    </>
+    <HashRouter>
+      <Navigation />
+      <Container>
+        <Switch>
+          <Route path={toMovieDetails()}>
+            <MovieDetails />
+          </Route>
+          <Route path={toPeopleDetails()}>
+            <PeopleDetails />
+          </Route>
+          <Route path={toMoviesList()}>
+            {fetchStatus === "loading" ? <LoadingPage /> : <MoviesList />}
+          </Route>
+          <Route path={toPeopleList()}>
+            {fetchStatus === "loading" ? <LoadingPage /> : <PeopleList />}
+          </Route>
+          <Route path="/">
+            <Redirect to={toMoviesList()} />
+          </Route>
+        </Switch>
+      </Container>
+      <Pagination />
+    </HashRouter>
   );
 }
 
