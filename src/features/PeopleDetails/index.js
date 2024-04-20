@@ -13,7 +13,7 @@ export const PeopleDetails = () => {
   const personDetailsId = useSelector(selectPersonId);
 
   if (id !== personDetailsId) {
-    dispatch(setPersonId({ id }));
+    dispatch(setPersonId(id));
   }
   
   const personContent = useSelector(selectPersonContent);
@@ -43,7 +43,7 @@ export const PeopleDetails = () => {
         <MoviesListWrapper>
           Movie crew here
         </MoviesListWrapper>
-      </ Section>
+      </Section>
     </>
   )
 };

@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Wrapper,
@@ -8,13 +8,13 @@ import {
   InputWrapper,
   Input,
   ButtonsWrapper,
-  Button,
   StyledNavLink,
 } from "./styled";
 import { toMoviesList, toPeopleList } from "../../routes";
-import { selectDisplay } from "../../features/pageState/pageStateSlice";
+import { moviesDisplay, peopleDisplay, selectDisplay } from "../../features/pageState/pageStateSlice";
 
 export const Navigation = () => {
+  const dispatch = useDispatch();
   const display = useSelector(selectDisplay);
 
   return (
@@ -28,12 +28,14 @@ export const Navigation = () => {
           <ButtonsWrapper>
             <StyledNavLink
               to={toMoviesList()}
+              onClick={() => dispatch(moviesDisplay())}
               $specialStyle={display === "movies"}
             >
               Movies
             </StyledNavLink>
             <StyledNavLink
               to={toPeopleList()}
+              onClick={() => dispatch(peopleDisplay())}
               $specialStyle={display === "movies"}
             >
               People

@@ -1,4 +1,4 @@
-import { HashRouter, Switch, Route, Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { HashRouter, Switch, Route } from "react-router-dom/cjs/react-router-dom.min";
 import { Navigation } from "./components/Navigation";
 import { Pagination } from "./components/Pagination";
 import { Container } from "./components/Container";
@@ -27,7 +27,7 @@ import { selectFetchStatus, selectImagesToLoad } from "./features/pageState/page
 function App() {
   const fetchStatus = useSelector(selectFetchStatus);
   const imagesToLoad = useSelector(selectImagesToLoad);
-  //useShowData();  // 2. usunąć przed deploymentem 🗑
+  useShowData();  // 2. usunąć przed deploymentem 🗑
 
   return (
     <HashRouter>
@@ -47,21 +47,35 @@ function App() {
           <Route path={toMoviesList()}>
             {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
-            {fetchStatus === "ready" && <MoviesList />}
+            {fetchStatus === "ready" &&
+              <>
+                <MoviesList />
+                <Pagination />
+              </>
+            }
           </Route>
           <Route path={toPeopleList()}>
             {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
-            {fetchStatus === "ready" && <PeopleList />}
+            {fetchStatus === "ready" &&
+              <>
+                <PeopleList />
+                <Pagination />
+              </>
+            }
           </Route>
           <Route path="/">
             {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
-            {fetchStatus === "ready" && < MoviesList />}
+            {fetchStatus === "ready" &&
+              <>
+                <MoviesList />
+                <Pagination />
+              </>
+            }
           </Route>
         </Switch>
       </Container>
-      <Pagination />
     </HashRouter>
   );
 }

@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import {
   Button,
-  StyledNavLink,
   ButtonContainer,
   Wrapper,
   Number,
@@ -18,9 +17,7 @@ import {
   changePageToNext,
   changePageToPrevious,
   selectFirstPage,
-  selectPreviousPage,
   selectCurrentPage,
-  selectNextPage,
   selectLastPage,
 } from "../../features/pageState/pageStateSlice";
 
