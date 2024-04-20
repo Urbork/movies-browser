@@ -3,7 +3,7 @@ import search from "../../images/search.svg";
 import { ReactComponent as VideoSVG } from "../../images/video.svg";
 
 export const Container = styled.nav`
-  background-color: ${({ $specialStyle, theme }) => $specialStyle ? theme.color.blackSpecial : theme.color.black};
+  background-color: ${({ theme }) => theme.color.blackSpecial};
   color: ${({ theme }) => theme.color.white};
   position: sticky;
   width: 100%;
@@ -17,7 +17,6 @@ export const Container = styled.nav`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     background-color: ${({ theme }) => theme.color.black};
-    margin-bottom: 24px;
   }
 `;
 
@@ -100,7 +99,7 @@ export const ButtonsWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-  background-color: ${({ $specialStyle, theme }) => $specialStyle ? theme.color.blackSpecial : theme.color.black};
+  background-color: ${({ theme }) => theme.color.blackSpecial};
   text-transform: uppercase;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   font-size: 14px;
