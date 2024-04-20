@@ -1,4 +1,4 @@
-import { HashRouter, Switch, Route } from "react-router-dom/cjs/react-router-dom.min";
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { Navigation } from "./components/Navigation";
 import { Pagination } from "./components/Pagination";
 import { Container } from "./components/Container";
@@ -65,14 +65,7 @@ function App() {
             }
           </Route>
           <Route path="/">
-            {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
-            {fetchStatus === "error" && <ErrorPage />}
-            {fetchStatus === "ready" &&
-              <>
-                <MoviesList />
-                <Pagination />
-              </>
-            }
+            <Redirect to={toMoviesList()} />
           </Route>
         </Switch>
       </Container>
