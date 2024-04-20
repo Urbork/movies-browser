@@ -42,7 +42,7 @@ export const MovieDetails = () => {
         />
       </ Section>
       <Section title="Cast">
-        <Wrapper>
+        <Wrapper >
           {creditsCast?.map((person) => (
             <PeopleTile
               key={person.credit_id}
@@ -55,7 +55,7 @@ export const MovieDetails = () => {
         </Wrapper>
       </ Section>
       <Section title="Crew" mobile={mobile}>
-        <Wrapper>
+        <Wrapper $addSpace="true">
           {creditsCrew?.map((person) => (
             <PeopleTile
               key={person.credit_id}

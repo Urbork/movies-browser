@@ -3,7 +3,7 @@ import { ReactComponent as StarIcon } from "../../../images/VectorStar.svg";
 
 export const MovieTileRating = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: ${({ $big }) => ($big ? "12" : "8") + "px"};
   font-size: ${({ $big }) => ($big ? "22" : "16") + "px"};
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
@@ -24,11 +24,6 @@ export const StyledStarIcon = styled(StarIcon)`
   transition: 0.6s;
   margin-bottom: 2px;
   align-self: center;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
-    /* width: clamp(16px, 2vw, 240px);
-    height: clamp(16px, 2vw, 23px); */
-  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     width: 16px;

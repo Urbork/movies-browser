@@ -5,8 +5,7 @@ export const Wrapper = styled.div`
   align-items: stretch;
   grid-template-columns: repeat(6, minmax(165px, 208px));
   gap: 24px;
-  margin-bottom: -8px;
-
+  margin-bottom: ${({ $addSpace }) => $addSpace ? "272px" : "-8px"};
   @media (max-width: 1183px) {
     grid-template-columns: repeat(5, minmax(0, 208px)); 
   }

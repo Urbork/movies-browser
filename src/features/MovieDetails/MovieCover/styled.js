@@ -146,7 +146,7 @@ export const MovieCoverRating = styled.div`
 `;
 
 export const RatingCover = styled.span`
-  font-weight: ${({ theme }) => theme.fontWeight.midle};
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
   font-size: 30px;
   line-height: 39px;
   text-align: left;
