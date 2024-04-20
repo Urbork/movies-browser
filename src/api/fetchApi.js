@@ -11,7 +11,6 @@ import {
 
 const fetchApi = (url) => (
   fetch(url).then(response => {
-    console.log(response)
     if (!response.ok) {
       throw new Error(response.statusText);
     }

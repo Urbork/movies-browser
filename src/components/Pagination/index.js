@@ -36,11 +36,11 @@ export const Pagination = () => {
         <Button onClick={() => dispatch(changePageToFirst())} disabled={currentPage === firstPage}>
           <BackwardArrow disabled={currentPage === firstPage} />
           <AdditionalBackwardArrow disabled={currentPage === firstPage} />
-          <Content>First</Content>
+          <Content disabled={currentPage === firstPage}>First</Content>
         </Button>
         <Button onClick={() => dispatch(changePageToPrevious())} disabled={currentPage === firstPage}>
           <BackwardArrow disabled={currentPage === firstPage} />
-          <Content>Previous</Content>
+          <Content disabled={currentPage === firstPage}>Previous</Content>
         </Button>
       </ButtonContainer>
       <PageNumberInfo>
@@ -48,11 +48,11 @@ export const Pagination = () => {
       </PageNumberInfo>
       <ButtonContainer>
         <Button onClick={() => dispatch(changePageToNext())} disabled={currentPage === lastPage}>
-          <Content>Next</Content>
+          <Content disabled={currentPage === lastPage}>Next</Content>
           <ForwardArrow disabled={currentPage === lastPage} />
         </Button>
         <Button onClick={() => dispatch(changePageToLast())} disabled={currentPage === lastPage}>
-          <Content>Last</Content>
+          <Content disabled={currentPage === lastPage}>Last</Content>
           <AdditionalForwardArrow disabled={currentPage === lastPage} />
           <ForwardArrow disabled={currentPage === lastPage} />
         </Button>

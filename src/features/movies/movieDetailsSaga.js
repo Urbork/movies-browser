@@ -1,8 +1,7 @@
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { selectMovieDetailsId, setCredits, setMovieDetails, setMovieDetailsId } from "./moviesSlice";
 import { getCredits, getMovieDetails } from "../../api/fetchApi";
-import { fetchApi, fetchError, movieDetailsDisplay, resetFetchStatus } from "../pageState/pageStateSlice"
-
+import { fetchApi, fetchError, movieDetailsDisplay, resetFetchStatus, setImagesToLoad } from "../pageState/pageStateSlice"
 
 function* fetchApiHandler() {
   try {
@@ -14,6 +13,7 @@ function* fetchApiHandler() {
       yield delay(1000);
       yield put(setMovieDetails(movieDetails));
       yield put(setCredits(credits));
+      yield put(setImagesToLoad());
       yield put(movieDetailsDisplay());
     }
   } catch (error) {

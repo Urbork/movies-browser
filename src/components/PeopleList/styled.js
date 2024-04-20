@@ -2,14 +2,28 @@ import { styled } from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 208px);
+  grid-template-columns: repeat(6, minmax(165px, 208px));
   gap: 24px;
-  transition: 0.6s;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: -8px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    grid-template-columns: repeat(auto-fill, 136px);
+  @media (max-width: 1183px) {
+    grid-template-columns: repeat(5, minmax(0, 208px)); 
+  }
+
+  @media (max-width: 951px) {
+    grid-template-columns: repeat(4, minmax(0, 208px)); 
+  }
+
+  @media (max-width: 687px) {
+    grid-template-columns: repeat(3, minmax(0, 208px)); 
+  }
+
+  @media (max-width: 450px) {
+    grid-template-columns: repeat(2, minmax(0, 208px)); 
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    margin-bottom: 50px;
     gap: 16px;
   }
 `;

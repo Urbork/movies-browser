@@ -1,4 +1,4 @@
-import { HashRouter, Switch, Route, Redirect, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { Navigation } from "./components/Navigation";
 import { Pagination } from "./components/Pagination";
 import { Container } from "./components/Container";
@@ -28,32 +28,20 @@ import {
   toPeopleDetails,
   toPeopleList
 } from "./routes";
+import { useShowData } from "./useShowData.js";  // 1. usunąć przed deploymentem 🗑
+import { selectDisplay, selectFetchStatus, selectImagesToLoad } from "./features/pageState/pageStateSlice";
+
+// przed deploymentem usunąć pozycje, które potrzebujemy tylko do budowania aplikacji oraz ten komentarz🗑:
+// 1). import { useShowData } from "./useShowData.js";🗑
+// 2). useShowData();🗑
+// 3). plik useShowData.js;🗑 z katalogu: src/
+// po deploymencie przywrócić usunięte elementy na gałęzi main :)
 
 function App() {
-  //  To be removed at the end  //
   const display = useSelector(selectDisplay);
-  const popularMovies = useSelector(selectPopularMovies);
-  const movieDetailsContent = useSelector(selectMovieDetailsContent);
-  const movieDetailsCredits = useSelector(selectMovieDetailsCredits);
-  const genres = useSelector(selectGenres);
   const fetchStatus = useSelector(selectFetchStatus);
-  const firstPage = useSelector(selectFirstPage);
-  const currentPage = useSelector(selectCurrentPage);
-  const lastPage = useSelector(selectLastPage);
-  console.log("display: ", display);
-  console.log("popularMovies: ", popularMovies);
-  console.log("movieDetailsContent: ", movieDetailsContent);
-  console.log("movieDetailsCredits: ", movieDetailsCredits);
-  console.log("genres: ", genres);
-  console.log("fetchStatus: ", fetchStatus);
-  console.log(
-    "firstPage: ",
-    firstPage,
-    "currentPage :",
-    currentPage,
-    "lastPage :",
-    lastPage
-  );
+  const imagesToLoad = useSelector(selectImagesToLoad);
+  useShowData();  // 2. usunąć przed deploymentem 🗑
 
   return (
     <HashRouter>
@@ -61,13 +49,12 @@ function App() {
       <Container>
         <Switch>
           <Route path={toMovieDetails()}>
-            {fetchStatus === "loading" && <LoadingPage />}
+            {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
             {fetchStatus === "ready" && <MovieDetails />}
           </Route>
           <Route path={toPeopleDetails()}>
-            {fetchStatus === "loading" && <LoadingPage />}
-            
+            {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
             {fetchStatus === "ready" && <PeopleDetails />}
           </Route>
