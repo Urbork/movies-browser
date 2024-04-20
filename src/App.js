@@ -10,17 +10,8 @@ import { LoadingPage } from "./components/LoadingPage";
 import { ErrorPage } from "./components/ErrorPage";
 import { useSelector } from "react-redux";
 import {
-  selectGenres,
-  selectMovieDetailsContent,
-  selectMovieDetailsCredits,
-  selectPopularMovies,
-} from "./features/movies/moviesSlice";
-import {
-  selectCurrentPage,
   selectDisplay,
   selectFetchStatus,
-  selectFirstPage,
-  selectLastPage,
 } from "./features/pageState/pageStateSlice";
 import {
   toMovieDetails,
