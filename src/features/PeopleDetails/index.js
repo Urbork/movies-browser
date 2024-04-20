@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Details } from "../../components/Details";
 import { selectPersonContent, selectPersonId, setPersonId } from "../people/peopleSlice";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { selectPersonContent } from "../people/peopleSlice";
 import { Section } from "../../components/Section";
 import { MoviesListWrapper } from "../../features/MoviesList/styled";
 import { selectMobile } from "../pageState/pageStateSlice";
@@ -14,8 +13,9 @@ export const PeopleDetails = () => {
   const personDetailsId = useSelector(selectPersonId);
 
   if (id !== personDetailsId) {
-    dispatch(setPersonId(id));
+    dispatch(setPersonId({ id }));
   }
+  
   const personContent = useSelector(selectPersonContent);
   const mobile = useSelector(selectMobile);
 
@@ -25,13 +25,13 @@ export const PeopleDetails = () => {
         <Details
           people
           imageURL={profileMainSizeUrl}
-          poster={personContent.profile_path}
-          title={personContent.name}
+          poster={personContent?.profile_path}
+          title={personContent?.name}
           detailsExtraInfoTitle="Place of birth:"
-          detailsExtraInfo={personContent.place_of_birth}
+          detailsExtraInfo={personContent?.place_of_birth}
           detailsDateInfoTitle="Date of birth:"
-          detailsDateInfo={personContent.birthday?.split("-").reverse().join(".")}
-          description={personContent.biography}
+          detailsDateInfo={personContent?.birthday?.split("-").reverse().join(".")}
+          description={personContent?.biography}
         />
       </Section>
       <Section title="Movies - cast (number of videos)">

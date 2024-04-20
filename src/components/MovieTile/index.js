@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   MovieTileContent,
   MovieTileNavLink,
@@ -39,6 +39,6 @@ export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) 
           <MovieRating rating={rating} votes={votes} />
         </MovieTileInfoWrapper>
       </MovieTileNavLink>
-    </MovieTileContent >
+    </MovieTileContent>
   )
 };

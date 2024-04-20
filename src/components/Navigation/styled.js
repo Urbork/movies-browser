@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import search from "../../images/search.svg";
 import { ReactComponent as VideoSVG } from "../../images/video.svg";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Container = styled.nav`
   background-color: ${({ $specialStyle, theme }) => $specialStyle ? theme.color.blackSpecial : theme.color.black};
@@ -70,12 +71,7 @@ export const Logo = styled.div`
   line-height: 40px;
   transition: 0.6s;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
-    //flex-shrink: 1;
-  }
-
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    //flex-shrink: 1;
     font-size: 13px;
     line-height: 16.9px;
     gap: 8px;
@@ -99,7 +95,7 @@ export const ButtonsWrapper = styled.div`
   }
 `;
 
-export const Button = styled.button`
+export const StyledNavLink = styled(NavLink)`
   background-color: ${({ $specialStyle, theme }) => $specialStyle ? theme.color.blackSpecial : theme.color.black};
   text-transform: uppercase;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
@@ -107,9 +103,9 @@ export const Button = styled.button`
   line-height: 21px;
   text-decoration: none;
   color: ${({ theme }) => theme.color.white};
+  padding: 8px 24px;
   border: 1px solid transparent;
   border-radius: 24px;
-  padding: 8px 24px;
   cursor: pointer;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {

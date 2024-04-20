@@ -10,17 +10,13 @@ import { LoadingPage } from "./components/LoadingPage";
 import { ErrorPage } from "./components/ErrorPage";
 import { useSelector } from "react-redux";
 import {
-  selectDisplay,
-  selectFetchStatus,
-} from "./features/pageState/pageStateSlice";
-import {
   toMovieDetails,
   toMoviesList,
   toPeopleDetails,
   toPeopleList
 } from "./routes";
 import { useShowData } from "./useShowData.js";  // 1. usunąć przed deploymentem 🗑
-import { selectDisplay, selectFetchStatus, selectImagesToLoad } from "./features/pageState/pageStateSlice";
+import { selectFetchStatus, selectImagesToLoad } from "./features/pageState/pageStateSlice";
 
 // przed deploymentem usunąć pozycje, które potrzebujemy tylko do budowania aplikacji oraz ten komentarz🗑:
 // 1). import { useShowData } from "./useShowData.js";🗑
@@ -29,10 +25,9 @@ import { selectDisplay, selectFetchStatus, selectImagesToLoad } from "./features
 // po deploymencie przywrócić usunięte elementy na gałęzi main :)
 
 function App() {
-  const display = useSelector(selectDisplay);
   const fetchStatus = useSelector(selectFetchStatus);
   const imagesToLoad = useSelector(selectImagesToLoad);
-  useShowData();  // 2. usunąć przed deploymentem 🗑
+  //useShowData();  // 2. usunąć przed deploymentem 🗑
 
   return (
     <HashRouter>
@@ -50,13 +45,19 @@ function App() {
             {fetchStatus === "ready" && <PeopleDetails />}
           </Route>
           <Route path={toMoviesList()}>
-            <MoviesList />
+            {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
+            {fetchStatus === "error" && <ErrorPage />}
+            {fetchStatus === "ready" && <MoviesList />}
           </Route>
           <Route path={toPeopleList()}>
-            <PeopleList />
+            {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
+            {fetchStatus === "error" && <ErrorPage />}
+            {fetchStatus === "ready" && <PeopleList />}
           </Route>
           <Route path="/">
-            <Redirect to={toMoviesList()} />
+            {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
+            {fetchStatus === "error" && <ErrorPage />}
+            {fetchStatus === "ready" && < MoviesList />}
           </Route>
         </Switch>
       </Container>

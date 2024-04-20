@@ -8,10 +8,11 @@ import {
   InputWrapper,
   Input,
   ButtonsWrapper,
+  Button,
+  StyledNavLink,
 } from "./styled";
 import { toMoviesList, toPeopleList } from "../../routes";
 import { selectDisplay } from "../../features/pageState/pageStateSlice";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Navigation = () => {
   const display = useSelector(selectDisplay);
@@ -25,16 +26,19 @@ export const Navigation = () => {
             Movies Browser
           </Logo>
           <ButtonsWrapper>
-            <NavLink to={toMoviesList()}>
-              <Button $specialStyle={display === "movies"}>
-                Movies
-              </Button>
-            </NavLink>
-            <NavLink to={toPeopleList()}>
-              <Button $specialStyle={display === "movies"}>
-                People
-              </Button>
-            </NavLink>
+            <StyledNavLink
+              to={toMoviesList()}
+              $specialStyle={display === "movies"}
+            >
+              Movies
+            </StyledNavLink>
+            <StyledNavLink
+              to={toPeopleList()}
+              $specialStyle={display === "movies"}
+            >
+              People
+            </StyledNavLink>
+
           </ButtonsWrapper>
         </LogoButtonsWrapper>
         <InputWrapper>
@@ -43,6 +47,6 @@ export const Navigation = () => {
           />
         </InputWrapper>
       </Wrapper>
-    </Container>
+    </Container >
   )
 };

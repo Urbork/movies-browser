@@ -1,6 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
-  StyledNavLink,
+  PeopleTileNavLink,
+  Wrapper,
   Image,
   Name,
   Character
@@ -9,7 +10,7 @@ import blankActor from "../../../images/blankActor.svg";
 import { useState } from "react";
 import { profileMainSizeUrl, profileSmallSizeUrl } from "../../../api/api";
 import { selectMobile } from "../../../features/pageState/pageStateSlice";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { toPeopleDetails } from "../../../routes";
 
 const PeopleTile = ({ profile, name, character, id }) => {
   const [loaded, setLoaded] = useState(false);
@@ -17,7 +18,7 @@ const PeopleTile = ({ profile, name, character, id }) => {
   const profileUrl = mobile ? profileSmallSizeUrl : profileMainSizeUrl;
 
   return (
-    <NavLink to={toMovieDetails(id)}>
+    <PeopleTileNavLink to={toPeopleDetails({ id: id })}>
       <Wrapper>
         <Image
           src={(loaded && profile) ? profileUrl + profile : blankActor}
@@ -28,7 +29,7 @@ const PeopleTile = ({ profile, name, character, id }) => {
         <Name>{name}</Name>
         <Character>{character}</Character>
       </Wrapper>
-    </NavLink>
+    </PeopleTileNavLink>
   )
 };
 
