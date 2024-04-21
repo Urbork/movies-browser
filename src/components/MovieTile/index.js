@@ -15,7 +15,6 @@ import { toMovieDetails } from "../../routes";
 import { useState } from "react";
 import { posterMainSizeUrl, posterMobileSizeUrl } from "../../api/api";
 import { selectMobile } from "../../features/pageState/pageStateSlice";
-import { toMovieDetails } from "../../routes";
 
 export const MovieTile = ({
   poster,

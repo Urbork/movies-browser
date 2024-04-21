@@ -13,11 +13,6 @@ import { PeopleDetails } from "./features/PeopleDetails";
 import PeopleList from "./components/PeopleList";
 import { LoadingPage } from "./components/LoadingPage";
 import { useShowData } from "./useShowData.js"; // 1. usunąć przed deploymentem 🗑
-import {
-  selectDisplay,
-  selectFetchStatus,
-  selectImagesToLoad,
-} from "./features/pageState/pageStateSlice";
 import { ErrorPage } from "./components/ErrorPage";
 import { useSelector } from "react-redux";
 import {
@@ -26,7 +21,6 @@ import {
   toPeopleDetails,
   toPeopleList,
 } from "./routes";
-import { useShowData } from "./useShowData.js"; // 1. usunąć przed deploymentem 🗑
 import {
   selectFetchStatus,
   selectImagesToLoad,
@@ -41,7 +35,7 @@ import {
 function App() {
   const fetchStatus = useSelector(selectFetchStatus);
   const imagesToLoad = useSelector(selectImagesToLoad);
-  useShowData(); // 2. usunąć przed deploymentem 🗑
+  // useShowData(); // 2. usunąć przed deploymentem 🗑
 
   return (
     <HashRouter>
