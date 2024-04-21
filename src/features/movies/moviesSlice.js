@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getSearchMovie } from "../../api/fetchApi";
 
 const moviesSlice = createSlice({
   name: "movies",
@@ -39,15 +38,6 @@ export const {
   setGenres,
   setSearchResults,
 } = moviesSlice.actions;
-
-export const searchMoviesAsync = (query, page) => async (dispatch) => {
-  try {
-    const response = await getSearchMovie(query, page);
-    dispatch(setSearchResults(response.results));
-  } catch (error) {
-    console.error("Error fetching search results:", error);
-  }
-};
 
 const selectMoviesState = (state) => state.movies;
 

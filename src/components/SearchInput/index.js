@@ -5,7 +5,6 @@ import {
   useReplaceQueryParameter,
 } from "./useQueryParameters";
 import { searchInputParamName } from "../SearchInput/searchInputParamName";
-import { searchMoviesAsync } from "../../features/movies/moviesSlice";
 import { Input } from "./styled";
 import { useEffect } from "react";
 import {

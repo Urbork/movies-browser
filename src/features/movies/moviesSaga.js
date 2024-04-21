@@ -31,6 +31,7 @@ function* fetchApiHandler() {
     const query = yield select(selectQuery);
     let movies;
     if (query) {
+      console.log("query: " + query);
       movies = yield call(() => getSearchMovie(query, page));
       yield put(setSearchResults(movies.results));
     } else {
@@ -46,12 +47,6 @@ function* fetchApiHandler() {
     yield put(resetFetchStatus());
     console.log("fetchApiHandler completed.");
   }
-}
-
-export function* debouncedSearch() {
-  console.log("Debounce initiated...");
-  yield debounce(2000, setQuery.type, fetchApiHandler);
-  console.log("Debounce completed.");
 }
 
 export function* moviesSaga() {
