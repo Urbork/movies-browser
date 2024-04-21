@@ -4,15 +4,22 @@ import {
   useQueryParameter,
   useReplaceQueryParameter,
 } from "./useQueryParameters";
+import { searchInputParamName } from "../SearchInput/searchInputParamName";
 import { searchMoviesAsync } from "../../features/movies/moviesSlice";
 import { Input } from "./styled";
+import { useEffect } from "react";
+import { changePageToFirst } from "../../features/pageState/pageStateSlice";
 
 export const SearchInput = () => {
   const location = useLocation();
-  const query = useQueryParameter("search");
+  const query = useQueryParameter(searchInputParamName);
   const replaceQueryParameter = useReplaceQueryParameter();
   const dispatch = useDispatch();
-  const isMoviesList = location.pathname.includes("/moviesList");
+  const isMoviesList = location.pathname.includes("/movies");
+
+  useEffect(() => {
+    dispatch(changePageToFirst());
+  }, [query, dispatch]);
 
   const onInputChange = ({ target }) => {
     const searchQuery = target.value;

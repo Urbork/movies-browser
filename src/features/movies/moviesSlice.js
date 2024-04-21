@@ -61,17 +61,6 @@ export const selectMovieDetailsContent = (state) =>
 export const selectMovieDetailsCredits = (state) =>
   selectMovieDetails(state).credits;
 export const selectGenres = (state) => selectMoviesState(state).genres;
-export const selectMoviesByQuery = (state, query) => {
-  const movies = selectPopularMovies(state);
-
-  if (!query || query.trim() === "") {
-    return movies;
-  }
-
-  return movies.filter(({ title }) =>
-    title.toUpperCase().includes(query.toUpperCase().trim())
-  );
-};
 export const selectSearchResults = (state) =>
   selectMoviesState(state).searchResults;
 

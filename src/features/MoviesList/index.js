@@ -9,10 +9,11 @@ import {
 } from "../movies/moviesSlice";
 import { setImagesLoaded } from "../pageState/pageStateSlice";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { searchInputParamName } from "../../components/SearchInput/searchInputParamName";
 
 export const MoviesList = () => {
   const location = useLocation();
-  const query = new URLSearchParams(location.search).get("search");
+  const query = new URLSearchParams(location.search).get(searchInputParamName);
 
   const popularMovies = useSelector(selectPopularMovies);
   const searchResults = useSelector(selectSearchResults);
@@ -22,7 +23,7 @@ export const MoviesList = () => {
   const displayData = query ? searchResults : popularMovies;
 
   return (
-    <Section title={query ? "Search Results" : "Popular movies"}>
+    <Section title={query ? `Search Results for "${query}"` : "Popular movies"}>
       <MoviesListWrapper onLoad={() => dispatch(setImagesLoaded())}>
         {displayData?.map((movie) => (
           <MovieTile
