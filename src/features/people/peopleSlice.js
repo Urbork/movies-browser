@@ -4,7 +4,9 @@ const peopleSlice = createSlice({
   name: "people",
   initialState: {
     popularPeople: [],
-    person: {},
+    person: {
+      credits: {},
+    },
   },
   reducers: {
     setPopularPeople: (state, { payload: people }) => {
