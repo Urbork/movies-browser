@@ -2,6 +2,20 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 
 export const MovieTileContent = styled.li`
+  transition: 0.15s;
+
+  // ten efekt powoduje poruszanie się elementów w MovieTileNavLink
+  // trzeba znaleźć rozwiązanie lub zamiennić na inny
+  &:hover {
+    transform: scale(1.04);  
+  }
+`;
+
+export const MovieTileNavLink = styled(NavLink)`
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -9,22 +23,7 @@ export const MovieTileContent = styled.li`
   border-radius: 5px;
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0px 4px 12px 0px ${({ theme }) => theme.color.boxShadow};
-  transition: 0.4s;
-  width: 100%;
   gap: 16px;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-`;
-
-export const MovieTileNavLink = styled(NavLink)`
-  height: 100%;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  color: inherit;
-  cursor: pointer;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     flex-direction: row;

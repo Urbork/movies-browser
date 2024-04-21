@@ -19,8 +19,8 @@ const PeopleTile = ({ profile, name, id, role }) => {
   const profileUrl = mobile ? profileSmallSizeUrl : profileMainSizeUrl;
 
   return (
-    <PeopleTileNavLink to={toPeopleDetails({ id: id })}>
-      <Wrapper>
+    <Wrapper>
+      <PeopleTileNavLink to={toPeopleDetails({ id: id })}>
         <Image
           src={(loaded && profile) ? profileUrl + profile : blankActor}
           alt={(loaded && name) ? name : "no name"}
@@ -31,8 +31,8 @@ const PeopleTile = ({ profile, name, id, role }) => {
           <Name>{name}</Name>
           <Role>{role}</Role>
         </ContentWrapper>
-      </Wrapper>
-    </PeopleTileNavLink>
+      </PeopleTileNavLink>
+    </Wrapper>
   )
 };
 

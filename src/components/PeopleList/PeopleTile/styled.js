@@ -1,23 +1,30 @@
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { styled } from "styled-components";
 
-export const PeopleTileNavLink = styled(NavLink)`
-  text-decoration: none;
-  color: inherit;
+export const Wrapper = styled.div`
+  transition: 0.15s;
+
+  // ten efekt powoduje poruszanie się elementów w PeopleTileNavLink
+  // trzeba znaleźć rozwiązanie lub zamiennić na inny
+  &:hover { 
+    transform: scale(1.05);
+  }
 `;
 
-export const Wrapper = styled.div`
+export const PeopleTileNavLink = styled(NavLink)`
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
   background-color: ${({ theme }) => theme.color.white};
   padding: clamp(8px, 0.85vw , 16px);
-  transition: 0.6s;
   box-shadow: 0px 4px 12px 0px ${({ theme }) => theme.color.boxShadow};
   border-radius: 5px;
   cursor: pointer;
-  width: 100%;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
     gap: clamp(8px, 2.5vw , 12px);
@@ -28,15 +35,10 @@ export const Wrapper = styled.div`
     gap: 8px;
     min-height: 245px;
   }
-
-  &:hover { 
-    transform: scale(1.05);
-  }
 `;
 
 export const Image = styled.img`
   margin: 0;
-  width: 100%;
   aspect-ratio:  176 / 231; 
   object-fit: cover;
   border-radius: 5px;
