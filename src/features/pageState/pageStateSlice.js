@@ -78,6 +78,7 @@ export const {
   peopleDisplay,
   movieDetailsDisplay,
   personDisplay,
+  setCurrentPage,
   changePageToFirst,
   changePageToPrevious,
   changePageToNext,
@@ -95,6 +96,8 @@ export const selectFetchStatus = state => selectPageState(state).fetchStatus;
 export const selectPages = state => selectPageState(state).pages;
 export const selectFirstPage = state => selectPages(state).firstPage;
 export const selectCurrentPage = state => selectPages(state).currentPage;
+export const selectPreviousPage = state => selectCurrentPage(state) - 1;
+export const selectNextPage = state => selectCurrentPage(state) + 1;
 export const selectLastPage = state => selectPages(state).lastPage;
 export const selectScreen = state => selectPageState(state).screenWidth;
 export const selectScreenWidth = state => selectScreen(state).width;

@@ -5,17 +5,20 @@ import {
   LogoButtonsWrapper,
   Logo,
   Video,
-  StyledNavLink,
   InputWrapper,
   ButtonsWrapper,
+  StyledNavLink,
 } from "./styled";
-import { selectDisplay } from "../../features/pageState/pageStateSlice";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { toMoviesList, toPeopleList } from "../../routes";
+import {
+  moviesDisplay,
+  peopleDisplay,
+  selectDisplay,
+} from "../../features/pageState/pageStateSlice";
 import { SearchInput } from "../SearchInput";
 
-const Navigation = () => {
-  const { page } = useParams();
+export const Navigation = () => {
+  const dispatch = useDispatch();
   const display = useSelector(selectDisplay);
 
   return (
@@ -27,8 +30,20 @@ const Navigation = () => {
             Movies Browser
           </Logo>
           <ButtonsWrapper>
-            <StyledNavLink to={toMoviesList({ page })}> Movies</StyledNavLink>
-            <StyledNavLink to={toPeopleList({ page })}> People</StyledNavLink>
+            <StyledNavLink
+              to={toMoviesList()}
+              onClick={() => dispatch(moviesDisplay())}
+              $specialStyle={display === "movies"}
+            >
+              Movies
+            </StyledNavLink>
+            <StyledNavLink
+              to={toPeopleList()}
+              onClick={() => dispatch(peopleDisplay())}
+              $specialStyle={display === "movies"}
+            >
+              People
+            </StyledNavLink>
           </ButtonsWrapper>
         </LogoButtonsWrapper>
         <InputWrapper>
@@ -38,5 +53,3 @@ const Navigation = () => {
     </Container>
   );
 };
-
-export default Navigation;

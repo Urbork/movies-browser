@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   MovieTileContent,
   MovieTileNavLink,
@@ -11,7 +11,7 @@ import {
 import noPoster from "../../images/noPoster.svg";
 import { MovieTags } from "./MovieTags";
 import { MovieRating } from "./MovieRating";
-import { setMovieDetailsId } from "../../features/movies/moviesSlice";
+import { toMovieDetails } from "../../routes";
 import { useState } from "react";
 import { posterMainSizeUrl, posterMobileSizeUrl } from "../../api/api";
 import { selectMobile } from "../../features/pageState/pageStateSlice";
@@ -26,14 +26,13 @@ export const MovieTile = ({
   votes,
   id,
 }) => {
-  const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   const mobile = useSelector(selectMobile);
   const posterUrl = mobile ? posterMobileSizeUrl : posterMainSizeUrl;
 
   return (
-    <MovieTileContent onClick={() => dispatch(setMovieDetailsId(id))}>
-      <MovieTileNavLink to={toMovieDetails({ id })}>
+    <MovieTileContent>
+      <MovieTileNavLink to={toMovieDetails({ id: id })}>
         <MovieTileImage
           src={loaded && poster ? posterUrl + poster : noPoster}
           alt={loaded && title ? `${title} movie poster` : "no poster"}

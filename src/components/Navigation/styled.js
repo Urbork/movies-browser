@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 import search from "../../images/search.svg";
 import { ReactComponent as VideoSVG } from "../../images/video.svg";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Container = styled.nav`
   background-color: ${({ $specialStyle, theme }) =>
@@ -72,12 +73,7 @@ export const Logo = styled.div`
   line-height: 40px;
   transition: 0.6s;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
-    flex-shrink: 1;
-  }
-
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    flex-shrink: 1;
     font-size: 13px;
     line-height: 16.9px;
     gap: 8px;
@@ -101,51 +97,22 @@ export const ButtonsWrapper = styled.div`
   }
 `;
 
-export const Button = styled.button`
+export const StyledNavLink = styled(NavLink)`
   background-color: ${({ $specialStyle, theme }) =>
     $specialStyle ? theme.color.blackSpecial : theme.color.black};
   text-transform: uppercase;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   font-size: 14px;
   line-height: 21px;
+  text-decoration: none;
   color: ${({ theme }) => theme.color.white};
+  padding: 8px 24px;
   border: 1px solid transparent;
   border-radius: 24px;
-  padding: 8px 24px;
   cursor: pointer;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     background-color: ${({ theme }) => theme.color.black};
-    padding: 8px 12px;
-    font-size: 12px;
-    line-height: 18px;
-  }
-
-  &:hover {
-    border: 1px solid ${({ theme }) => theme.color.white};
-  } // hover do zmiany na active po dodaniu HashRoutera
-`;
-
-export const StyledNavLink = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-transform: uppercase;
-  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
-  font-size: 14px;
-  line-height: 21px;
-  text-decoration: none;
-  color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.navBar};
-
-  border: 1px solid transparent;
-  border-radius: 24px;
-  padding: 8px 24px;
-
-  cursor: pointer;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     padding: 8px 12px;
     font-size: 12px;
     line-height: 18px;

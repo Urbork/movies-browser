@@ -1,9 +1,5 @@
-export const toMoviesList = ({ page } = { page: ":page" }) =>
-  `/moviesList/${page}`;
-export const toPeopleList = ({ page } = { page: ":page" }) =>
-  `/peopleList/${page}`;
+export const toMoviesList = () => `/movies`;
+export const toPeopleList = () => `/people`;
 
-export const toMovieDetails = ({ id } = { id: ":id" }) =>
-  `/moviesList/movieDetails/${id}`;
-export const toPeopleDetails = ({ id } = { id: ":id" }) =>
-  `/peopleList/peopleDetails/${id}`;
+export const toMovieDetails = ({ id } = { id: ":id" }) => `/movies/id=${id}`;
+export const toPeopleDetails = ({ id } = { id: ":id" }) => `/people/id=${id}`;

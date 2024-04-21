@@ -20,7 +20,7 @@ export const MovieTileNavLink = styled(NavLink)`
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.color.black};
+  color: inherit;
   cursor: pointer;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
