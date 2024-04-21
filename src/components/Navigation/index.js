@@ -3,7 +3,7 @@ import {
   Container,
   Wrapper,
   LogoButtonsWrapper,
-  Logo,
+  AppName,
   Video,
   InputWrapper,
   Input,
@@ -21,10 +21,10 @@ export const Navigation = () => {
     <Container $specialStyle={display === "movies"}>
       <Wrapper>
         <LogoButtonsWrapper>
-          <Logo>
+          <AppName>
             <Video />
             Movies Browser
-          </Logo>
+          </AppName>
           <ButtonsWrapper>
             <StyledNavLink
               to={toMoviesList()}
@@ -40,7 +40,6 @@ export const Navigation = () => {
             >
               People
             </StyledNavLink>
-
           </ButtonsWrapper>
         </LogoButtonsWrapper>
         <InputWrapper>
