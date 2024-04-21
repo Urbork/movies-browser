@@ -8,7 +8,10 @@ import { searchInputParamName } from "../SearchInput/searchInputParamName";
 import { searchMoviesAsync } from "../../features/movies/moviesSlice";
 import { Input } from "./styled";
 import { useEffect } from "react";
-import { changePageToFirst } from "../../features/pageState/pageStateSlice";
+import {
+  changePageToFirst,
+  setQuery,
+} from "../../features/pageState/pageStateSlice";
 
 export const SearchInput = () => {
   const location = useLocation();
@@ -29,6 +32,7 @@ export const SearchInput = () => {
       value: searchQuery.trim() !== "" ? searchQuery : "",
     });
 
+    dispatch(setQuery(searchQuery.trim()));
     dispatch(searchMoviesAsync(searchQuery.trim(), 1));
   };
 

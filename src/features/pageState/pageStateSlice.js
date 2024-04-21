@@ -12,9 +12,10 @@ const pageStateSlice = createSlice({
     },
     screenWidth: {
       width: window.innerWidth,
-      mobile: undefined
+      mobile: undefined,
     },
     imagesToLoad: false,
+    query: "",
   },
   reducers: {
     fetchApi: (state) => {
@@ -44,12 +45,12 @@ const pageStateSlice = createSlice({
       state.pages.currentPage = state.pages.firstPage;
     },
     changePageToPrevious: (state) => {
-      if (state.pages.currentPage === state.pages.firstPage) return
-      state.pages.currentPage--
+      if (state.pages.currentPage === state.pages.firstPage) return;
+      state.pages.currentPage--;
     },
     changePageToNext: (state) => {
-      if (state.pages.currentPage === state.pages.lastPage) return
-      state.pages.currentPage++
+      if (state.pages.currentPage === state.pages.lastPage) return;
+      state.pages.currentPage++;
     },
     changePageToLast: (state) => {
       state.pages.currentPage = state.pages.lastPage;
@@ -66,6 +67,9 @@ const pageStateSlice = createSlice({
     },
     setImagesToLoad: (state) => {
       state.imagesToLoad = true;
+    },
+    setQuery: (state, { payload: query }) => {
+      state.query = query;
     },
   },
 });
@@ -87,21 +91,24 @@ export const {
   changeMobileState,
   setImagesLoaded,
   setImagesToLoad,
+  setQuery,
 } = pageStateSlice.actions;
 
-const selectPageState = state => state.pageState;
+const selectPageState = (state) => state.pageState;
 
-export const selectDisplay = state => selectPageState(state).display;
-export const selectFetchStatus = state => selectPageState(state).fetchStatus;
-export const selectPages = state => selectPageState(state).pages;
-export const selectFirstPage = state => selectPages(state).firstPage;
-export const selectCurrentPage = state => selectPages(state).currentPage;
-export const selectPreviousPage = state => selectCurrentPage(state) - 1;
-export const selectNextPage = state => selectCurrentPage(state) + 1;
-export const selectLastPage = state => selectPages(state).lastPage;
-export const selectScreen = state => selectPageState(state).screenWidth;
-export const selectScreenWidth = state => selectScreen(state).width;
-export const selectMobile = state => selectScreen(state).mobile;
-export const selectImagesToLoad = state => selectPageState(state).imagesToLoad;
+export const selectDisplay = (state) => selectPageState(state).display;
+export const selectFetchStatus = (state) => selectPageState(state).fetchStatus;
+export const selectPages = (state) => selectPageState(state).pages;
+export const selectFirstPage = (state) => selectPages(state).firstPage;
+export const selectCurrentPage = (state) => selectPages(state).currentPage;
+export const selectPreviousPage = (state) => selectCurrentPage(state) - 1;
+export const selectNextPage = (state) => selectCurrentPage(state) + 1;
+export const selectLastPage = (state) => selectPages(state).lastPage;
+export const selectScreen = (state) => selectPageState(state).screenWidth;
+export const selectScreenWidth = (state) => selectScreen(state).width;
+export const selectMobile = (state) => selectScreen(state).mobile;
+export const selectImagesToLoad = (state) =>
+  selectPageState(state).imagesToLoad;
+export const selectQuery = (state) => selectPageState(state).query;
 
 export default pageStateSlice.reducer;
