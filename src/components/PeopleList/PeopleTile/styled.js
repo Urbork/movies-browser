@@ -12,8 +12,10 @@ export const Wrapper = styled.div`
 `;
 
 export const PeopleTileNavLink = styled(NavLink)`
-  width: 100%;
+  margin: 0;
+  /* width: 100%; */
   height: 100%;
+  border: none;
   text-decoration: none;
   color: inherit;
   display: flex;
@@ -21,13 +23,14 @@ export const PeopleTileNavLink = styled(NavLink)`
   align-items: center;
   gap: 12px;
   background-color: ${({ theme }) => theme.color.white};
-  padding: clamp(8px, 0.85vw , 16px);
+  padding: 16px;
   box-shadow: 0px 4px 12px 0px ${({ theme }) => theme.color.boxShadow};
   border-radius: 5px;
   cursor: pointer;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
     gap: clamp(8px, 2.5vw , 12px);
+    padding: clamp(8px, 1vw , 16px);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
@@ -39,6 +42,9 @@ export const PeopleTileNavLink = styled(NavLink)`
 
 export const Image = styled.img`
   margin: 0;
+  padding: 0;
+  border: none;
+  width: 100%;
   aspect-ratio:  176 / 231; 
   object-fit: cover;
   border-radius: 5px;

@@ -9,7 +9,7 @@ export const SectionWrapper = styled.section`
   display: ${({ $mobile }) => $mobile ? "none" : "auto"};
   transition-delay: ${({ $delay }) => $delay ? "2.5s" : "0"};
 
-  @media (max-width: 1416px) {
+  @media (max-width: 1450px) {
     width: 100%;
   }
  

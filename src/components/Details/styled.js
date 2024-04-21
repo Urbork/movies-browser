@@ -40,8 +40,8 @@ export const DetailsTitle = styled.h3`
   padding: 80px, 0px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
-    font-size: clamp(14px, 1.6vw, 36px);
-    line-height: clamp(18.2px, 1,6vw, 43.2px);
+    font-size: clamp(14px, 3vw, 36px);
+    line-height: clamp(18.2px, 3vw, 43.2px);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
@@ -76,11 +76,11 @@ export const DetailsInfo = styled.div`
   gap: 24px;
   
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
-    gap: clamp(16px, 1.6vw, 24px);
+    gap: clamp(8px, 1.6vw, 24px);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    gap: 16px;
+    gap: 8px;
   }
 `;
 
