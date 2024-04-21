@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import {
   selectMovieDetailsCreditsCast,
   selectMovieDetailsCreditsCrew,
@@ -14,6 +13,7 @@ import { Wrapper } from "../../components/PeopleList/styled";
 import { selectMobile } from "../pageState/pageStateSlice";
 import { posterMainSizeUrl } from "../../api/api";
 import PeopleTile from "../../components/PeopleList/PeopleTile";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export const MovieDetails = () => {
   const { id } = useParams();
@@ -23,6 +23,7 @@ export const MovieDetails = () => {
   if (id !== movieDetailsId) {
     dispatch(setMovieDetailsId(id));
   }
+
   const movieDetailsContent = useSelector(selectMovieDetailsContent);
   const mobile = useSelector(selectMobile);
   const creditsCast = useSelector(selectMovieDetailsCreditsCast);

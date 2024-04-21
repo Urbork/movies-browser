@@ -4,7 +4,9 @@ const moviesSlice = createSlice({
   name: "movies",
   initialState: {
     popularMovies: [],
-    movieDetails: {},
+    movieDetails: {
+      credits: {},
+    },
     genres: [],
   },
   reducers: {
