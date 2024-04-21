@@ -11,13 +11,21 @@ import {
   AdditionalBackwardArrow,
   AdditionalForwardArrow
 } from "./styled";
-import { changePageToFirst, changePageToLast, changePageToNext, changePageToPrevious, selectCurrentPage, selectFirstPage, selectLastPage } from "../../features/pageState/pageStateSlice";
+import {
+  changePageToFirst,
+  changePageToLast,
+  changePageToNext,
+  changePageToPrevious,
+  selectFirstPage,
+  selectCurrentPage,
+  selectLastPage,
+} from "../../features/pageState/pageStateSlice";
 
 export const Pagination = () => {
+  const dispatch = useDispatch();
   const firstPage = useSelector(selectFirstPage)
   const currentPage = useSelector(selectCurrentPage);
   const lastPage = useSelector(selectLastPage);
-  const dispatch = useDispatch();
 
   return (
     <Wrapper>

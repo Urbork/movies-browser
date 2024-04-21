@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 
 export const MovieTileContent = styled.li`
@@ -15,6 +16,15 @@ export const MovieTileContent = styled.li`
   &:hover {
     transform: scale(1.05);
   }
+`;
+
+export const MovieTileNavLink = styled(NavLink)`
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  cursor: pointer;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     flex-direction: row;

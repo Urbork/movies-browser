@@ -1,4 +1,10 @@
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { styled } from "styled-components";
+
+export const PeopleTileNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: inherit;
+`;
 
 export const Wrapper = styled.div`
   display: flex;
