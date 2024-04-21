@@ -18,15 +18,17 @@ import {
   moviesDisplay,
   resetFetchStatus,
   selectCurrentPage,
+  selectQuery,
   setImagesToLoad,
   setQuery,
 } from "../pageState/pageStateSlice";
 
-function* fetchApiHandler(query) {
+function* fetchApiHandler() {
   try {
     console.log("Starting fetchApiHandler...");
     yield put(fetchApi());
     const page = yield select(selectCurrentPage);
+    const query = yield select(selectQuery);
     let movies;
     if (query) {
       movies = yield call(() => getSearchMovie(query, page));

@@ -33,7 +33,6 @@ export const SearchInput = () => {
     });
 
     dispatch(setQuery(searchQuery.trim()));
-    dispatch(searchMoviesAsync(searchQuery.trim(), 1));
   };
 
   return (
