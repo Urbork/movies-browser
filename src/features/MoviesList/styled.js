@@ -5,24 +5,24 @@ export const MoviesListWrapper = styled.ul`
   margin: 0;
   padding-left: 0px; 
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 324px));
+  grid-template-columns: repeat(4, minmax(205px, 324px));
   gap: 24px;
   margin-bottom: -14px;
 
-  @media (max-width: 1102px) {
-    grid-template-columns: repeat(3, minmax(0, 324px)); 
+  @media (max-width: 1068px) {
+    grid-template-columns: repeat(3, minmax(205px, 324px)); 
   }
 
-  @media (max-width: 730px) {
-    grid-template-columns: repeat(2, minmax(0, 324px)); 
+  @media (max-width: 704px) {
+    grid-template-columns: repeat(2, minmax(195px, 324px)); 
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     margin-bottom: 32px;
-    gap: 16px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    grid-template-columns:minmax(0, 480px); 
+    grid-template-columns:minmax(288px, 480px); 
+    gap: 16px;
   }
 `;
