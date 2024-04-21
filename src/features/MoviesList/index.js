@@ -4,33 +4,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { MovieTile } from "../../components/MovieTile";
 import {
   selectGenres,
-  selectMoviesByQuery,
   selectPopularMovies,
+  selectSearchResults,
 } from "../movies/moviesSlice";
 import { setImagesLoaded } from "../pageState/pageStateSlice";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 export const MoviesList = () => {
-  // TESTY
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("search");
-  // KONIEC TESTÓW
 
-  const popularMovies = useSelector((state) =>
-    selectMoviesByQuery(state, query)
-  );
+  const popularMovies = useSelector(selectPopularMovies);
+  const searchResults = useSelector(selectSearchResults);
   const genres = useSelector(selectGenres);
   const dispatch = useDispatch();
 
+  const displayData = query ? searchResults : popularMovies;
+
   return (
-    <Section title="Popular movies">
+    <Section title={query ? "Search Results" : "Popular movies"}>
       <MoviesListWrapper onLoad={() => dispatch(setImagesLoaded())}>
-        {popularMovies?.map((movie) => (
+        {displayData?.map((movie) => (
           <MovieTile
             key={movie.id}
             poster={movie.poster_path}
             title={movie.title}
-            subtitle={movie.release_date.split("-")[0]}
+            subtitle={movie.release_date?.split("-")[0]}
             tags={movie.genre_ids?.map(
               (genreId) => genres.find((item) => item.id === genreId)?.name
             )}

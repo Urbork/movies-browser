@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getSearchMovie } from "../../api/fetchApi";
 
 const moviesSlice = createSlice({
   name: "movies",
@@ -6,6 +7,7 @@ const moviesSlice = createSlice({
     popularMovies: [],
     movieDetails: {},
     genres: [],
+    searchResults: [],
   },
   reducers: {
     setPopularMovies: (state, { payload: movies }) => {
@@ -23,6 +25,9 @@ const moviesSlice = createSlice({
     setGenres: (state, { payload: genres }) => {
       state.genres = genres;
     },
+    setSearchResults: (state, { payload: results }) => {
+      state.searchResults = results;
+    },
   },
 });
 
@@ -32,7 +37,17 @@ export const {
   setMovieDetails,
   setCredits,
   setGenres,
+  setSearchResults,
 } = moviesSlice.actions;
+
+export const searchMoviesAsync = (query, page) => async (dispatch) => {
+  try {
+    const response = await getSearchMovie(query, page);
+    dispatch(setSearchResults(response.results));
+  } catch (error) {
+    console.error("Error fetching search results:", error);
+  }
+};
 
 const selectMoviesState = (state) => state.movies;
 
@@ -57,5 +72,7 @@ export const selectMoviesByQuery = (state, query) => {
     title.toUpperCase().includes(query.toUpperCase().trim())
   );
 };
+export const selectSearchResults = (state) =>
+  selectMoviesState(state).searchResults;
 
 export default moviesSlice.reducer;
