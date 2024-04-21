@@ -1,12 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { selectMovieDetailsContent, selectMovieDetailsId, setMovieDetailsId } from "../movies/moviesSlice";
+import {
+  selectMovieDetailsCreditsCast,
+  selectMovieDetailsCreditsCrew,
+  selectMovieDetailsContent,
+  selectMovieDetailsId,
+  setMovieDetailsId
+} from "../movies/moviesSlice";
 import { MovieCover } from "./MovieCover";
 import { Details } from "../../components/Details";
 import { Section } from "../../components/Section";
 import { Wrapper } from "../../components/PeopleList/styled";
 import { selectMobile } from "../pageState/pageStateSlice";
 import { posterMainSizeUrl } from "../../api/api";
+import PeopleTile from "../../components/PeopleList/PeopleTile";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export const MovieDetails = () => {
   const { id } = useParams();
@@ -16,8 +23,11 @@ export const MovieDetails = () => {
   if (id !== movieDetailsId) {
     dispatch(setMovieDetailsId(id));
   }
+
   const movieDetailsContent = useSelector(selectMovieDetailsContent);
   const mobile = useSelector(selectMobile);
+  const creditsCast = useSelector(selectMovieDetailsCreditsCast);
+  const creditsCrew = useSelector(selectMovieDetailsCreditsCrew);
 
   return (
     <>
@@ -47,13 +57,29 @@ export const MovieDetails = () => {
         />
       </ Section>
       <Section title="Cast">
-        <Wrapper>
-          Cast here
+        <Wrapper >
+          {creditsCast?.map((person) => (
+            <PeopleTile
+              key={person.credit_id}
+              id={person.id}
+              profile={person.profile_path}
+              name={person.name}
+              role={person.character}
+            />
+          ))}
         </Wrapper>
       </ Section>
       <Section title="Crew" mobile={mobile}>
-        <Wrapper>
-          Crew here
+        <Wrapper $addSpace="true">
+          {creditsCrew?.map((person) => (
+            <PeopleTile
+              key={person.credit_id}
+              id={person.id}
+              profile={person.profile_path}
+              name={person.name}
+              role={person.department}
+            />
+          ))}
         </Wrapper>
       </ Section>
     </>

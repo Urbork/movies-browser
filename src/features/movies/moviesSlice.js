@@ -4,7 +4,9 @@ const moviesSlice = createSlice({
   name: "movies",
   initialState: {
     popularMovies: [],
-    movieDetails: {},
+    movieDetails: {
+      credits: {},
+    },
     genres: [],
   },
   reducers: {
@@ -42,6 +44,7 @@ export const selectMovieDetailsId = state => selectMovieDetails(state).id;
 export const selectMovieDetailsContent = state => selectMovieDetails(state).content;
 export const selectMovieDetailsCredits = state => selectMovieDetails(state).credits;
 export const selectGenres = state => selectMoviesState(state).genres;
-
+export const selectMovieDetailsCreditsCast = state => selectMovieDetailsCredits(state).cast
+export const selectMovieDetailsCreditsCrew = state => selectMovieDetailsCredits(state).crew
 
 export default moviesSlice.reducer;

@@ -1,16 +1,16 @@
 import { styled } from "styled-components";
 
 export const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(6, minmax(165px, 208px));
+  display: grid;  
+  align-items: stretch;
+  grid-template-columns: repeat(6, minmax(0, 208px));
   gap: 24px;
-  margin-bottom: -8px;
-
-  @media (max-width: 1183px) {
+  margin-bottom: ${({ $addSpace }) => $addSpace ? "272px" : "-8px"};
+  @media (max-width: 1184px) {
     grid-template-columns: repeat(5, minmax(0, 208px)); 
   }
 
-  @media (max-width: 951px) {
+  @media (max-width: 952px) {
     grid-template-columns: repeat(4, minmax(0, 208px)); 
   }
 

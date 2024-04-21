@@ -3,10 +3,10 @@ import {
   MovieTileContent,
   MovieTileNavLink,
   MovieTileImage,
-  MovieTileInfoWrapper,
   MovieTileInfo,
   MovieTileTitle,
   MovieTileSubtitle,
+  MovieTileInfoWrapper,
 } from "./styled";
 import noPoster from "../../images/noPoster.svg";
 import { MovieTags } from "./MovieTags";

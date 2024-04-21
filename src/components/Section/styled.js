@@ -10,7 +10,7 @@ export const SectionWrapper = styled.section`
   transition-delay: ${({ $delay }) => $delay ? "2.5s" : "0"};
 
   @media (max-width: 1416px) {
-    width: 100%;
+    width: 100%; 
   }
  
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
@@ -22,7 +22,8 @@ export const SectionHeading = styled.h2`
   margin: 0 0 24px;
   font-size: 36px;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
-  line-height: 1.2;
+  line-height: 43.2px;
+  text-align: left;
   transition: 0.6s;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
