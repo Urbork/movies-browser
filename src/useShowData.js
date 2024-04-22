@@ -28,9 +28,9 @@ export const useShowData = () => {
 
   const display = useSelector(selectDisplay);
   const fetchStatus = useSelector(selectFetchStatus);
-  const firstPage = useSelector(selectFirstPage);
-  const currentPage = useSelector(selectCurrentPage);
-  const lastPage = useSelector(selectLastPage);
+  // const firstPage = useSelector(selectFirstPage);
+  // const currentPage = useSelector(selectCurrentPage);
+  // const lastPage = useSelector(selectLastPage);
   const screenWidth = useSelector(selectScreenWidth);
   const mobile = useSelector(selectMobile);
   const imagesToLoad = useSelector(selectImagesToLoad);
@@ -64,14 +64,14 @@ export const useShowData = () => {
   console.log("PAGE STATE  -----> ");
   console.log("display: ", display);
   console.log("fetchStatus: ", fetchStatus);
-  console.log(
-    "firstPage: ",
-    firstPage,
-    "currentPage :",
-    currentPage,
-    "lastPage :",
-    lastPage
-  );
+  // console.log(
+  //   "firstPage: ",
+  //   firstPage,
+  //   "currentPage :",
+  //   currentPage,
+  //   "lastPage :",
+  //   lastPage
+  // );
   console.log("screenWidth: ", screenWidth);
   console.log("mobile: ", mobile);
   console.log("imagesToLoad: ", imagesToLoad);

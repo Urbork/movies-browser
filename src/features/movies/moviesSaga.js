@@ -9,7 +9,9 @@ import {
   fetchApi, fetchError,
   moviesDisplay,
   resetFetchStatus,
+  selectCurrentMoviePage,
   selectCurrentPage,
+  setCurrentMoviePage,
   setCurrentPage,
   setImagesToLoad
 } from "../pageState/pageStateSlice";
@@ -19,27 +21,30 @@ function* fetchApiHandler() {
     yield put(fetchApi());
     // yield put(()=>setCurrentPage(1))
 
-    const page = yield select(selectCurrentPage);
+    const page = yield select(selectCurrentMoviePage);
     const movies = yield call(() => getPopularMovies(page));
     yield delay(1000);
     yield put(setImagesToLoad());
     yield put(setPopularMovies(movies.results));
+    yield put(resetFetchStatus());
+
   } catch (error) {
     yield put(fetchError());
     yield delay(3000);
+
   } finally {
-    yield put(resetFetchStatus());
+    // yield put(resetFetchStatus());
   };
 };
 
 export function* moviesSaga() {
   yield takeLatest([
-    changePageToFirst.type,
-    changePageToPrevious.type,
-    changePageToNext.type,
-    changePageToLast.type,
-    moviesDisplay.type,
+    // changePageToFirst.type,
+    // changePageToPrevious.type,
+    // changePageToNext.type,
+    // changePageToLast.type,
+    // moviesDisplay.type,
 
-    setCurrentPage.type
+    setCurrentMoviePage.type
   ], fetchApiHandler);
 }

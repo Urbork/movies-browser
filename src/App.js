@@ -16,7 +16,7 @@ import {
   toPeopleList
 } from "./routes";
 import { useShowData } from "./useShowData.js";  // 1. usunąć przed deploymentem 🗑
-import { selectFetchStatus, selectFirstPage, selectImagesToLoad } from "./features/pageState/pageStateSlice";
+import { selectFetchStatus, selectFirstMoviePage, selectFirstPage, selectImagesToLoad } from "./features/pageState/pageStateSlice";
 
 // przed deploymentem usunąć pozycje, które potrzebujemy tylko do budowania aplikacji oraz ten komentarz🗑:
 // 1). import { useShowData } from "./useShowData.js";🗑
@@ -28,7 +28,7 @@ function App() {
   const fetchStatus = useSelector(selectFetchStatus);
   const imagesToLoad = useSelector(selectImagesToLoad);
   useShowData();  // 2. usunąć przed deploymentem 🗑
-  const firstPage = useSelector(selectFirstPage);
+  const firstMoviePage = useSelector(selectFirstMoviePage);
 
   return (
     <HashRouter>
@@ -61,6 +61,7 @@ function App() {
             }
           </Route>
 
+
           <Route path="/movies">
             {(fetchStatus === "loading"
               // || imagesToLoad
@@ -86,7 +87,7 @@ function App() {
             }
           </Route> */}
           <Route path="/">
-            <Redirect to={`/movies/page=${firstPage}`} />
+            <Redirect to={`/movies/page=${firstMoviePage}`} />
           </Route>
         </Switch>
       </Container>

@@ -1,6 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
-  Button,
   ButtonContainer,
   Wrapper,
   Number,
@@ -12,67 +11,52 @@ import {
   AdditionalForwardArrow
 } from "./styled";
 import {
-  changePageToFirst,
-  changePageToLast,
-  changePageToNext,
-  changePageToPrevious,
+  selectFirstMoviePage,
   selectFirstPage,
-  selectCurrentPage,
+  selectLastMoviePage,
   selectLastPage,
 } from "../../features/pageState/pageStateSlice";
 import { StyledNavLink } from "./styled";
-import { toMoviesList } from "../../routes";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Pagination = () => {
-  const firstPage = useSelector(selectFirstPage)
-  const lastPage = useSelector(selectLastPage);
+  const firstMoviePage = useSelector(selectFirstMoviePage)
+  const lastMoviePage = useSelector(selectLastMoviePage);
   const { page } = useParams();
 
-  let currentPage = +page;
-  const previousPage = currentPage <= firstPage ? currentPage : currentPage - 1;
-  const nextPage = currentPage >= lastPage ? currentPage : currentPage + 1;
-
-  console.log("page", page);
-  console.log("currentPage", currentPage)
-  console.log("previousPage", previousPage)
-  console.log("nextPage", nextPage)
-  console.log("firstPage", firstPage)
-  console.log("lastPage", lastPage)
-
+  let pageNumber = +page;
+  const previousPage = pageNumber <= firstMoviePage ? pageNumber : pageNumber - 1;
+  const nextPage = pageNumber >= lastMoviePage ? pageNumber : pageNumber + 1;
+  const isFirstPage = pageNumber === firstMoviePage ? true : false;
+  const isLastPage = pageNumber === lastMoviePage ? true : false;
 
   return (
     <Wrapper>
       <ButtonContainer>
-        <StyledNavLink to={`/movies/page=${firstPage}`} disabled={currentPage === firstPage}>
-          <BackwardArrow disabled={currentPage === firstPage} />
-          <AdditionalBackwardArrow disabled={currentPage === firstPage} />
-          <Content disabled={currentPage === firstPage}>First</Content>
+        <StyledNavLink to={`/movies/page=${firstMoviePage}`} disabled={isFirstPage}>
+          <BackwardArrow disabled={isFirstPage} />
+          <AdditionalBackwardArrow disabled={isFirstPage} />
+          <Content disabled={isFirstPage}>First</Content>
         </ StyledNavLink >
-
-        <StyledNavLink to={`/movies/page=${previousPage}`} disabled={currentPage === firstPage}>
-          <BackwardArrow disabled={currentPage === firstPage} />
-          <Content disabled={currentPage === firstPage}>Previous</Content>
+        <StyledNavLink to={`/movies/page=${previousPage}`} disabled={isFirstPage}>
+          <BackwardArrow disabled={isFirstPage} />
+          <Content disabled={isFirstPage}>Previous</Content>
         </ StyledNavLink >
-
       </ButtonContainer>
-
       <PageNumberInfo>
-        Page <Number>{currentPage}</Number> of <Number>{lastPage}</Number>
+        Page <Number>{pageNumber}</Number> of <Number>{lastMoviePage}</Number>
       </PageNumberInfo>
-
       <ButtonContainer>
-        <StyledNavLink to={`/movies/page=${nextPage}`} disabled={currentPage === lastPage}>
-
-          <Content disabled={currentPage === lastPage}>Next</Content>
-          <ForwardArrow disabled={currentPage === lastPage} />
+        <StyledNavLink to={`/movies/page=${nextPage}`} disabled={isLastPage}>
+          <Content disabled={isLastPage}>Next</Content>
+          <ForwardArrow disabled={isLastPage} />
         </ StyledNavLink >
 
 
-        <StyledNavLink to={`/movies/page=${lastPage}`} disabled={currentPage === lastPage}>
-          <Content disabled={currentPage === lastPage}>Last</Content>
-          <AdditionalForwardArrow disabled={currentPage === lastPage} />
-          <ForwardArrow disabled={currentPage === lastPage} />
+        <StyledNavLink to={`/movies/page=${lastMoviePage}`} disabled={isLastPage}>
+          <Content disabled={isLastPage}>Last</Content>
+          <AdditionalForwardArrow disabled={isLastPage} />
+          <ForwardArrow disabled={isLastPage} />
         </ StyledNavLink >
 
       </ButtonContainer>

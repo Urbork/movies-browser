@@ -5,9 +5,14 @@ const pageStateSlice = createSlice({
   initialState: {
     display: "movies",
     fetchStatus: "ready",
-    pages: {
+    moviePages: {
       firstPage: 1,
-      currentPage: 1,
+      currentPage: 0,
+      lastPage: 500,
+    },
+    peoplePages: {
+      firstPage: 1,
+      currentPage: 0,
       lastPage: 500,
     },
     screenWidth: {
@@ -40,20 +45,20 @@ const pageStateSlice = createSlice({
     personDisplay: (state) => {
       state.display = "person";
     },
-    changePageToFirst: (state) => {
-      state.pages.currentPage = state.pages.firstPage;
-    },
-    changePageToPrevious: (state) => {
-      if (state.pages.currentPage === state.pages.firstPage) return
-      state.pages.currentPage--
-    },
-    changePageToNext: (state) => {
-      if (state.pages.currentPage === state.pages.lastPage) return
-      state.pages.currentPage++
-    },
-    changePageToLast: (state) => {
-      state.pages.currentPage = state.pages.lastPage;
-    },
+    // changePageToFirst: (state) => {
+    //   state.pages.currentPage = state.pages.firstPage;
+    // },
+    // changePageToPrevious: (state) => {
+    //   if (state.pages.currentPage === state.pages.firstPage) return
+    //   state.pages.currentPage--
+    // },
+    // changePageToNext: (state) => {
+    //   if (state.pages.currentPage === state.pages.lastPage) return
+    //   state.pages.currentPage++
+    // },
+    // changePageToLast: (state) => {
+    //   state.pages.currentPage = state.pages.lastPage;
+    // },
     changeScreenWidth: (state, { payload: width }) => {
       state.screenWidth.width = width;
     },
@@ -67,9 +72,14 @@ const pageStateSlice = createSlice({
     setImagesToLoad: (state) => {
       state.imagesToLoad = true;
     },
-    setCurrentPage: (state, { payload: page })  => {
-      state.pages.currentPage = page;
+    setCurrentMoviePage: (state, { payload: page }) => {
+      state.moviePages.currentPage = page;
+    },
+    setCurrentPeoplePage: (state, { payload: page }) => {
+      state.peoplePages.currentPage = page;
     }
+
+
   },
 });
 
@@ -81,11 +91,12 @@ export const {
   peopleDisplay,
   movieDetailsDisplay,
   personDisplay,
-  setCurrentPage,
-  changePageToFirst,
-  changePageToPrevious,
-  changePageToNext,
-  changePageToLast,
+  setCurrentMoviePage,
+  setCurrentPeoplePage,
+  // changePageToFirst,
+  // changePageToPrevious,
+  // changePageToNext,
+  // changePageToLast,
   changeScreenWidth,
   changeMobileState,
   setImagesLoaded,
@@ -96,12 +107,20 @@ const selectPageState = state => state.pageState;
 
 export const selectDisplay = state => selectPageState(state).display;
 export const selectFetchStatus = state => selectPageState(state).fetchStatus;
-export const selectPages = state => selectPageState(state).pages;
-export const selectFirstPage = state => selectPages(state).firstPage;
-export const selectCurrentPage = state => selectPages(state).currentPage;
-export const selectPreviousPage = state => selectCurrentPage(state) - 1;
-export const selectNextPage = state => selectCurrentPage(state) + 1;
-export const selectLastPage = state => selectPages(state).lastPage;
+
+export const selectMoviePages = state => selectPageState(state).moviePages;
+export const selectFirstMoviePage = state => selectMoviePages(state).firstPage;
+export const selectCurrentMoviePage = state => selectMoviePages(state).currentPage;
+export const selectLastMoviePage = state => selectMoviePages(state).lastPage;
+
+export const selectPeoplePages = state => selectPageState(state).moviePages;
+export const selectFirstPeoplePage = state => selectPeoplePages(state).firstPage;
+export const selectCurrentPeoplePage = state => selectPeoplePages(state).currentPage;
+export const selectLastPeoplePage = state => selectPeoplePages(state).lastPage;
+
+// export const selectPreviousPage = state => selectCurrentPage(state) - 1;
+// export const selectNextPage = state => selectCurrentPage(state) + 1;
+
 export const selectScreen = state => selectPageState(state).screenWidth;
 export const selectScreenWidth = state => selectScreen(state).width;
 export const selectMobile = state => selectScreen(state).mobile;

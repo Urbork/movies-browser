@@ -11,11 +11,14 @@ import {
   StyledNavLink,
 } from "./styled";
 import { toMoviesList, toPeopleList } from "../../routes";
-import { moviesDisplay, peopleDisplay, selectDisplay } from "../../features/pageState/pageStateSlice";
+import { moviesDisplay, peopleDisplay, selectCurrentMoviePage, selectCurrentPage, selectCurrentPeoplePage, selectDisplay, setCurrentPage } from "../../features/pageState/pageStateSlice";
 
 export const Navigation = () => {
   const dispatch = useDispatch();
   const display = useSelector(selectDisplay);
+  const currentMoviePage = useSelector(selectCurrentMoviePage);
+  const currentPeoplePage = useSelector(selectCurrentPeoplePage);
+
 
   return (
     <Container $specialStyle={display === "movies"}>
@@ -26,18 +29,11 @@ export const Navigation = () => {
             Movies Browser
           </Logo>
           <ButtonsWrapper>
-            <StyledNavLink
-              to={toMoviesList()}
-              onClick={() => dispatch(moviesDisplay())}
-              $specialStyle={display === "movies"}
-            >
+
+            <StyledNavLink to={`/movies/page=${currentMoviePage}`}>
               Movies
             </StyledNavLink>
-            <StyledNavLink
-              to={toPeopleList()}
-              onClick={() => dispatch(peopleDisplay())}
-              $specialStyle={display === "movies"}
-            >
+            <StyledNavLink to={`/people/page=${currentPeoplePage}`}>
               People
             </StyledNavLink>
 
