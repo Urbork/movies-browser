@@ -85,7 +85,6 @@ export const AppName = styled.div`
   
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     padding-right: 19px ;
-    font-size: clamp(13px, 3vw, 13px);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
