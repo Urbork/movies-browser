@@ -16,7 +16,7 @@ import {
   toPeopleList
 } from "./routes";
 import { useShowData } from "./useShowData.js";  // 1. usunąć przed deploymentem 🗑
-import { selectFetchStatus, selectImagesToLoad } from "./features/pageState/pageStateSlice";
+import { selectFetchStatus, selectFirstPage, selectImagesToLoad } from "./features/pageState/pageStateSlice";
 
 // przed deploymentem usunąć pozycje, które potrzebujemy tylko do budowania aplikacji oraz ten komentarz🗑:
 // 1). import { useShowData } from "./useShowData.js";🗑
@@ -28,33 +28,54 @@ function App() {
   const fetchStatus = useSelector(selectFetchStatus);
   const imagesToLoad = useSelector(selectImagesToLoad);
   useShowData();  // 2. usunąć przed deploymentem 🗑
+  const firstPage = useSelector(selectFirstPage);
 
   return (
     <HashRouter>
       <Navigation />
       <Container>
         <Switch>
-          <Route path={toMovieDetails()}>
+          {/* <Route path={toMovieDetails()}>
             {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
             {fetchStatus === "ready" && <MovieDetails />}
-          </Route>
-          <Route path={toPeopleDetails()}>
+          </Route> */}
+          {/* <Route path={toPeopleDetails()}>
             {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
             {fetchStatus === "ready" && <PeopleDetails />}
-          </Route>
-          <Route path={toMoviesList()}>
-            {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
+          </Route> */}
+
+          <Route path="/movies/page=:page">
+            {(fetchStatus === "loading"
+              // || imagesToLoad
+            )
+              && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
             {fetchStatus === "ready" &&
               <>
-                <MoviesList />
                 <Pagination />
+
+                <MoviesList />
               </>
             }
           </Route>
-          <Route path={toPeopleList()}>
+
+          <Route path="/movies">
+            {(fetchStatus === "loading"
+              // || imagesToLoad
+            )
+              && <LoadingPage />}
+            {fetchStatus === "error" && <ErrorPage />}
+            {fetchStatus === "ready" &&
+              <>
+                <Pagination />
+
+                <MoviesList />
+              </>
+            }
+          </Route>
+          {/* <Route path={toPeopleList()}>
             {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
             {fetchStatus === "ready" &&
@@ -63,9 +84,9 @@ function App() {
                 <Pagination />
               </>
             }
-          </Route>
+          </Route> */}
           <Route path="/">
-            <Redirect to={toMoviesList()} />
+            <Redirect to={`/movies/page=${firstPage}`} />
           </Route>
         </Switch>
       </Container>

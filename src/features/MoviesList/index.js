@@ -3,12 +3,28 @@ import { MoviesListWrapper } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import { MovieTile } from "../../components/MovieTile";
 import { selectGenres, selectPopularMovies } from "../movies/moviesSlice";
-import { setImagesLoaded } from "../pageState/pageStateSlice";
+import { selectCurrentPage, setCurrentPage, setImagesLoaded } from "../pageState/pageStateSlice";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export const MoviesList = () => {
   const popularMovies = useSelector(selectPopularMovies);
   const genres = useSelector(selectGenres);
   const dispatch = useDispatch();
+
+  const { page } = useParams();
+  const currentPage = useSelector(selectCurrentPage);
+  console.log("page",page)
+  console.log("useParams()",useParams())
+  // const task = useSelector(state => selectTaskById(state, id));
+
+
+   /// tu skączyłem  !!!!! - trzeba zrobic zapis numeru strony do url
+   // initializeSaga zmienia stronę na 1
+   // myślę że problem jest w tym kiedy strona jest wyświetlana (na jakich warunkach)
+
+  if (page !== currentPage) {
+    dispatch(setCurrentPage(page));  
+  }
 
   return (
     <Section title="Popular movies">

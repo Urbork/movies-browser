@@ -10,12 +10,15 @@ import {
   moviesDisplay,
   resetFetchStatus,
   selectCurrentPage,
+  setCurrentPage,
   setImagesToLoad
 } from "../pageState/pageStateSlice";
 
 function* fetchApiHandler() {
   try {
     yield put(fetchApi());
+    // yield put(()=>setCurrentPage(1))
+
     const page = yield select(selectCurrentPage);
     const movies = yield call(() => getPopularMovies(page));
     yield delay(1000);
@@ -35,6 +38,8 @@ export function* moviesSaga() {
     changePageToPrevious.type,
     changePageToNext.type,
     changePageToLast.type,
-    moviesDisplay.type
+    moviesDisplay.type,
+
+    setCurrentPage.type
   ], fetchApiHandler);
 }

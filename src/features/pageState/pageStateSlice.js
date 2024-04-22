@@ -67,6 +67,9 @@ const pageStateSlice = createSlice({
     setImagesToLoad: (state) => {
       state.imagesToLoad = true;
     },
+    setCurrentPage: (state, { payload: page })  => {
+      state.pages.currentPage = page;
+    }
   },
 });
 

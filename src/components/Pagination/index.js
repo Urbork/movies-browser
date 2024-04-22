@@ -20,39 +20,61 @@ import {
   selectCurrentPage,
   selectLastPage,
 } from "../../features/pageState/pageStateSlice";
+import { StyledNavLink } from "./styled";
+import { toMoviesList } from "../../routes";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Pagination = () => {
-  const dispatch = useDispatch();
   const firstPage = useSelector(selectFirstPage)
-  const currentPage = useSelector(selectCurrentPage);
   const lastPage = useSelector(selectLastPage);
+  const { page } = useParams();
+
+  let currentPage = +page;
+  const previousPage = currentPage <= firstPage ? currentPage : currentPage - 1;
+  const nextPage = currentPage >= lastPage ? currentPage : currentPage + 1;
+
+  console.log("page", page);
+  console.log("currentPage", currentPage)
+  console.log("previousPage", previousPage)
+  console.log("nextPage", nextPage)
+  console.log("firstPage", firstPage)
+  console.log("lastPage", lastPage)
+
 
   return (
     <Wrapper>
       <ButtonContainer>
-        <Button onClick={() => dispatch(changePageToFirst())} disabled={currentPage === firstPage}>
+        <StyledNavLink to={`/movies/page=${firstPage}`} disabled={currentPage === firstPage}>
           <BackwardArrow disabled={currentPage === firstPage} />
           <AdditionalBackwardArrow disabled={currentPage === firstPage} />
           <Content disabled={currentPage === firstPage}>First</Content>
-        </Button>
-        <Button onClick={() => dispatch(changePageToPrevious())} disabled={currentPage === firstPage}>
+        </ StyledNavLink >
+
+        <StyledNavLink to={`/movies/page=${previousPage}`} disabled={currentPage === firstPage}>
           <BackwardArrow disabled={currentPage === firstPage} />
           <Content disabled={currentPage === firstPage}>Previous</Content>
-        </Button>
+        </ StyledNavLink >
+
       </ButtonContainer>
+
       <PageNumberInfo>
         Page <Number>{currentPage}</Number> of <Number>{lastPage}</Number>
       </PageNumberInfo>
+
       <ButtonContainer>
-        <Button onClick={() => dispatch(changePageToNext())} disabled={currentPage === lastPage}>
+        <StyledNavLink to={`/movies/page=${nextPage}`} disabled={currentPage === lastPage}>
+
           <Content disabled={currentPage === lastPage}>Next</Content>
           <ForwardArrow disabled={currentPage === lastPage} />
-        </Button>
-        <Button onClick={() => dispatch(changePageToLast())} disabled={currentPage === lastPage}>
+        </ StyledNavLink >
+
+
+        <StyledNavLink to={`/movies/page=${lastPage}`} disabled={currentPage === lastPage}>
           <Content disabled={currentPage === lastPage}>Last</Content>
           <AdditionalForwardArrow disabled={currentPage === lastPage} />
           <ForwardArrow disabled={currentPage === lastPage} />
-        </Button>
+        </ StyledNavLink >
+
       </ButtonContainer>
     </Wrapper>
   )
