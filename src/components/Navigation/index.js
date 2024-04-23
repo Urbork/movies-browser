@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Container,
   Wrapper,
@@ -11,7 +11,7 @@ import {
   StyledNavLink,
 } from "./styled";
 import { selectCurrentMoviePage, selectCurrentPeoplePage } from "../../features/pageState/pageStateSlice";
-import { useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Navigation = () => {
   const currentMoviePage = useSelector(selectCurrentMoviePage);

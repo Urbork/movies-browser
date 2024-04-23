@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ReactComponent as ErrorIcon } from "../../images/VectorError.svg";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export const ErrorWrapper = styled.section`
   margin-top: 180px;
@@ -54,7 +55,7 @@ export const ErrorHeading = styled.h2`
 
 export const ErrorSubheading = styled.h3`
   margin: 0;
-  max-width: 425px;
+  max-width: max-content;
   text-align: center;
   font-size: 22px;
   font-weight: ${({ theme }) => theme.fontWeight.medium};
@@ -72,7 +73,7 @@ export const ErrorSubheading = styled.h3`
   }
 `;
 
-export const ErrorButton = styled.button`
+export const ErrorNavLink = styled(NavLink)`
   padding: 16px 24px;
   border: 2px solid;
   border-radius: 5px;
@@ -82,6 +83,10 @@ export const ErrorButton = styled.button`
   background-color: ${({ theme }) => theme.color.blue};
   transition: 0.6s;
   cursor: pointer;
+  line-height: 19px;
+  text-align: left;
+  font-family: "Open Sans";
+  text-decoration: none;
 
   &:hover {
     border: 2px solid ${({ theme }) => theme.color.blue};

@@ -6,7 +6,6 @@ import {
   DetailsSubtitle,
   DetailsExtraInfoContainer,
   DetailsExtraInfo,
-  DetailsExtraInfoWrapper,
   DetailsExtraInfoLabel,
   DetailsDescription,
 } from "./styled";

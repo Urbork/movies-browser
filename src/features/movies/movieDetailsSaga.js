@@ -8,6 +8,9 @@ function* fetchApiHandler() {
     yield put(fetchApi());
     const id = yield select(selectMovieDetailsId);
     const movieDetails = yield call(() => getMovieDetails(id));
+    if (!movieDetails) {
+      throw new Error("Movie details not found"); 
+    }
     const credits = yield call(() => getCredits(id));
     yield delay(1000);
     yield put(setMovieDetails(movieDetails));

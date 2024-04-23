@@ -9,25 +9,10 @@ import PeopleList from "./components/PeopleList";
 import { LoadingPage } from "./components/LoadingPage";
 import { ErrorPage } from "./components/ErrorPage";
 import { useSelector } from "react-redux";
-import {
-  toMovieDetails,
-  toMoviesList,
-  toPeopleDetails,
-  toPeopleList
-} from "./routes";
-import { useShowData } from "./useShowData.js";  // 1. usunąć przed deploymentem 🗑
-import { selectFetchStatus, selectFirstMoviePage, selectFirstPage, selectImagesToLoad } from "./features/pageState/pageStateSlice";
-
-// przed deploymentem usunąć pozycje, które potrzebujemy tylko do budowania aplikacji oraz ten komentarz🗑:
-// 1). import { useShowData } from "./useShowData.js";🗑
-// 2). useShowData();🗑
-// 3). plik useShowData.js;🗑 z katalogu: src/
-// po deploymencie przywrócić usunięte elementy na gałęzi main :)
+import { selectFetchStatus, selectFirstMoviePage } from "./features/pageState/pageStateSlice";
 
 function App() {
   const fetchStatus = useSelector(selectFetchStatus);
-  const imagesToLoad = useSelector(selectImagesToLoad);
-  useShowData();  // 2. usunąć przed deploymentem 🗑
   const firstMoviePage = useSelector(selectFirstMoviePage);
 
   return (
