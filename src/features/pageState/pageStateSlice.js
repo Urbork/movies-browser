@@ -40,6 +40,9 @@ const pageStateSlice = createSlice({
     personDisplay: (state) => {
       state.display = "person";
     },
+    setCurrentPage: (state, { payload: page }) => {
+      state.pages.currentPage = page;
+    },
     changePageToFirst: (state) => {
       state.pages.currentPage = state.pages.firstPage;
     },
