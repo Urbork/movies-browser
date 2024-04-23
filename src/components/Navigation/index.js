@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Wrapper,
@@ -11,10 +11,13 @@ import {
   StyledNavLink,
 } from "./styled";
 import { selectCurrentMoviePage, selectCurrentPeoplePage } from "../../features/pageState/pageStateSlice";
+import { useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Navigation = () => {
   const currentMoviePage = useSelector(selectCurrentMoviePage);
   const currentPeoplePage = useSelector(selectCurrentPeoplePage);
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
 
   return (
     <Container >
@@ -25,10 +28,12 @@ export const Navigation = () => {
             Movies Browser
           </Logo>
           <ButtonsWrapper>
-            <StyledNavLink to={`/movies/${currentMoviePage}`}>
+            <StyledNavLink to={`/movies/${currentMoviePage}`}
+              $active={path === "moviesDetails"}>
               Movies
             </StyledNavLink>
-            <StyledNavLink to={`/people/${currentPeoplePage}`}>
+            <StyledNavLink to={`/people/${currentPeoplePage}`}
+              $active={path === "peopleDetails"}>
               People
             </StyledNavLink>
           </ButtonsWrapper>

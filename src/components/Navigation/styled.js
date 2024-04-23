@@ -103,9 +103,11 @@ export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   color: ${({ theme }) => theme.color.white};
   padding: 8px 24px;
-  border: 1px solid transparent;
+  border: 1px solid ;
+  border-color: ${({ theme, $active }) => $active ? theme.color.white : "transparent"};
   border-radius: 24px;
   cursor: pointer;
+
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     background-color: ${({ theme }) => theme.color.black};
