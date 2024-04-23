@@ -8,15 +8,18 @@ import { selectMobile } from "../pageState/pageStateSlice";
 import { profileMainSizeUrl } from "../../api/api";
 import { MovieTile } from "../../components/MovieTile";
 import { selectGenres } from "../movies/moviesSlice";
+import { useEffect } from "react";
 
 export const PeopleDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const personDetailsId = useSelector(selectPersonId);
 
-  if (id !== personDetailsId) {
-    dispatch(setPersonId(id));
-  }
+  useEffect(() => {
+    if (id !== personDetailsId) {
+      dispatch(setPersonId(id));
+    }
+  }, [id, personDetailsId, dispatch]);
 
   const personContent = useSelector(selectPersonContent);
   const mobile = useSelector(selectMobile);
@@ -43,7 +46,7 @@ export const PeopleDetails = () => {
       </Section>
       <Section title={`Movies - cast (${creditsCast?.length})`}>
         <MoviesListWrapper>
-        {creditsCast?.map((movie) => (
+          {creditsCast?.map((movie) => (
             <MovieTile
               key={movie.credit_id}
               poster={movie.poster_path}

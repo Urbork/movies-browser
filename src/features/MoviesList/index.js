@@ -3,20 +3,25 @@ import { MoviesListWrapper } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import { MovieTile } from "../../components/MovieTile";
 import { selectGenres, selectPopularMovies } from "../movies/moviesSlice";
-import { selectCurrentMoviePage, selectCurrentPage, setCurrentMoviePage, setCurrentPage, setImagesLoaded } from "../pageState/pageStateSlice";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { selectCurrentMoviePage, setCurrentMoviePage, setImagesLoaded } from "../pageState/pageStateSlice";
+import { useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect } from "react";
 
 export const MoviesList = () => {
   const popularMovies = useSelector(selectPopularMovies);
   const genres = useSelector(selectGenres);
   const currentMoviePage = useSelector(selectCurrentMoviePage);
+  const location = useLocation();
   const dispatch = useDispatch();
   const { page } = useParams();
   let pageNumber = +page;
+  const path = location.pathname.split("/")[1];
 
-  if (pageNumber !== currentMoviePage) {
-    dispatch(setCurrentMoviePage(pageNumber));
-  }
+  useEffect(() => {
+    if ((page && pageNumber !== currentMoviePage) || (path !== "movies")) {
+      dispatch(setCurrentMoviePage(pageNumber));
+    };
+  }, [page, pageNumber, currentMoviePage, path, dispatch]);
 
   return (
     <Section title="Popular movies">

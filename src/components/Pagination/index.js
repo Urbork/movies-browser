@@ -12,12 +12,10 @@ import {
 } from "./styled";
 import {
   selectFirstMoviePage,
-  selectFirstPage,
   selectLastMoviePage,
-  selectLastPage,
 } from "../../features/pageState/pageStateSlice";
 import { StyledNavLink } from "./styled";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Pagination = () => {
   const firstMoviePage = useSelector(selectFirstMoviePage)
@@ -29,16 +27,18 @@ export const Pagination = () => {
   const nextPage = pageNumber >= lastMoviePage ? pageNumber : pageNumber + 1;
   const isFirstPage = pageNumber === firstMoviePage ? true : false;
   const isLastPage = pageNumber === lastMoviePage ? true : false;
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
 
   return (
     <Wrapper>
       <ButtonContainer>
-        <StyledNavLink to={`/movies/page=${firstMoviePage}`} disabled={isFirstPage}>
+        <StyledNavLink to={`/${path}/${firstMoviePage}`} disabled={isFirstPage}>
           <BackwardArrow disabled={isFirstPage} />
           <AdditionalBackwardArrow disabled={isFirstPage} />
           <Content disabled={isFirstPage}>First</Content>
         </ StyledNavLink >
-        <StyledNavLink to={`/movies/page=${previousPage}`} disabled={isFirstPage}>
+        <StyledNavLink to={`/${path}/${previousPage}`} disabled={isFirstPage}>
           <BackwardArrow disabled={isFirstPage} />
           <Content disabled={isFirstPage}>Previous</Content>
         </ StyledNavLink >
@@ -47,18 +47,15 @@ export const Pagination = () => {
         Page <Number>{pageNumber}</Number> of <Number>{lastMoviePage}</Number>
       </PageNumberInfo>
       <ButtonContainer>
-        <StyledNavLink to={`/movies/page=${nextPage}`} disabled={isLastPage}>
+        <StyledNavLink to={`/${path}/${nextPage}`} disabled={isLastPage}>
           <Content disabled={isLastPage}>Next</Content>
           <ForwardArrow disabled={isLastPage} />
         </ StyledNavLink >
-
-
-        <StyledNavLink to={`/movies/page=${lastMoviePage}`} disabled={isLastPage}>
+        <StyledNavLink to={`/${path}/${lastMoviePage}`} disabled={isLastPage}>
           <Content disabled={isLastPage}>Last</Content>
           <AdditionalForwardArrow disabled={isLastPage} />
           <ForwardArrow disabled={isLastPage} />
         </ StyledNavLink >
-
       </ButtonContainer>
     </Wrapper>
   )

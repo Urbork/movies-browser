@@ -3,16 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const pageStateSlice = createSlice({
   name: "pageState",
   initialState: {
-    display: "movies",
     fetchStatus: "ready",
     moviePages: {
       firstPage: 1,
-      currentPage: 0,
+      currentPage: 1,
       lastPage: 500,
     },
     peoplePages: {
       firstPage: 1,
-      currentPage: 0,
+      currentPage: 1,
       lastPage: 500,
     },
     screenWidth: {
@@ -31,34 +30,6 @@ const pageStateSlice = createSlice({
     fetchError: (state) => {
       state.fetchStatus = "error";
     },
-    moviesDisplay: (state) => {
-      // state.pages.currentPage = state.pages.firstPage;
-      state.display = "movies";
-    },
-    peopleDisplay: (state) => {
-      // state.pages.currentPage = state.pages.firstPage;
-      state.display = "people";
-    },
-    movieDetailsDisplay: (state) => {
-      state.display = "movieDetails";
-    },
-    personDisplay: (state) => {
-      state.display = "person";
-    },
-    // changePageToFirst: (state) => {
-    //   state.pages.currentPage = state.pages.firstPage;
-    // },
-    // changePageToPrevious: (state) => {
-    //   if (state.pages.currentPage === state.pages.firstPage) return
-    //   state.pages.currentPage--
-    // },
-    // changePageToNext: (state) => {
-    //   if (state.pages.currentPage === state.pages.lastPage) return
-    //   state.pages.currentPage++
-    // },
-    // changePageToLast: (state) => {
-    //   state.pages.currentPage = state.pages.lastPage;
-    // },
     changeScreenWidth: (state, { payload: width }) => {
       state.screenWidth.width = width;
     },
@@ -78,8 +49,6 @@ const pageStateSlice = createSlice({
     setCurrentPeoplePage: (state, { payload: page }) => {
       state.peoplePages.currentPage = page;
     }
-
-
   },
 });
 
@@ -87,16 +56,8 @@ export const {
   fetchApi,
   resetFetchStatus,
   fetchError,
-  moviesDisplay,
-  peopleDisplay,
-  movieDetailsDisplay,
-  personDisplay,
   setCurrentMoviePage,
   setCurrentPeoplePage,
-  // changePageToFirst,
-  // changePageToPrevious,
-  // changePageToNext,
-  // changePageToLast,
   changeScreenWidth,
   changeMobileState,
   setImagesLoaded,
@@ -113,13 +74,10 @@ export const selectFirstMoviePage = state => selectMoviePages(state).firstPage;
 export const selectCurrentMoviePage = state => selectMoviePages(state).currentPage;
 export const selectLastMoviePage = state => selectMoviePages(state).lastPage;
 
-export const selectPeoplePages = state => selectPageState(state).moviePages;
+export const selectPeoplePages = state => selectPageState(state).peoplePages;
 export const selectFirstPeoplePage = state => selectPeoplePages(state).firstPage;
 export const selectCurrentPeoplePage = state => selectPeoplePages(state).currentPage;
 export const selectLastPeoplePage = state => selectPeoplePages(state).lastPage;
-
-// export const selectPreviousPage = state => selectCurrentPage(state) - 1;
-// export const selectNextPage = state => selectCurrentPage(state) + 1;
 
 export const selectScreen = state => selectPageState(state).screenWidth;
 export const selectScreenWidth = state => selectScreen(state).width;

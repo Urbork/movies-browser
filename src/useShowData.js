@@ -61,9 +61,9 @@ export const useShowData = () => {
 
     // eslint-disable-next-line
   }, [window.innerWidth]);
-  console.log("PAGE STATE  -----> ");
-  console.log("display: ", display);
-  console.log("fetchStatus: ", fetchStatus);
+  // console.log("PAGE STATE  -----> ");
+  // console.log("display: ", display);
+  // console.log("fetchStatus: ", fetchStatus);
   // console.log(
   //   "firstPage: ",
   //   firstPage,
@@ -72,20 +72,20 @@ export const useShowData = () => {
   //   "lastPage :",
   //   lastPage
   // );
-  console.log("screenWidth: ", screenWidth);
-  console.log("mobile: ", mobile);
-  console.log("imagesToLoad: ", imagesToLoad);
-  console.log("MOVIES  -----> ");
-  console.log("popularMovies: ", popularMovies);
-  console.log("genres: ", genres);
-  console.log("movieDetails: ", movieDetails);
-  console.log("movieDetailsId: ", movieDetailsId);
-  console.log("movieDetailsContent: ", movieDetailsContent);
-  console.log("movieDetailsCredits: ", movieDetailsCredits);
-  console.log("PEOPLE  -----> ");
-  console.log("popularPeople: ", popularPeople);
-  console.log("person: ", person);
-  console.log("personId: ", personId);
-  console.log("personContent: ", personContent);
-  console.log("personMovieCredits: ", personMovieCredits);
+  // console.log("screenWidth: ", screenWidth);
+  // console.log("mobile: ", mobile);
+  // console.log("imagesToLoad: ", imagesToLoad);
+  // console.log("MOVIES  -----> ");
+  // console.log("popularMovies: ", popularMovies);
+  // console.log("genres: ", genres);
+  // console.log("movieDetails: ", movieDetails);
+  // console.log("movieDetailsId: ", movieDetailsId);
+  // console.log("movieDetailsContent: ", movieDetailsContent);
+  // console.log("movieDetailsCredits: ", movieDetailsCredits);
+  // console.log("PEOPLE  -----> ");
+  // console.log("popularPeople: ", popularPeople);
+  // console.log("person: ", person);
+  // console.log("personId: ", personId);
+  // console.log("personContent: ", personContent);
+  // console.log("personMovieCredits: ", personMovieCredits);
 };

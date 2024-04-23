@@ -35,49 +35,20 @@ function App() {
       <Navigation />
       <Container>
         <Switch>
-          {/* <Route path={toMovieDetails()}>
-            {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
-            {fetchStatus === "error" && <ErrorPage />}
-            {fetchStatus === "ready" && <MovieDetails />}
-          </Route> */}
-          {/* <Route path={toPeopleDetails()}>
-            {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
-            {fetchStatus === "error" && <ErrorPage />}
-            {fetchStatus === "ready" && <PeopleDetails />}
-          </Route> */}
+          <Route path="/movies/:page">
+          {console.log("TESTTTTTTTTTTTTTT")}
 
-          <Route path="/movies/page=:page">
-            {(fetchStatus === "loading"
-              // || imagesToLoad
-            )
-              && <LoadingPage />}
+            {fetchStatus === "loading" && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
             {fetchStatus === "ready" &&
               <>
-                <Pagination />
-
                 <MoviesList />
+                <Pagination />
               </>
             }
           </Route>
-
-
-          <Route path="/movies">
-            {(fetchStatus === "loading"
-              // || imagesToLoad
-            )
-              && <LoadingPage />}
-            {fetchStatus === "error" && <ErrorPage />}
-            {fetchStatus === "ready" &&
-              <>
-                <Pagination />
-
-                <MoviesList />
-              </>
-            }
-          </Route>
-          {/* <Route path={toPeopleList()}>
-            {(fetchStatus === "loading" || imagesToLoad) && <LoadingPage />}
+          <Route path="/people/:page">
+            {fetchStatus === "loading" && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
             {fetchStatus === "ready" &&
               <>
@@ -85,9 +56,19 @@ function App() {
                 <Pagination />
               </>
             }
-          </Route> */}
+          </Route>
+          <Route path="/movies/details/:id">
+            {fetchStatus === "loading" && <LoadingPage />}
+            {fetchStatus === "error" && <ErrorPage />}
+            {fetchStatus === "ready" && <MovieDetails />}
+          </Route>
+          <Route path="/people/details/:id">
+            {fetchStatus === "loading" && <LoadingPage />}
+            {fetchStatus === "error" && <ErrorPage />}
+            {fetchStatus === "ready" && <PeopleDetails />}
+          </Route>
           <Route path="/">
-            <Redirect to={`/movies/page=${firstMoviePage}`} />
+            <Redirect to={`/movies/${firstMoviePage}`} />
           </Route>
         </Switch>
       </Container>

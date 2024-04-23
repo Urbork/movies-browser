@@ -11,7 +11,6 @@ import {
 import noPoster from "../../images/noPoster.svg";
 import { MovieTags } from "./MovieTags";
 import { MovieRating } from "./MovieRating";
-import { toMovieDetails } from "../../routes";
 import { useState } from "react";
 import { posterMainSizeUrl, posterMobileSizeUrl } from "../../api/api";
 import { selectMobile } from "../../features/pageState/pageStateSlice";
@@ -23,7 +22,7 @@ export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) 
 
   return (
     <MovieTileContent>
-      <MovieTileNavLink to={toMovieDetails({ id: id })}>
+      <MovieTileNavLink to={`/movies/details/${id}`}>
         <MovieTileImage
           src={(loaded && poster) ? posterUrl + poster : noPoster}
           alt={(loaded && title) ? `${title} movie poster` : "no poster"}

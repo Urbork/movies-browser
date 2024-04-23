@@ -9,8 +9,8 @@ export default function* rootSaga() {
   yield all([
     initializeSaga(),
     moviesSaga(),
-    // movieDetailsSaga(),
-    // peopleSaga(),
-    // personSaga(),
+    movieDetailsSaga(),
+    peopleSaga(),
+    personSaga(),
   ]);
 };

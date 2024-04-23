@@ -14,20 +14,24 @@ import { selectMobile } from "../pageState/pageStateSlice";
 import { posterMainSizeUrl } from "../../api/api";
 import PeopleTile from "../../components/PeopleList/PeopleTile";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect } from "react";
 
 export const MovieDetails = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const movieDetailsId = useSelector(selectMovieDetailsId);
-
-  if (id !== movieDetailsId) {
-    dispatch(setMovieDetailsId(id));
-  }
-
   const movieDetailsContent = useSelector(selectMovieDetailsContent);
   const mobile = useSelector(selectMobile);
   const creditsCast = useSelector(selectMovieDetailsCreditsCast);
   const creditsCrew = useSelector(selectMovieDetailsCreditsCrew);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const movieDetailsId = useSelector(selectMovieDetailsId);
+
+  console.log("TESTTTTTTTTTTTTTT", id)
+
+  useEffect(() => {
+    if (id !== movieDetailsId) {
+      dispatch(setMovieDetailsId(id));
+    }
+  }, [id, movieDetailsId, dispatch]);
 
   return (
     <>
