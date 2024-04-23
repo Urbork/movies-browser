@@ -3,7 +3,7 @@ import {
   Container,
   Wrapper,
   LogoButtonsWrapper,
-  Logo,
+  AppName,
   Video,
   InputWrapper,
   Input,
@@ -23,10 +23,10 @@ export const Navigation = () => {
     <Container >
       <Wrapper>
         <LogoButtonsWrapper>
-          <Logo>
+          <AppName>
             <Video />
             Movies Browser
-          </Logo>
+          </AppName>
           <ButtonsWrapper>
             <StyledNavLink to={`/movies/${currentMoviePage}`}
               $active={path === "moviesDetails"}>
