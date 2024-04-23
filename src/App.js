@@ -36,8 +36,6 @@ function App() {
       <Container>
         <Switch>
           <Route path="/movies/:page">
-          {console.log("TESTTTTTTTTTTTTTT")}
-
             {fetchStatus === "loading" && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
             {fetchStatus === "ready" &&
@@ -57,12 +55,12 @@ function App() {
               </>
             }
           </Route>
-          <Route path="/movies/details/:id">
+          <Route path="/moviesDetails/:id">
             {fetchStatus === "loading" && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
             {fetchStatus === "ready" && <MovieDetails />}
           </Route>
-          <Route path="/people/details/:id">
+          <Route path="/peopleDetails/:id">
             {fetchStatus === "loading" && <LoadingPage />}
             {fetchStatus === "error" && <ErrorPage />}
             {fetchStatus === "ready" && <PeopleDetails />}

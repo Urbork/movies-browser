@@ -25,8 +25,6 @@ export const MovieDetails = () => {
   const dispatch = useDispatch();
   const movieDetailsId = useSelector(selectMovieDetailsId);
 
-  console.log("TESTTTTTTTTTTTTTT", id)
-
   useEffect(() => {
     if (id !== movieDetailsId) {
       dispatch(setMovieDetailsId(id));

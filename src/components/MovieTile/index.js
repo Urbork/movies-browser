@@ -22,7 +22,7 @@ export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) 
 
   return (
     <MovieTileContent>
-      <MovieTileNavLink to={`/movies/details/${id}`}>
+      <MovieTileNavLink to={`/moviesDetails/${id}`}>
         <MovieTileImage
           src={(loaded && poster) ? posterUrl + poster : noPoster}
           alt={(loaded && title) ? `${title} movie poster` : "no poster"}
