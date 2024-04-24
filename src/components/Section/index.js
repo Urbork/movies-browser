@@ -1,13 +1,15 @@
 import { SectionWrapper, SectionHeading } from "./styled";
 import { useSelector } from "react-redux";
-import { selectDisplay, selectImagesToLoad } from "../../features/pageState/pageStateSlice";
+import { selectImagesToLoad } from "../../features/pageState/pageStateSlice";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Section = ({ title, mobile, children }) => {
   const imagesToLoad = useSelector(selectImagesToLoad);
-  const display = useSelector(selectDisplay);
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
 
   return (
-    <SectionWrapper $show={!imagesToLoad} $delay={display === "movieDetails"} $mobile={mobile}>
+    <SectionWrapper $show={!imagesToLoad} $delay={path === "moviesDetails"} $mobile={mobile}>
       {title && <SectionHeading>{title}</SectionHeading>}
       {children}
     </SectionWrapper>
