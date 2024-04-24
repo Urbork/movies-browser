@@ -1,6 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Details } from "../../components/Details";
-import { selectPersonContent, selectPersonId, setPersonId, selectPersonDetailsCreditsCast, selectPersonDetailsCreditsCrew } from "../people/peopleSlice";
+import {
+  selectPersonContent,
+  selectPersonId,
+  setPersonId,
+  selectPersonDetailsCreditsCast,
+  selectPersonDetailsCreditsCrew,
+} from "../people/peopleSlice";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Section } from "../../components/Section";
 import { MoviesListWrapper } from "../../features/MoviesList/styled";
@@ -87,5 +93,5 @@ export const PeopleDetails = () => {
         </>
       }
     </>
-  )
+  );
 };

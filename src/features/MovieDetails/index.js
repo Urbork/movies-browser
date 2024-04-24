@@ -4,7 +4,7 @@ import {
   selectMovieDetailsCreditsCrew,
   selectMovieDetailsContent,
   selectMovieDetailsId,
-  setMovieDetailsId
+  setMovieDetailsId,
 } from "../movies/moviesSlice";
 import { MovieCover } from "./MovieCover";
 import { Details } from "../../components/Details";
@@ -94,5 +94,5 @@ export const MovieDetails = () => {
         </>
       }
     </>
-  )
+  );
 };
