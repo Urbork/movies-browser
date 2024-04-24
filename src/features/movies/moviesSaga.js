@@ -25,13 +25,11 @@ import {
 
 function* fetchApiHandler() {
   try {
-    console.log("Starting fetchApiHandler...");
     yield put(fetchApi());
     const page = yield select(selectCurrentPage);
     const query = yield select(selectQuery);
     let movies;
     if (query) {
-      console.log("query: " + query);
       movies = yield call(() => getSearchMovie(query, page));
       yield put(setSearchResults(movies.results));
     } else {
@@ -45,7 +43,6 @@ function* fetchApiHandler() {
     yield delay(3000);
   } finally {
     yield put(resetFetchStatus());
-    console.log("fetchApiHandler completed.");
   }
 }
 
