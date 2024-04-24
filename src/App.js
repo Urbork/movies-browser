@@ -12,7 +12,7 @@ import { MoviesList } from "./features/MoviesList";
 import { PeopleDetails } from "./features/PeopleDetails";
 import PeopleList from "./components/PeopleList";
 import { LoadingPage } from "./components/LoadingPage";
-import { useShowData } from "./useShowData.js"; // 1. usunąć przed deploymentem 🗑
+// import { useShowData } from "./useShowData.js"; // 1. usunąć przed deploymentem 🗑
 import { ErrorPage } from "./components/ErrorPage";
 import { useSelector } from "react-redux";
 import {
