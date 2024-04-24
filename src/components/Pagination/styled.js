@@ -24,7 +24,7 @@ export const ButtonContainer = styled.div`
   }
 `;
 
-export const Button = styled.button`
+export const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -33,7 +33,8 @@ export const Button = styled.button`
   padding: 8px 16px;
   border: none;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.color.lightBlue};
+  text-decoration: none;
+  background-color: ${({ theme, disabled }) => disabled ? theme.color.grey : theme.color.lightBlue};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   transition: 0.2s;
 
@@ -43,23 +44,13 @@ export const Button = styled.button`
   }
 
   &:hover {
-    cursor: pointer;
-    filter: brightness(102%);
+    filter: brightness( ${({ disabled }) => disabled ? "100%" : "102%"});
+    cursor: ${({ disabled }) => disabled ? "auto" : "pointer"};
   }
 
   &:active {
-    filter: brightness(104%);
+    filter: brightness( ${({ disabled }) => disabled ? "100%" : "104%"});
   }
-
-  &:disabled {
-    background-color: ${({ theme }) => theme.color.grey};
-    color: ${({ theme }) => theme.color.blackSpecial};
-    filter: brightness(100%);
-  }
-`;
-
-export const StyledNavLink = styled(NavLink)`
-  text-decoration: none;
 `;
 
 export const Content = styled.span`
@@ -70,7 +61,6 @@ export const Content = styled.span`
     css`
       color: ${({ theme }) => theme.color.blackSpecial};
   `};
-
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     display: none;

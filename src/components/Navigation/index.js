@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Container,
   Wrapper,
@@ -10,15 +10,18 @@ import {
   ButtonsWrapper,
   StyledNavLink,
 } from "./styled";
+import { selectCurrentMoviePage, selectCurrentPeoplePage } from "../../features/pageState/pageStateSlice";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { toMoviesList, toPeopleList } from "../../routes";
-import { moviesDisplay, peopleDisplay, selectDisplay } from "../../features/pageState/pageStateSlice";
 
 export const Navigation = () => {
-  const dispatch = useDispatch();
-  const display = useSelector(selectDisplay);
+  const currentMoviePage = useSelector(selectCurrentMoviePage);
+  const currentPeoplePage = useSelector(selectCurrentPeoplePage);
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
 
   return (
-    <Container $specialStyle={display === "movies"}>
+    <Container >
       <Wrapper>
         <LogoButtonsWrapper>
           <AppName>
@@ -26,18 +29,12 @@ export const Navigation = () => {
             Movies Browser
           </AppName>
           <ButtonsWrapper>
-            <StyledNavLink
-              to={toMoviesList()}
-              onClick={() => dispatch(moviesDisplay())}
-              $specialStyle={display === "movies"}
-            >
+            <StyledNavLink to={toMoviesList({ page: currentMoviePage })}
+              $active={path === "movies"}>
               Movies
             </StyledNavLink>
-            <StyledNavLink
-              to={toPeopleList()}
-              onClick={() => dispatch(peopleDisplay())}
-              $specialStyle={display === "movies"}
-            >
+            <StyledNavLink to={toPeopleList({ page: currentPeoplePage })}
+              $active={path === "people"}>
               People
             </StyledNavLink>
           </ButtonsWrapper>
