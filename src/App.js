@@ -10,6 +10,7 @@ import { LoadingPage } from "./components/LoadingPage";
 import { ErrorPage } from "./components/ErrorPage";
 import { useSelector } from "react-redux";
 import { selectFetchStatus, selectFirstMoviePage } from "./features/pageState/pageStateSlice";
+import { toMovieDetails, toMoviesList, toPeopleDetails, toPeopleList } from "./routes";
 
 function App() {
   const fetchStatus = useSelector(selectFetchStatus);
@@ -20,38 +21,20 @@ function App() {
       <Navigation />
       <Container>
         <Switch>
-          <Route path="/movies/:page">
-            {fetchStatus === "loading" && <LoadingPage />}
-            {fetchStatus === "error" && <ErrorPage />}
-            {fetchStatus === "ready" &&
-              <>
-                <MoviesList />
-                <Pagination />
-              </>
-            }
+          <Route path={toMovieDetails()}>
+            <MovieDetails />
           </Route>
-          <Route path="/people/:page">
-            {fetchStatus === "loading" && <LoadingPage />}
-            {fetchStatus === "error" && <ErrorPage />}
-            {fetchStatus === "ready" &&
-              <>
-                <PeopleList />
-                <Pagination />
-              </>
-            }
+          <Route path={toPeopleDetails()}>
+            <PeopleDetails />
           </Route>
-          <Route path="/moviesDetails/:id">
-            {fetchStatus === "loading" && <LoadingPage />}
-            {fetchStatus === "error" && <ErrorPage />}
-            {fetchStatus === "ready" && <MovieDetails />}
+          <Route path={toMoviesList()}>
+            <MoviesList />
           </Route>
-          <Route path="/peopleDetails/:id">
-            {fetchStatus === "loading" && <LoadingPage />}
-            {fetchStatus === "error" && <ErrorPage />}
-            {fetchStatus === "ready" && <PeopleDetails />}
+          <Route path={toPeopleList()}>
+            <PeopleList />
           </Route>
           <Route path="/">
-            <Redirect to={`/movies/${firstMoviePage}`} />
+            <Redirect to={toMoviesList({ page: firstMoviePage })} />
           </Route>
         </Switch>
       </Container>

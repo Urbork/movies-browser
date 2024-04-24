@@ -12,6 +12,7 @@ import {
 } from "./styled";
 import { selectCurrentMoviePage, selectCurrentPeoplePage } from "../../features/pageState/pageStateSlice";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { toMoviesList, toPeopleList } from "../../routes";
 
 export const Navigation = () => {
   const currentMoviePage = useSelector(selectCurrentMoviePage);
@@ -28,12 +29,12 @@ export const Navigation = () => {
             Movies Browser
           </AppName>
           <ButtonsWrapper>
-            <StyledNavLink to={`/movies/${currentMoviePage}`}
-              $active={path === "moviesDetails"}>
+            <StyledNavLink to={toMoviesList({ page: currentMoviePage })}
+              $active={path === "movies"}>
               Movies
             </StyledNavLink>
-            <StyledNavLink to={`/people/${currentPeoplePage}`}
-              $active={path === "peopleDetails"}>
+            <StyledNavLink to={toPeopleList({ page: currentPeoplePage })}
+              $active={path === "people"}>
               People
             </StyledNavLink>
           </ButtonsWrapper>

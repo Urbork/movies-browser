@@ -19,7 +19,7 @@ const PeopleTile = ({ profile, name, id, role }) => {
 
   return (
     <Wrapper>
-      <PeopleTileNavLink to={`/peopleDetails/${id}`}>
+      <PeopleTileNavLink to={`/people/details/${id}`}>
         <Image
           src={(loaded && profile) ? profileUrl + profile : blankActor}
           alt={(loaded && name) ? name : "no name"}

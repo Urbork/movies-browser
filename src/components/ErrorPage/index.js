@@ -9,6 +9,7 @@ import {
 } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFetchStatus, selectFirstMoviePage } from "../../features/pageState/pageStateSlice";
+import { toMoviesList } from "../../routes";
 
 export const ErrorPage = () => {
   const firstMoviePage = useSelector(selectFirstMoviePage);
@@ -22,7 +23,7 @@ export const ErrorPage = () => {
         <div>Please check your network connection</div>
         <div>and try again</div>
       </ErrorSubheading>
-      <ErrorNavLink to={`/movies/${firstMoviePage}`} a
+      <ErrorNavLink to={`${toMoviesList({ page: firstMoviePage })}`} a
         onClick={() => dispatch(resetFetchStatus())} >
         Back to home page
       </ErrorNavLink>

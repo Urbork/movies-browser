@@ -14,6 +14,7 @@ import { MovieRating } from "./MovieRating";
 import { useState } from "react";
 import { posterMainSizeUrl, posterMobileSizeUrl } from "../../api/api";
 import { selectMobile } from "../../features/pageState/pageStateSlice";
+import { toMovieDetails } from "../../routes";
 
 export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) => {
   const [loaded, setLoaded] = useState(false);
@@ -22,7 +23,7 @@ export const MovieTile = ({ poster, title, subtitle, tags, rating, votes, id }) 
 
   return (
     <MovieTileContent>
-      <MovieTileNavLink to={`/moviesDetails/${id}`}>
+      <MovieTileNavLink to={toMovieDetails({ id: id })}>
         <MovieTileImage
           src={(loaded && poster) ? posterUrl + poster : noPoster}
           alt={(loaded && title) ? `${title} movie poster` : "no poster"}
