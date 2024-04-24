@@ -29,6 +29,8 @@ const pageStateSlice = createSlice({
     },
     fetchError: (state) => {
       state.fetchStatus = "error";
+      state.moviePages.currentPage = state.moviePages.firstPage;
+      state.peoplePages.currentPage = state.peoplePages.firstPage;
     },
     changeScreenWidth: (state, { payload: width }) => {
       state.screenWidth.width = width;
