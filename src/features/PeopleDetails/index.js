@@ -39,7 +39,7 @@ export const PeopleDetails = () => {
     <>
       {fetchStatus === "loading" && <LoadingPage />}
       {fetchStatus === "error" && <ErrorPage />}
-      {fetchStatus === "ready" &&
+      {fetchStatus === "ready" && (
         <>
           <Section>
             <Details
@@ -50,48 +50,64 @@ export const PeopleDetails = () => {
               detailsExtraInfoTitle="Place of birth:"
               detailsExtraInfo={personContent?.place_of_birth}
               detailsDateInfoTitle={mobile ? "Birth:" : "Date of birth:"}
-              detailsDateInfo={personContent?.birthday?.split("-").reverse().join(".")}
+              detailsDateInfo={personContent?.birthday
+                ?.split("-")
+                .reverse()
+                .join(".")}
               description={personContent?.biography}
             />
           </Section>
-          <Section title={`Movies - cast (${creditsCast?.length})`}>
-            <MoviesListWrapper>
-              {creditsCast?.map((movie) => (
-                <MovieTile
-                  key={movie.credit_id}
-                  poster={movie.poster_path}
-                  title={movie.title}
-                  subtitle={`${movie.character} (${movie.release_date.split("-")[0]})`}
-                  tags={movie.genre_ids?.map(
-                    (genreId) => genres.find((item) => item.id === genreId)?.name
-                  )}
-                  rating={movie.vote_average}
-                  votes={movie.vote_count}
-                  id={movie.id}
-                />
-              ))}
-            </MoviesListWrapper>
-          </ Section>
-          <Section title={`Movies - crew (${creditsCrew?.length})`} mobile={mobile}>
-            <MoviesListWrapper>
-              {creditsCrew?.map((movie) => (
-                <MovieTile
-                  key={movie.credit_id}
-                  poster={movie.poster_path}
-                  title={movie.title}
-                  subtitle={`${movie.job} (${movie.release_date.split("-")[0]})`}
-                  tags={movie.genre_ids?.map(
-                    (genreId) => genres.find((item) => item.id === genreId)?.name
-                  )}
-                  rating={movie.vote_average}
-                  votes={movie.vote_count}
-                  id={movie.id}
-                />
-              ))}
-            </MoviesListWrapper>
-          </Section>
+          {creditsCast?.length > 0 && (
+            <Section title={`Movies - cast (${creditsCast?.length})`}>
+              <MoviesListWrapper>
+                {creditsCast?.map((movie) => (
+                  <MovieTile
+                    key={movie.credit_id}
+                    poster={movie.poster_path}
+                    title={movie.title}
+                    subtitle={`${movie.character} (${
+                      movie.release_date.split("-")[0]
+                    })`}
+                    tags={movie.genre_ids?.map(
+                      (genreId) =>
+                        genres.find((item) => item.id === genreId)?.name
+                    )}
+                    rating={movie.vote_average}
+                    votes={movie.vote_count}
+                    id={movie.id}
+                  />
+                ))}
+              </MoviesListWrapper>
+            </Section>
+          )}
+          {creditsCrew?.length > 0 && (
+            <Section
+              title={`Movies - crew (${creditsCrew?.length})`}
+              mobile={mobile}
+            >
+              <MoviesListWrapper>
+                {creditsCrew?.map((movie) => (
+                  <MovieTile
+                    key={movie.credit_id}
+                    poster={movie.poster_path}
+                    title={movie.title}
+                    subtitle={`${movie.job} (${
+                      movie.release_date.split("-")[0]
+                    })`}
+                    tags={movie.genre_ids?.map(
+                      (genreId) =>
+                        genres.find((item) => item.id === genreId)?.name
+                    )}
+                    rating={movie.vote_average}
+                    votes={movie.vote_count}
+                    id={movie.id}
+                  />
+                ))}
+              </MoviesListWrapper>
+            </Section>
+          )}
         </>
-      }
+      )}
     </>
   );
 };
