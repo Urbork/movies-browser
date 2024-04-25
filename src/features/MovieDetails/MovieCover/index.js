@@ -24,7 +24,7 @@ export const MovieCover = ({ cover, title, rating, votes }) => {
 
   return (
     <>
-      {cover &&
+      {/* {cover && */}
         <MovieCoverWrapper $show={!imagesToLoad}>
           <MovieCoverBlackBars />
           <MovieCoverImage
@@ -46,7 +46,7 @@ export const MovieCover = ({ cover, title, rating, votes }) => {
             </MovieCoverRating>
           </MovieCoverInfo>
         </MovieCoverWrapper>
-      }
+      {/* } */}
     </>
   )
 };

@@ -31,11 +31,11 @@ export const PeopleDetails = () => {
 
   return (
     <>
-      {fetchStatus === "loading" && <LoadingPage />}
+      {(fetchStatus === "loading") && <LoadingPage />}
       {fetchStatus === "error" && <ErrorPage />}
       {fetchStatus === "ready" &&
         <>
-          <Section>
+          <Section >
             <Details
               people
               imageURL={profileMainSizeUrl}

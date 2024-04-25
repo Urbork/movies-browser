@@ -14,9 +14,9 @@ function* fetchApiHandler() {
     yield put(fetchApi());
     const page = yield select(selectCurrentMoviePage);
     const movies = yield call(() => getPopularMovies(page));
-    yield delay(1000);
+    // yield delay(1000);
     yield put(setPopularMovies(movies.results));
-    yield put(setImagesToLoad());
+    // yield put(setImagesToLoad());
     yield put(resetFetchStatus());
   } catch (error) {
     yield put(fetchError());

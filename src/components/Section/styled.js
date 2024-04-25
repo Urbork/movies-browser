@@ -5,7 +5,12 @@ export const SectionWrapper = styled.section`
   width: 1416px;
   opacity: 0;
   opacity: ${({ $show }) => $show ? '1' : '0'};
-  transition: opacity .9s ease-in-out;
+  /* transition: opacity .9s ease-in-out; */
+
+  transition-property: opacity;
+transition-duration: ${({ $show }) => $show ? '0.9s' : '0.1s'};
+transition-timing-function: ease-in-out;
+
   display: ${({ $mobile }) => $mobile ? "none" : "auto"};
   transition-delay: ${({ $delay }) => $delay ? "2.5s" : "0"};
 

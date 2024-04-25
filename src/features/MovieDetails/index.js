@@ -10,7 +10,7 @@ import { MovieCover } from "./MovieCover";
 import { Details } from "../../components/Details";
 import { Section } from "../../components/Section";
 import { Wrapper } from "../../components/PeopleList/styled";
-import { selectFetchStatus, selectMobile } from "../pageState/pageStateSlice";
+import { selectFetchStatus, selectImagesToLoad, selectMobile } from "../pageState/pageStateSlice";
 import { posterMainSizeUrl } from "../../api/api";
 import PeopleTile from "../../components/PeopleList/PeopleTile";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
@@ -27,6 +27,7 @@ export const MovieDetails = () => {
   const dispatch = useDispatch();
   const movieDetailsId = useSelector(selectMovieDetailsId);
   const fetchStatus = useSelector(selectFetchStatus);
+  const imageToLoad = useSelector(selectImagesToLoad);
 
   useEffect(() => {
     if (id !== movieDetailsId) {
@@ -36,7 +37,7 @@ export const MovieDetails = () => {
 
   return (
     <>
-      {fetchStatus === "loading" && <LoadingPage />}
+      {(fetchStatus === "loading" || imageToLoad) && <LoadingPage />}
       {fetchStatus === "error" && <ErrorPage />}
       {fetchStatus === "ready" &&
         <>
@@ -46,7 +47,7 @@ export const MovieDetails = () => {
             rating={movieDetailsContent?.vote_average}
             votes={movieDetailsContent?.vote_count}
           />
-          <Section>
+          <Section page="movieDetails">
             <Details
               movies
               imageURL={posterMainSizeUrl}
@@ -65,7 +66,7 @@ export const MovieDetails = () => {
               description={movieDetailsContent?.overview}
             />
           </ Section>
-          <Section title="Cast">
+          <Section page="movieDetails" title="Cast">
             <Wrapper >
               {creditsCast?.map((person) => (
                 <PeopleTile
@@ -78,7 +79,7 @@ export const MovieDetails = () => {
               ))}
             </Wrapper>
           </ Section>
-          <Section title="Crew" mobile={mobile}>
+          <Section page="movieDetails" title="Crew" mobile={mobile}>
             <Wrapper $addSpace="true">
               {creditsCrew?.map((person) => (
                 <PeopleTile
