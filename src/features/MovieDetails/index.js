@@ -38,7 +38,7 @@ export const MovieDetails = () => {
     <>
       {fetchStatus === "loading" && <LoadingPage />}
       {fetchStatus === "error" && <ErrorPage />}
-      {fetchStatus === "ready" &&
+      {fetchStatus === "ready" && (
         <>
           <MovieCover
             cover={movieDetailsContent?.backdrop_path}
@@ -54,45 +54,54 @@ export const MovieDetails = () => {
               title={movieDetailsContent?.title}
               subtitle={movieDetailsContent?.release_date?.split("-")[0]}
               detailsExtraInfoTitle="Production:"
-              detailsExtraInfo={movieDetailsContent?.production_countries.map((country, index) => (
-                <span key={index}>{country.name}</span>
-              ))}
+              detailsExtraInfo={movieDetailsContent?.production_countries.map(
+                (country, index) => (
+                  <span key={index}>{country.name}</span>
+                )
+              )}
               detailsDateInfoTitle="Release date: "
-              detailsDateInfo={movieDetailsContent?.release_date?.split("-").reverse().join(".")}
+              detailsDateInfo={movieDetailsContent?.release_date
+                ?.split("-")
+                .reverse()
+                .join(".")}
               tags={movieDetailsContent?.genres}
               rating={movieDetailsContent?.vote_average}
               votes={movieDetailsContent?.vote_count}
               description={movieDetailsContent?.overview}
             />
-          </ Section>
-          <Section title="Cast">
-            <Wrapper >
-              {creditsCast?.map((person) => (
-                <PeopleTile
-                  key={person.credit_id}
-                  id={person.id}
-                  profile={person.profile_path}
-                  name={person.name}
-                  role={person.character}
-                />
-              ))}
-            </Wrapper>
-          </ Section>
-          <Section title="Crew" mobile={mobile}>
-            <Wrapper $addSpace="true">
-              {creditsCrew?.map((person) => (
-                <PeopleTile
-                  key={person.credit_id}
-                  id={person.id}
-                  profile={person.profile_path}
-                  name={person.name}
-                  role={person.department}
-                />
-              ))}
-            </Wrapper>
-          </ Section>
+          </Section>
+          {creditsCast?.length > 0 && (
+            <Section title="Cast">
+              <Wrapper>
+                {creditsCast?.map((person) => (
+                  <PeopleTile
+                    key={person.credit_id}
+                    id={person.id}
+                    profile={person.profile_path}
+                    name={person.name}
+                    role={person.character}
+                  />
+                ))}
+              </Wrapper>
+            </Section>
+          )}
+          {creditsCrew?.length > 0 && (
+            <Section title="Crew" mobile={mobile}>
+              <Wrapper $addSpace="true">
+                {creditsCrew?.map((person) => (
+                  <PeopleTile
+                    key={person.credit_id}
+                    id={person.id}
+                    profile={person.profile_path}
+                    name={person.name}
+                    role={person.department}
+                  />
+                ))}
+              </Wrapper>
+            </Section>
+          )}
         </>
-      }
+      )}
     </>
   );
 };
