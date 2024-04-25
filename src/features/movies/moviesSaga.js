@@ -15,7 +15,6 @@ import {
 function* fetchApiHandler() {
   try {
     yield put(fetchApi());
-    console.log("fetchApi start...");
     const page = yield select(selectCurrentMoviePage);
     const query = yield select(selectQuery);
     let movies;
@@ -37,5 +36,4 @@ function* fetchApiHandler() {
 
 export function* moviesSaga() {
   yield takeLatest([setCurrentMoviePage.type, setQuery.type], fetchApiHandler);
-  // yield takeLatest(setCurrentMoviePage.type, fetchApiHandler);
 }

@@ -2,22 +2,29 @@ import {
   useHistory,
   useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   useQueryParameter,
   useReplaceQueryParameter,
 } from "./useQueryParameters";
 import { searchInputParamName } from "../SearchInput/searchInputParamName";
 import { Input } from "./styled";
-import { setQuery } from "../../features/pageState/pageStateSlice";
+import {
+  selectCurrentPeoplePage,
+  selectCurrentMoviePage,
+  setQuery,
+  setCurrentMoviePage,
+} from "../../features/pageState/pageStateSlice";
 
 export const SearchInput = () => {
   const location = useLocation();
   const history = useHistory();
   const query = useQueryParameter(searchInputParamName);
+  const isPeoplePage = location.pathname.includes("/people");
+  const currentPeoplePage = useSelector(selectCurrentPeoplePage);
+  const currentMoviesPage = useSelector(selectCurrentMoviePage);
   const replaceQueryParameter = useReplaceQueryParameter();
   const dispatch = useDispatch();
-  const isMoviesList = location.pathname.includes("/movies");
 
   const onInputChange = ({ target }) => {
     const searchQuery = target.value;
@@ -28,11 +35,16 @@ export const SearchInput = () => {
     });
 
     dispatch(setQuery(searchQuery.trim()));
+    // console.log("searchQuery: " + searchQuery);
 
-    if (isMoviesList) {
-      history.push(`/movies?${searchInputParamName}=${searchQuery}`);
+    if (isPeoplePage) {
+      history.push(
+        `/people/${currentPeoplePage}?${searchInputParamName}=${searchQuery}`
+      );
     } else {
-      history.push(`/people?${searchInputParamName}=${searchQuery}`);
+      history.push(
+        `/movies/${currentMoviesPage}?${searchInputParamName}=${searchQuery}`
+      );
     }
   };
 
@@ -40,7 +52,7 @@ export const SearchInput = () => {
     <Input
       type="text"
       placeholder={
-        isMoviesList ? "Search for movies..." : "Search for people..."
+        isPeoplePage ? "Search for people..." : "Search for movies..."
       }
       value={query || ""}
       onChange={(event) => onInputChange(event)}
