@@ -6,7 +6,6 @@ import {
   DetailsSubtitle,
   DetailsExtraInfoContainer,
   DetailsExtraInfo,
-  DetailsExtraInfoWrapper,
   DetailsExtraInfoLabel,
   DetailsDescription,
 } from "./styled";
@@ -46,34 +45,34 @@ export const Details = ({
           <DetailsExtraInfoContainer>
             {movies && (
               <DetailsExtraInfo>
-                <DetailsExtraInfoWrapper>
+                <div>
                   <DetailsExtraInfoLabel $hidden>
                     {detailsExtraInfoTitle}
                   </DetailsExtraInfoLabel>{" "}
                   {detailsExtraInfo}
-                </DetailsExtraInfoWrapper>
-                <DetailsExtraInfoWrapper>
+                </div>
+                <div>
                   <DetailsExtraInfoLabel $hidden>
                     {detailsDateInfoTitle}
                   </DetailsExtraInfoLabel>{" "}
                   {detailsDateInfo}
-                </DetailsExtraInfoWrapper>
+                </div>
               </DetailsExtraInfo>
             )}
             {people && (
               <DetailsExtraInfo>
-                <DetailsExtraInfoWrapper>
+                <div>
                   <DetailsExtraInfoLabel>
                     {detailsDateInfoTitle}
                   </DetailsExtraInfoLabel>{" "}
                   {detailsDateInfo}
-                </DetailsExtraInfoWrapper>
-                <DetailsExtraInfoWrapper>
+                </div>
+                <div>
                   <DetailsExtraInfoLabel>
                     {detailsExtraInfoTitle}
                   </DetailsExtraInfoLabel>{" "}
                   {detailsExtraInfo}
-                </DetailsExtraInfoWrapper>
+                </div>
               </DetailsExtraInfo>
             )}
           </DetailsExtraInfoContainer>

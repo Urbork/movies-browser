@@ -3,18 +3,18 @@ import {
   MovieTileContent,
   MovieTileNavLink,
   MovieTileImage,
-  MovieTileInfoWrapper,
   MovieTileInfo,
   MovieTileTitle,
   MovieTileSubtitle,
+  MovieTileInfoWrapper,
 } from "./styled";
 import noPoster from "../../images/noPoster.svg";
 import { MovieTags } from "./MovieTags";
 import { MovieRating } from "./MovieRating";
-import { toMovieDetails } from "../../routes";
 import { useState } from "react";
 import { posterMainSizeUrl, posterMobileSizeUrl } from "../../api/api";
 import { selectMobile } from "../../features/pageState/pageStateSlice";
+import { toMovieDetails } from "../../routes";
 
 export const MovieTile = ({
   poster,

@@ -4,7 +4,9 @@ const moviesSlice = createSlice({
   name: "movies",
   initialState: {
     popularMovies: [],
-    movieDetails: {},
+    movieDetails: {
+      credits: {},
+    },
     genres: [],
     searchResults: [],
   },
@@ -51,6 +53,10 @@ export const selectMovieDetailsContent = (state) =>
 export const selectMovieDetailsCredits = (state) =>
   selectMovieDetails(state).credits;
 export const selectGenres = (state) => selectMoviesState(state).genres;
+export const selectMovieDetailsCreditsCast = (state) =>
+  selectMovieDetailsCredits(state).cast;
+export const selectMovieDetailsCreditsCrew = (state) =>
+  selectMovieDetailsCredits(state).crew;
 export const selectSearchResults = (state) =>
   selectMoviesState(state).searchResults;
 

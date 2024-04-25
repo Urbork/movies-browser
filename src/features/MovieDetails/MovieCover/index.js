@@ -7,8 +7,10 @@ import {
   MovieCoverRating,
   MovieCoverRatingVotes,
   MovieCoverEffect,
+  MovieTileRatingCoverTen,
+  RatingCover,
+  StyledCoverStarIcon,
 } from "./styled";
-import { StyledStarIcon } from "../../../components/MovieTile/MovieRating/styled";
 import vignette from "../../../images/VignetteEffect.svg";
 import { backdropMainSizeUrl, backdropMobileSizeUrl } from "../../../api/api";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,10 +37,13 @@ export const MovieCover = ({ cover, title, rating, votes }) => {
           <MovieCoverInfo $show={!imagesToLoad}>
             <MovieCoverTitle>{title}</MovieCoverTitle>
             <MovieCoverRating>
-              <StyledStarIcon $big="true" />
-              {rating ? rating.toFixed(1).replace(".", ",") : ""}
+              <StyledCoverStarIcon />
+              <RatingCover>
+                {rating ? rating.toFixed(1).replace(".", ",") : ""}
+                <MovieTileRatingCoverTen >/ 10</MovieTileRatingCoverTen>
+              </RatingCover>
+              <MovieCoverRatingVotes>{votes} votes</MovieCoverRatingVotes>
             </MovieCoverRating>
-            <MovieCoverRatingVotes>{votes} votes</MovieCoverRatingVotes>
           </MovieCoverInfo>
         </MovieCoverWrapper>
       }

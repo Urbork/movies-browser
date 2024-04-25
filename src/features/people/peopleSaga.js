@@ -2,16 +2,12 @@ import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getPopularPeople, getSearchPerson } from "../../api/fetchApi";
 import { setPopularPeople, setSearchPerson } from "./peopleSlice";
 import {
-  changePageToFirst,
-  changePageToLast,
-  changePageToNext,
-  changePageToPrevious,
   fetchApi,
   fetchError,
-  peopleDisplay,
   resetFetchStatus,
-  selectCurrentPage,
+  selectCurrentPeoplePage,
   selectQuery,
+  setCurrentPeoplePage,
   setImagesToLoad,
   setQuery,
 } from "../pageState/pageStateSlice";
@@ -19,36 +15,25 @@ import {
 function* fetchApiHandler() {
   try {
     yield put(fetchApi());
-    const page = yield select(selectCurrentPage);
+    const page = yield select(selectCurrentPeoplePage);
     const query = yield select(selectQuery);
     let people;
     if (query) {
       people = yield call(() => getSearchPerson(query, page));
+      yield delay(1000);
       yield put(setSearchPerson(people.results));
     } else {
       people = yield call(() => getPopularPeople(page));
-      yield put(setPopularPeople(people.results));
+      yield delay(1000);
     }
-    yield delay(1000);
+    yield put(setPopularPeople(people.results));
     yield put(setImagesToLoad());
+    yield put(resetFetchStatus());
   } catch (error) {
     yield put(fetchError());
-    yield delay(3000);
-  } finally {
-    yield put(resetFetchStatus());
   }
 }
 
 export function* peopleSaga() {
-  yield takeLatest(
-    [
-      changePageToFirst.type,
-      changePageToPrevious.type,
-      changePageToNext.type,
-      changePageToLast.type,
-      peopleDisplay.type,
-      setQuery.type,
-    ],
-    fetchApiHandler
-  );
+  yield takeLatest([setCurrentPeoplePage.type, setQuery.type], fetchApiHandler);
 }

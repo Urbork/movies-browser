@@ -2,31 +2,31 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 
 export const MovieTileContent = styled.li`
-  padding: 16px;
-  border-radius: 5px;
-  background-color: ${({ theme }) => theme.color.white};
-  box-shadow: 0px 4px 12px 0px ${({ theme }) => theme.color.boxShadow};
-  transition: 0.4s;
-  width: 100%;
-  overflow: hidden;
+  transition: 0.15s;
 
+  // ten efekt powoduje poruszanie się elementów w MovieTileNavLink
+  // trzeba znaleźć rozwiązanie lub zamiennić na inny
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
   }
 `;
 
 export const MovieTileNavLink = styled(NavLink)`
+  width: 100%;
   height: 100%;
   text-decoration: none;
+  color: inherit;
   display: flex;
   flex-direction: column;
-  color: inherit;
   cursor: pointer;
+  padding: 16px;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.color.white};
+  box-shadow: 0px 4px 12px 0px ${({ theme }) => theme.color.boxShadow};
+  gap: 16px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     flex-direction: row;
-    align-items: flex-start;
-    gap: 16px;
   }
 `;
 
@@ -59,26 +59,40 @@ export const MovieTileInfo = styled.div`
   }
 `;
 
+export const Description = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
 export const MovieTileInfoWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 10px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    justify-content: start;
+    justify-content: flex-start;
+    gap: 8px;
   }
 `;
 
 export const MovieTileTitle = styled.h3`
-  margin: 16px 0 0;
-  font-size: clamp(20px, 1.6vw, 22px);
+  margin: 0;
   font-weight: ${({ theme }) => theme.fontWeight.medium};
-  line-height: 1.3;
+  font-size: 22px;
+  line-height: 28.6px;
+  text-align: left;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
+    font-size: clamp(16px, 1.6vw, 22px);
+    line-height: clamp(20.8px, 1.6vw, 28.6px);
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    margin: 0;
     font-size: 16px;
+    line-height: 20.8px;
   }
 `;
 
@@ -86,9 +100,16 @@ export const MovieTileSubtitle = styled.p`
   margin: 0;
   font-size: 16px;
   color: ${({ theme }) => theme.color.darkerGrey};
-  line-height: 1.5;
+  line-height: 24px;
+  text-align: left;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
+    font-size: clamp(13px, 1.6vw, 16px);
+    line-height: clamp(16.9px, 1.6vw, 24px);
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
-    font-size: 12px;
+    font-size: 13px;
+    line-height: 16.9px;
   }
 `;

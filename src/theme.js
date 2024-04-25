@@ -15,6 +15,7 @@ export const theme = {
     lightGrey: "#F5F5FA",
     grey: "#E4E6F0",
     darkerGrey: "#7E839A",
+    stormGray: "#74788B",
     black: "#000000",
     blackSpecial: "#18181B",
 
@@ -24,6 +25,6 @@ export const theme = {
     yellow: "#FCD420",
 
     imageBG: "#C4C4C4",
-    boxShadow: "#BAC7D5",
+    boxShadow: "#BAC7D580",
   },
 };

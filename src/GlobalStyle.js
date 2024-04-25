@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.color.lightGrey};
     font-family: "Poppins", "sans-serif";
-    color: ${({ theme }) => theme.color.black};
+    color: ${({ theme }) => theme.color.blackSpecial};
     overflow-x: hidden;
     overflow-y: scroll;
     min-width: 320px;
