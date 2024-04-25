@@ -1,9 +1,9 @@
 import { Section } from "../Section";
 import { StyledLoadingIcon } from "./styled";
 
-export const LoadingPage = ({title , page}) => {
+export const LoadingPage = ({ title }) => {
   return (
-    <Section page={page} title={title}>
+    <Section title={title}>
       <StyledLoadingIcon />
     </Section>
   );

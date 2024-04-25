@@ -33,7 +33,7 @@ export const MoviesList = () => {
       {fetchStatus === "error" && <ErrorPage />}
       {fetchStatus === "ready" &&
         <>
-          <Section page="moviesList" title="Popular movies">
+          <Section title="Popular movies">
             <MoviesListWrapper onLoad={() => dispatch(setImagesLoaded())}>
               {popularMovies?.map((movie) => (
                 <MovieTile

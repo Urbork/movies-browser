@@ -1,10 +1,8 @@
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import {
   ErrorWrapper,
   StyledErrorIcon,
   ErrorHeading,
   ErrorSubheading,
-  ErrorButton,
   ErrorNavLink,
 } from "./styled";
 import { useDispatch, useSelector } from "react-redux";

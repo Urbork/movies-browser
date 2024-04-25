@@ -24,29 +24,27 @@ export const MovieCover = ({ cover, title, rating, votes }) => {
 
   return (
     <>
-      {/* {cover && */}
-        <MovieCoverWrapper $show={!imagesToLoad}>
-          <MovieCoverBlackBars />
-          <MovieCoverImage
-            src={backdropUrl + cover}
-            alt={`${title} movie cover image`}
-            onLoad={() => dispatch(setImagesLoaded())}
-            $show={!imagesToLoad}
-          />
-          <MovieCoverEffect src={vignette} />
-          <MovieCoverInfo $show={!imagesToLoad}>
-            <MovieCoverTitle>{title}</MovieCoverTitle>
-            <MovieCoverRating>
-              <StyledCoverStarIcon />
-              <RatingCover>
-                {rating ? rating.toFixed(1).replace(".", ",") : ""}
-                <MovieTileRatingCoverTen >/ 10</MovieTileRatingCoverTen>
-              </RatingCover>
-              <MovieCoverRatingVotes>{votes} votes</MovieCoverRatingVotes>
-            </MovieCoverRating>
-          </MovieCoverInfo>
-        </MovieCoverWrapper>
-      {/* } */}
+      <MovieCoverWrapper $show={!imagesToLoad}>
+        <MovieCoverBlackBars />
+        <MovieCoverImage
+          src={backdropUrl + cover}
+          alt={`${title} movie cover image`}
+          onLoad={() => dispatch(setImagesLoaded())}
+          $show={!imagesToLoad}
+        />
+        <MovieCoverEffect src={vignette} />
+        <MovieCoverInfo $show={!imagesToLoad}>
+          <MovieCoverTitle>{title}</MovieCoverTitle>
+          <MovieCoverRating>
+            <StyledCoverStarIcon />
+            <RatingCover>
+              {rating ? rating.toFixed(1).replace(".", ",") : ""}
+              <MovieTileRatingCoverTen >/ 10</MovieTileRatingCoverTen>
+            </RatingCover>
+            <MovieCoverRatingVotes>{votes} votes</MovieCoverRatingVotes>
+          </MovieCoverRating>
+        </MovieCoverInfo>
+      </MovieCoverWrapper>
     </>
   )
 };

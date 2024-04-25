@@ -6,16 +6,11 @@ import { MoviesList } from "./features/MoviesList";
 import { PeopleDetails } from "./features/PeopleDetails";
 import PeopleList from "./components/PeopleList";
 import { useSelector } from "react-redux";
-import { selectFirstMoviePage, selectMobile } from "./features/pageState/pageStateSlice";
+import { selectFirstMoviePage } from "./features/pageState/pageStateSlice";
 import { toMovieDetails, toMoviesList, toPeopleDetails, toPeopleList } from "./routes";
-import { useWidth } from "./useWidth";
 
 function App() {
   const firstMoviePage = useSelector(selectFirstMoviePage);
-  useWidth();
-
-  const mobile = useSelector(selectMobile);
-  console.log(mobile)
 
   return (
     <HashRouter>

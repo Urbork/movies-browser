@@ -12,11 +12,11 @@ export function* initializeSagaHandler() {
     const movies = yield call(() => getPopularMovies(firstMoviePage));
     const genres = yield call(() => getGenres());
     const people = yield call(() => getPopularPeople(firstPeoplePage));
-    // yield delay(1000);
+    yield delay(1000);
     yield put(setPopularMovies(movies.results));
     yield put(setGenres(genres.genres));
     yield put(setPopularPeople(people.results));
-    // yield put(setImagesToLoad());
+    yield put(setImagesToLoad());
     yield put(resetFetchStatus());
   } catch (error) {
     yield put(fetchError());

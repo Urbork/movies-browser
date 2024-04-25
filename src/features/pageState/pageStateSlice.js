@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { theme } from "../../theme";
+
+const mobileSize = parseInt(theme.breakpoint.small);
 
 const pageStateSlice = createSlice({
   name: "pageState",
@@ -15,8 +18,7 @@ const pageStateSlice = createSlice({
       lastPage: 500,
     },
     screenWidth: {
-      width: window.innerWidth,
-      mobile: undefined
+      mobile: window.innerWidth < mobileSize,
     },
     imagesToLoad: false,
   },
@@ -34,10 +36,6 @@ const pageStateSlice = createSlice({
     },
     changeScreenWidth: (state, { payload: width }) => {
       state.screenWidth.width = width;
-    },
-    changeMobileState: (state, { payload: number }) => {
-      if (state.screenWidth.width < number) state.screenWidth.mobile = true;
-      if (state.screenWidth.width > number) state.screenWidth.mobile = false;
     },
     setImagesLoaded: (state) => {
       state.imagesToLoad = false;
@@ -61,7 +59,6 @@ export const {
   setCurrentMoviePage,
   setCurrentPeoplePage,
   changeScreenWidth,
-  changeMobileState,
   setImagesLoaded,
   setImagesToLoad,
 } = pageStateSlice.actions;
@@ -82,7 +79,6 @@ export const selectCurrentPeoplePage = state => selectPeoplePages(state).current
 export const selectLastPeoplePage = state => selectPeoplePages(state).lastPage;
 
 export const selectScreen = state => selectPageState(state).screenWidth;
-export const selectScreenWidth = state => selectScreen(state).width;
 export const selectMobile = state => selectScreen(state).mobile;
 export const selectImagesToLoad = state => selectPageState(state).imagesToLoad;
 

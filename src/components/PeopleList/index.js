@@ -32,7 +32,7 @@ const PeopleList = () => {
       {fetchStatus === "error" && <ErrorPage />}
       {fetchStatus === "ready" &&
         <>
-          <Section page="peopleList" title="Popular people">
+          <Section title="Popular people">
             <Wrapper onLoad={() => dispatch(setImagesLoaded())}>
               {popularPeople?.map((actor) => (
                 <PeopleTile
