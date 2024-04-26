@@ -21,7 +21,7 @@ function* fetchApiHandler() {
     if (query) {
       people = yield call(() => getSearchPerson(query, page));
       yield delay(1000);
-      yield put(setSearchPerson(people.results));
+      // yield put(setSearchPerson(people.results));  // przyrócić po poprawie
     } else {
       people = yield call(() => getPopularPeople(page));
       yield delay(1000);

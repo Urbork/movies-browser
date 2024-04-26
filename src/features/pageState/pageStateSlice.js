@@ -14,11 +14,17 @@ const pageStateSlice = createSlice({
       currentPage: 1,
       lastPage: 500,
     },
+    searchPages: {
+      firstPage: 1,
+      currentPage: 1,
+      lastPage: 500,
+    },
     screenWidth: {
       width: window.innerWidth,
-      mobile: undefined
+      mobile: undefined,
     },
     imagesToLoad: false,
+    query: "",
   },
   reducers: {
     fetchApi: (state) => {
@@ -50,7 +56,16 @@ const pageStateSlice = createSlice({
     },
     setCurrentPeoplePage: (state, { payload: page }) => {
       state.peoplePages.currentPage = page;
-    }
+    },
+    setQuery: (state, { payload: query }) => {
+      state.query = query;
+    },
+    clearQuery: (state) => {
+      state.query = "";
+    },
+    setCurrentSearchPage: (state, { payload: page }) => {
+      state.searchPages.currentPage = page;
+    },
   },
 });
 
@@ -64,26 +79,46 @@ export const {
   changeMobileState,
   setImagesLoaded,
   setImagesToLoad,
+  setQuery,
+  clearQuery,
+  setCurrentSearchPage,
 } = pageStateSlice.actions;
 
-const selectPageState = state => state.pageState;
+const selectPageState = (state) => state.pageState;
 
-export const selectDisplay = state => selectPageState(state).display;
-export const selectFetchStatus = state => selectPageState(state).fetchStatus;
+export const selectDisplay = (state) => selectPageState(state).display;
+export const selectFetchStatus = (state) => selectPageState(state).fetchStatus;
 
-export const selectMoviePages = state => selectPageState(state).moviePages;
-export const selectFirstMoviePage = state => selectMoviePages(state).firstPage;
-export const selectCurrentMoviePage = state => selectMoviePages(state).currentPage;
-export const selectLastMoviePage = state => selectMoviePages(state).lastPage;
+export const selectMoviePages = (state) => selectPageState(state).moviePages;
+export const selectFirstMoviePage = (state) =>
+  selectMoviePages(state).firstPage;
+export const selectCurrentMoviePage = (state) =>
+  selectMoviePages(state).currentPage;
+export const selectLastMoviePage = (state) => selectMoviePages(state).lastPage;
 
-export const selectPeoplePages = state => selectPageState(state).peoplePages;
-export const selectFirstPeoplePage = state => selectPeoplePages(state).firstPage;
-export const selectCurrentPeoplePage = state => selectPeoplePages(state).currentPage;
-export const selectLastPeoplePage = state => selectPeoplePages(state).lastPage;
+export const selectPeoplePages = (state) => selectPageState(state).peoplePages;
+export const selectFirstPeoplePage = (state) =>
+  selectPeoplePages(state).firstPage;
+export const selectCurrentPeoplePage = (state) =>
+  selectPeoplePages(state).currentPage;
+export const selectLastPeoplePage = (state) =>
+  selectPeoplePages(state).lastPage;
 
-export const selectScreen = state => selectPageState(state).screenWidth;
-export const selectScreenWidth = state => selectScreen(state).width;
-export const selectMobile = state => selectScreen(state).mobile;
-export const selectImagesToLoad = state => selectPageState(state).imagesToLoad;
+export const selectSearchPages = (state) => selectPageState(state).searchPages;
+export const selectFirstSearchPage = (state) =>
+  selectSearchPages(state).firstPage;
+export const selectCurrentSearchPage = (state) =>
+  selectSearchPages(state).currentPage;
+export const selectLastSearchPage = (state) =>
+  selectSearchPages(state).lastPage;
+
+export const selectScreen = (state) => selectPageState(state).screenWidth;
+export const selectScreenWidth = (state) => selectScreen(state).width;
+export const selectMobile = (state) => selectScreen(state).mobile;
+
+export const selectImagesToLoad = (state) =>
+  selectPageState(state).imagesToLoad;
+
+export const selectQuery = (state) => selectPageState(state).query;
 
 export default pageStateSlice.reducer;

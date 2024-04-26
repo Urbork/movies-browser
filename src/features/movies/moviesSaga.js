@@ -1,21 +1,34 @@
-import { call, delay, put, select, takeLatest } from "redux-saga/effects";
-import { setPopularMovies } from "./moviesSlice";
-import { getPopularMovies } from "../../api/fetchApi";
+import { call, debounce, delay, put, select, takeLatest } from "redux-saga/effects";
+import { setMovies, setMoviesSearchResults } from "./moviesSlice";
+import { getMovies, getSearchMovie } from "../../api/fetchApi";
 import {
-  fetchApi, fetchError,
+  fetchApi,
+  fetchError,
   resetFetchStatus,
   selectCurrentMoviePage,
+  selectCurrentSearchPage,
+  selectQuery,
   setCurrentMoviePage,
-  setImagesToLoad
+  setCurrentSearchPage,
+  setImagesToLoad,
+  setQuery,
 } from "../pageState/pageStateSlice";
 
 function* fetchApiHandler() {
   try {
     yield put(fetchApi());
     const page = yield select(selectCurrentMoviePage);
-    const movies = yield call(() => getPopularMovies(page));
-    yield delay(1000);
-    yield put(setPopularMovies(movies.results));
+    const searchPage = yield select(selectCurrentSearchPage);
+    const query = yield select(selectQuery);
+    if (query) {
+      const movies = yield call(() => getSearchMovie(query, searchPage))
+      yield delay(1000);
+      yield put(setMoviesSearchResults(movies.results));
+    } else {
+      const movies = yield call(() => getMovies(page))
+      yield delay(1000);
+      yield put(setMovies(movies.results));
+    }
     yield put(setImagesToLoad());
     yield put(resetFetchStatus());
   } catch (error) {
@@ -25,4 +38,6 @@ function* fetchApiHandler() {
 
 export function* moviesSaga() {
   yield takeLatest(setCurrentMoviePage.type, fetchApiHandler);
+  yield takeLatest(setCurrentSearchPage, fetchApiHandler)
+  yield debounce(2000, setQuery, fetchApiHandler)
 };

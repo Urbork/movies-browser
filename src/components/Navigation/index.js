@@ -6,13 +6,13 @@ import {
   AppName,
   Video,
   InputWrapper,
-  Input,
   ButtonsWrapper,
   StyledNavLink,
 } from "./styled";
 import { selectCurrentMoviePage, selectCurrentPeoplePage } from "../../features/pageState/pageStateSlice";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { toMoviesList, toPeopleList } from "../../routes";
+import { SearchInput } from "../SearchInput";
 
 export const Navigation = () => {
   const currentMoviePage = useSelector(selectCurrentMoviePage);
@@ -40,9 +40,7 @@ export const Navigation = () => {
           </ButtonsWrapper>
         </LogoButtonsWrapper>
         <InputWrapper>
-          <Input
-            placeholder="Search for movies..."
-          />
+          <SearchInput />
         </InputWrapper>
       </Wrapper>
     </Container >
