@@ -1,5 +1,5 @@
 import { call, debounce, delay, put, select, takeLatest } from "redux-saga/effects";
-import { setMovies, setMoviesSearchResults } from "./moviesSlice";
+import { setMovies } from "./moviesSlice";
 import { getMovies, getSearchMovie } from "../../api/fetchApi";
 import {
   fetchApi,
@@ -11,6 +11,7 @@ import {
   setCurrentMoviePage,
   setCurrentSearchPage,
   setImagesToLoad,
+  setLastSearchPage,
   setQuery,
 } from "../pageState/pageStateSlice";
 
@@ -23,7 +24,8 @@ function* fetchApiHandler() {
     if (query) {
       const movies = yield call(() => getSearchMovie(query, searchPage))
       yield delay(1000);
-      yield put(setMoviesSearchResults(movies.results));
+      yield put(setMovies(movies.results));
+      yield put(setLastSearchPage(movies.total_pages));
     } else {
       const movies = yield call(() => getMovies(page))
       yield delay(1000);
@@ -38,6 +40,6 @@ function* fetchApiHandler() {
 
 export function* moviesSaga() {
   yield takeLatest(setCurrentMoviePage.type, fetchApiHandler);
-  yield takeLatest(setCurrentSearchPage, fetchApiHandler)
-  yield debounce(2000, setQuery, fetchApiHandler)
+  yield takeLatest(setCurrentSearchPage.type, fetchApiHandler)
+  yield debounce(1000, setQuery.type, fetchApiHandler)
 };

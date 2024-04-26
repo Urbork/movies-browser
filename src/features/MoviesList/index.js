@@ -2,10 +2,13 @@ import { Section } from "../../components/Section";
 import { MoviesListWrapper } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import { MovieTile } from "../../components/MovieTile";
-import {
-  selectGenres,
-  selectMovies,
-} from "../movies/moviesSlice";
+import { selectGenres, selectMovies, } from "../movies/moviesSlice";
+import { useLocation, useParams, } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect } from "react";
+import { LoadingPage } from "../../components/LoadingPage";
+import { ErrorPage } from "../../components/ErrorPage";
+import { Pagination } from "../../components/Pagination";
+import { searchInputParamName } from "../../components/SearchInput/searchInputParamName";
 import {
   selectCurrentMoviePage,
   selectCurrentSearchPage,
@@ -16,47 +19,42 @@ import {
   setImagesLoaded,
   setQuery,
 } from "../pageState/pageStateSlice";
-import {
-  useLocation,
-  useParams,
-} from "react-router-dom/cjs/react-router-dom.min";
-import { useEffect } from "react";
-import { LoadingPage } from "../../components/LoadingPage";
-import { ErrorPage } from "../../components/ErrorPage";
-import { Pagination } from "../../components/Pagination";
-import { searchInputParamName } from "../../components/SearchInput/searchInputParamName";
 
 export const MoviesList = () => {
   const location = useLocation();
-  const query = new URLSearchParams(location.search).get(searchInputParamName);
-  console.log("MoviesList - query", query)
-
   const movies = useSelector(selectMovies);
   const genres = useSelector(selectGenres);
-  const currentMoviePage = useSelector(selectCurrentMoviePage);
-  const dispatch = useDispatch();
-  const { page } = useParams();
-  let pageNumber = +page;
-  const path = location.pathname.split("/")[1];
   const fetchStatus = useSelector(selectFetchStatus);
+  const currentMoviePage = useSelector(selectCurrentMoviePage);
   const currentSearchPage = useSelector(selectCurrentSearchPage);
   const currentQuery = useSelector(selectQuery);
+  const dispatch = useDispatch();
+  const query = new URLSearchParams(location.search).get(searchInputParamName);
+  const path = location.pathname.split("/")[1];
+  const { page } = useParams();
+  let pageNumber = +page;
 
   useEffect(() => {
     if (
-      (page && pageNumber !== currentMoviePage) || path !== "movies" || (query && pageNumber !== currentSearchPage)
+      (!query && page && pageNumber !== currentMoviePage) ||
+      (query && page && pageNumber !== currentSearchPage) ||
+      path !== "movies"
     ) {
       if (!query) {
         dispatch(setCurrentMoviePage(pageNumber))
       } else {
-        dispatch(setCurrentSearchPage(pageNumber))
-      }
+        if (query && query === currentQuery) {
+          dispatch(setCurrentSearchPage(pageNumber))
+        }
+      };
     };
-  }, [page, pageNumber, currentMoviePage, path, dispatch, query, currentQuery]);
+  }, [query, page, pageNumber, currentMoviePage, currentSearchPage, path, currentQuery, dispatch]);
 
   useEffect(() => {
     if (query && query !== currentQuery) dispatch(setQuery(query));
-  }, [query])
+    if (!query && query !== currentQuery) dispatch(setQuery(null));
+
+  }, [query, currentQuery, dispatch])
 
   return (
     <>

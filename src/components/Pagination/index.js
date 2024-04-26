@@ -1,4 +1,7 @@
 import { useSelector } from "react-redux";
+import { StyledNavLink } from "./styled";
+import { useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { searchInputParamName } from "../SearchInput/searchInputParamName";
 import {
   ButtonContainer,
   Wrapper,
@@ -19,10 +22,6 @@ import {
   selectLastSearchPage,
   selectQuery,
 } from "../../features/pageState/pageStateSlice";
-import { StyledNavLink } from "./styled";
-import { useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { searchInputParamName } from "../SearchInput/searchInputParamName";
-
 
 export const Pagination = () => {
   const { page } = useParams();
@@ -32,36 +31,30 @@ export const Pagination = () => {
   const lastPeoplePage = useSelector(selectLastPeoplePage);
   const firstSearchPage = useSelector(selectFirstSearchPage)
   const lastSearchPage = useSelector(selectLastSearchPage);
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
+  const query = new URLSearchParams(location.search).get(searchInputParamName);
   let firstPage;
   let lastPage;
   let pageNumber = +page;
+
+  if (query) {
+    firstPage = firstSearchPage;
+    lastPage = lastSearchPage;
+  } else if (path === "movies") {
+    firstPage = firstMoviePage;
+    lastPage = lastMoviePage;
+  } else if (path === "people") {
+    firstPage = firstPeoplePage;
+    lastPage = lastPeoplePage;
+  };
+
   const previousPage = pageNumber <= firstPage ? pageNumber : pageNumber - 1;
   const nextPage = pageNumber >= lastPage ? pageNumber : pageNumber + 1;
   const isFirstPage = pageNumber === firstPage ? true : false;
   const isLastPage = pageNumber === lastPage ? true : false;
-  const location = useLocation();
-  const path = location.pathname.split("/")[1];
-
-  const query = new URLSearchParams(location.search).get(searchInputParamName);
-  console.log("MoviesList - query", query)
-
-  if (path === "movies") {
-    firstPage = firstMoviePage;
-    lastPage = lastMoviePage;
-  };
-  if (path === "people") {
-    firstPage = firstPeoplePage;
-    lastPage = lastPeoplePage;
-  };
-  if (query) {
-    firstPage = firstSearchPage;
-    lastPage = lastSearchPage;
-  };
-
   const currentQuery = useSelector(selectQuery);
   const queryPath = currentQuery ? `?${searchInputParamName}=${currentQuery}` : ""
-
-  // `/movies/${currentSearchPage}?${searchInputParamName}=${searchQuery}
 
   return (
     <Wrapper>

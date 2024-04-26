@@ -1,5 +1,7 @@
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { selectCurrentSearchPage } from "../../features/pageState/pageStateSlice";
 
 export const useQueryParameter = (target) => {
   const location = useLocation();
@@ -10,6 +12,8 @@ export const useQueryParameter = (target) => {
 export const useReplaceQueryParameter = () => {
   const location = useLocation();
   const history = useHistory();
+  const currentSearchPage = useSelector(selectCurrentSearchPage);
+  const path = location.pathname.split("/")[1];
 
   return ({ key, value }) => {
     const searchParams = new URLSearchParams(location.search);
@@ -18,8 +22,8 @@ export const useReplaceQueryParameter = () => {
       searchParams.delete(key);
     } else {
       searchParams.set(key, value);
-    }
+    };
 
-    history.push(`${location.pathname}?${searchParams.toString()}`);
+    history.push(`/${path}/${currentSearchPage}?${searchParams.toString()}`);
   };
 };
