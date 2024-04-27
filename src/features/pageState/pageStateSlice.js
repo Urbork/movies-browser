@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { theme } from "../../theme";
+const mobileWidth = parseInt(theme.breakpoint.small);
 
 const pageStateSlice = createSlice({
   name: "pageState",
@@ -21,10 +23,13 @@ const pageStateSlice = createSlice({
     },
     screenWidth: {
       width: window.innerWidth,
-      mobile: undefined,
+      mobile: window.innerWidth < mobileWidth,
     },
     imagesToLoad: false,
-    query: null,
+    query: {
+      moviesQuery: null,
+      peopleQuery: null,
+    },
   },
   reducers: {
     fetchApi: (state) => {
@@ -57,9 +62,13 @@ const pageStateSlice = createSlice({
     setCurrentPeoplePage: (state, { payload: page }) => {
       state.peoplePages.currentPage = page;
     },
-    setQuery: (state, { payload: query }) => {
+    setMoviesQuery: (state, { payload: query }) => {
       state.searchPages.currentPage = state.searchPages.firstPage
-      state.query = query;
+      state.query.moviesQuery = query;
+    },
+    setPeopleQuery: (state, { payload: query }) => {
+      state.searchPages.currentPage = state.searchPages.firstPage
+      state.query.peopleQuery = query;
     },
     setCurrentSearchPage: (state, { payload: page }) => {
       state.searchPages.currentPage = page;
@@ -80,7 +89,8 @@ export const {
   changeMobileState,
   setImagesLoaded,
   setImagesToLoad,
-  setQuery,
+  setMoviesQuery,
+  setPeopleQuery,
   setCurrentSearchPage,
   setLastSearchPage,
 } = pageStateSlice.actions;
@@ -111,5 +121,7 @@ export const selectMobile = (state) => selectScreen(state).mobile;
 export const selectImagesToLoad = (state) => selectPageState(state).imagesToLoad;
 
 export const selectQuery = (state) => selectPageState(state).query;
+export const selectMoviesQuery = (state) => selectQuery(state).moviesQuery;
+export const selectPeopleQuery = (state) => selectQuery(state).peopleQuery;
 
 export default pageStateSlice.reducer;

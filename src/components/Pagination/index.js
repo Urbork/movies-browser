@@ -20,10 +20,12 @@ import {
   selectLastMoviePage,
   selectLastPeoplePage,
   selectLastSearchPage,
-  selectQuery,
+  selectMoviesQuery,
+  selectPeopleQuery
 } from "../../features/pageState/pageStateSlice";
+import { selectTotalPages } from "../../features/movies/moviesSlice";
 
-export const Pagination = () => {
+export const Pagination = ({noDisplay}) => {
   const { page } = useParams();
   const firstMoviePage = useSelector(selectFirstMoviePage)
   const lastMoviePage = useSelector(selectLastMoviePage);
@@ -37,10 +39,11 @@ export const Pagination = () => {
   let firstPage;
   let lastPage;
   let pageNumber = +page;
+  const totalPages = useSelector(selectTotalPages);
 
-  if (query) {
+  if (query && totalPages) {
     firstPage = firstSearchPage;
-    lastPage = lastSearchPage;
+    lastPage = totalPages;
   } else if (path === "movies") {
     firstPage = firstMoviePage;
     lastPage = lastMoviePage;
@@ -53,11 +56,20 @@ export const Pagination = () => {
   const nextPage = pageNumber >= lastPage ? pageNumber : pageNumber + 1;
   const isFirstPage = pageNumber === firstPage ? true : false;
   const isLastPage = pageNumber === lastPage ? true : false;
-  const currentQuery = useSelector(selectQuery);
-  const queryPath = currentQuery ? `?${searchInputParamName}=${currentQuery}` : ""
+  const moviesQuery = useSelector(selectMoviesQuery);
+  const peopleQuery = useSelector(selectPeopleQuery);
+
+  let queryPath;
+  if (moviesQuery && !peopleQuery) {
+    queryPath = `?${searchInputParamName}=${moviesQuery}`;
+  } else if (!moviesQuery && peopleQuery) {
+    queryPath = `?${searchInputParamName}=${peopleQuery}`;
+  } else {
+    queryPath = "";
+  }
 
   return (
-    <Wrapper>
+    <Wrapper $noDisplay={noDisplay}>
       <ButtonContainer>
         <StyledNavLink to={`/${path}/${firstPage}${queryPath}`} disabled={isFirstPage}>
           <BackwardArrow disabled={isFirstPage} />

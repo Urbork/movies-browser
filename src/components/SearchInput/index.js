@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useQueryParameter, useReplaceQueryParameter, } from "./useQueryParameters";
 import { searchInputParamName } from "../SearchInput/searchInputParamName";
 import { Input } from "./styled";
-import { setQuery } from "../../features/pageState/pageStateSlice";
+import { setMoviesQuery, setPeopleQuery } from "../../features/pageState/pageStateSlice";
 
 export const SearchInput = () => {
   const location = useLocation();
@@ -20,7 +20,11 @@ export const SearchInput = () => {
       value: searchQuery.trim() !== "" ? searchQuery : "",
     });
 
-    dispatch(setQuery(searchQuery.trim()));
+    if (searchOf === "movies") {
+      dispatch(setMoviesQuery(searchQuery.trim()));
+    } else if (searchOf === "peo") {
+      dispatch(setPeopleQuery(searchQuery.trim()));
+    }
   };
 
   return (

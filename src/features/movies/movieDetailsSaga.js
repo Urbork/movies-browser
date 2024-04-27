@@ -12,8 +12,9 @@ function* fetchApiHandler() {
       throw new Error("Movie details not found"); 
     }
     const credits = yield call(() => getCredits(id));
-    yield delay(1000);
     yield put(setMovieDetails(movieDetails));
+    yield delay(1000);
+
     yield put(setCredits(credits));
     yield put(setImagesToLoad());
     yield put(resetFetchStatus());

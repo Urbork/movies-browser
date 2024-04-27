@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const PeopleTileNavLink = styled(NavLink)`
   margin: 0;
-  /* width: 100%; */
+  /* width: 100%; */      // do sprawdzenia 
   height: 100%;
   border: none;
   text-decoration: none;

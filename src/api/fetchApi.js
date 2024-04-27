@@ -39,7 +39,7 @@ export const getCredits = (id) => {
   return fetchApi(updatedUrl);
 };
 
-export const getPopularPeople = (page) => {
+export const getPeople = (page) => {
   const updatedUrl = popularPeopleUrl.replace("{page}", page);
   return fetchApi(updatedUrl);
 };

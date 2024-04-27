@@ -24,4 +24,8 @@ export const Input = styled.input`
     background-position: 16px 50%;
     text-indent: 16px;
   }
+
+  &:focus {
+    outline: none;
+ }
 `;
