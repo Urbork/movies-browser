@@ -20,5 +20,3 @@ export const backdropMobileSizeUrl = `https://image.tmdb.org/t/p/w300`;
 export const backdropMainSizeUrl = `https://image.tmdb.org/t/p/w1280`;
 export const profileSmallSizeUrl = `https://image.tmdb.org/t/p/w185`;
 export const profileMainSizeUrl = `https://image.tmdb.org/t/p/h632`;
-
-export const urlConfiguration = `${url}configuration`  // usunąć jeśli się nie przyda usunąć

@@ -9,13 +9,13 @@ function* fetchApiHandler() {
     const id = yield select(selectMovieDetailsId);
     const movieDetails = yield call(() => getMovieDetails(id));
     if (!movieDetails) {
-      throw new Error("Movie details not found"); 
+      throw new Error("Movie details not found");
     }
     const credits = yield call(() => getCredits(id));
     yield put(setMovieDetails(movieDetails));
     yield delay(1000);
-
     yield put(setCredits(credits));
+    // if (movieDetails.backdrop_path) 
     yield put(setImagesToLoad());
     yield put(resetFetchStatus());
   } catch (error) {

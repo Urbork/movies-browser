@@ -1,6 +1,6 @@
 import { call, debounce, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getPeople, getSearchPerson } from "../../api/fetchApi";
-import { setPeople, setTotalPages, setTotalResults } from "./peopleSlice";
+import { selectPeopleTotalResults, setPeople, setPeopleTotalPages, setPeopleTotalResults } from "./peopleSlice";
 import {
   fetchApi,
   fetchError,
@@ -10,8 +10,10 @@ import {
   selectPeopleQuery,
   setCurrentPeoplePage,
   setCurrentSearchPage,
+  setImagesLoaded,
   setImagesToLoad,
   setPeopleQuery,
+  setPeopleQueryToDisplay,
 } from "../pageState/pageStateSlice";
 
 function* fetchApiHandler() {
@@ -22,18 +24,25 @@ function* fetchApiHandler() {
     const peopleQuery = yield select(selectPeopleQuery);
     if (peopleQuery) {
       const people = yield call(() => getSearchPerson(peopleQuery, searchPage));
-      yield delay(1000);
       yield put(setPeople(people.results));
-      yield put(setTotalPages(people.total_pages));
-      yield put(setTotalResults(people.total_results));
+      yield put(setPeopleTotalPages(people.total_pages));
+      yield put(setPeopleTotalResults(people.total_results));
+      yield put(setPeopleQueryToDisplay(peopleQuery));
+      // yield delay(1000);
+
     } else {
       const people = yield call(() => getPeople(page));
-      yield put(setTotalPages(null));
-      yield put(setTotalResults(null));
-      yield delay(1000);
+      yield put(setPeopleTotalPages(null));
+      yield put(setPeopleTotalResults(null));
       yield put(setPeople(people.results));
+      yield put(setPeopleQueryToDisplay(null));
+      yield delay(1000);
+
     }
-    yield put(setImagesToLoad());
+    // const totalResult = yield select(selectPeopleTotalResults)
+    // if (!!totalResult && totalResult > 0) yield put(setImagesToLoad());
+    yield delay(1000);
+    yield put(setImagesLoaded());
     yield put(resetFetchStatus());
   } catch (error) {
     yield put(fetchError());

@@ -19,7 +19,7 @@ const pageStateSlice = createSlice({
     searchPages: {
       firstPage: 1,
       currentPage: 1,
-      lastPage: undefined,
+      lastPage: 500,
     },
     screenWidth: {
       width: window.innerWidth,
@@ -29,6 +29,8 @@ const pageStateSlice = createSlice({
     query: {
       moviesQuery: null,
       peopleQuery: null,
+      moviesQueryToDisplay: null,
+      peopleQueryToDisplay: null,
     },
   },
   reducers: {
@@ -40,6 +42,8 @@ const pageStateSlice = createSlice({
     },
     fetchError: (state) => {
       state.fetchStatus = "error";
+    },
+    backToHome: (state) => {
       state.moviePages.currentPage = state.moviePages.firstPage;
       state.peoplePages.currentPage = state.peoplePages.firstPage;
     },
@@ -70,6 +74,12 @@ const pageStateSlice = createSlice({
       state.searchPages.currentPage = state.searchPages.firstPage
       state.query.peopleQuery = query;
     },
+    setMoviesQueryToDisplay: (state, { payload: query }) => {
+      state.query.moviesQueryToDisplay = query;
+    },
+    setPeopleQueryToDisplay: (state, { payload: query }) => {
+      state.query.peopleQueryToDisplay = query;
+    },
     setCurrentSearchPage: (state, { payload: page }) => {
       state.searchPages.currentPage = page;
     },
@@ -83,6 +93,7 @@ export const {
   fetchApi,
   resetFetchStatus,
   fetchError,
+  backToHome,
   setCurrentMoviePage,
   setCurrentPeoplePage,
   changeScreenWidth,
@@ -91,6 +102,8 @@ export const {
   setImagesToLoad,
   setMoviesQuery,
   setPeopleQuery,
+  setMoviesQueryToDisplay,
+  setPeopleQueryToDisplay,
   setCurrentSearchPage,
   setLastSearchPage,
 } = pageStateSlice.actions;
@@ -123,5 +136,7 @@ export const selectImagesToLoad = (state) => selectPageState(state).imagesToLoad
 export const selectQuery = (state) => selectPageState(state).query;
 export const selectMoviesQuery = (state) => selectQuery(state).moviesQuery;
 export const selectPeopleQuery = (state) => selectQuery(state).peopleQuery;
+export const selectMoviesQueryToDisplay = (state) => selectQuery(state).moviesQueryToDisplay;
+export const selectPeopleQueryToDisplay = (state) => selectQuery(state).peopleQueryToDisplay;
 
 export default pageStateSlice.reducer;

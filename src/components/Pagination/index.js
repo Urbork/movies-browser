@@ -21,11 +21,14 @@ import {
   selectLastPeoplePage,
   selectLastSearchPage,
   selectMoviesQuery,
-  selectPeopleQuery
+  selectMoviesQueryToDisplay,
+  selectPeopleQuery,
+  selectPeopleQueryToDisplay
 } from "../../features/pageState/pageStateSlice";
-import { selectTotalPages } from "../../features/movies/moviesSlice";
+import { selectMoviesTotalPages } from "../../features/movies/moviesSlice";
+import { selectPeopleTotalPages } from "../../features/people/peopleSlice";
 
-export const Pagination = ({noDisplay}) => {
+export const Pagination = ({ noDisplay }) => {
   const { page } = useParams();
   const firstMoviePage = useSelector(selectFirstMoviePage)
   const lastMoviePage = useSelector(selectLastMoviePage);
@@ -35,22 +38,36 @@ export const Pagination = ({noDisplay}) => {
   const lastSearchPage = useSelector(selectLastSearchPage);
   const location = useLocation();
   const path = location.pathname.split("/")[1];
-  const query = new URLSearchParams(location.search).get(searchInputParamName);
   let firstPage;
   let lastPage;
   let pageNumber = +page;
-  const totalPages = useSelector(selectTotalPages);
+  const moviesTotalPages = useSelector(selectMoviesTotalPages);
+  const peopleTotalPages = useSelector(selectPeopleTotalPages);
+  const moviesQueryToDisplay = useSelector(selectMoviesQueryToDisplay)
+  const PeopleQueryToDisplay = useSelector(selectPeopleQueryToDisplay)
 
-  if (query && totalPages) {
+  console.log("moviesQueryToDisplay", moviesQueryToDisplay)
+  console.log("PeopleQueryToDisplay", PeopleQueryToDisplay)
+  console.log("moviesTotalPages", moviesTotalPages)
+  console.log("peopleTotalPages", peopleTotalPages)
+
+  if (moviesQueryToDisplay || PeopleQueryToDisplay) {
     firstPage = firstSearchPage;
-    lastPage = totalPages;
-  } else if (path === "movies") {
-    firstPage = firstMoviePage;
-    lastPage = lastMoviePage;
-  } else if (path === "people") {
-    firstPage = firstPeoplePage;
-    lastPage = lastPeoplePage;
-  };
+    if (path === "movies") {
+      lastPage = moviesTotalPages ? moviesTotalPages : lastSearchPage;
+    } else if (path === "people") {
+      lastPage = peopleTotalPages ? peopleTotalPages : lastSearchPage;
+    }
+  } else {
+    if (path === "movies") {
+      firstPage = firstMoviePage;
+      lastPage = lastMoviePage
+    };
+    if (path === "people") {
+      firstPage = firstPeoplePage;
+      lastPage = lastPeoplePage
+    }
+  }
 
   const previousPage = pageNumber <= firstPage ? pageNumber : pageNumber - 1;
   const nextPage = pageNumber >= lastPage ? pageNumber : pageNumber + 1;

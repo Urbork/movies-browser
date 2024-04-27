@@ -84,6 +84,8 @@ export const MovieTileTitle = styled.h3`
   font-size: 22px;
   line-height: 28.6px;
   text-align: left;
+  /* max-width: content;
+  overflow: hidden; */
 
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
     font-size: clamp(16px, 1.6vw, 22px); 

@@ -7,10 +7,11 @@ import {
   Role,
   ContentWrapper
 } from "./styled";
-import blankActor from "../../../images/blankActor.svg";
+import blankProfile from "../../../images/blankProfile.svg";
 import { useState } from "react";
 import { profileMainSizeUrl, profileSmallSizeUrl } from "../../../api/api";
 import { selectMobile } from "../../../features/pageState/pageStateSlice";
+import { toPeopleDetails } from "../../../routes";
 
 const PeopleTile = ({ profile, name, id, role }) => {
   const [loaded, setLoaded] = useState(false);
@@ -19,9 +20,9 @@ const PeopleTile = ({ profile, name, id, role }) => {
 
   return (
     <Wrapper>
-      <PeopleTileNavLink to={`/people/details/${id}`}>
+      <PeopleTileNavLink to={toPeopleDetails({ id: id })}>
         <Image
-          src={(loaded && profile) ? profileUrl + profile : blankActor}
+          src={(loaded && profile) ? profileUrl + profile : blankProfile}
           alt={(loaded && name) ? name : "no name"}
           $loaded={loaded}
           onLoad={() => setLoaded(true)}

@@ -85,7 +85,7 @@ export const ErrorNavLink = styled(NavLink)`
   cursor: pointer;
   line-height: 19px;
   text-align: left;
-  font-family: "Open Sans";
+  font-family: "Open Sans", "sans-serif";
   text-decoration: none;
 
   &:hover {

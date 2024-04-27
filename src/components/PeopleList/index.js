@@ -2,8 +2,8 @@ import { Section } from "../Section";
 import { Wrapper } from "./styled";
 import PeopleTile from "./PeopleTile";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPeople, selectTotalResults } from "../../features/people/peopleSlice";
-import { selectCurrentPeoplePage, selectCurrentSearchPage, selectFetchStatus, selectPeopleQuery, setCurrentPeoplePage, setCurrentSearchPage, setImagesLoaded, setPeopleQuery } from "../../features/pageState/pageStateSlice";
+import { selectPeople, selectPeopleTotalResults } from "../../features/people/peopleSlice";
+import { selectCurrentPeoplePage, selectCurrentSearchPage, selectFetchStatus, selectPeopleQuery, selectPeopleQueryToDisplay, setCurrentPeoplePage, setCurrentSearchPage, setImagesLoaded, setMoviesQueryToDisplay, setPeopleQuery } from "../../features/pageState/pageStateSlice";
 import { useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect } from "react";
 import { Pagination } from "../Pagination";
@@ -11,6 +11,7 @@ import { LoadingPage } from "../LoadingPage";
 import { ErrorPage } from "../ErrorPage";
 import { searchInputParamName } from "../SearchInput/searchInputParamName";
 import { NoResultsPage } from "../NoResultsPage";
+import { setMoviesTotalPages } from "../../features/movies/moviesSlice";
 
 const PeopleList = () => {
   const location = useLocation();
@@ -24,61 +25,76 @@ const PeopleList = () => {
   const path = location.pathname.split("/")[1];
   const { page } = useParams();
   let pageNumber = +page;
-  const totalResults = useSelector(selectTotalResults);
-
+  const totalResults = useSelector(selectPeopleTotalResults);
+  const peopleQueryToDisplay = useSelector(selectPeopleQueryToDisplay);
 
   useEffect(() => {
-    if (
-      (!query && page && pageNumber !== currentPeoplePage) ||
-      (query && page && pageNumber !== currentSearchPage) ||
-      path !== "people"
-    ) {
-      if (!query) {
-        dispatch(setCurrentPeoplePage(pageNumber))
-        console.log("setCurrentPeoplePage", pageNumber)
-
-      } else {
-        if (query && query === peopleQuery) {
-          dispatch(setCurrentSearchPage(pageNumber))
-          console.log("setCurrentSearchPage", pageNumber)
-
-        }
+    if (fetchStatus === "ready") {
+      if (
+        (!query && page && pageNumber !== currentPeoplePage)
+        ||
+        (query && page && pageNumber !== currentSearchPage)
+        ||
+        path !== "people"
+      ) {
+        if (!query) {
+          dispatch(setCurrentPeoplePage(pageNumber))
+        } else {
+          if (query && query === peopleQuery) dispatch(setCurrentSearchPage(pageNumber))
+        };
       };
     };
-  }, [query, page, pageNumber, currentPeoplePage, currentSearchPage, path, peopleQuery, dispatch]);
+
+  }, [fetchStatus, query, page, pageNumber, currentPeoplePage, currentSearchPage, path, peopleQuery, dispatch]);
 
   useEffect(() => {
     if (query && query !== peopleQuery) dispatch(setPeopleQuery(query));
     if (!query && query !== peopleQuery) dispatch(setPeopleQuery(null));
-    console.log("peopleQuery", peopleQuery)
-  }, [query, peopleQuery, dispatch])
+
+  }, [query, peopleQuery, dispatch]);
+
+  useEffect(() => {
+    if (path === "people") {
+      dispatch(setMoviesQueryToDisplay(null));
+      dispatch(setMoviesTotalPages(null))
+    }
+
+  }, [path, dispatch])
 
   return (
     <>
-      {fetchStatus === "loading" && <LoadingPage title={query && `Search results for “${query}”`} />}
+      {fetchStatus === "loading" && <LoadingPage title={query && `Search results for “${query}” ${totalResults ? "(" + totalResults + ")" : ""}`} />}
       {fetchStatus === "error" && <ErrorPage />}
       {fetchStatus === "ready" &&
-        (totalResults || !query ?
-          <>
-            <Section noDisplay={totalResults && !query}
-              title={query ? `Search results for “${query}” ${totalResults ? "(" + totalResults + ")" : ""}` : "Popular people"}
-            >
-              <Wrapper onLoad={() => dispatch(setImagesLoaded())}>
-                {people?.map((person) => (
-                  <PeopleTile
-                    key={person.id}
-                    id={person.id}
-                    profile={person.profile_path}
-                    name={person.name}
-                  />
-                ))}
-              </Wrapper>
-            </Section>
-            <Pagination noDisplay={totalResults && !query} />
-          </>
-          :
-          <NoResultsPage query={query} noDisplay={fetchStatus === "ready" && query} />
-        )
+        ((!!totalResults || totalResults > 0) || (!totalResults && !peopleQueryToDisplay)) ?
+        <>
+          <Section
+            // show="true"
+            noDisplay={totalResults && !query}
+            title={peopleQueryToDisplay
+              ?
+              `Search results for “${peopleQueryToDisplay}” ${totalResults ? "(" + totalResults + ")" : ""}`
+              :
+              "Popular people"}
+          >
+            <Wrapper onLoad={() => dispatch(setImagesLoaded())}>
+              {people?.map((person) => (
+                <PeopleTile
+                  key={person.id}
+                  id={person.id}
+                  profile={person.profile_path}
+                  name={person.name}
+                />
+              ))}
+            </Wrapper>
+          </Section>
+          <Pagination noDisplay={totalResults && !query} />
+        </>
+        :
+        <NoResultsPage
+          query={peopleQueryToDisplay}
+          noDisplay={(!peopleQueryToDisplay || !peopleQuery || fetchStatus === "loading" || fetchStatus === "error")}
+        />
       }
     </>
   );

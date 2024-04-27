@@ -1,8 +1,8 @@
-import { call, delay, put, select } from "redux-saga/effects";
+import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { getGenres, getMovies, getPeople } from "../../api/fetchApi";
 import { setGenres, setMovies } from "./moviesSlice";
 import { setPeople } from "../people/peopleSlice";
-import { fetchApi, fetchError, resetFetchStatus, selectFirstMoviePage, selectFirstPeoplePage, setImagesToLoad } from "../pageState/pageStateSlice";
+import { backToHome, fetchApi, fetchError, resetFetchStatus, selectFirstMoviePage, selectFirstPeoplePage, setImagesToLoad } from "../pageState/pageStateSlice";
 
 export function* initializeSagaHandler() {
   try {
@@ -25,4 +25,5 @@ export function* initializeSagaHandler() {
 
 export function* initializeSaga() {
   yield call(initializeSagaHandler);
+  yield takeLatest(backToHome.type, initializeSagaHandler);
 };

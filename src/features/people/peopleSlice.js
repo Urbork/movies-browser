@@ -23,10 +23,10 @@ const peopleSlice = createSlice({
     setMovieCredits: (state, { payload: credits }) => {
       state.person.credits = credits;
     },
-    setTotalPages: (state, { payload: pages }) => {
+    setPeopleTotalPages: (state, { payload: pages }) => {
       state.total_pages = pages;
     },
-    setTotalResults: (state, { payload: results }) => {
+    setPeopleTotalResults: (state, { payload: results }) => {
       state.total_results = results;
     },
   },
@@ -37,8 +37,8 @@ export const {
   setPersonId,
   setPerson,
   setMovieCredits,
-  setTotalPages,
-  setTotalResults,
+  setPeopleTotalPages,
+  setPeopleTotalResults,
 } = peopleSlice.actions;
 
 const selectPeopleState = state => state.people;
@@ -50,7 +50,7 @@ export const selectPersonContent = state => selectPerson(state).content;
 export const selectPersonMovieCredits = state => selectPerson(state).credits;
 export const selectPersonDetailsCreditsCast = state => selectPersonMovieCredits(state).cast;
 export const selectPersonDetailsCreditsCrew = state => selectPersonMovieCredits(state).crew;
-export const selectTotalPages = (state) => selectPeopleState(state).total_pages;
-export const selectTotalResults = (state) => selectPeopleState(state).total_results;
+export const selectPeopleTotalPages = (state) => selectPeopleState(state).total_pages;
+export const selectPeopleTotalResults = (state) => selectPeopleState(state).total_results;
 
 export default peopleSlice.reducer;

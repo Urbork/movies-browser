@@ -1,5 +1,5 @@
 import { call, debounce, delay, put, select, takeLatest } from "redux-saga/effects";
-import { setMovies, setTotalPages, setTotalResults } from "./moviesSlice";
+import { selectMoviesTotalResults, setMovies, setMoviesTotalPages, setMoviesTotalResults } from "./moviesSlice";
 import { getMovies, getSearchMovie } from "../../api/fetchApi";
 import {
   fetchApi,
@@ -12,6 +12,7 @@ import {
   setCurrentSearchPage,
   setImagesToLoad,
   setMoviesQuery,
+  setMoviesQueryToDisplay,
 } from "../pageState/pageStateSlice";
 
 function* fetchApiHandler() {
@@ -24,16 +25,19 @@ function* fetchApiHandler() {
       const movies = yield call(() => getSearchMovie(moviesQuery, searchPage))
       yield delay(1000);
       yield put(setMovies(movies.results));
-      yield put(setTotalPages(movies.total_pages));
-      yield put(setTotalResults(movies.total_results));
+      yield put(setMoviesTotalPages(movies.total_pages));
+      yield put(setMoviesTotalResults(movies.total_results));
+      yield put(setMoviesQueryToDisplay(moviesQuery));
     } else {
       const movies = yield call(() => getMovies(page))
-      yield put(setTotalPages(null));
-      yield put(setTotalResults(null));
       yield delay(1000);
+      yield put(setMoviesTotalPages(null));
+      yield put(setMoviesTotalResults(null));
       yield put(setMovies(movies.results));
+      yield put(setMoviesQueryToDisplay(null));
     }
-    yield put(setImagesToLoad());
+    const totalResult = yield select(selectMoviesTotalResults)
+    if (!!totalResult && totalResult > 0) yield put(setImagesToLoad());
     yield put(resetFetchStatus());
   } catch (error) {
     yield put(fetchError());
@@ -42,6 +46,6 @@ function* fetchApiHandler() {
 
 export function* moviesSaga() {
   yield takeLatest(setCurrentMoviePage.type, fetchApiHandler);
-  yield takeLatest(setCurrentSearchPage.type, fetchApiHandler)
-  yield debounce(1000, setMoviesQuery.type, fetchApiHandler)
+  yield takeLatest(setCurrentSearchPage.type, fetchApiHandler);
+  yield debounce(1000, setMoviesQuery.type, fetchApiHandler);
 };

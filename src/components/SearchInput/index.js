@@ -22,7 +22,7 @@ export const SearchInput = () => {
 
     if (searchOf === "movies") {
       dispatch(setMoviesQuery(searchQuery.trim()));
-    } else if (searchOf === "peo") {
+    } else if (searchOf === "people") {
       dispatch(setPeopleQuery(searchQuery.trim()));
     }
   };
