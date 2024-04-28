@@ -5,9 +5,10 @@ export const SectionWrapper = styled.section`
   width: 1416px;
   opacity: 0;
   opacity: ${({ $show }) => $show ? '1' : '0'};
-  transition: opacity .9s ease-in-out;
+  transition:  ${({ $show }) => $show ? 'opacity .9s ease-in' : 'opacity 1.5s ease-in'};
   display: ${({ $mobile }) => $mobile ? "none" : "auto"};
   transition-delay: ${({ $delay }) => $delay ? "2.5s" : "0"};
+  display: ${({ $noDisplay }) => $noDisplay ? "none" : "auto"};
 
   @media (max-width: 1416px) {
     width: 100%; 
@@ -19,6 +20,7 @@ export const SectionWrapper = styled.section`
 `;
 
 export const SectionHeading = styled.h2`
+display: inline-block;
   margin: 0 0 24px;
   font-size: 36px;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};

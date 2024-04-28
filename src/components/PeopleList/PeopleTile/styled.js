@@ -4,8 +4,6 @@ import { styled } from "styled-components";
 export const Wrapper = styled.div`
   transition: 0.15s;
 
-  // ten efekt powoduje poruszanie się elementów w PeopleTileNavLink
-  // trzeba znaleźć rozwiązanie lub zamiennić na inny
   &:hover { 
     transform: scale(1.05);
   }
@@ -13,7 +11,6 @@ export const Wrapper = styled.div`
 
 export const PeopleTileNavLink = styled(NavLink)`
   margin: 0;
-  /* width: 100%; */
   height: 100%;
   border: none;
   text-decoration: none;

@@ -6,22 +6,23 @@ import {
   popularPeopleUrl,
   personUrl,
   movieCreditsUrl,
-  searchMovieUrl
+  searchMovieUrl,
+  searchPersonUrl,
 } from "./api";
 
-const fetchApi = (url) => (
-  fetch(url).then(response => {
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response.json();
-  })
-    .catch(err => {
-      console.error(err)
+const fetchApi = (url) =>
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
     })
-);
+    .catch((err) => {
+      console.error(err);
+    });
 
-export const getPopularMovies = (page) => {
+export const getMovies = (page) => {
   const updatedUrl = popularMoviesUrl.replace("{page}", page);
   return fetchApi(updatedUrl);
 };
@@ -31,16 +32,14 @@ export const getMovieDetails = (id) => {
   return fetchApi(updatedUrl);
 };
 
-export const getGenres = () => (
-  fetchApi(genreUrl)
-);
+export const getGenres = () => fetchApi(genreUrl);
 
 export const getCredits = (id) => {
   const updatedUrl = creditsUrl.replace("{movie_id}", id);
   return fetchApi(updatedUrl);
 };
 
-export const getPopularPeople = (page) => {
+export const getPeople = (page) => {
   const updatedUrl = popularPeopleUrl.replace("{page}", page);
   return fetchApi(updatedUrl);
 };
@@ -56,11 +55,15 @@ export const getMovieCredits = (id) => {
 };
 
 export const getSearchMovie = (query, page) => {
-  const updatedUrl = searchMovieUrl.replace("{query}", query).replace("{page}", page);
+  const updatedUrl = searchMovieUrl
+    .replace("{query}", query)
+    .replace("{page}", page);
   return fetchApi(updatedUrl);
 };
 
 export const getSearchPerson = (query, page) => {
-  const updatedUrl = searchMovieUrl.replace("{query}", query).replace("{page}", page);
+  const updatedUrl = searchPersonUrl
+    .replace("{query}", query)
+    .replace("{page}", page);
   return fetchApi(updatedUrl);
 };

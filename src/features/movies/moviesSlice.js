@@ -3,15 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const moviesSlice = createSlice({
   name: "movies",
   initialState: {
-    popularMovies: [],
+    movies: [],
     movieDetails: {
       credits: {},
     },
     genres: [],
+    total_pages: null,
+    total_results: null,
   },
   reducers: {
-    setPopularMovies: (state, { payload: movies }) => {
-      state.popularMovies = movies;
+    setMovies: (state, { payload: movies }) => {
+      state.movies = movies;
     },
     setMovieDetailsId: (state, { payload: id }) => {
       state.movieDetails.id = id;
@@ -25,26 +27,41 @@ const moviesSlice = createSlice({
     setGenres: (state, { payload: genres }) => {
       state.genres = genres;
     },
+    setMoviesTotalPages: (state, { payload: pages }) => {
+      state.total_pages = pages;
+    },
+    setMoviesTotalResults: (state, { payload: results }) => {
+      state.total_results = results;
+    },
+    clearMoviesAfterSearch: (state) => {
+      state.total_results = null;
+      state.total_pages = null;
+    },
   },
 });
 
 export const {
-  setPopularMovies,
+  setMovies,
   setMovieDetailsId,
   setMovieDetails,
   setCredits,
   setGenres,
+  setMoviesTotalPages,
+  setMoviesTotalResults,
+  clearMoviesAfterSearch,
 } = moviesSlice.actions;
 
-export const selectMoviesState = state => state.movies;
+const selectMoviesState = (state) => state.movies;
 
-export const selectPopularMovies = state => selectMoviesState(state).popularMovies;
-export const selectMovieDetails = state => selectMoviesState(state).movieDetails;
-export const selectMovieDetailsId = state => selectMovieDetails(state).id;
-export const selectMovieDetailsContent = state => selectMovieDetails(state).content;
-export const selectMovieDetailsCredits = state => selectMovieDetails(state).credits;
-export const selectGenres = state => selectMoviesState(state).genres;
-export const selectMovieDetailsCreditsCast = state => selectMovieDetailsCredits(state).cast
-export const selectMovieDetailsCreditsCrew = state => selectMovieDetailsCredits(state).crew
+export const selectMovies = (state) => selectMoviesState(state).movies;
+export const selectMovieDetails = (state) => selectMoviesState(state).movieDetails;
+export const selectMovieDetailsId = (state) => selectMovieDetails(state).id;
+export const selectMovieDetailsContent = (state) => selectMovieDetails(state).content;
+export const selectMovieDetailsCredits = (state) => selectMovieDetails(state).credits;
+export const selectGenres = (state) => selectMoviesState(state).genres;
+export const selectMovieDetailsCreditsCast = (state) => selectMovieDetailsCredits(state).cast;
+export const selectMovieDetailsCreditsCrew = (state) => selectMovieDetailsCredits(state).crew;
+export const selectMoviesTotalPages = (state) => selectMoviesState(state).total_pages;
+export const selectMoviesTotalResults = (state) => selectMoviesState(state).total_results;
 
 export default moviesSlice.reducer;

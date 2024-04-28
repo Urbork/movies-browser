@@ -12,11 +12,11 @@ import { Section } from "../../components/Section";
 import { MoviesListWrapper } from "../../features/MoviesList/styled";
 import { selectFetchStatus, selectMobile } from "../pageState/pageStateSlice";
 import { profileMainSizeUrl } from "../../api/api";
-import { MovieTile } from "../../components/MovieTile";
 import { selectGenres } from "../movies/moviesSlice";
 import { useEffect } from "react";
 import { LoadingPage } from "../../components/LoadingPage";
 import { ErrorPage } from "../../components/ErrorPage";
+import { MovieTile } from "../../components/MovieTile";
 
 export const PeopleDetails = () => {
   const { id } = useParams();
@@ -34,6 +34,7 @@ export const PeopleDetails = () => {
       dispatch(setPersonId(id));
     }
   }, [id, personDetailsId, dispatch]);
+  window.scrollTo(0, 0);
 
   return (
     <>
@@ -65,9 +66,8 @@ export const PeopleDetails = () => {
                     key={movie.credit_id}
                     poster={movie.poster_path}
                     title={movie.title}
-                    subtitle={`${movie.character} (${
-                      movie.release_date.split("-")[0]
-                    })`}
+                    subtitle={`${movie.character} (${movie.release_date.split("-")[0]
+                      })`}
                     tags={movie.genre_ids?.map(
                       (genreId) =>
                         genres.find((item) => item.id === genreId)?.name
@@ -91,9 +91,8 @@ export const PeopleDetails = () => {
                     key={movie.credit_id}
                     poster={movie.poster_path}
                     title={movie.title}
-                    subtitle={`${movie.job} (${
-                      movie.release_date.split("-")[0]
-                    })`}
+                    subtitle={`${movie.job} (${movie.release_date.split("-")[0]
+                      })`}
                     tags={movie.genre_ids?.map(
                       (genreId) =>
                         genres.find((item) => item.id === genreId)?.name

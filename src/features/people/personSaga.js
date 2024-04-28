@@ -14,12 +14,12 @@ function* fetchApiHandler() {
     const credits = yield call(() => getMovieCredits(id));
     yield put(setPerson(person));
     yield put(setMovieCredits(credits));
-    yield put(setImagesToLoad());
+    if (person.profile_path) yield put(setImagesToLoad());
     yield delay(1000);
     yield put(resetFetchStatus());
   } catch (error) {
     yield put(fetchError());
-  }
+  };
 };
 
 export function* personSaga() {

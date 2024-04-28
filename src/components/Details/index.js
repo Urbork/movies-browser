@@ -13,6 +13,9 @@ import { MovieTags } from "../MovieTile/MovieTags";
 import { MovieRating } from "../MovieTile/MovieRating";
 import { useDispatch } from "react-redux";
 import { setImagesLoaded } from "../../features/pageState/pageStateSlice";
+import blankProfile from "../../images/blankProfile.svg";
+import noPoster from "../../images/noPoster.svg";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Details = ({
   movies,
@@ -31,13 +34,16 @@ export const Details = ({
   description,
 }) => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const pathName = location.pathname.split("/")[1];
+  const noImage = pathName === "movies" ? noPoster : blankProfile;
 
   return (
     <>
       <DetailsWrapper onLoad={() => dispatch(setImagesLoaded())} >
         <DetailsImage
-          src={imageURL + poster}
-          alt={`${title} ${movies ? "movies" : "person"} poster`}
+          src={poster ? imageURL + poster : noImage}
+          alt={`${title} poster`}
         />
         <DetailsInfo>
           <DetailsTitle>{title}</DetailsTitle>

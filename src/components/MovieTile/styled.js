@@ -4,8 +4,6 @@ import styled from "styled-components";
 export const MovieTileContent = styled.li`
   transition: 0.15s;
 
-  // ten efekt powoduje poruszanie się elementów w MovieTileNavLink
-  // trzeba znaleźć rozwiązanie lub zamiennić na inny
   &:hover {
     transform: scale(1.04);  
   }

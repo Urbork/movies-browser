@@ -3,7 +3,7 @@ import { ReactComponent as Arrow } from "../../images/vectorArrow.svg";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Wrapper = styled.div`
-  display: flex;
+  display:  ${({ $noDisplay }) => $noDisplay ? "none" : "flex"};
   justify-content: space-between;
   align-items: center;
   width: 525px;

@@ -1,14 +1,12 @@
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ErrorWrapper,
   StyledErrorIcon,
   ErrorHeading,
   ErrorSubheading,
-  ErrorButton,
   ErrorNavLink,
 } from "./styled";
-import { useDispatch, useSelector } from "react-redux";
-import { resetFetchStatus, selectFirstMoviePage } from "../../features/pageState/pageStateSlice";
+import { backToHome, selectFirstMoviePage } from "../../features/pageState/pageStateSlice";
 import { toMoviesList } from "../../routes";
 
 export const ErrorPage = () => {
@@ -23,8 +21,8 @@ export const ErrorPage = () => {
         <div>Please check your network connection</div>
         <div>and try again</div>
       </ErrorSubheading>
-      <ErrorNavLink to={`${toMoviesList({ page: firstMoviePage })}`} a
-        onClick={() => dispatch(resetFetchStatus())} >
+      <ErrorNavLink to={`${toMoviesList({ page: firstMoviePage })}`}
+        onClick={() => dispatch(backToHome())} >
         Back to home page
       </ErrorNavLink>
     </ErrorWrapper>

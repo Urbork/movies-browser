@@ -3,14 +3,18 @@ import { useSelector } from "react-redux";
 import { selectImagesToLoad } from "../../features/pageState/pageStateSlice";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
-export const Section = ({ title, mobile, children }) => {
+export const Section = ({ title, mobile, children, noDisplay, show }) => {
   const imagesToLoad = useSelector(selectImagesToLoad);
   const location = useLocation();
-  const path = location.pathname.split("/")[1];
+  const pathNames = location.pathname.split("/");
 
   return (
-    <SectionWrapper $show={!imagesToLoad} $delay={path === "moviesDetails"} $mobile={mobile}>
-      {title && <SectionHeading>{title}</SectionHeading>}
+    <SectionWrapper
+      $noDisplay={noDisplay}
+      $show={!imagesToLoad || show}
+      $delay={pathNames[1] === "movies" && pathNames[2] === "details"}
+      $mobile={mobile}>
+      {title && <SectionHeading >{title}</SectionHeading>}
       {children}
     </SectionWrapper>
   );

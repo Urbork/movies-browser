@@ -23,6 +23,7 @@ export const DetailsImage = styled.img`
   height: 464px;
   grid-row: span 2;
   border-radius: 5px;
+  object-fit: cover;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     max-width: 114px;
