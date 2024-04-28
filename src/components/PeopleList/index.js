@@ -45,15 +45,15 @@ const PeopleList = () => {
         } else {
           if (peopleQuery !== peopleQueryToDisplay) {
             history.push(`/${pathName}/${firstSearchPage}?${searchParams.toString()}`)
-            dispatch(setCurrentSearchPage(firstSearchPage));
           } else {
             dispatch(setCurrentSearchPage(pageNumber))
           }
         };
       };
     };
+
     // eslint-disable-next-line
-  }, [fetchStatus, query, page, pageNumber, currentPeoplePage, currentSearchPage, pathName, peopleQuery, firstSearchPage, peopleQueryToDisplay, searchParams, history, dispatch]);
+  }, [fetchStatus, query, page, pageNumber, currentPeoplePage, currentSearchPage, pathName, peopleQuery, peopleQueryToDisplay]);
 
   useEffect(() => {
     if (query && query !== peopleQuery) dispatch(setPeopleQuery(query));
@@ -67,7 +67,8 @@ const PeopleList = () => {
       dispatch(clearMoviesAfterSearch());
     };
 
-  }, [pathName, dispatch])
+    // eslint-disable-next-line
+  }, [pathName])
 
   return (
     <>

@@ -7,8 +7,8 @@ import {
   resetFetchStatus,
   selectCurrentMoviePage,
   selectCurrentSearchPage,
-  selectFirstSearchPage,
   selectMoviesQuery,
+  selectMoviesQueryToDisplay,
   setCurrentMoviePage,
   setCurrentSearchPage,
   setImagesLoaded,
@@ -38,11 +38,11 @@ function* fetchApiHandler() {
       yield put(setMoviesQueryToDisplay(null));
       yield delay(1000);
     };
-    yield put(setImagesToLoad());
-    const firstSearchPage = yield select(selectFirstSearchPage)
-    const currentSearchPage = yield select(selectCurrentSearchPage)
-    if (firstSearchPage === currentSearchPage) {
-      yield put(setImagesLoaded())
+    const moviesQueryToDisplay = yield select(selectMoviesQueryToDisplay);
+    if (moviesQueryToDisplay) {
+      yield put(setImagesLoaded());
+    } else {
+      yield put(setImagesToLoad());
     };
     yield put(resetFetchStatus());
   } catch (error) {

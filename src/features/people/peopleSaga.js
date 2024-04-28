@@ -7,8 +7,8 @@ import {
   resetFetchStatus,
   selectCurrentPeoplePage,
   selectCurrentSearchPage,
-  selectFirstSearchPage,
   selectPeopleQuery,
+  selectPeopleQueryToDisplay,
   setCurrentPeoplePage,
   setCurrentSearchPage,
   setImagesLoaded,
@@ -38,11 +38,11 @@ function* fetchApiHandler() {
       yield put(setPeopleQueryToDisplay(null));
       yield delay(1000);
     };
-    yield put(setImagesToLoad());
-    const firstSearchPage = yield select(selectFirstSearchPage)
-    const currentSearchPage = yield select(selectCurrentSearchPage)
-    if (firstSearchPage === currentSearchPage) {
-      yield put(setImagesLoaded())
+    const peopleQueryToDisplay = yield select(selectPeopleQueryToDisplay);
+    if (peopleQueryToDisplay) {
+      yield put(setImagesLoaded());
+    } else {
+      yield put(setImagesToLoad());
     };
     yield put(resetFetchStatus());
   } catch (error) {

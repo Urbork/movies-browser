@@ -58,15 +58,15 @@ export const MoviesList = () => {
         } else {
           if (moviesQuery !== moviesQueryToDisplay) {
             history.push(`/${pathName}/${firstSearchPage}?${searchParams.toString()}`)
-            dispatch(setCurrentSearchPage(firstSearchPage));
           } else {
             dispatch(setCurrentSearchPage(pageNumber))
           }
         };
       };
     };
+
     // eslint-disable-next-line
-  }, [fetchStatus, query, page, pageNumber, currentMoviePage, currentSearchPage, pathName, moviesQuery, dispatch, history, firstSearchPage, moviesQueryToDisplay, searchParams]);
+  }, [fetchStatus, query, page, pageNumber, currentMoviePage, currentSearchPage, pathName, moviesQuery, moviesQueryToDisplay]);
 
   useEffect(() => {
     if (query && query !== moviesQuery) dispatch(setMoviesQuery(query));
@@ -80,7 +80,8 @@ export const MoviesList = () => {
       dispatch(clearPeopleAfterSearch());
     };
 
-  }, [pathName, dispatch])
+    // eslint-disable-next-line
+  }, [pathName])
 
   return (
     <>

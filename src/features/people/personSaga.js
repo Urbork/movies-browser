@@ -19,7 +19,7 @@ function* fetchApiHandler() {
     yield put(resetFetchStatus());
   } catch (error) {
     yield put(fetchError());
-  }
+  };
 };
 
 export function* personSaga() {
