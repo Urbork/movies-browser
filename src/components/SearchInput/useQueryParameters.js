@@ -13,7 +13,7 @@ export const useReplaceQueryParameter = () => {
   const location = useLocation();
   const history = useHistory();
   const currentSearchPage = useSelector(selectCurrentSearchPage);
-  const path = location.pathname.split("/")[1];
+  const pathName = location.pathname.split("/")[1];
 
   return ({ key, value }) => {
     const searchParams = new URLSearchParams(location.search);
@@ -24,6 +24,6 @@ export const useReplaceQueryParameter = () => {
       searchParams.set(key, value);
     };
 
-    history.push(`/${path}/${currentSearchPage}?${searchParams.toString()}`);
+    history.push(`/${pathName}/${currentSearchPage}?${searchParams.toString()}`);
   };
 };

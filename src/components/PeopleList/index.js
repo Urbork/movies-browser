@@ -22,7 +22,7 @@ const PeopleList = () => {
   const peopleQuery = useSelector(selectPeopleQuery);
   const dispatch = useDispatch();
   const query = new URLSearchParams(location.search).get(searchInputParamName);
-  const path = location.pathname.split("/")[1];
+  const pathName = location.pathname.split("/")[1];
   const { page } = useParams();
   let pageNumber = +page;
   const totalResults = useSelector(selectPeopleTotalResults);
@@ -35,7 +35,7 @@ const PeopleList = () => {
         ||
         (query && page && pageNumber !== currentSearchPage)
         ||
-        path !== "people"
+        pathName !== "people"
       ) {
         if (!query) {
           dispatch(setCurrentPeoplePage(pageNumber))
@@ -45,7 +45,7 @@ const PeopleList = () => {
       };
     };
 
-  }, [fetchStatus, query, page, pageNumber, currentPeoplePage, currentSearchPage, path, peopleQuery, dispatch]);
+  }, [fetchStatus, query, page, pageNumber, currentPeoplePage, currentSearchPage, pathName, peopleQuery, dispatch]);
 
   useEffect(() => {
     if (query && query !== peopleQuery) dispatch(setPeopleQuery(query));
@@ -54,12 +54,12 @@ const PeopleList = () => {
   }, [query, peopleQuery, dispatch]);
 
   useEffect(() => {
-    if (path === "people") {
+    if (pathName === "people") {
       dispatch(setMoviesQueryToDisplay(null));
       dispatch(setMoviesTotalPages(null))
     }
 
-  }, [path, dispatch])
+  }, [pathName, dispatch])
 
   return (
     <>
@@ -69,7 +69,6 @@ const PeopleList = () => {
         ((!!totalResults || totalResults > 0) || (!totalResults && !peopleQueryToDisplay)) ?
         <>
           <Section
-            // show="true"
             noDisplay={totalResults && !query}
             title={peopleQueryToDisplay
               ?

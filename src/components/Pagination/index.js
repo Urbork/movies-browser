@@ -37,7 +37,7 @@ export const Pagination = ({ noDisplay }) => {
   const firstSearchPage = useSelector(selectFirstSearchPage)
   const lastSearchPage = useSelector(selectLastSearchPage);
   const location = useLocation();
-  const path = location.pathname.split("/")[1];
+  const pathName = location.pathname.split("/")[1];
   let firstPage;
   let lastPage;
   let pageNumber = +page;
@@ -46,24 +46,19 @@ export const Pagination = ({ noDisplay }) => {
   const moviesQueryToDisplay = useSelector(selectMoviesQueryToDisplay)
   const PeopleQueryToDisplay = useSelector(selectPeopleQueryToDisplay)
 
-  console.log("moviesQueryToDisplay", moviesQueryToDisplay)
-  console.log("PeopleQueryToDisplay", PeopleQueryToDisplay)
-  console.log("moviesTotalPages", moviesTotalPages)
-  console.log("peopleTotalPages", peopleTotalPages)
-
   if (moviesQueryToDisplay || PeopleQueryToDisplay) {
     firstPage = firstSearchPage;
-    if (path === "movies") {
+    if (pathName === "movies") {
       lastPage = moviesTotalPages ? moviesTotalPages : lastSearchPage;
-    } else if (path === "people") {
+    } else if (pathName === "people") {
       lastPage = peopleTotalPages ? peopleTotalPages : lastSearchPage;
     }
   } else {
-    if (path === "movies") {
+    if (pathName === "movies") {
       firstPage = firstMoviePage;
       lastPage = lastMoviePage
     };
-    if (path === "people") {
+    if (pathName === "people") {
       firstPage = firstPeoplePage;
       lastPage = lastPeoplePage
     }
@@ -88,12 +83,12 @@ export const Pagination = ({ noDisplay }) => {
   return (
     <Wrapper $noDisplay={noDisplay}>
       <ButtonContainer>
-        <StyledNavLink to={`/${path}/${firstPage}${queryPath}`} disabled={isFirstPage}>
+        <StyledNavLink to={`/${pathName}/${firstPage}${queryPath}`} disabled={isFirstPage}>
           <BackwardArrow disabled={isFirstPage} />
           <AdditionalBackwardArrow disabled={isFirstPage} />
           <Content disabled={isFirstPage}>First</Content>
         </ StyledNavLink >
-        <StyledNavLink to={`/${path}/${previousPage}${queryPath}`} disabled={isFirstPage}>
+        <StyledNavLink to={`/${pathName}/${previousPage}${queryPath}`} disabled={isFirstPage}>
           <BackwardArrow disabled={isFirstPage} />
           <Content disabled={isFirstPage}>Previous</Content>
         </ StyledNavLink >
@@ -102,11 +97,11 @@ export const Pagination = ({ noDisplay }) => {
         Page <Number>{pageNumber}</Number> of <Number>{lastPage}</Number>
       </PageNumberInfo>
       <ButtonContainer>
-        <StyledNavLink to={`/${path}/${nextPage}${queryPath}`} disabled={isLastPage}>
+        <StyledNavLink to={`/${pathName}/${nextPage}${queryPath}`} disabled={isLastPage}>
           <Content disabled={isLastPage}>Next</Content>
           <ForwardArrow disabled={isLastPage} />
         </ StyledNavLink >
-        <StyledNavLink to={`/${path}/${lastPage}${queryPath}`} disabled={isLastPage}>
+        <StyledNavLink to={`/${pathName}/${lastPage}${queryPath}`} disabled={isLastPage}>
           <Content disabled={isLastPage}>Last</Content>
           <AdditionalForwardArrow disabled={isLastPage} />
           <ForwardArrow disabled={isLastPage} />

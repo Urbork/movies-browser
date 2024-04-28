@@ -15,8 +15,7 @@ function* fetchApiHandler() {
     yield put(setMovieDetails(movieDetails));
     yield delay(1000);
     yield put(setCredits(credits));
-    // if (movieDetails.backdrop_path) 
-    yield put(setImagesToLoad());
+    if (movieDetails.backdrop_path) yield put(setImagesToLoad());
     yield put(resetFetchStatus());
   } catch (error) {
     yield put(fetchError());

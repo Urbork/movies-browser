@@ -34,7 +34,7 @@ export const MoviesList = () => {
   const moviesQuery = useSelector(selectMoviesQuery);
   const dispatch = useDispatch();
   const query = new URLSearchParams(location.search).get(searchInputParamName);
-  const path = location.pathname.split("/")[1];
+  const pathName = location.pathname.split("/")[1];
   const { page } = useParams();
   let pageNumber = +page;
   const totalResults = useSelector(selectMoviesTotalResults);
@@ -47,7 +47,7 @@ export const MoviesList = () => {
         ||
         (query && page && pageNumber !== currentSearchPage)
         ||
-        path !== "movies"
+        pathName !== "movies"
       ) {
         if (!query) {
           dispatch(setCurrentMoviePage(pageNumber))
@@ -56,7 +56,7 @@ export const MoviesList = () => {
         };
       };
     };
-  }, [fetchStatus, query, page, pageNumber, currentMoviePage, currentSearchPage, path, moviesQuery, dispatch]);
+  }, [fetchStatus, query, page, pageNumber, currentMoviePage, currentSearchPage, pathName, moviesQuery, dispatch]);
 
   useEffect(() => {
     if (query && query !== moviesQuery) dispatch(setMoviesQuery(query));
@@ -65,12 +65,12 @@ export const MoviesList = () => {
   }, [query, moviesQuery, dispatch])
 
   useEffect(() => {
-    if (path === "movies") {
+    if (pathName === "movies") {
       dispatch(setPeopleQueryToDisplay(null));
       dispatch(setPeopleTotalPages(null))
     }
 
-  }, [path, dispatch])
+  }, [pathName, dispatch])
 
   return (
     <>
@@ -80,7 +80,6 @@ export const MoviesList = () => {
         ((!!totalResults || totalResults > 0) || (!totalResults && !moviesQueryToDisplay)) ?
         <>
           <Section noDisplay={totalResults && !query}
-            // show="true"
             title={moviesQueryToDisplay
               ?
               (`Search results for “${moviesQueryToDisplay}” ${totalResults ? "(" + totalResults + ")" : ""}`)

@@ -18,7 +18,7 @@ export const Navigation = () => {
   const currentMoviePage = useSelector(selectCurrentMoviePage);
   const currentPeoplePage = useSelector(selectCurrentPeoplePage);
   const location = useLocation();
-  const path = location.pathname.split("/")[1];
+  const pathName = location.pathname.split("/")[1];
 
   return (
     <Container >
@@ -30,11 +30,11 @@ export const Navigation = () => {
           </AppName>
           <ButtonsWrapper>
             <StyledNavLink to={toMoviesList({ page: currentMoviePage })}
-              $active={path === "movies"}>
+              $active={pathName === "movies"}>
               Movies
             </StyledNavLink>
             <StyledNavLink to={toPeopleList({ page: currentPeoplePage })}
-              $active={path === "people"}>
+              $active={pathName === "people"}>
               People
             </StyledNavLink>
           </ButtonsWrapper>

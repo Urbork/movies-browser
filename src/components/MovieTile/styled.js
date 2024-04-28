@@ -4,8 +4,6 @@ import styled from "styled-components";
 export const MovieTileContent = styled.li`
   transition: 0.15s;
 
-  // ten efekt powoduje poruszanie się elementów w MovieTileNavLink
-  // trzeba znaleźć rozwiązanie lub zamiennić na inny
   &:hover {
     transform: scale(1.04);  
   }
@@ -84,8 +82,6 @@ export const MovieTileTitle = styled.h3`
   font-size: 22px;
   line-height: 28.6px;
   text-align: left;
-  /* max-width: content;
-  overflow: hidden; */
 
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
     font-size: clamp(16px, 1.6vw, 22px); 
