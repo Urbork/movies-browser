@@ -3,26 +3,27 @@ import { MoviesListWrapper } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import { MovieTile } from "../../components/MovieTile";
 import { selectGenres, selectMovies, selectMoviesTotalResults } from "../movies/moviesSlice";
-import { useLocation, useParams, } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useLocation, useParams, } from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect } from "react";
 import { LoadingPage } from "../../components/LoadingPage";
 import { ErrorPage } from "../../components/ErrorPage";
 import { Pagination } from "../../components/Pagination";
 import { searchInputParamName } from "../../components/SearchInput/searchInputParamName";
 import {
+  clearAfterSearch,
   selectCurrentMoviePage,
   selectCurrentSearchPage,
   selectFetchStatus,
+  selectFirstSearchPage,
   selectMoviesQuery,
   selectMoviesQueryToDisplay,
   setCurrentMoviePage,
   setCurrentSearchPage,
   setImagesLoaded,
   setMoviesQuery,
-  setPeopleQueryToDisplay,
 } from "../pageState/pageStateSlice";
 import { NoResultsPage } from "../../components/NoResultsPage";
-import { setPeopleTotalPages } from "../people/peopleSlice";
+import { clearPeopleAfterSearch } from "../people/peopleSlice";
 
 export const MoviesList = () => {
   const location = useLocation();
@@ -39,6 +40,9 @@ export const MoviesList = () => {
   let pageNumber = +page;
   const totalResults = useSelector(selectMoviesTotalResults);
   const moviesQueryToDisplay = useSelector(selectMoviesQueryToDisplay);
+  const firstSearchPage = useSelector(selectFirstSearchPage);
+  const history = useHistory();
+  const searchParams = new URLSearchParams(location.search);
 
   useEffect(() => {
     if (fetchStatus === "ready") {
@@ -52,11 +56,17 @@ export const MoviesList = () => {
         if (!query) {
           dispatch(setCurrentMoviePage(pageNumber))
         } else {
-          if (query && query === moviesQuery) dispatch(setCurrentSearchPage(pageNumber))
+          if (moviesQuery !== moviesQueryToDisplay) {
+            history.push(`/${pathName}/${firstSearchPage}?${searchParams.toString()}`)
+            dispatch(setCurrentSearchPage(firstSearchPage));
+          } else {
+            dispatch(setCurrentSearchPage(pageNumber))
+          }
         };
       };
     };
-  }, [fetchStatus, query, page, pageNumber, currentMoviePage, currentSearchPage, pathName, moviesQuery, dispatch]);
+    // eslint-disable-next-line
+  }, [fetchStatus, query, page, pageNumber, currentMoviePage, currentSearchPage, pathName, moviesQuery, dispatch, history, firstSearchPage, moviesQueryToDisplay, searchParams]);
 
   useEffect(() => {
     if (query && query !== moviesQuery) dispatch(setMoviesQuery(query));
@@ -66,15 +76,15 @@ export const MoviesList = () => {
 
   useEffect(() => {
     if (pathName === "movies") {
-      dispatch(setPeopleQueryToDisplay(null));
-      dispatch(setPeopleTotalPages(null))
-    }
+      dispatch(clearAfterSearch());
+      dispatch(clearPeopleAfterSearch());
+    };
 
   }, [pathName, dispatch])
 
   return (
     <>
-      {fetchStatus === "loading" && <LoadingPage title={query && `Search results for “${query}” ${totalResults ? "(" + totalResults + ")" : ""}`} />}
+      {fetchStatus === "loading" && <LoadingPage title={query && `Search results for “${query}” ${(totalResults && (moviesQueryToDisplay === moviesQuery)) ? "(" + totalResults + ")" : ""}`} />}
       {fetchStatus === "error" && <ErrorPage />}
       {fetchStatus === "ready" &&
         ((!!totalResults || totalResults > 0) || (!totalResults && !moviesQueryToDisplay)) ?

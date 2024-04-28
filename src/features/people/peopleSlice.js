@@ -29,6 +29,10 @@ const peopleSlice = createSlice({
     setPeopleTotalResults: (state, { payload: results }) => {
       state.total_results = results;
     },
+    clearPeopleAfterSearch: (state) => {
+      state.total_results = null;
+      state.total_pages = null;
+    },
   },
 });
 
@@ -39,6 +43,7 @@ export const {
   setMovieCredits,
   setPeopleTotalPages,
   setPeopleTotalResults,
+  clearPeopleAfterSearch,
 } = peopleSlice.actions;
 
 const selectPeopleState = state => state.people;

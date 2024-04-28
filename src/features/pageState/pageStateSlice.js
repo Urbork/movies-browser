@@ -80,6 +80,13 @@ const pageStateSlice = createSlice({
     setPeopleQueryToDisplay: (state, { payload: query }) => {
       state.query.peopleQueryToDisplay = query;
     },
+    clearAfterSearch: (state) => {
+      state.searchPages.currentPage = state.searchPages.firstPage
+      state.query.moviesQuery = null;
+      state.query.peopleQuery = null;
+      state.query.moviesQueryToDisplay = null;
+      state.query.peopleQueryToDisplay = null;
+    },
     setCurrentSearchPage: (state, { payload: page }) => {
       state.searchPages.currentPage = page;
     },
@@ -104,6 +111,7 @@ export const {
   setPeopleQuery,
   setMoviesQueryToDisplay,
   setPeopleQueryToDisplay,
+  clearAfterSearch,
   setCurrentSearchPage,
   setLastSearchPage,
 } = pageStateSlice.actions;
