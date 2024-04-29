@@ -12,7 +12,7 @@ This project is a simple yet powerful movies browser application. Our goal is to
 
 Check it out: https://urbork.github.io/movies-browser/
 
-![preview](https://i.postimg.cc/SRCy850G/movies-browser-preview2.gif)
+![preview](./src/images/movies-browser-preview.gif)
 
 ## ⭐ Features
 
