@@ -1,7 +1,6 @@
 # 🎬 [Movies Browser](https://urbork.github.io/movies-browser/)
 
 - [Overview](#-overview)
-
 - [Features](#-features)
 - [Technologies Used](#-technologies-used)
 - [Setup](#-setup)
@@ -93,3 +92,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+<br>
+<br>
+<br>
+
+[Back to top](#-movies-browser)
