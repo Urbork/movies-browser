@@ -1,8 +1,15 @@
-# 🎬 Movies Browser
+# 🎬 [Movies Browser](https://urbork.github.io/movies-browser/)
+
+- [Overview](#-overview)
+
+- [Features](#-features)
+- [Technologies Used](#-technologies-used)
+- [Setup](#-setup)
+- [🎉Contributors](#contributors)
+
+## ▶ Overview
 
 This project is a simple yet powerful movies browser application. Our goal is to provide users with a seamless experience for discovering and exploring recent most popular movies. Happy browsing!
-
-## ▶ Demo
 
 Check it out: https://urbork.github.io/movies-browser/
 
