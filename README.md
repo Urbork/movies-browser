@@ -1,81 +1,85 @@
-# Movies Browser
+# 🎬 Movies Browser
 
 This project is a simple yet powerful movies browser application. Our goal is to provide users with a seamless experience for discovering and exploring recent most popular movies. Happy browsing!
 
-## Demo
+## ▶ Demo
 
-DEMO: https://urbork.github.io/movies-browser/
+Check it out: https://urbork.github.io/movies-browser/
 
-![preview](https://i.imgur.com/GhhVLCL.jpeg)
+![preview](https://i.imgur.com/gxsXeb2.gif)
 
-## Features
+## ⭐ Features
 
 - **Up-to-date Information:** Our application fetches data from a reliable API.
+
 - **Detailed Information:** Each movie includes detailed information such as release date, ratings, description, cast and crew.
 - **People:** Discover talented actors, actresses and even crew members.
 - **Responsive Design:** The application is designed to be responsive and accessible across various devices, ensuring a consistent experience for all users.
+- **Search**: Users are able to search for movies across thousands of popular titles.
 
-Soon:
-
-- **Search**: Users will be able to search for movies across hundreds of popular titles.
-
-## Technologies Used
+## ⚙ Technologies Used
 
 - Semantic and accessible HTML
-- CSS Flexbox & Grid
+
+- CSS, Flexbox & Grid
 - JavaScript ES6+ features
 - React
+- JSX
 - Styled Components
+- Media Quaries
 - Working with API
-
-Soon:
-
-- Redux
+- Redux Saga
 - React Router
+
+## 💻 Setup
+
+To run the program from the 'movies-browser' repository on your local computer, follow these steps:
+
+### 1. Downloading the Source Code
+
+Clone the Repository to your computer using the command:
+
+```commandline
+git clone https://github.com/Urbork/movies-browser.git
+```
+
+### 2. Installing Dependencies
+
+Navigate to the project directory:
+
+```commandline
+cd movies-browser
+```
+
+Install all required dependencies using a package manager like npm:
+
+```commandline
+npm install
+```
+
+### 3. Running the Application
+
+```commandline
+npm start
+```
+
+This command will start the application in developer mode and open it in a browser at http://localhost:3000
 
 ## 🎉Contributors
 
 - [Mariusz Matusiewicz](https://github.com/mariuszmmm)
+
 - [Adrian Woźniak](https://github.com/Adrode)
+
 - [Jonasz Jachym](https://github.com/Urbork)
 
----
+<br>
+<br>
+<br>
 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ## Learn More
 
