@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./rootSaga";
-import pageStateReducer from "./features/pageState/pageStateSlice";
-import moviesReducer from "./features/movies/moviesSlice";
-import peopleSlice from "./features/people/peopleSlice"
+import pageStateReducer from "./App/pageStateSlice";
+import moviesReducer from "./App/features/movies/moviesSlice";
+import peopleSlice from "./App/features/people/peopleSlice"
 
 const sagaMiddleware = createSagaMiddleware();
 
