@@ -43,6 +43,7 @@ export const DetailsTitle = styled.h3`
   @media (max-width: ${({ theme }) => theme.breakpoint.large}) {
     font-size: clamp(14px, 3vw, 36px);
     line-height: clamp(18.2px, 3vw, 43.2px);
+    color: ${({ theme }) => theme.color.blackSpecial};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {

@@ -85,7 +85,7 @@ export const PageNumberInfo = styled.p`
 `;
 
 export const Number = styled.span`
-  color: ${({ theme }) => theme.color.black};
+  color: ${({ theme }) => theme.color.blackSpecial};
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
 `;
 

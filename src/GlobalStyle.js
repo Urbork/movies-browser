@@ -16,5 +16,6 @@ export const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     overflow-y: scroll;
     min-width: 320px;
+    touch-action: pan-y;
   }
 `;
