@@ -25,7 +25,7 @@ export const MovieCoverWrapper = styled.div`
   margin: -56px 0 0;
   padding: 0 24px;
 
-  @media (max-width: 1416px) {
+  @media (max-width: 1334px) {
     width: 100%;
   }
 
