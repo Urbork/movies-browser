@@ -62,7 +62,7 @@ export const MovieTileRatingVotes = styled.span`
   font-size: ${({ $big }) => ($big ? "14" : "16") + "px"};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   color: ${({ $big, theme }) =>
-    $big ? theme.color.blackSpecial : theme.color.darkerGrey};
+    $big ? theme.color.black : theme.color.darkerGrey};
   line-height: 16.8px;
   text-align: left;
   margin-left: 4px;
