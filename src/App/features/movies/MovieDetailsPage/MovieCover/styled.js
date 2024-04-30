@@ -4,7 +4,7 @@ import { ReactComponent as StarIcon } from "../../../../images/VectorStar.svg";
 export const MovieCoverBlackBars = styled.img`
   position: absolute;
   top: -3px;
-  width: 101vw;
+  width: 100.2vw;
   height: 101%;
   display: flex;
   justify-content: center;
@@ -31,9 +31,6 @@ export const MovieCoverWrapper = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     padding: 0 16px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     margin: -36px 0 0;
   }
 `;
@@ -41,6 +38,9 @@ export const MovieCoverWrapper = styled.div`
 export const MovieCoverEffect = styled.img`
   position: absolute;
   height: 100%;
+  max-width: 100vw;
+  object-fit: cover;
+  min-width: 320px;
 `;
 
 const zoomIn = keyframes`
