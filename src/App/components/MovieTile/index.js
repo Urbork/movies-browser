@@ -8,7 +8,7 @@ import {
   MovieTileSubtitle,
   MovieTileInfoWrapper,
 } from "./styled";
-import noPoster from "../../images/noPoster.svg";
+import noPoster from "../../../images/noPoster.svg";
 import { MovieTags } from "../MovieTags";
 import { MovieRating } from "../MovieRating";
 import { useState } from "react";

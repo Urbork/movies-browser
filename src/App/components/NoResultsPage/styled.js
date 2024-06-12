@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as NoResultImage } from "../../images/VectorNoResult.svg";
+import { ReactComponent as NoResultImage } from "../../../images/VectorNoResult.svg";
 
 export const StyledNoResultsImage = styled(NoResultImage)`
   margin: 0 auto;

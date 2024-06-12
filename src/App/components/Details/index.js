@@ -13,8 +13,8 @@ import { MovieTags } from "../MovieTags";
 import { MovieRating } from "../MovieRating";
 import { useDispatch } from "react-redux";
 import { setImagesLoaded } from "../../pageStateSlice";
-import blankProfile from "../../images/blankProfile.svg";
-import noPoster from "../../images/noPoster.svg";
+import blankProfile from "../../../images/blankProfile.svg";
+import noPoster from "../../../images/noPoster.svg";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Details = ({

@@ -7,7 +7,7 @@ import {
   Role,
   ContentWrapper
 } from "./styled";
-import blankProfile from "../../images/blankProfile.svg";
+import blankProfile from "../../../images/blankProfile.svg";
 import { useState } from "react";
 import { profileMainSizeUrl, profileSmallSizeUrl } from "../../api/api";
 import { selectMobile } from "../../pageStateSlice";

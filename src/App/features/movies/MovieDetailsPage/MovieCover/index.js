@@ -11,7 +11,7 @@ import {
   RatingCover,
   StyledCoverStarIcon,
 } from "./styled";
-import vignette from "../../../../images/VignetteEffect.svg";
+import vignette from "../../../../../images/VignetteEffect.svg";
 import { backdropMainSizeUrl, backdropMobileSizeUrl } from "../../../../api/api";
 import { useDispatch, useSelector } from "react-redux";
 import { selectImagesToLoad, selectMobile, setImagesLoaded } from "../../../../pageStateSlice";

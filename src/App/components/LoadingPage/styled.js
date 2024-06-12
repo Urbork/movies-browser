@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as LoadingIcon } from "../../images/VectorLoading.svg";
+import { ReactComponent as LoadingIcon } from "../../../images/VectorLoading.svg";
 
 export const StyledLoadingIcon = styled(LoadingIcon)`
   margin: 120px auto 0;

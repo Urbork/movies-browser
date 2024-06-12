@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as VideoSVG } from "../../images/video.svg";
+import { ReactComponent as VideoSVG } from "../../../images/video.svg";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Container = styled.nav`

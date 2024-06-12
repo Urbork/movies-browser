@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as ErrorIcon } from "../../images/VectorError.svg";
+import { ReactComponent as ErrorIcon } from "../../../images/VectorError.svg";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export const ErrorWrapper = styled.section`

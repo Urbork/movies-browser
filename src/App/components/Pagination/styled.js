@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { ReactComponent as Arrow } from "../../images/vectorArrow.svg";
+import { ReactComponent as Arrow } from "../../../images/vectorArrow.svg";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Wrapper = styled.div`

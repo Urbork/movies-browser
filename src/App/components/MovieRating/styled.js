@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as StarIcon } from "../../images/VectorStar.svg";
+import { ReactComponent as StarIcon } from "../../../images/VectorStar.svg";
 
 export const MovieTileRating = styled.div`
   display: flex;
