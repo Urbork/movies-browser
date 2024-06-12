@@ -9,9 +9,12 @@ import {
   ButtonsWrapper,
   StyledNavLink,
 } from "./styled";
-import { selectCurrentMoviePage, selectCurrentPeoplePage } from "../pageStateSlice";
+import {
+  selectCurrentMoviePage,
+  selectCurrentPeoplePage,
+} from "../../pageStateSlice";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
-import { toMoviesPage, toPeoplePage } from "../routes";
+import { toMoviesPage, toPeoplePage } from "../../routes";
 import { SearchInput } from "./SearchInput";
 
 export const Navigation = () => {
@@ -21,7 +24,7 @@ export const Navigation = () => {
   const pathName = location.pathname.split("/")[1];
 
   return (
-    <Container >
+    <Container>
       <Wrapper>
         <LogoButtonsWrapper>
           <AppName>
@@ -29,12 +32,16 @@ export const Navigation = () => {
             Movies Browser
           </AppName>
           <ButtonsWrapper>
-            <StyledNavLink to={toMoviesPage({ page: currentMoviePage })}
-              $active={pathName === "movies"}>
+            <StyledNavLink
+              to={toMoviesPage({ page: currentMoviePage })}
+              $active={pathName === "movies"}
+            >
               Movies
             </StyledNavLink>
-            <StyledNavLink to={toPeoplePage({ page: currentPeoplePage })}
-              $active={pathName === "people"}>
+            <StyledNavLink
+              to={toPeoplePage({ page: currentPeoplePage })}
+              $active={pathName === "people"}
+            >
               People
             </StyledNavLink>
           </ButtonsWrapper>
@@ -43,6 +50,6 @@ export const Navigation = () => {
           <SearchInput />
         </InputWrapper>
       </Wrapper>
-    </Container >
-  )
+    </Container>
+  );
 };

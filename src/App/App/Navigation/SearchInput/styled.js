@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import search from "../../images/search.svg";
+import search from "../../../images/search.svg";
 
 export const Input = styled.input`
   width: 100%;

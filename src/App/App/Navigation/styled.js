@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as VideoSVG } from "../images/video.svg";
+import { ReactComponent as VideoSVG } from "../../images/video.svg";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Container = styled.nav`
@@ -11,7 +11,7 @@ export const Container = styled.nav`
   z-index: 2;
   margin-bottom: 56px;
   height: 94px;
-  
+
   @media (max-width: 1080px) {
     height: 142px;
   }
@@ -32,7 +32,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: 1416px;
-  padding-left: 40px ;
+  padding-left: 40px;
   padding-right: 41px;
   margin: 0 auto;
   transition: 0.6s;
@@ -48,7 +48,7 @@ export const Wrapper = styled.div`
     padding-left: clamp(16px, 3vw, 40px);
     padding-right: clamp(17px, 3vw, 41px);
   }
-  
+
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     padding-left: 16px;
     padding-right: 17px;
@@ -63,7 +63,7 @@ export const LogoButtonsWrapper = styled.div`
 
   @media (max-width: 1080px) {
     justify-content: center;
-    margin: 24px 0; 
+    margin: 24px 0;
     width: 100%;
     justify-content: space-between;
   }
@@ -78,12 +78,12 @@ export const AppName = styled.div`
   line-height: 40px;
   letter-spacing: -1.5px;
   text-align: left;
-  padding-right: 80px ;
+  padding-right: 80px;
   min-width: max-content;
   transition: 0.6s;
-  
+
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
-    padding-right: 19px ;
+    padding-right: 19px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
@@ -97,7 +97,7 @@ export const AppName = styled.div`
 export const Video = styled(VideoSVG)`
   transition: 0.6s;
   width: 40px;
-  
+
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     width: 17px;
     align-self: center;
@@ -127,8 +127,9 @@ export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   color: ${({ theme }) => theme.color.white};
   padding: 8px 24px;
-  border: 1px solid ;
-  border-color: ${({ theme, $active }) => $active ? theme.color.white : "transparent"};
+  border: 1px solid;
+  border-color: ${({ theme, $active }) =>
+    $active ? theme.color.white : "transparent"};
   border-radius: 24px;
   text-align: left;
   cursor: pointer;

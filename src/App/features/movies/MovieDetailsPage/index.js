@@ -5,7 +5,7 @@ import {
   selectMovieDetailsContent,
   selectMovieDetailsId,
   setMovieDetailsId,
-} from "../../movies/moviesSlice";
+} from "../moviesSlice";
 import { MovieCover } from "./MovieCover";
 import { Details } from "../../../components/Details";
 import { Section } from "../../../components/Section";
