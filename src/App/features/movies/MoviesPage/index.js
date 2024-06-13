@@ -2,8 +2,16 @@ import { Section } from "../../../components/Section";
 import { MoviesWrapper } from "../../../components/MoviesWrapper";
 import { useDispatch, useSelector } from "react-redux";
 import { MovieTile } from "../../../components/MovieTile";
-import { selectGenres, selectMovies, selectMoviesTotalResults } from "../moviesSlice";
-import { useHistory, useLocation, useParams, } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  selectGenres,
+  selectMovies,
+  selectMoviesTotalResults,
+} from "../moviesSlice";
+import {
+  useHistory,
+  useLocation,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect } from "react";
 import { LoadingPage } from "../../../components/LoadingPage";
 import { ErrorPage } from "../../../components/ErrorPage";
@@ -48,55 +56,79 @@ export const MoviesPage = () => {
   useEffect(() => {
     if (fetchStatus === "ready") {
       if (
-        (!query && page && pageNumber !== currentMoviePage)
-        ||
-        (query && page && pageNumber !== currentSearchPage)
-        ||
+        (!query && page && pageNumber !== currentMoviePage) ||
+        (query && page && pageNumber !== currentSearchPage) ||
         pathName !== "movies"
       ) {
         if (!query) {
-          dispatch(setCurrentMoviePage(pageNumber))
+          dispatch(setCurrentMoviePage(pageNumber));
         } else {
           if (moviesQuery !== moviesQueryToDisplay) {
-            history.push(`/${pathName}/${firstSearchPage}?${searchParams.toString()}`)
+            history.push(
+              `/${pathName}/${firstSearchPage}?${searchParams.toString()}`
+            );
           } else {
-            dispatch(setCurrentSearchPage(pageNumber))
+            dispatch(setCurrentSearchPage(pageNumber));
           }
-        };
-      };
-    };
+        }
+      }
+    }
 
     // eslint-disable-next-line
-  }, [fetchStatus, query, page, pageNumber, currentMoviePage, currentSearchPage, pathName, moviesQuery, moviesQueryToDisplay]);
+  }, [
+    fetchStatus,
+    query,
+    page,
+    pageNumber,
+    currentMoviePage,
+    currentSearchPage,
+    pathName,
+    moviesQuery,
+    moviesQueryToDisplay,
+  ]);
 
   useEffect(() => {
     if (query && query !== moviesQuery) dispatch(setMoviesQuery(query));
     if (!query && query !== moviesQuery) dispatch(setMoviesQuery(null));
-
-  }, [query, moviesQuery, dispatch])
+  }, [query, moviesQuery, dispatch]);
 
   useEffect(() => {
     if (pathName === "movies") {
       dispatch(clearAfterSearch());
       dispatch(clearPeopleAfterSearch());
-    };
+    }
 
     // eslint-disable-next-line
-  }, [pathName])
+  }, [pathName]);
 
   return (
     <>
-      {fetchStatus === "loading" && <LoadingPage title={query && `Search results for “${query}” ${(totalResults && (moviesQueryToDisplay === moviesQuery)) ? "(" + totalResults + ")" : ""}`} />}
+      {fetchStatus === "loading" && (
+        <LoadingPage
+          title={
+            query &&
+            `Search results for “${query}” ${
+              totalResults && moviesQueryToDisplay === moviesQuery
+                ? "(" + totalResults + ")"
+                : ""
+            }`
+          }
+        />
+      )}
       {fetchStatus === "error" && <ErrorPage />}
       {fetchStatus === "ready" &&
-        ((!!totalResults || totalResults > 0) || (!totalResults && !moviesQueryToDisplay)) ?
+      (!!totalResults ||
+        totalResults > 0 ||
+        (!totalResults && !moviesQueryToDisplay)) ? (
         <>
-          <Section noDisplay={totalResults && !query}
-            title={moviesQueryToDisplay
-              ?
-              (`Search results for “${moviesQueryToDisplay}” ${totalResults ? "(" + totalResults + ")" : ""}`)
-              :
-              "Popular  movies"
+          <Section
+            noDisplay={totalResults && !query}
+            title={
+              moviesQueryToDisplay
+                ? `Search results for “${moviesQueryToDisplay}” ${
+                    totalResults ? "(" + totalResults + ")" : ""
+                  }`
+                : "Popular  movies"
             }
           >
             <MoviesWrapper onLoad={() => dispatch(setImagesLoaded())}>
@@ -106,7 +138,8 @@ export const MoviesPage = () => {
                   poster={movie.poster_path}
                   title={movie.title}
                   subtitle={movie.release_date.split("-")[0]}
-                  tags={movie.genre_ids?.map((genreId) => genres.find((item) => item.id === genreId)?.name)}
+                  tags={movie.genre_ids}
+                  genres={genres}
                   rating={movie.vote_average}
                   votes={movie.vote_count}
                   id={movie.id}
@@ -116,12 +149,17 @@ export const MoviesPage = () => {
           </Section>
           <Pagination noDisplay={totalResults && !query} />
         </>
-        :
+      ) : (
         <NoResultsPage
           query={moviesQueryToDisplay}
-          noDisplay={(!moviesQueryToDisplay || !moviesQuery || fetchStatus === "loading" || fetchStatus === "error")}
+          noDisplay={
+            !moviesQueryToDisplay ||
+            !moviesQuery ||
+            fetchStatus === "loading" ||
+            fetchStatus === "error"
+          }
         />
-      }
+      )}
     </>
   );
 };

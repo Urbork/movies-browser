@@ -7,7 +7,7 @@ const moviesSlice = createSlice({
     movieDetails: {
       credits: {},
     },
-    genres: [],
+    genres: null,
     total_pages: null,
     total_results: null,
   },
@@ -25,7 +25,11 @@ const moviesSlice = createSlice({
       state.movieDetails.credits = credits;
     },
     setGenres: (state, { payload: genres }) => {
-      state.genres = genres;
+      state.genres = genres.reduce((acc, genre) => {
+        acc[genre.id] = genre.name;
+
+        return acc;
+      }, {});
     },
     setMoviesTotalPages: (state, { payload: pages }) => {
       state.total_pages = pages;
@@ -54,14 +58,21 @@ export const {
 const selectMoviesState = (state) => state.movies;
 
 export const selectMovies = (state) => selectMoviesState(state).movies;
-export const selectMovieDetails = (state) => selectMoviesState(state).movieDetails;
+export const selectMovieDetails = (state) =>
+  selectMoviesState(state).movieDetails;
 export const selectMovieDetailsId = (state) => selectMovieDetails(state).id;
-export const selectMovieDetailsContent = (state) => selectMovieDetails(state).content;
-export const selectMovieDetailsCredits = (state) => selectMovieDetails(state).credits;
+export const selectMovieDetailsContent = (state) =>
+  selectMovieDetails(state).content;
+export const selectMovieDetailsCredits = (state) =>
+  selectMovieDetails(state).credits;
 export const selectGenres = (state) => selectMoviesState(state).genres;
-export const selectMovieDetailsCreditsCast = (state) => selectMovieDetailsCredits(state).cast;
-export const selectMovieDetailsCreditsCrew = (state) => selectMovieDetailsCredits(state).crew;
-export const selectMoviesTotalPages = (state) => selectMoviesState(state).total_pages;
-export const selectMoviesTotalResults = (state) => selectMoviesState(state).total_results;
+export const selectMovieDetailsCreditsCast = (state) =>
+  selectMovieDetailsCredits(state).cast;
+export const selectMovieDetailsCreditsCrew = (state) =>
+  selectMovieDetailsCredits(state).crew;
+export const selectMoviesTotalPages = (state) =>
+  selectMoviesState(state).total_pages;
+export const selectMoviesTotalResults = (state) =>
+  selectMoviesState(state).total_results;
 
 export default moviesSlice.reducer;
