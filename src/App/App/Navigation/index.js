@@ -8,29 +8,36 @@ import {
   InputWrapper,
   ButtonsWrapper,
   StyledNavLink,
+  LogoLink,
 } from "./styled";
 import {
   selectCurrentMoviePage,
   selectCurrentPeoplePage,
 } from "../../pageStateSlice";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useDispatch } from "react-redux";
 import { toMoviesPage, toPeoplePage } from "../../routes";
 import { SearchInput } from "./SearchInput";
+import { backToHome } from "../../pageStateSlice";
 
 export const Navigation = () => {
   const currentMoviePage = useSelector(selectCurrentMoviePage);
   const currentPeoplePage = useSelector(selectCurrentPeoplePage);
   const location = useLocation();
   const pathName = location.pathname.split("/")[1];
+  const dispatch = useDispatch();
 
   return (
     <Container>
       <Wrapper>
         <LogoButtonsWrapper>
-          <AppName>
-            <Video />
-            Movies Browser
-          </AppName>
+          <LogoLink to="/" onClick={() => dispatch(backToHome())}>
+            <AppName>
+              <Video />
+              Movies Browser
+            </AppName>
+          </LogoLink>
+
           <ButtonsWrapper>
             <StyledNavLink
               to={toMoviesPage({ page: currentMoviePage })}

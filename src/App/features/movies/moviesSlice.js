@@ -25,11 +25,13 @@ const moviesSlice = createSlice({
       state.movieDetails.credits = credits;
     },
     setGenres: (state, { payload: genres }) => {
-      state.genres = genres.reduce((acc, genre) => {
-        acc[genre.id] = genre.name;
-
-        return acc;
-      }, {});
+      state.genres = genres.reduce(
+        (acc, { id, name }) => ({
+          ...acc,
+          [id]: name,
+        }),
+        {}
+      );
     },
     setMoviesTotalPages: (state, { payload: pages }) => {
       state.total_pages = pages;

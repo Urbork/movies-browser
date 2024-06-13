@@ -81,6 +81,7 @@ export const AppName = styled.div`
   padding-right: 80px;
   min-width: max-content;
   transition: 0.6s;
+  cursor: pointer;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
     padding-right: 19px;
@@ -147,6 +148,11 @@ export const StyledNavLink = styled(NavLink)`
   &.active {
     border: 1px solid ${({ theme }) => theme.color.white};
   }
+`;
+
+export const LogoLink = styled(NavLink)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.color.white};
 `;
 
 export const InputWrapper = styled.div`
