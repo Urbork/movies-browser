@@ -7,15 +7,15 @@ import { backToHome, fetchApi, fetchError, resetFetchStatus, selectFirstMoviePag
 export function* initializeSagaHandler() {
   try {
     yield put(fetchApi());
-    const firstMoviePage = yield select(selectFirstMoviePage);
-    const firstPeoplePage = yield select(selectFirstPeoplePage);
-    const movies = yield call(() => getMovies(firstMoviePage));
+    // const firstMoviePage = yield select(selectFirstMoviePage);
+    // const firstPeoplePage = yield select(selectFirstPeoplePage);
+    const movies = yield call(() => getMovies());
     const genres = yield call(() => getGenres());
-    const people = yield call(() => getPeople(firstPeoplePage));
+    // const people = yield call(() => getPeople());
     yield delay(1000);
     yield put(setMovies(movies.results));
     yield put(setGenres(genres.genres));
-    yield put(setPeople(people.results));
+    // yield put(setPeople(people.results));
     yield put(setImagesToLoad());
     yield put(resetFetchStatus());
   } catch (error) {
