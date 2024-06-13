@@ -134,6 +134,7 @@ export const StyledNavLink = styled(NavLink)`
   border-radius: 24px;
   text-align: left;
   cursor: pointer;
+  transition: border-color 0.3s;
 
   @media (max-width: 1080px) {
     padding: 8px 12px;
@@ -145,7 +146,8 @@ export const StyledNavLink = styled(NavLink)`
     background-color: ${({ theme }) => theme.color.black};
   }
 
-  &.active {
+  &.active,
+  &:hover {
     border: 1px solid ${({ theme }) => theme.color.white};
   }
 `;
