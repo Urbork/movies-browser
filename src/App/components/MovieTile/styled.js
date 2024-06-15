@@ -37,8 +37,8 @@ export const MovieTileImage = styled.img`
   background-color: transparent;
   flex-shrink: 0;
   opacity: 0;
-  opacity: ${({ $loaded }) => ($loaded) ? 1 : 0};
-
+  /* opacity: ${({ $loaded }) => ($loaded) ? 1 : 0}; */  // wyłączenie tymczasowe;
+  opacity: 1;// włączono tymczasowe
   @media (max-width: ${({ theme }) => theme.breakpoint.small}) {
     width: 114px;
     height: 169px;

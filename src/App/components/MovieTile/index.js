@@ -34,10 +34,10 @@ export const MovieTile = ({
     <MovieTileContent>
       <MovieTileNavLink to={toMovieDetailsPage({ id: id })}>
         <MovieTileImage
-          src={loaded && poster ? posterUrl + poster : noPoster}
-          alt={loaded && title ? `${title} movie poster` : "no poster"}
+          src={/*loaded && */ poster ? posterUrl + poster : noPoster}  // wyłączenie tymczasowe
+          alt={/*loaded && */ title ? `${title} movie poster` : "no poster"}  // wyłączenie tymczasowe
           $loaded={loaded}
-          onLoad={() => setLoaded(true)}
+          // onLoad={() => setLoaded(true)}  // wyłączenie tymczasowe
         />
         <MovieTileInfoWrapper>
           <MovieTileInfo>

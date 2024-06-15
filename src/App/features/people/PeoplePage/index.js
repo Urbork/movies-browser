@@ -3,8 +3,25 @@ import { PeopleWrapper } from "../../../components/PeopleWrapper";
 import PeopleTile from "../../../components/PeopleTile";
 import { useDispatch, useSelector } from "react-redux";
 import { selectPeople, selectPeopleTotalResults } from "../peopleSlice";
-import { clearAfterSearch, selectCurrentPeoplePage, selectCurrentSearchPage, selectFetchStatus, selectFirstSearchPage, selectPeopleQuery, selectPeopleQueryToDisplay, setCurrentPeoplePage, setCurrentSearchPage, setImagesLoaded, setPeopleQuery } from "../../../pageStateSlice";
-import { useHistory, useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  clearAfterSearch,
+  fetchApi,
+  selectCurrentPeoplePage,
+  selectCurrentSearchPage,
+  selectFetchStatus,
+  selectFirstSearchPage,
+  selectPeopleQuery,
+  selectPeopleQueryToDisplay,
+  setCurrentPeoplePage,
+  setCurrentSearchPage,
+  setImagesLoaded,
+  setPeopleQuery,
+} from "../../../pageStateSlice";
+import {
+  useHistory,
+  useLocation,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect } from "react";
 import { Pagination } from "../../../components/Pagination";
 import { LoadingPage } from "../../../components/LoadingPage";
@@ -31,61 +48,94 @@ export const PeoplePage = () => {
   const history = useHistory();
   const searchParams = new URLSearchParams(location.search);
 
+  useEffect(
+    () => {
+      if (pathName === "people") {
+        dispatch(fetchApi({ pathName }));
+      }
+
+      if (fetchStatus === "ready") {
+        // if (
+        //   (!query && page && pageNumber !== currentPeoplePage) ||
+        //   (query && page && pageNumber !== currentSearchPage) ||
+        //   pathName !== "people"
+        // ) {
+        //   if (!query) {
+        //     dispatch(setCurrentPeoplePage(pageNumber));
+        //   } else {
+        //     if (peopleQuery !== peopleQueryToDisplay) {
+        //       history.push(
+        //         `/${pathName}/${firstSearchPage}?${searchParams.toString()}`
+        //       );
+        //     } else {
+        //       dispatch(setCurrentSearchPage(pageNumber));
+        //     }
+        //   }
+        // }
+      }
+
+      // eslint-disable-next-line
+    },
+    [
+      // fetchStatus,
+      // query,
+      // page,
+      // pageNumber,
+      // currentPeoplePage,
+      // currentSearchPage,
+      // pathName,
+      // peopleQuery,
+      // peopleQueryToDisplay,
+    ]
+  );
+
   useEffect(() => {
-    if (fetchStatus === "ready") {
-      if (
-        (!query && page && pageNumber !== currentPeoplePage)
-        ||
-        (query && page && pageNumber !== currentSearchPage)
-        ||
-        pathName !== "people"
-      ) {
-        if (!query) {
-          dispatch(setCurrentPeoplePage(pageNumber))
-        } else {
-          if (peopleQuery !== peopleQueryToDisplay) {
-            history.push(`/${pathName}/${firstSearchPage}?${searchParams.toString()}`)
-          } else {
-            dispatch(setCurrentSearchPage(pageNumber))
-          }
-        };
-      };
-    };
-
-    // eslint-disable-next-line
-  }, [fetchStatus, query, page, pageNumber, currentPeoplePage, currentSearchPage, pathName, peopleQuery, peopleQueryToDisplay]);
-
-  useEffect(() => {
-    if (query && query !== peopleQuery) dispatch(setPeopleQuery(query));
-    if (!query && query !== peopleQuery) dispatch(setPeopleQuery(null));
-
-  }, [query, peopleQuery, dispatch]);
+    // if (query && query !== peopleQuery) dispatch(setPeopleQuery(query));
+    // if (!query && query !== peopleQuery) dispatch(setPeopleQuery(null));
+  }, [query, peopleQuery]);
 
   useEffect(() => {
     if (pathName === "people") {
-      dispatch(clearAfterSearch());
-      dispatch(clearMoviesAfterSearch());
-    };
+      // dispatch(clearAfterSearch());
+      // dispatch(clearMoviesAfterSearch());
+    }
 
     // eslint-disable-next-line
-  }, [pathName])
+  }, [pathName]);
 
   return (
     <>
-      {fetchStatus === "loading" && <LoadingPage title={query && `Search results for “${query}” ${(totalResults && (peopleQueryToDisplay === peopleQuery)) ? "(" + totalResults + ")" : ""}`} />}
+      {fetchStatus === "loading" && (
+        <LoadingPage
+          title={
+            query &&
+            `Search results for “${query}” ${
+              totalResults && peopleQueryToDisplay === peopleQuery
+                ? "(" + totalResults + ")"
+                : ""
+            }`
+          }
+        />
+      )}
       {fetchStatus === "error" && <ErrorPage />}
       {fetchStatus === "ready" &&
-        ((!!totalResults || totalResults > 0) || (!totalResults && !peopleQueryToDisplay)) ?
+      (!!totalResults ||
+        totalResults > 0 ||
+        (!totalResults && !peopleQueryToDisplay)) ? (
         <>
           <Section
             noDisplay={totalResults && !query}
-            title={peopleQueryToDisplay
-              ?
-              `Search results for “${peopleQueryToDisplay}” ${totalResults ? "(" + totalResults + ")" : ""}`
-              :
-              "Popular people"}
+            title={
+              peopleQueryToDisplay
+                ? `Search results for “${peopleQueryToDisplay}” ${
+                    totalResults ? "(" + totalResults + ")" : ""
+                  }`
+                : "Popular people"
+            }
           >
-            <PeopleWrapper onLoad={() => dispatch(setImagesLoaded())}>
+            <PeopleWrapper
+            //  onLoad={() => dispatch(setImagesLoaded())}  // wyłączenie tymczasowe
+            >
               {people?.map((person) => (
                 <PeopleTile
                   key={person.id}
@@ -98,12 +148,17 @@ export const PeoplePage = () => {
           </Section>
           <Pagination noDisplay={totalResults && !query} />
         </>
-        :
+      ) : (
         <NoResultsPage
           query={peopleQueryToDisplay}
-          noDisplay={(!peopleQueryToDisplay || !peopleQuery || fetchStatus === "loading" || fetchStatus === "error")}
+          noDisplay={
+            !peopleQueryToDisplay ||
+            !peopleQuery ||
+            fetchStatus === "loading" ||
+            fetchStatus === "error"
+          }
         />
-      }
+      )}
     </>
   );
 };

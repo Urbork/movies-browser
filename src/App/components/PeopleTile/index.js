@@ -5,7 +5,7 @@ import {
   Image,
   Name,
   Role,
-  ContentWrapper
+  ContentWrapper,
 } from "./styled";
 import blankProfile from "../../../images/blankProfile.svg";
 import { useState } from "react";
@@ -15,25 +15,25 @@ import { toPeopleDetailsPage } from "../../routes";
 
 const PeopleTile = ({ profile, name, id, role }) => {
   const [loaded, setLoaded] = useState(false);
-  const mobile = useSelector(selectMobile)
+  const mobile = useSelector(selectMobile);
   const profileUrl = mobile ? profileSmallSizeUrl : profileMainSizeUrl;
 
   return (
     <Wrapper>
       <PeopleTileNavLink to={toPeopleDetailsPage({ id: id })}>
         <Image
-          src={(loaded && profile) ? profileUrl + profile : blankProfile}
-          alt={(loaded && name) ? name : "no name"}
+          src={/*loaded && */ profile ? profileUrl + profile : blankProfile} // wyłączenie tymczasowe
+          alt={/*loaded && */ name ? name : "no name"} // wyłączenie tymczasowe
           $loaded={loaded}
-          onLoad={() => setLoaded(true)}
+          // onLoad={() => setLoaded(true)}  // wyłączenie tymczasowe
         />
-        <ContentWrapper >
+        <ContentWrapper>
           <Name>{name}</Name>
           <Role>{role}</Role>
         </ContentWrapper>
       </PeopleTileNavLink>
     </Wrapper>
-  )
+  );
 };
 
 export default PeopleTile;

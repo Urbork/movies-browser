@@ -53,6 +53,35 @@ export const StyledNavLink = styled(NavLink)`
   }
 `;
 
+
+export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: ${({ theme, disabled }) => disabled ? theme.color.grey : theme.color.lightBlue};
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  transition: 0.2s;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    gap: 4px;
+    padding: 8px 12px;
+  }
+
+  &:hover {
+    filter: brightness( ${({ disabled }) => disabled ? "100%" : "102%"});
+    cursor: ${({ disabled }) => disabled ? "auto" : "pointer"};
+  }
+
+  &:active {
+    filter: brightness( ${({ disabled }) => disabled ? "100%" : "104%"});
+  }
+`;
+
 export const Content = styled.span`
   display: block;
   color: ${({ theme }) => theme.color.mineShaft};

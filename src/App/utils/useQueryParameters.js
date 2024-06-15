@@ -18,12 +18,15 @@ export const useReplaceQueryParameter = () => {
   return ({ key, value }) => {
     const searchParams = new URLSearchParams(location.search);
 
-    if (value.trim() === "") {
+    if (value.toString().trim() === "") {
       searchParams.delete(key);
     } else {
       searchParams.set(key, value);
     };
 
-    history.push(`/${pathName}/${currentSearchPage}?${searchParams.toString()}`);
+    // history.push(`/${pathName}/${currentSearchPage}?${searchParams.toString()}`);
+
+    history.push(`/${pathName}?${searchParams.toString()}`);
+
   };
 };

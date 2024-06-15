@@ -49,7 +49,8 @@ export const Image = styled.img`
   background-color: transparent;
   flex-shrink: 0;
   opacity: 1;
-  opacity: ${({ $loaded }) => ($loaded) ? 1 : 0};
+  /* opacity: ${({ $loaded }) => ($loaded) ? 1 : 0}; */  // wyłączenie tymczasowe
+  opacity : 1; // włączenie tymczasowe
   max-width: 177px;
   max-height: 231px;
 

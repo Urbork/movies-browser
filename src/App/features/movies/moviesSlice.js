@@ -1,16 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  movies: [],
+  movieDetails: {
+    credits: {},
+  },
+  genres: null,
+  total_pages: null,
+  total_results: null,
+};
+
 const moviesSlice = createSlice({
   name: "movies",
-  initialState: {
-    movies: [],
-    movieDetails: {
-      credits: {},
-    },
-    genres: null,
-    total_pages: null,
-    total_results: null,
-  },
+  initialState,
   reducers: {
     setMovies: (state, { payload: movies }) => {
       state.movies = movies;
@@ -43,6 +45,9 @@ const moviesSlice = createSlice({
       state.total_results = null;
       state.total_pages = null;
     },
+    clearMoviesState: (state) => {
+      state = initialState;
+    },
   },
 });
 
@@ -55,6 +60,7 @@ export const {
   setMoviesTotalPages,
   setMoviesTotalResults,
   clearMoviesAfterSearch,
+  clearMoviesState,
 } = moviesSlice.actions;
 
 const selectMoviesState = (state) => state.movies;

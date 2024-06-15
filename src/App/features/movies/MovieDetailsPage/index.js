@@ -10,10 +10,17 @@ import { MovieCover } from "./MovieCover";
 import { Details } from "../../../components/Details";
 import { Section } from "../../../components/Section";
 import { PeopleWrapper } from "../../../components/PeopleWrapper";
-import { selectFetchStatus, selectMobile } from "../../../pageStateSlice";
+import {
+  fetchApi,
+  selectFetchStatus,
+  selectMobile,
+} from "../../../pageStateSlice";
 import { posterMainSizeUrl } from "../../../api/api";
 import PeopleTile from "../../../components/PeopleTile";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useLocation,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect } from "react";
 import { LoadingPage } from "../../../components/LoadingPage";
 import { ErrorPage } from "../../../components/ErrorPage";
@@ -27,11 +34,15 @@ export const MovieDetailsPage = () => {
   const dispatch = useDispatch();
   const movieDetailsId = useSelector(selectMovieDetailsId);
   const fetchStatus = useSelector(selectFetchStatus);
+  const location = useLocation();
+  const pathName = location.pathname.split("/")[1];
 
   useEffect(() => {
-    if (id !== movieDetailsId) {
-      dispatch(setMovieDetailsId(id));
-    }
+    dispatch(fetchApi({ pathName, id }));
+
+    // if (id !== movieDetailsId) {s
+    //   dispatch(setMovieDetailsId(id));
+    // }
   }, [id, movieDetailsId, dispatch]);
 
   return (

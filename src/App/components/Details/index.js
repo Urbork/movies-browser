@@ -40,7 +40,9 @@ export const Details = ({
 
   return (
     <>
-      <DetailsWrapper onLoad={() => dispatch(setImagesLoaded())} >
+      <DetailsWrapper 
+      // onLoad={() => dispatch(setImagesLoaded())}  // wyłączenie tymczasowe
+      >
         <DetailsImage
           src={poster ? imageURL + poster : noImage}
           alt={`${title} poster`}

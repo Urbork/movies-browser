@@ -40,7 +40,7 @@ function App() {
             <PeoplePage />
           </Route>
           <Route path="/">
-            <Redirect to={toMoviesPage({ page: firstMoviePage })} />
+            <Redirect to={toMoviesPage()} />
           </Route>
         </Switch>
       </Container>

@@ -7,10 +7,17 @@ import {
   selectPersonDetailsCreditsCast,
   selectPersonDetailsCreditsCrew,
 } from "../peopleSlice";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useLocation,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 import { Section } from "../../../components/Section";
 import { MoviesWrapper } from "../../../components/MoviesWrapper";
-import { selectFetchStatus, selectMobile } from "../../../pageStateSlice";
+import {
+  fetchApi,
+  selectFetchStatus,
+  selectMobile,
+} from "../../../pageStateSlice";
 import { profileMainSizeUrl } from "../../../api/api";
 import { selectGenres } from "../../movies/moviesSlice";
 import { useEffect } from "react";
@@ -28,11 +35,14 @@ export const PeopleDetailsPage = () => {
   const creditsCrew = useSelector(selectPersonDetailsCreditsCrew);
   const genres = useSelector(selectGenres);
   const fetchStatus = useSelector(selectFetchStatus);
+  const location = useLocation();
+  const pathName = location.pathname.split("/")[1];
 
   useEffect(() => {
-    if (id !== personDetailsId) {
-      dispatch(setPersonId(id));
-    }
+    dispatch(fetchApi({ pathName, id }));
+    // if (id !== personDetailsId) {
+    //   dispatch(setPersonId(id));
+    // }
   }, [id, personDetailsId, dispatch]);
   window.scrollTo(0, 0);
 
@@ -66,12 +76,11 @@ export const PeopleDetailsPage = () => {
                     key={movie.credit_id}
                     poster={movie.poster_path}
                     title={movie.title}
-                    subtitle={`${movie.character} (${movie.release_date.split("-")[0]
-                      })`}
-                    tags={movie.genre_ids?.map(
-                      (genreId) =>
-                        genres.find((item) => item.id === genreId)?.name
-                    )}
+                    subtitle={`${movie.character} (${
+                      movie.release_date.split("-")[0]
+                    })`}
+                    tags={movie.genre_ids}
+                    genres={genres}
                     rating={movie.vote_average}
                     votes={movie.vote_count}
                     id={movie.id}
@@ -91,12 +100,11 @@ export const PeopleDetailsPage = () => {
                     key={movie.credit_id}
                     poster={movie.poster_path}
                     title={movie.title}
-                    subtitle={`${movie.job} (${movie.release_date.split("-")[0]
-                      })`}
-                    tags={movie.genre_ids?.map(
-                      (genreId) =>
-                        genres.find((item) => item.id === genreId)?.name
-                    )}
+                    subtitle={`${movie.job} (${
+                      movie.release_date.split("-")[0]
+                    })`}
+                    tags={movie.genre_ids}
+                    genres={genres}
                     rating={movie.vote_average}
                     votes={movie.vote_count}
                     id={movie.id}

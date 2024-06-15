@@ -20,6 +20,7 @@ import { searchInputParamName } from "../../../utils/searchInputParamName";
 
 import {
   clearAfterSearch,
+  fetchApi,
   selectCurrentMoviePage,
   selectCurrentSearchPage,
   selectFetchStatus,
@@ -44,8 +45,11 @@ export const MoviesPage = () => {
   const moviesQuery = useSelector(selectMoviesQuery);
   const dispatch = useDispatch();
   const query = new URLSearchParams(location.search).get(searchInputParamName);
+  const page = new URLSearchParams(location.search).get("page");
+  console.log("page",page)
+
   const pathName = location.pathname.split("/")[1];
-  const { page } = useParams();
+  // const { page } = useParams();
   let pageNumber = +page;
   const totalResults = useSelector(selectMoviesTotalResults);
   const moviesQueryToDisplay = useSelector(selectMoviesQueryToDisplay);
@@ -53,49 +57,57 @@ export const MoviesPage = () => {
   const history = useHistory();
   const searchParams = new URLSearchParams(location.search);
 
-  useEffect(() => {
-    if (fetchStatus === "ready") {
-      if (
-        (!query && page && pageNumber !== currentMoviePage) ||
-        (query && page && pageNumber !== currentSearchPage) ||
-        pathName !== "movies"
-      ) {
-        if (!query) {
-          dispatch(setCurrentMoviePage(pageNumber));
-        } else {
-          if (moviesQuery !== moviesQueryToDisplay) {
-            history.push(
-              `/${pathName}/${firstSearchPage}?${searchParams.toString()}`
-            );
-          } else {
-            dispatch(setCurrentSearchPage(pageNumber));
-          }
-        }
+  useEffect(
+    () => {
+      console.log("searchParams", searchParams);
+      if (pathName === "movies") {
+        dispatch(fetchApi({ pathName, page: 1 }));
       }
-    }
 
-    // eslint-disable-next-line
-  }, [
-    fetchStatus,
-    query,
-    page,
-    pageNumber,
-    currentMoviePage,
-    currentSearchPage,
-    pathName,
-    moviesQuery,
-    moviesQueryToDisplay,
-  ]);
+      if (fetchStatus === "ready") {
+        // if (
+        //   (!query && page && pageNumber !== currentMoviePage) ||
+        //   (query && page && pageNumber !== currentSearchPage) ||
+        //   pathName !== "movies"
+        // ) {
+        //   if (!query) {
+        //     dispatch(setCurrentMoviePage(pageNumber));
+        //   } else {
+        //     if (moviesQuery !== moviesQueryToDisplay) {
+        //       history.push(
+        //         `/${pathName}/${firstSearchPage}?${searchParams.toString()}`
+        //       );
+        //     } else {
+        //       dispatch(setCurrentSearchPage(pageNumber));
+        //     }
+        //   }
+        // }
+      }
+
+      // eslint-disable-next-line
+    },
+    [
+      // fetchStatus,
+      // query,
+      page,
+      // pageNumber,
+      // currentMoviePage,
+      // currentSearchPage,
+      // pathName,
+      // moviesQuery,
+      // moviesQueryToDisplay,
+    ]
+  );
 
   useEffect(() => {
-    if (query && query !== moviesQuery) dispatch(setMoviesQuery(query));
-    if (!query && query !== moviesQuery) dispatch(setMoviesQuery(null));
-  }, [query, moviesQuery, dispatch]);
+    // if (query && query !== moviesQuery) dispatch(setMoviesQuery(query));
+    // if (!query && query !== moviesQuery) dispatch(setMoviesQuery(null));
+  }, [query, moviesQuery]);
 
   useEffect(() => {
     if (pathName === "movies") {
-      dispatch(clearAfterSearch());
-      dispatch(clearPeopleAfterSearch());
+      // dispatch(clearAfterSearch());
+      // dispatch(clearPeopleAfterSearch());
     }
 
     // eslint-disable-next-line
@@ -131,7 +143,9 @@ export const MoviesPage = () => {
                 : "Popular  movies"
             }
           >
-            <MoviesWrapper onLoad={() => dispatch(setImagesLoaded())}>
+            <MoviesWrapper
+            // onLoad={() => dispatch(setImagesLoaded())}  // wyłączenie tymczasowe
+            >
               {movies?.map((movie) => (
                 <MovieTile
                   key={movie.id}

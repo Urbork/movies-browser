@@ -1,6 +1,18 @@
-import { call, debounce, delay, put, select, takeLatest } from "redux-saga/effects";
+import {
+  call,
+  debounce,
+  delay,
+  put,
+  select,
+  takeLatest,
+} from "redux-saga/effects";
 import { getPeople, getSearchPerson } from "../../api/fetchApi";
-import { setPeople, setPeopleTotalPages, setPeopleTotalResults } from "./peopleSlice";
+import {
+  clearPeopleState,
+  setPeople,
+  setPeopleTotalPages,
+  setPeopleTotalResults,
+} from "./peopleSlice";
 import {
   fetchApi,
   fetchError,
@@ -16,10 +28,17 @@ import {
   setPeopleQuery,
   setPeopleQueryToDisplay,
 } from "../../pageStateSlice";
+import { clearMoviesState } from "../movies/moviesSlice";
 
-function* fetchApiHandler() {
+function* fetchApiHandler({ payload: { pathName, id } }) {
+  if (pathName !== "people" || id) return;
+  console.log("SAGA  People");
+
   try {
-    yield put(fetchApi());
+    // yield put(fetchApi());
+    yield put(clearMoviesState());
+    yield put(clearPeopleState());
+
     const page = yield select(selectCurrentPeoplePage);
     const searchPage = yield select(selectCurrentSearchPage);
     const peopleQuery = yield select(selectPeopleQuery);
@@ -37,21 +56,23 @@ function* fetchApiHandler() {
       yield put(setPeople(people.results));
       yield put(setPeopleQueryToDisplay(null));
       yield delay(1000);
-    };
+    }
     const peopleQueryToDisplay = yield select(selectPeopleQueryToDisplay);
     if (peopleQueryToDisplay) {
-      yield put(setImagesLoaded());
+      // yield put(setImagesLoaded());  // wyłączenie tymczasowe
     } else {
-      yield put(setImagesToLoad());
-    };
+      // yield put(setImagesToLoad());  // wyłączenie tymczasowe
+    }
     yield put(resetFetchStatus());
   } catch (error) {
     yield put(fetchError());
   }
-};
+}
 
 export function* peopleSaga() {
-  yield takeLatest(setCurrentPeoplePage.type, fetchApiHandler);
-  yield takeLatest(setCurrentSearchPage.type, fetchApiHandler)
-  yield debounce(1000, setPeopleQuery.type, fetchApiHandler)
-};
+  yield takeLatest(fetchApi.type, fetchApiHandler);
+
+  // yield takeLatest(setCurrentPeoplePage.type, fetchApiHandler);
+  // yield takeLatest(setCurrentSearchPage.type, fetchApiHandler)
+  // yield debounce(1000, setPeopleQuery.type, fetchApiHandler)
+}

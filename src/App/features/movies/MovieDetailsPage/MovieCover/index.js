@@ -30,7 +30,7 @@ export const MovieCover = ({ cover, title, rating, votes }) => {
           <MovieCoverImage
             src={backdropUrl + cover}
             alt={`${title} movie cover image`}
-            onLoad={() => dispatch(setImagesLoaded())}
+            // onLoad={() => dispatch(setImagesLoaded())} // wyłączenie tymczasowe
             $show={!imagesToLoad}
           />
           <MovieCoverEffect src={vignette} />

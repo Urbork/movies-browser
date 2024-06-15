@@ -1,15 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  people: [],
+  person: {
+    credits: {},
+  },
+  total_pages: null,
+  total_results: null,
+};
+
 const peopleSlice = createSlice({
   name: "people",
-  initialState: {
-    people: [],
-    person: {
-      credits: {},
-    },
-    total_pages: null,
-    total_results: null,
-  },
+  initialState,
   reducers: {
     setPeople: (state, { payload: people }) => {
       state.people = people;
@@ -33,6 +35,9 @@ const peopleSlice = createSlice({
       state.total_results = null;
       state.total_pages = null;
     },
+    clearPeopleState: (state) => {
+      state = initialState;
+    },
   },
 });
 
@@ -44,18 +49,23 @@ export const {
   setPeopleTotalPages,
   setPeopleTotalResults,
   clearPeopleAfterSearch,
+  clearPeopleState,
 } = peopleSlice.actions;
 
-const selectPeopleState = state => state.people;
+const selectPeopleState = (state) => state.people;
 
-export const selectPeople = state => selectPeopleState(state).people;
-export const selectPerson = state => selectPeopleState(state).person;
-export const selectPersonId = state => selectPerson(state).id;
-export const selectPersonContent = state => selectPerson(state).content;
-export const selectPersonMovieCredits = state => selectPerson(state).credits;
-export const selectPersonDetailsCreditsCast = state => selectPersonMovieCredits(state).cast;
-export const selectPersonDetailsCreditsCrew = state => selectPersonMovieCredits(state).crew;
-export const selectPeopleTotalPages = (state) => selectPeopleState(state).total_pages;
-export const selectPeopleTotalResults = (state) => selectPeopleState(state).total_results;
+export const selectPeople = (state) => selectPeopleState(state).people;
+export const selectPerson = (state) => selectPeopleState(state).person;
+export const selectPersonId = (state) => selectPerson(state).id;
+export const selectPersonContent = (state) => selectPerson(state).content;
+export const selectPersonMovieCredits = (state) => selectPerson(state).credits;
+export const selectPersonDetailsCreditsCast = (state) =>
+  selectPersonMovieCredits(state).cast;
+export const selectPersonDetailsCreditsCrew = (state) =>
+  selectPersonMovieCredits(state).crew;
+export const selectPeopleTotalPages = (state) =>
+  selectPeopleState(state).total_pages;
+export const selectPeopleTotalResults = (state) =>
+  selectPeopleState(state).total_results;
 
 export default peopleSlice.reducer;
