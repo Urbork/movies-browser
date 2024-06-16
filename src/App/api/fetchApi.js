@@ -22,7 +22,7 @@ const fetchApi = (url) =>
       console.error(err);
     });
 
-export const getMovies = (page = 1) => {
+export const getMovies = (page) => {
   const updatedUrl = popularMoviesUrl.replace("{page}", page);
   return fetchApi(updatedUrl);
 };
@@ -39,7 +39,7 @@ export const getCredits = (id) => {
   return fetchApi(updatedUrl);
 };
 
-export const getPeople = (page = 1) => {
+export const getPeople = (page) => {
   const updatedUrl = popularPeopleUrl.replace("{page}", page);
   return fetchApi(updatedUrl);
 };
@@ -54,14 +54,14 @@ export const getMovieCredits = (id) => {
   return fetchApi(updatedUrl);
 };
 
-export const getSearchMovie = (query, page = 1) => {
+export const getSearchMovie = (query, page) => {
   const updatedUrl = searchMovieUrl
     .replace("{query}", query)
     .replace("{page}", page);
   return fetchApi(updatedUrl);
 };
 
-export const getSearchPerson = (query, page = 1) => {
+export const getSearchPerson = (query, page) => {
   const updatedUrl = searchPersonUrl
     .replace("{query}", query)
     .replace("{page}", page);

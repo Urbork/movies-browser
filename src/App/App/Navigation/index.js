@@ -19,6 +19,8 @@ import { useDispatch } from "react-redux";
 import { toMoviesPage, toPeoplePage } from "../../routes";
 import { SearchInput } from "./SearchInput";
 import { backToHome } from "../../pageStateSlice";
+import { searchPageParamName } from "../../utils/searchParamNames";
+import { useReplaceQueryParameter } from "../../utils/useQueryParameters";
 
 export const Navigation = () => {
   const currentMoviePage = useSelector(selectCurrentMoviePage);
@@ -37,7 +39,6 @@ export const Navigation = () => {
               Movies Browser
             </AppName>
           </LogoLink>
-
           <ButtonsWrapper>
             <StyledNavLink
               to={toMoviesPage({ page: currentMoviePage })}

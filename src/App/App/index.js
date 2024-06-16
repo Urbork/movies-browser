@@ -11,7 +11,7 @@ import { MoviesPage } from "../features/movies/MoviesPage";
 import { PeopleDetailsPage } from "../features/people/PeopleDetailsPage";
 import { PeoplePage } from "../features/people/PeoplePage";
 import { useSelector } from "react-redux";
-import { selectFirstMoviePage } from "../pageStateSlice";
+// import { selectFirstMoviePage } from "../pageStateSlice";
 import {
   toMovieDetailsPage,
   toMoviesPage,
@@ -20,7 +20,7 @@ import {
 } from "../routes";
 
 function App() {
-  const firstMoviePage = useSelector(selectFirstMoviePage);
+  // const firstMoviePage = useSelector(selectFirstMoviePage);
 
   return (
     <HashRouter>

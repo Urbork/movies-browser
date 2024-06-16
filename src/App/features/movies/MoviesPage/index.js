@@ -16,7 +16,10 @@ import { useEffect } from "react";
 import { LoadingPage } from "../../../components/LoadingPage";
 import { ErrorPage } from "../../../components/ErrorPage";
 import { Pagination } from "../../../components/Pagination";
-import { searchInputParamName } from "../../../utils/searchInputParamName";
+import {
+  searchInputParamName,
+  searchPageParamName,
+} from "../../../utils/searchParamNames";
 
 import {
   clearAfterSearch,
@@ -24,7 +27,7 @@ import {
   selectCurrentMoviePage,
   selectCurrentSearchPage,
   selectFetchStatus,
-  selectFirstSearchPage,
+  // selectFirstSearchPage,
   selectMoviesQuery,
   selectMoviesQueryToDisplay,
   setCurrentMoviePage,
@@ -34,6 +37,7 @@ import {
 } from "../../../pageStateSlice";
 import { NoResultsPage } from "../../../components/NoResultsPage";
 import { clearPeopleAfterSearch } from "../../people/peopleSlice";
+import { useReplaceQueryParameter } from "../../../utils/useQueryParameters";
 
 export const MoviesPage = () => {
   const location = useLocation();
@@ -45,59 +49,56 @@ export const MoviesPage = () => {
   const moviesQuery = useSelector(selectMoviesQuery);
   const dispatch = useDispatch();
   const query = new URLSearchParams(location.search).get(searchInputParamName);
-  const page = new URLSearchParams(location.search).get("page");
-  console.log("page",page)
+  const page = new URLSearchParams(location.search).get(searchPageParamName);
 
   const pathName = location.pathname.split("/")[1];
   // const { page } = useParams();
   let pageNumber = +page;
   const totalResults = useSelector(selectMoviesTotalResults);
   const moviesQueryToDisplay = useSelector(selectMoviesQueryToDisplay);
-  const firstSearchPage = useSelector(selectFirstSearchPage);
+  // const firstSearchPage = useSelector(selectFirstSearchPage);
   const history = useHistory();
   const searchParams = new URLSearchParams(location.search);
+  const replaceQueryParameter = useReplaceQueryParameter();
 
-  useEffect(
-    () => {
-      console.log("searchParams", searchParams);
-      if (pathName === "movies") {
-        dispatch(fetchApi({ pathName, page: 1 }));
-      }
+  useEffect(() => {
+    console.log("searchParams", searchParams);
+    if (pathName === "movies") {
+      dispatch(fetchApi({ pathName, page: page || currentMoviePage }));
+    }
 
-      if (fetchStatus === "ready") {
-        // if (
-        //   (!query && page && pageNumber !== currentMoviePage) ||
-        //   (query && page && pageNumber !== currentSearchPage) ||
-        //   pathName !== "movies"
-        // ) {
-        //   if (!query) {
-        //     dispatch(setCurrentMoviePage(pageNumber));
-        //   } else {
-        //     if (moviesQuery !== moviesQueryToDisplay) {
-        //       history.push(
-        //         `/${pathName}/${firstSearchPage}?${searchParams.toString()}`
-        //       );
-        //     } else {
-        //       dispatch(setCurrentSearchPage(pageNumber));
-        //     }
-        //   }
-        // }
-      }
+    if (fetchStatus === "ready") {
+      // if (
+      //   (!query && page && pageNumber !== currentMoviePage) ||
+      //   (query && page && pageNumber !== currentSearchPage) ||
+      //   pathName !== "movies"
+      // ) {
+      //   if (!query) {
+      //     dispatch(setCurrentMoviePage(pageNumber));
+      //   } else {
+      //     if (moviesQuery !== moviesQueryToDisplay) {
+      //       history.push(
+      //         `/${pathName}/${firstSearchPage}?${searchParams.toString()}`
+      //       );
+      //     } else {
+      //       dispatch(setCurrentSearchPage(pageNumber));
+      //     }
+      //   }
+      // }
+    }
 
-      // eslint-disable-next-line
-    },
-    [
-      // fetchStatus,
-      // query,
-      page,
-      // pageNumber,
-      // currentMoviePage,
-      // currentSearchPage,
-      // pathName,
-      // moviesQuery,
-      // moviesQueryToDisplay,
-    ]
-  );
+    // eslint-disable-next-line
+  }, [
+    // fetchStatus,
+    // query,
+    page,
+    // pageNumber,
+    // currentMoviePage,
+    // currentSearchPage,
+    // pathName,
+    // moviesQuery,
+    // moviesQueryToDisplay,
+  ]);
 
   useEffect(() => {
     // if (query && query !== moviesQuery) dispatch(setMoviesQuery(query));

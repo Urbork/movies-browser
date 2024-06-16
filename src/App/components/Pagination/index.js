@@ -1,11 +1,17 @@
 import { useSelector } from "react-redux";
-import { Button, StyledNavLink } from "./styled";
 import {
-  useHistory,
-  useLocation,
-  useParams,
-} from "react-router-dom/cjs/react-router-dom.min";
-import { searchInputParamName } from "../../utils/searchInputParamName";
+  Button,
+  // , StyledNavLink
+} from "./styled";
+// import {
+//   useHistory,
+//   useLocation,
+//   useParams,
+// } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  // searchInputParamName,
+  searchPageParamName,
+} from "../../utils/searchParamNames";
 import {
   ButtonContainer,
   Wrapper,
@@ -19,100 +25,112 @@ import {
 } from "./styled";
 import {
   selectCurrentMoviePage,
-  selectFirstMoviePage,
-  selectFirstPeoplePage,
-  selectFirstSearchPage,
+  // selectCurrentMoviePage,
+  selectCurrentPage,
+  selectCurrentPeoplePage,
   selectLastMoviePage,
+  // selectFirstMoviePage,
+  // selectFirstPeoplePage,
+  // selectFirstSearchPage,
+  // selectLastMoviePage,
+  selectLastPage,
   selectLastPeoplePage,
-  selectLastSearchPage,
-  selectMoviePages,
-  selectMoviesQuery,
-  selectMoviesQueryToDisplay,
-  selectPeopleQuery,
-  selectPeopleQueryToDisplay,
-  setCurrentMoviePage,
+  // selectLastPeoplePage,
+  // selectLastSearchPage,
+  // selectMoviePages,
+  // selectMoviesQuery,
+  // selectMoviesQueryToDisplay,
+  // selectPeopleQuery,
+  // selectPeopleQueryToDisplay,
+  // setCurrentMoviePage,
 } from "../../pageStateSlice";
-import { selectMoviesTotalPages } from "../../features/movies/moviesSlice";
-import { selectPeopleTotalPages } from "../../features/people/peopleSlice";
+// import { selectMoviesTotalPages } from "../../features/movies/moviesSlice";
+// import { selectPeopleTotalPages } from "../../features/people/peopleSlice";
 import {
-  useQueryParameter,
+  // useQueryParameter,
   useReplaceQueryParameter,
 } from "../../utils/useQueryParameters";
-import { useEffect } from "react";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+// import { useEffect } from "react";
 
 export const Pagination = ({ noDisplay }) => {
-  const { page } = useParams();
-  const firstMoviePage = useSelector(selectFirstMoviePage);
+  // const { page } = useParams();
+  // const firstMoviePage = useSelector(selectFirstMoviePage);
   const currentMoviePage = useSelector(selectCurrentMoviePage);
-
   const lastMoviePage = useSelector(selectLastMoviePage);
-  const firstPeoplePage = useSelector(selectFirstPeoplePage);
+  // const firstPeoplePage = useSelector(selectFirstPeoplePage);
+  const currentPeoplePage = useSelector(selectCurrentPeoplePage);
   const lastPeoplePage = useSelector(selectLastPeoplePage);
-  const firstSearchPage = useSelector(selectFirstSearchPage);
-  const lastSearchPage = useSelector(selectLastSearchPage);
+  // const firstSearchPage = useSelector(selectFirstSearchPage);
+  // const lastSearchPage = useSelector(selectLastSearchPage);
+  // const location = useLocation();
+  // const pathName = location.pathname.split("/")[1];
+  // let firstPage;
+  // let lastPage;
+  // let pageNumber = +page;
+  // const moviesTotalPages = useSelector(selectMoviesTotalPages);
+  // const peopleTotalPages = useSelector(selectPeopleTotalPages);
+  // const moviesQueryToDisplay = useSelector(selectMoviesQueryToDisplay);
+  // const PeopleQueryToDisplay = useSelector(selectPeopleQueryToDisplay);
+  const replaceQueryParameter = useReplaceQueryParameter();
+  // const history = useHistory();
+  // const searchParams = new URLSearchParams(location.search);
+  // const currentPage = useSelector(selectCurrentPage);
+  // const lastPage = useSelector(selectLastPage);
+
   const location = useLocation();
   const pathName = location.pathname.split("/")[1];
-  let firstPage;
+
+  let currentPage;
   let lastPage;
-  let pageNumber = +page;
-  const moviesTotalPages = useSelector(selectMoviesTotalPages);
-  const peopleTotalPages = useSelector(selectPeopleTotalPages);
-  const moviesQueryToDisplay = useSelector(selectMoviesQueryToDisplay);
-  const PeopleQueryToDisplay = useSelector(selectPeopleQueryToDisplay);
-  const replaceQueryParameter = useReplaceQueryParameter();
-  const history = useHistory();
-  const searchParams = new URLSearchParams(location.search);
 
-  console.log("currentMoviePage", currentMoviePage);
-  // const page = useQueryParameter("page");
-  useEffect(() => {
-    // if (currentMoviePage !== 1) {
-    //   replaceQueryParameter({
-    //     key: "page",
-    //     value: currentMoviePage,
-    //   });
-    // }
-  }, []);
+  switch (pathName) {
+    case "movies":
+      currentPage = currentMoviePage;
+      lastPage = lastMoviePage;
 
-  // let pageNumber = +page;
-  const onClickHandler = () => {
-    // if (currentMoviePage !== 1) {
-    console.log("currentMoviePage",currentMoviePage)
-      replaceQueryParameter({
-        key: "page",
-        value: currentMoviePage,
-      });
-    // }
+      break;
+    case "people":
+      currentPage = currentPeoplePage;
+      lastPage = lastPeoplePage;
+      break;
+  }
+
+  const onClickHandler = (page) => {
+    replaceQueryParameter({
+      key: searchPageParamName,
+      value: page,
+    });
   };
 
-  if (moviesQueryToDisplay || PeopleQueryToDisplay) {
-    firstPage = firstSearchPage;
-    if (pathName === "movies") {
-      lastPage = moviesTotalPages ? moviesTotalPages : lastSearchPage;
-    } else if (pathName === "people") {
-      lastPage = peopleTotalPages ? peopleTotalPages : lastSearchPage;
-    }
-  } else {
-    if (pathName === "movies") {
-      firstPage = firstMoviePage;
-      lastPage = lastMoviePage;
-    }
-    if (pathName === "people") {
-      firstPage = firstPeoplePage;
-      lastPage = lastPeoplePage;
-    }
-  }
+  // if (moviesQueryToDisplay || PeopleQueryToDisplay) {
+  //   firstPage = firstSearchPage;
+  //   if (pathName === "movies") {
+  //     lastPage = moviesTotalPages ? moviesTotalPages : lastSearchPage;
+  //   } else if (pathName === "people") {
+  //     lastPage = peopleTotalPages ? peopleTotalPages : lastSearchPage;
+  //   }
+  // } else {
+  //   if (pathName === "movies") {
+  //     firstPage = firstMoviePage;
+  //     lastPage = lastMoviePage;
+  //   }
+  //   if (pathName === "people") {
+  //     firstPage = firstPeoplePage;
+  //     lastPage = lastPeoplePage;
+  //   }
+  // }
 
   // const previousPage = pageNumber <= firstPage ? pageNumber : pageNumber - 1;
   // const nextPage = pageNumber >= lastPage ? pageNumber : pageNumber + 1;
-  const nextPage = +1;
+  // const nextPage = +1;
 
-  const isFirstPage = pageNumber === firstPage ? true : false;
-  const isLastPage = pageNumber === lastPage ? true : false;
+  const isFirstPage = currentPage === 1;
+  const isLastPage = currentPage === lastPage;
   // const moviesQuery = useSelector(selectMoviesQuery);
   // const peopleQuery = useSelector(selectPeopleQuery);
 
-  let queryPath;
+  // let queryPath;
   // if (moviesQuery && !peopleQuery) {
   //   queryPath = `?${searchInputParamName}=${moviesQuery}`;
   // } else if (!moviesQuery && peopleQuery) {
@@ -124,33 +142,35 @@ export const Pagination = ({ noDisplay }) => {
   return (
     <Wrapper $noDisplay={noDisplay}>
       <ButtonContainer>
-        {/* <StyledNavLink to={`/${pathName}/${firstPage}${queryPath}`} disabled={isFirstPage}>
+        <Button onClick={() => onClickHandler(1)} disabled={isFirstPage}>
           <BackwardArrow disabled={isFirstPage} />
           <AdditionalBackwardArrow disabled={isFirstPage} />
           <Content disabled={isFirstPage}>First</Content>
-        </ StyledNavLink > */}
-        <StyledNavLink to={`/${pathName}${queryPath}`} disabled={isFirstPage}>
+        </Button>
+        <Button
+          onClick={() => onClickHandler(currentPage - 1)}
+          disabled={isFirstPage}
+        >
           <BackwardArrow disabled={isFirstPage} />
           <Content disabled={isFirstPage}>Previous</Content>
-        </StyledNavLink>
+        </Button>
       </ButtonContainer>
-      {/* <PageNumberInfo>
-        Page <Number>{pageNumber}</Number> of <Number>{lastPage}</Number>
-      </PageNumberInfo> */}
+      <PageNumberInfo>
+        Page <Number>{currentPage}</Number> of <Number>{lastPage}</Number>
+      </PageNumberInfo>
       <ButtonContainer>
         <Button
-          // to={`/${pathName}?${searchParams}`}
-          onClick={onClickHandler}
+          onClick={() => onClickHandler(currentPage + 1)}
           disabled={isLastPage}
         >
           <Content disabled={isLastPage}>Next</Content>
           <ForwardArrow disabled={isLastPage} />
         </Button>
-        {/* <StyledNavLink to={`/${pathName}/${lastPage}${queryPath}`} disabled={isLastPage}>
+        <Button onClick={() => onClickHandler(lastPage)} disabled={isLastPage}>
           <Content disabled={isLastPage}>Last</Content>
           <AdditionalForwardArrow disabled={isLastPage} />
           <ForwardArrow disabled={isLastPage} />
-        </ StyledNavLink > */}
+        </Button>
       </ButtonContainer>
     </Wrapper>
   );

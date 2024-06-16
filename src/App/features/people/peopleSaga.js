@@ -21,6 +21,7 @@ import {
   selectCurrentSearchPage,
   selectPeopleQuery,
   selectPeopleQueryToDisplay,
+  setCurrentPage,
   setCurrentPeoplePage,
   setCurrentSearchPage,
   setImagesLoaded,
@@ -30,7 +31,7 @@ import {
 } from "../../pageStateSlice";
 import { clearMoviesState } from "../movies/moviesSlice";
 
-function* fetchApiHandler({ payload: { pathName, id } }) {
+function* fetchApiHandler({ payload: { pathName, id, page } }) {
   if (pathName !== "people" || id) return;
   console.log("SAGA  People");
 
@@ -39,7 +40,7 @@ function* fetchApiHandler({ payload: { pathName, id } }) {
     yield put(clearMoviesState());
     yield put(clearPeopleState());
 
-    const page = yield select(selectCurrentPeoplePage);
+    // const page = yield select(selectCurrentPeoplePage);
     const searchPage = yield select(selectCurrentSearchPage);
     const peopleQuery = yield select(selectPeopleQuery);
     if (peopleQuery) {
@@ -54,6 +55,7 @@ function* fetchApiHandler({ payload: { pathName, id } }) {
       yield put(setPeopleTotalPages(null));
       yield put(setPeopleTotalResults(null));
       yield put(setPeople(people.results));
+      yield put(setCurrentPeoplePage(people.page));
       yield put(setPeopleQueryToDisplay(null));
       yield delay(1000);
     }

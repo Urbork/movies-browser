@@ -10,7 +10,7 @@ import { backToHome, selectFirstMoviePage } from "../../pageStateSlice";
 import { toMoviesPage } from "../../routes";
 
 export const ErrorPage = () => {
-  const firstMoviePage = useSelector(selectFirstMoviePage);
+  // const firstMoviePage = useSelector(selectFirstMoviePage);
   const dispatch = useDispatch();
 
   return (
@@ -21,7 +21,7 @@ export const ErrorPage = () => {
         <div>Please check your network connection</div>
         <div>and try again</div>
       </ErrorSubheading>
-      <ErrorNavLink to={`${toMoviesPage({ page: firstMoviePage })}`}
+      <ErrorNavLink to={`${toMoviesPage({ page: 1 })}`}
         onClick={() => dispatch(backToHome())} >
         Back to home page
       </ErrorNavLink>

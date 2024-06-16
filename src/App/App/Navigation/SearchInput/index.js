@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch } from "react-redux";
 import { useQueryParameter, useReplaceQueryParameter, } from "../../../utils/useQueryParameters";
-import { searchInputParamName } from "../../../utils/searchInputParamName";
+import { searchInputParamName } from "../../../utils/searchParamNames";
 import { Input } from "./styled";
 import { setMoviesQuery, setPeopleQuery } from "../../../pageStateSlice";
 

@@ -23,6 +23,7 @@ import {
   selectMoviesQuery,
   selectMoviesQueryToDisplay,
   setCurrentMoviePage,
+  setCurrentPage,
   setCurrentSearchPage,
   setImagesLoaded,
   setImagesToLoad,
@@ -31,11 +32,9 @@ import {
 } from "../../pageStateSlice";
 import { clearPeopleState } from "../people/peopleSlice";
 
-function* fetchApiHandler({ payload: { pathName, page = 1, id } }) {
+function* fetchApiHandler({ payload: { pathName, page, id } }) {
   if (pathName !== "movies" || id) return;
   console.log("SAGA Movies");
-  console.log("page",page);
-
 
   try {
     // yield put(fetchApi());
@@ -56,7 +55,6 @@ function* fetchApiHandler({ payload: { pathName, page = 1, id } }) {
       const movies = yield call(() => getMovies(page));
       yield put(setMoviesTotalPages(null));
       yield put(setMoviesTotalResults(null));
-      console.log("movies", movies);
       yield put(setMovies(movies.results));
       yield put(setCurrentMoviePage(movies.page));
       yield put(setMoviesQueryToDisplay(null));

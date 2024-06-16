@@ -9,7 +9,7 @@ import {
   selectCurrentPeoplePage,
   selectCurrentSearchPage,
   selectFetchStatus,
-  selectFirstSearchPage,
+  // selectFirstSearchPage,
   selectPeopleQuery,
   selectPeopleQueryToDisplay,
   setCurrentPeoplePage,
@@ -26,7 +26,10 @@ import { useEffect } from "react";
 import { Pagination } from "../../../components/Pagination";
 import { LoadingPage } from "../../../components/LoadingPage";
 import { ErrorPage } from "../../../components/ErrorPage";
-import { searchInputParamName } from "../../../utils/searchInputParamName";
+import {
+  searchInputParamName,
+  searchPageParamName,
+} from "../../../utils/searchParamNames";
 import { NoResultsPage } from "../../../components/NoResultsPage";
 import { clearMoviesAfterSearch } from "../../movies/moviesSlice";
 
@@ -39,19 +42,23 @@ export const PeoplePage = () => {
   const peopleQuery = useSelector(selectPeopleQuery);
   const dispatch = useDispatch();
   const query = new URLSearchParams(location.search).get(searchInputParamName);
+  const page = new URLSearchParams(location.search).get(searchPageParamName);
+
   const pathName = location.pathname.split("/")[1];
-  const { page } = useParams();
-  let pageNumber = +page;
+  // const { page } = useParams();
+  // let pageNumber = +page;
   const totalResults = useSelector(selectPeopleTotalResults);
   const peopleQueryToDisplay = useSelector(selectPeopleQueryToDisplay);
-  const firstSearchPage = useSelector(selectFirstSearchPage);
+  // const firstSearchPage = useSelector(selectFirstSearchPage);
   const history = useHistory();
   const searchParams = new URLSearchParams(location.search);
 
   useEffect(
     () => {
       if (pathName === "people") {
-        dispatch(fetchApi({ pathName }));
+        console.log("TEST", page)
+
+        dispatch(fetchApi({ pathName, page: page || currentPeoplePage }));
       }
 
       if (fetchStatus === "ready") {
@@ -79,7 +86,7 @@ export const PeoplePage = () => {
     [
       // fetchStatus,
       // query,
-      // page,
+      page,
       // pageNumber,
       // currentPeoplePage,
       // currentSearchPage,

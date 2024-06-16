@@ -46,7 +46,11 @@ const moviesSlice = createSlice({
       state.total_pages = null;
     },
     clearMoviesState: (state) => {
-      state = initialState;
+      state.movies = initialState.movies;
+      state.movieDetails = initialState.movieDetails;
+      state.genres = initialState.genres;
+      state.total_pages = initialState.total_pages;
+      state.total_results = initialState.total_results;
     },
   },
 });

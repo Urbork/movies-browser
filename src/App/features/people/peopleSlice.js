@@ -36,7 +36,10 @@ const peopleSlice = createSlice({
       state.total_pages = null;
     },
     clearPeopleState: (state) => {
-      state = initialState;
+      state.people = initialState.people;
+      state.person = initialState.person;
+      state.total_pages = initialState.total_pages;
+      state.total_results = initialState.total_results;
     },
   },
 });
