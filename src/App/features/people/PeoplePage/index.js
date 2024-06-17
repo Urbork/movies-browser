@@ -6,6 +6,7 @@ import { selectPeople, selectPeopleTotalResults } from "../peopleSlice";
 import {
   clearAfterSearch,
   fetchApi,
+  fetchSearchApi,
   selectCurrentPeoplePage,
   selectCurrentSearchPage,
   selectFetchStatus,
@@ -44,7 +45,7 @@ export const PeoplePage = () => {
   const query = new URLSearchParams(location.search).get(searchInputParamName);
   const page = new URLSearchParams(location.search).get(searchPageParamName);
 
-  const pathName = location.pathname.split("/")[1];
+  const pathName = location.pathname;
   // const { page } = useParams();
   // let pageNumber = +page;
   const totalResults = useSelector(selectPeopleTotalResults);
@@ -53,48 +54,45 @@ export const PeoplePage = () => {
   const history = useHistory();
   const searchParams = new URLSearchParams(location.search);
 
-  useEffect(
-    () => {
-      if (pathName === "people") {
-        console.log("TEST", page)
+  useEffect(() => {
+    if (query) {
+      dispatch(fetchSearchApi({ pathName, page: page || 1, query }));
+    } else {
+      dispatch(fetchApi({ pathName, page: page || 1 }));
+    }
 
-        dispatch(fetchApi({ pathName, page: page || currentPeoplePage }));
-      }
+    if (fetchStatus === "ready") {
+      // if (
+      //   (!query && page && pageNumber !== currentPeoplePage) ||
+      //   (query && page && pageNumber !== currentSearchPage) ||
+      //   pathName !== "people"
+      // ) {
+      //   if (!query) {
+      //     dispatch(setCurrentPeoplePage(pageNumber));
+      //   } else {
+      //     if (peopleQuery !== peopleQueryToDisplay) {
+      //       history.push(
+      //         `/${pathName}/${firstSearchPage}?${searchParams.toString()}`
+      //       );
+      //     } else {
+      //       dispatch(setCurrentSearchPage(pageNumber));
+      //     }
+      //   }
+      // }
+    }
 
-      if (fetchStatus === "ready") {
-        // if (
-        //   (!query && page && pageNumber !== currentPeoplePage) ||
-        //   (query && page && pageNumber !== currentSearchPage) ||
-        //   pathName !== "people"
-        // ) {
-        //   if (!query) {
-        //     dispatch(setCurrentPeoplePage(pageNumber));
-        //   } else {
-        //     if (peopleQuery !== peopleQueryToDisplay) {
-        //       history.push(
-        //         `/${pathName}/${firstSearchPage}?${searchParams.toString()}`
-        //       );
-        //     } else {
-        //       dispatch(setCurrentSearchPage(pageNumber));
-        //     }
-        //   }
-        // }
-      }
-
-      // eslint-disable-next-line
-    },
-    [
-      // fetchStatus,
-      // query,
-      page,
-      // pageNumber,
-      // currentPeoplePage,
-      // currentSearchPage,
-      // pathName,
-      // peopleQuery,
-      // peopleQueryToDisplay,
-    ]
-  );
+    // eslint-disable-next-line
+  }, [
+    // fetchStatus,
+    // query,
+    page,
+    // pageNumber,
+    // currentPeoplePage,
+    // currentSearchPage,
+    // pathName,
+    // peopleQuery,
+    // peopleQueryToDisplay,
+  ]);
 
   useEffect(() => {
     // if (query && query !== peopleQuery) dispatch(setPeopleQuery(query));

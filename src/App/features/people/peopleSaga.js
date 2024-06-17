@@ -16,6 +16,7 @@ import {
 import {
   fetchApi,
   fetchError,
+  fetchSearchApi,
   resetFetchStatus,
   selectCurrentPeoplePage,
   selectCurrentSearchPage,
@@ -31,8 +32,8 @@ import {
 } from "../../pageStateSlice";
 import { clearMoviesState } from "../movies/moviesSlice";
 
-function* fetchApiHandler({ payload: { pathName, id, page } }) {
-  if (pathName !== "people" || id) return;
+function* fetchApiHandler({ payload: { pathName, page, query } }) {
+  if (pathName !== "/people") return;
   console.log("SAGA  People");
 
   try {
@@ -41,30 +42,35 @@ function* fetchApiHandler({ payload: { pathName, id, page } }) {
     yield put(clearPeopleState());
 
     // const page = yield select(selectCurrentPeoplePage);
-    const searchPage = yield select(selectCurrentSearchPage);
-    const peopleQuery = yield select(selectPeopleQuery);
-    if (peopleQuery) {
-      const people = yield call(() => getSearchPerson(peopleQuery, searchPage));
-      yield put(setPeople(people.results));
-      yield put(setPeopleTotalPages(people.total_pages));
-      yield put(setPeopleTotalResults(people.total_results));
-      yield put(setPeopleQueryToDisplay(peopleQuery));
-      yield delay(1000);
-    } else {
-      const people = yield call(() => getPeople(page));
-      yield put(setPeopleTotalPages(null));
-      yield put(setPeopleTotalResults(null));
-      yield put(setPeople(people.results));
-      yield put(setCurrentPeoplePage(people.page));
-      yield put(setPeopleQueryToDisplay(null));
-      yield delay(1000);
-    }
-    const peopleQueryToDisplay = yield select(selectPeopleQueryToDisplay);
-    if (peopleQueryToDisplay) {
-      // yield put(setImagesLoaded());  // wyłączenie tymczasowe
-    } else {
-      // yield put(setImagesToLoad());  // wyłączenie tymczasowe
-    }
+    // const searchPage = yield select(selectCurrentSearchPage);
+    // const peopleQuery = yield select(selectPeopleQuery);
+    // if (peopleQuery) {
+    const people = yield call(query ? getSearchPerson : getPeople, {
+      page,
+      query,
+    });
+    yield put(setPeople(people.results));
+    yield put(setCurrentPeoplePage(people.page));
+
+    yield put(setPeopleTotalPages(people.total_pages));
+    yield put(setPeopleTotalResults(people.total_results));
+    // yield put(setPeopleQueryToDisplay(peopleQuery));
+    yield delay(1000);
+    // } else {
+    // const people = yield call(() => getPeople(page));
+    // yield put(setPeopleTotalPages(null));
+    // yield put(setPeopleTotalResults(null));
+    // yield put(setPeople(people.results));
+    // yield put(setCurrentPeoplePage(people.page));
+    // yield put(setPeopleQueryToDisplay(null));
+    // yield delay(1000);
+    // }
+    // const peopleQueryToDisplay = yield select(selectPeopleQueryToDisplay);
+    // if (peopleQueryToDisplay) {
+    //   // yield put(setImagesLoaded());  // wyłączenie tymczasowe
+    // } else {
+    //   // yield put(setImagesToLoad());  // wyłączenie tymczasowe
+    // }
     yield put(resetFetchStatus());
   } catch (error) {
     yield put(fetchError());
@@ -76,5 +82,6 @@ export function* peopleSaga() {
 
   // yield takeLatest(setCurrentPeoplePage.type, fetchApiHandler);
   // yield takeLatest(setCurrentSearchPage.type, fetchApiHandler)
-  // yield debounce(1000, setPeopleQuery.type, fetchApiHandler)
+
+  yield debounce(1000, fetchSearchApi.type, fetchApiHandler);
 }

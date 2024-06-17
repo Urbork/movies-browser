@@ -36,15 +36,15 @@ export const PeopleDetailsPage = () => {
   const genres = useSelector(selectGenres);
   const fetchStatus = useSelector(selectFetchStatus);
   const location = useLocation();
-  const pathName = location.pathname.split("/")[1];
+  const pathName = location.pathname;
 
   useEffect(() => {
     dispatch(fetchApi({ pathName, id }));
     // if (id !== personDetailsId) {
     //   dispatch(setPersonId(id));
     // }
-  }, [id, personDetailsId, dispatch]);
-  window.scrollTo(0, 0);
+  }, [pathName, id]);
+  // window.scrollTo(0, 0);
 
   return (
     <>

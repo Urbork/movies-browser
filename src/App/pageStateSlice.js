@@ -41,6 +41,9 @@ const pageStateSlice = createSlice({
     fetchApi: (state) => {
       state.fetchStatus = "loading";
     },
+    fetchSearchApi: (state) => {
+      state.fetchStatus = "loading";
+    },
     resetFetchStatus: (state) => {
       state.fetchStatus = "ready";
     },
@@ -108,6 +111,7 @@ const pageStateSlice = createSlice({
 
 export const {
   fetchApi,
+  fetchSearchApi,
   resetFetchStatus,
   fetchError,
   backToHome,

@@ -10,8 +10,8 @@ export const Section = ({ title, mobile, children, noDisplay, show }) => {
 
   return (
     <SectionWrapper
-      $noDisplay={noDisplay}
-      $show={!imagesToLoad || show}
+      // $noDisplay={noDisplay}
+      // $show={!imagesToLoad || show}
       $delay={pathNames[1] === "movies" && pathNames[2] === "details"}
       $mobile={mobile}>
       {title && <SectionHeading >{title}</SectionHeading>}

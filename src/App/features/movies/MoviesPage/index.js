@@ -24,6 +24,7 @@ import {
 import {
   clearAfterSearch,
   fetchApi,
+  fetchSearchApi,
   selectCurrentMoviePage,
   selectCurrentSearchPage,
   selectFetchStatus,
@@ -51,7 +52,7 @@ export const MoviesPage = () => {
   const query = new URLSearchParams(location.search).get(searchInputParamName);
   const page = new URLSearchParams(location.search).get(searchPageParamName);
 
-  const pathName = location.pathname.split("/")[1];
+  const pathName = location.pathname;
   // const { page } = useParams();
   let pageNumber = +page;
   const totalResults = useSelector(selectMoviesTotalResults);
@@ -62,9 +63,10 @@ export const MoviesPage = () => {
   const replaceQueryParameter = useReplaceQueryParameter();
 
   useEffect(() => {
-    console.log("searchParams", searchParams);
-    if (pathName === "movies") {
-      dispatch(fetchApi({ pathName, page: page || currentMoviePage }));
+    if (query) {
+      dispatch(fetchSearchApi({ pathName, page: page || 1, query }));
+    } else {
+      dispatch(fetchApi({ pathName, page: page || 1 }));
     }
 
     if (fetchStatus === "ready") {
@@ -90,7 +92,7 @@ export const MoviesPage = () => {
     // eslint-disable-next-line
   }, [
     // fetchStatus,
-    // query,
+    query,
     page,
     // pageNumber,
     // currentMoviePage,
@@ -135,7 +137,7 @@ export const MoviesPage = () => {
         (!totalResults && !moviesQueryToDisplay)) ? (
         <>
           <Section
-            noDisplay={totalResults && !query}
+            // noDisplay={totalResults && !query}
             title={
               moviesQueryToDisplay
                 ? `Search results for “${moviesQueryToDisplay}” ${
@@ -162,17 +164,19 @@ export const MoviesPage = () => {
               ))}
             </MoviesWrapper>
           </Section>
-          <Pagination noDisplay={totalResults && !query} />
+          <Pagination 
+          // noDisplay={totalResults && !query} 
+          />
         </>
       ) : (
         <NoResultsPage
           query={moviesQueryToDisplay}
-          noDisplay={
-            !moviesQueryToDisplay ||
-            !moviesQuery ||
-            fetchStatus === "loading" ||
-            fetchStatus === "error"
-          }
+          // noDisplay={
+          //   !moviesQueryToDisplay ||
+          //   !moviesQuery ||
+          //   fetchStatus === "loading" ||
+          //   fetchStatus === "error"
+          // }
         />
       )}
     </>

@@ -4,11 +4,13 @@ export const SectionWrapper = styled.section`
   padding: 0 24px 0;
   width: 1416px;
   opacity: 0;
-  opacity: ${({ $show }) => $show ? '1' : '0'};
-  transition:  ${({ $show }) => $show ? 'opacity .9s ease-in' : 'opacity 1.5s ease-in'};
+  /* opacity: ${({ $show }) => $show ? '1' : '0'}; */
+  opacity: 1;
+
+  /* transition:  ${({ $show }) => $show ? 'opacity .9s ease-in' : 'opacity 1.5s ease-in'}; */
   display: ${({ $mobile }) => $mobile ? "none" : "auto"};
-  transition-delay: ${({ $delay }) => $delay ? "2.5s" : "0"};
-  display: ${({ $noDisplay }) => $noDisplay ? "none" : "auto"};
+  /* transition-delay: ${({ $delay }) => $delay ? "2.5s" : "0"}; */
+  /* display: ${({ $noDisplay }) => $noDisplay ? "none" : "auto"}; */
 
   @media (max-width: 1416px) {
     width: 100%; 

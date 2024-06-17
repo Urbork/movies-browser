@@ -16,7 +16,7 @@ import {
 import { clearMoviesState } from "../movies/moviesSlice";
 
 function* fetchApiHandler({ payload: { pathName, id } }) {
-  if (pathName !== "people" || !id) return;
+  if (pathName !== `/people/details/${id}`) return;
   console.log("SAGA details Person");
   try {
     // yield put(fetchApi());

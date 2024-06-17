@@ -35,7 +35,7 @@ export const MovieDetailsPage = () => {
   const movieDetailsId = useSelector(selectMovieDetailsId);
   const fetchStatus = useSelector(selectFetchStatus);
   const location = useLocation();
-  const pathName = location.pathname.split("/")[1];
+  const pathName = location.pathname;
 
   useEffect(() => {
     dispatch(fetchApi({ pathName, id }));
