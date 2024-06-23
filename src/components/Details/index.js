@@ -42,7 +42,7 @@ export const Details = ({
   const noImage = pathName === "movies" ? noPoster : blankProfile;
   const showContent = useSelector(selectShowContent);
   const onLoadHandler = () => {
-    if (showContent === false) dispatch(setShowContent());
+    !showContent && dispatch(setShowContent());
   };
 
   return (

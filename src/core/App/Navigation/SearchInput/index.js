@@ -45,7 +45,7 @@ export const SearchInput = () => {
     <Input
       type="text"
       placeholder={`Search for ${pathname}...`}
-      value={query}
+      value={query || ""}
       onChange={(event) => onInputChange(event)}
     />
   );

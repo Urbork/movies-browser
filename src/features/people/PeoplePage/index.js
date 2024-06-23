@@ -47,7 +47,7 @@ export const PeoplePage = () => {
   }, [query, page]);
 
   const onLoadHandler = () => {
-    if (showContent === false) dispatch(setShowContent());
+    !showContent && dispatch(setShowContent());
   };
 
   return (
