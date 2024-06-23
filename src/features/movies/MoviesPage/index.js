@@ -13,7 +13,6 @@ import {
 
 import {
   fetchApi,
-  fetchSearchApi,
   selectQuery,
   selectShowContent,
   selectTotalResults,
@@ -35,25 +34,19 @@ export const MoviesPage = () => {
   const showContent = useSelector(selectShowContent);
 
   useEffect(() => {
-    if (query) return;
+    let lastQuery = query;
+    const timeout = setTimeout(
+      () => {
+        if (lastQuery !== query) return;
+        dispatch(fetchApi({ pathName: fullPathName, page: page || 1, query }));
+      },
+      !query || storeQuery === query ? 0 : 1000
+    );
 
-    if (query) {
-      let lastQuery = query;
-      const timeout = setTimeout(
-        () => {
-          if (lastQuery !== query) return;
-          dispatch(
-            fetchSearchApi({ pathName: fullPathName, page: page || 1, query })
-          );
-        },
-        storeQuery === query ? 0 : 1000
-      );
+    return () => clearTimeout(timeout);
 
-      return () => clearTimeout(timeout);
-    } else {
-      dispatch(fetchApi({ pathName: fullPathName, page: page || 1 }));
-    }
-  }, [query, page, storeQuery, fullPathName, dispatch]);
+    // eslint-disable-next-line
+  }, [query, page]);
 
   const onLoadHandler = () => {
     !showContent && dispatch(setShowContent());

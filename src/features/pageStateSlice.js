@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { theme } from "../core/theme";
+import { theme } from "../config/theme";
 const mobileWidth = parseInt(theme.breakpoint.small);
 
 const pageStateSlice = createSlice({
@@ -18,7 +18,7 @@ const pageStateSlice = createSlice({
       currentPage: 1,
       lastPage: null,
     },
-    query: "",
+    query: null,
     totalResults: null,
     showContent: false,
     mobile: window.innerWidth < mobileWidth,
@@ -61,7 +61,7 @@ const pageStateSlice = createSlice({
     clearAfterSearch: (state) => {
       state.searchPages.currentPage = 1;
       state.searchPages.lastPage = null;
-      state.query = "";
+      state.query = null;
       state.totalResults = null;
     },
     setCurrentSearchPage: (state, { payload: page }) => {

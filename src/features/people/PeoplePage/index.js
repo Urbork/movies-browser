@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectPeople } from "../peopleSlice";
 import {
   fetchApi,
-  fetchSearchApi,
   selectQuery,
   selectShowContent,
   selectTotalResults,
@@ -33,24 +32,19 @@ export const PeoplePage = () => {
   const showContent = useSelector(selectShowContent);
 
   useEffect(() => {
-    if (query) {
-      let lastQuery = query;
-      const timeout = setTimeout(
-        () => {
-          if (lastQuery !== query) return;
+    let lastQuery = query;
+    const timeout = setTimeout(
+      () => {
+        if (lastQuery !== query) return;
+        dispatch(fetchApi({ pathName: fullPathName, page: page || 1, query }));
+      },
+      !query || storeQuery === query ? 0 : 1000
+    );
 
-          dispatch(
-            fetchSearchApi({ pathName: fullPathName, page: page || 1, query })
-          );
-        },
-        storeQuery === query ? 0 : 1000
-      );
+    return () => clearTimeout(timeout);
 
-      return () => clearTimeout(timeout);
-    } else {
-      dispatch(fetchApi({ pathName: fullPathName, page: page || 1 }));
-    }
-  }, [query, page, storeQuery, fullPathName, dispatch]);
+    // eslint-disable-next-line
+  }, [query, page]);
 
   const onLoadHandler = () => {
     if (showContent === false) dispatch(setShowContent());
