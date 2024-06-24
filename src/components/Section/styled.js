@@ -7,7 +7,7 @@ export const SectionWrapper = styled.section`
   transition: opacity;
   transition-duration: ${({ $delay }) => ($delay ? "2s" : "0.6s")};
   display: ${({ $mobile }) => ($mobile ? "none" : "auto")};
-  transition-delay: ${({ $delay }) => ($delay ? "2.5s" : "0")};
+  transition-delay: ${({ $delay }) => ($delay ? "1.8s" : "0")};
 
   @media (max-width: 1416px) {
     width: 100%;

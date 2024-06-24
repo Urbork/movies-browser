@@ -8,6 +8,7 @@ import {
   searchPageParamName,
 } from "../../../../utils/searchParamNames";
 import { Input } from "./styled";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   selectCurrentMoviePage,
@@ -16,37 +17,49 @@ import {
 
 export const SearchInput = () => {
   const location = useLocation();
-  const pathname = location.pathname.split("/")[1];
+  const query = useQueryParameter(searchQueryParamName);
+  const [queryState, setQueryState] = useState(query || "");
+  const timeoutRef = useRef(null);
   const replaceQueryParameter = useReplaceQueryParameters();
   const currentMoviePage = useSelector(selectCurrentMoviePage);
   const currentPeoplePage = useSelector(selectCurrentPeoplePage);
-  const query = useQueryParameter(searchQueryParamName);
+  const pathname = location.pathname.split("/")[1];
 
-  const onInputChange = ({ target }) => {
-    const searchQuery = target.value;
-    const currentPage = (() => {
-      switch (pathname) {
-        case "movies":
-          return searchQuery ? "" : currentMoviePage;
-        case "people":
-          return searchQuery ? "" : currentPeoplePage;
-        default:
-          return "";
+  const currentPage = (() => {
+    switch (pathname) {
+      case "movies":
+        return currentMoviePage;
+      case "people":
+        return currentPeoplePage;
+      default:
+        return "";
+    }
+  })();
+
+  useEffect(() => {
+    timeoutRef.current = setTimeout(() => {
+      if (query !== queryState) {
+        replaceQueryParameter({
+          [searchQueryParamName]: queryState,
+          [searchPageParamName]: queryState ? "" : currentPage,
+        });
       }
-    })();
+    }, 1000);
 
-    replaceQueryParameter({
-      [searchQueryParamName]: searchQuery,
-      [searchPageParamName]: currentPage,
-    });
-  };
+    return () => clearTimeout(timeoutRef.current);
+    // eslint-disable-next-line
+  }, [queryState]);
+
+  useEffect(() => {
+    setQueryState(query);
+  }, [query]);
 
   return (
     <Input
       type="text"
       placeholder={`Search for ${pathname}...`}
-      value={query || ""}
-      onChange={(event) => onInputChange(event)}
+      value={queryState || ""}
+      onChange={({ target }) => setQueryState(target.value)}
     />
   );
 };

@@ -47,7 +47,10 @@ export const MovieDetailsPage = () => {
             rating={movieDetailsContent?.vote_average}
             votes={movieDetailsContent?.vote_count}
           />
-          <Section show={showContenet} delay>
+          <Section
+            show={showContenet}
+            delay={movieDetailsContent?.backdrop_path ? true : false}
+          >
             <Details
               movies
               imageURL={posterMainSizeUrl}
@@ -72,7 +75,11 @@ export const MovieDetailsPage = () => {
             />
           </Section>
           {creditsCast?.length > 0 && (
-            <Section title="Cast" show={showContenet} delay>
+            <Section
+              title="Cast"
+              show={showContenet}
+              delay={movieDetailsContent?.backdrop_path ? true : false}
+            >
               <PeopleWrapper $show={showContenet}>
                 {creditsCast?.map((person) => (
                   <PeopleTile
@@ -87,7 +94,12 @@ export const MovieDetailsPage = () => {
             </Section>
           )}
           {creditsCrew?.length > 0 && (
-            <Section title="Crew" show={showContenet} delay mobile={mobile}>
+            <Section
+              title="Crew"
+              show={showContenet}
+              delay={movieDetailsContent?.backdrop_path ? true : false}
+              mobile={mobile}
+            >
               <PeopleWrapper $addSpace={true} $show={showContenet}>
                 {creditsCrew?.map((person) => (
                   <PeopleTile

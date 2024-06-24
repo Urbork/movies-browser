@@ -50,7 +50,6 @@ export const Pagination = () => {
     default:
       return null;
   }
-
   let nextPage = currentPage >= lastPage ? currentPage : currentPage + 1;
   let previousPage = currentPage <= 1 ? 1 : currentPage - 1;
   const isFirstPage = currentPage === 1;
@@ -61,7 +60,7 @@ export const Pagination = () => {
       <ButtonContainer>
         <StyledNavLink
           to={toPage({ pathname: fullPathName, page: 1, search })}
-          disabled={isLastPage}
+          disabled={isFirstPage}
         >
           <BackwardArrow disabled={isFirstPage} />
           <AdditionalBackwardArrow disabled={isFirstPage} />
@@ -69,7 +68,7 @@ export const Pagination = () => {
         </StyledNavLink>
         <StyledNavLink
           to={toPage({ pathname: fullPathName, page: previousPage, search })}
-          disabled={isLastPage}
+          disabled={isFirstPage}
         >
           <BackwardArrow disabled={isFirstPage} />
           <Content disabled={isFirstPage}>Previous</Content>

@@ -34,17 +34,7 @@ export const MoviesPage = () => {
   const showContent = useSelector(selectShowContent);
 
   useEffect(() => {
-    let lastQuery = query;
-    const timeout = setTimeout(
-      () => {
-        if (lastQuery !== query) return;
-        dispatch(fetchApi({ pathName: fullPathName, page: page || 1, query }));
-      },
-      !query || storeQuery === query ? 0 : 1000
-    );
-
-    return () => clearTimeout(timeout);
-
+    dispatch(fetchApi({ pathName: fullPathName, page: page || 1, query }));
     // eslint-disable-next-line
   }, [query, page]);
 

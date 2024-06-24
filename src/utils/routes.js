@@ -10,4 +10,4 @@ export const toPeoplePage = ({ page } = { page: 1 }) =>
   page === 1 ? "/people" : `/people?${buildQueryString({ page })}`;
 
 export const toPage = ({ pathname, page, search }) =>
-  page === 1 ? pathname : `${pathname}?${buildQueryString({ page }, search)}`;
+  `${pathname}?${buildQueryString({ page }, search)}`;

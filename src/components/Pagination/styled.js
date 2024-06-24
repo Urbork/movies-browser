@@ -34,8 +34,7 @@ export const StyledNavLink = styled(NavLink)`
   border: none;
   border-radius: 5px;
   text-decoration: none;
-  background-color: ${({ theme, disabled }) =>
-    disabled ? theme.color.grey : theme.color.lightBlue};
+  background-color: ${({ theme }) => theme.color.lightBlue};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   transition: 0.2s;
 
@@ -45,13 +44,28 @@ export const StyledNavLink = styled(NavLink)`
   }
 
   &:hover {
-    filter: brightness(${({ disabled }) => (disabled ? "100%" : "102%")});
-    cursor: ${({ disabled }) => (disabled ? "auto" : "pointer")};
+    filter: brightness(102%);
+    cursor: pointer;
   }
 
   &:active {
-    filter: brightness(${({ disabled }) => (disabled ? "100%" : "104%")});
+    filter: brightness(104%);
   }
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background-color: ${({ theme }) => theme.color.grey};
+
+      &:hover {
+        filter: brightness(100%);
+        cursor: not-allowed;
+      }
+
+      &:active {
+        filter: brightness(100%);
+      }
+    `};
 `;
 
 export const Content = styled.span`
